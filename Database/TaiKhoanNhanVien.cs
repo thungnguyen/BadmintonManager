@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 
 namespace BadmintonManager.Database
 {
+    // up code
     public class TaiKhoanNhanVien
     {
         public int MaNV { get; set; }

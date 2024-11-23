@@ -18,6 +18,7 @@ namespace BadmintonManager.GUI
             InitializeComponent();
         }
 
+
         private void btnTao_Click_1(object sender, EventArgs e)
         {
             {
@@ -51,6 +52,7 @@ namespace BadmintonManager.GUI
                     {
                         MessageBox.Show("Đăng ký tài khoản thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
+
                     }
                 }
                 catch (Exception ex)
@@ -58,6 +60,11 @@ namespace BadmintonManager.GUI
                     MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -179,6 +179,12 @@
     <Compile Include="GUI\DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhSachTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachTaiKhoan.Designer.cs">
+      <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\GDNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
+      <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -43,7 +43,7 @@ namespace BadmintonManager.GUI
                         SDT = sdt,
                         TenDangNhap = tenDangNhap,
                         MatKhau = matKhau,
-                        VaiTro = "Nhân viên"
+                        VaiTro = "1"
                     };
 
                     // Thêm vào database

@@ -33,17 +33,17 @@ namespace BadmintonManager
                 // Kiểm tra vai trò và mở form tương ứng
                 if (taiKhoan.VaiTro == "0") // Quản lý
                 {
-                    int maNV = taiKhoanDB.LayMaNV(tenDangNhap, matKhau);
-                    MessageBox.Show($"Chào quản lý! MaNV: {maNV}");
-                    GDQuanLy formQuanLy = new GDQuanLy();
-                    formQuanLy.Show();
+                    string tenNV = taiKhoanDB.LayTenNV(tenDangNhap, matKhau);
+                    MessageBox.Show($"Chào quản lý {tenNV} đã đăng nhập hệ thống!");
+                    FormMenu formMenu = new FormMenu();
+                    formMenu.Show();
                 }
                 else if (taiKhoan.VaiTro == "1") // Nhân viên
                 {
-                    int maNV = taiKhoanDB.LayMaNV(tenDangNhap, matKhau);
-                    MessageBox.Show($"Chào nhân viên! MaNV: {maNV}");
-                    GDNhanVien formNhanVien = new GDNhanVien();
-                    formNhanVien.Show();
+                    string tenNV = taiKhoanDB.LayTenNV(tenDangNhap, matKhau);
+                    MessageBox.Show($"Chào nhân viên {tenNV} đã đăng nhập hệ thống!");
+                    FormMenu formMenu = new FormMenu();
+                    formMenu.Show();
                 }
 
                 this.Hide(); // Ẩn form đăng nhập
@@ -57,6 +57,11 @@ namespace BadmintonManager
         private void DangNhap_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

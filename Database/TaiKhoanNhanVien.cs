@@ -87,6 +87,33 @@ namespace BadmintonManager.Database
             return -1; // Trả về -1 nếu không tìm thấy tài khoản
         }
 
+        public string LayTenNV(string tenDangNhap, string matKhau)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"SELECT TenNV FROM TaiKhoanNhanVien 
+                         WHERE TenDangNhap = @TenDangNhap AND MatKhau = @MatKhau";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TenDangNhap", tenDangNhap);
+                    command.Parameters.AddWithValue("@MatKhau", matKhau);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return result.ToString(); // Trả về tên nhân viên nếu có dữ liệu
+                    }
+                }
+            }
+
+            return null; // Trả về null nếu không tìm thấy tên
+        }
+
+
         // Kiểm tra tài khoản đã tồn tại
         public bool KiemTraTaiKhoanTonTai(string tenDangNhap)
         {
@@ -126,7 +153,7 @@ namespace BadmintonManager.Database
                     command.Parameters.AddWithValue("@TenNV", taiKhoan.TenNV);
                     command.Parameters.AddWithValue("@TenDangNhap", taiKhoan.TenDangNhap);
                     command.Parameters.AddWithValue("@MatKhau", taiKhoan.MatKhau);
-                    command.Parameters.AddWithValue("@VaiTro", taiKhoan.VaiTro ?? "Nhân viên");
+                    command.Parameters.AddWithValue("@VaiTro", taiKhoan.VaiTro ?? "1");
                     command.Parameters.AddWithValue("@SDT", taiKhoan.SDT);
 
                     int result = command.ExecuteNonQuery();

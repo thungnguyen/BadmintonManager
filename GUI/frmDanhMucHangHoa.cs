@@ -21,9 +21,17 @@ namespace BadmintonManager.GUI
         // Mở kết nối
         private void openCon()
         {
-            if (con.State == ConnectionState.Closed)
+            try
             {
-                con.Open();
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                    MessageBox.Show("Kết nối thành công!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
             }
         }
 

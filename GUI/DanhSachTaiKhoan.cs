@@ -7,7 +7,7 @@ namespace BadmintonManager.GUI
 {
     public partial class DanhSachTaiKhoan : Form
     {
-        private string connectionString = "Data Source=LAPTOP-G5HQJSJ2\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
 
         public DanhSachTaiKhoan()
         {

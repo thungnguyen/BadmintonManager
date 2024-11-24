@@ -185,6 +185,12 @@
     <Compile Include="GUI\DanhSachTaiKhoan.Designer.cs">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\frmDanhMucHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\frmDanhMucHangHoa.Designer.cs">
+      <DependentUpon>frmDanhMucHangHoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\GDNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,11 +210,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="QuanLySanDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLySanDataSet1.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="GUI\DangKyTaiKhoan.resx">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\frmDanhMucHangHoa.resx">
+      <DependentUpon>frmDanhMucHangHoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -247,17 +251,6 @@
     </None>
     <None Include="QuanLySanDataSet.xss">
       <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="QuanLySanDataSet1.xsc">
-      <DependentUpon>QuanLySanDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="QuanLySanDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QuanLySanDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QuanLySanDataSet1.xss">
-      <DependentUpon>QuanLySanDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -10,5 +10,8 @@ namespace qlycaulong.Database
     {
         public int MaSan { get; set; }
         public string TenSan { get; set; }
+ 
+    // Chuỗi kết nối đến cơ sở dữ liệu
+        public string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
     }
 }

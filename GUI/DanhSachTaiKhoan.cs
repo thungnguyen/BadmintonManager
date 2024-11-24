@@ -7,7 +7,7 @@ namespace BadmintonManager.GUI
 {
     public partial class DanhSachTaiKhoan : Form
     {
-        private string connectionString = "Data Source=LAPTOP-G5HQJSJ2\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = "Data Source=LAPTOP-13092004\\SQLEXPRESS01;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
 
         public DanhSachTaiKhoan()
         {
@@ -17,6 +17,8 @@ namespace BadmintonManager.GUI
         // Khi Form tải, tải dữ liệu lên DataGridView
         private void DanhSachTaiKhoan_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'quanLySanDataSet.TaiKhoanNhanVien' table. You can move, or remove it, as needed.
+            this.taiKhoanNhanVienTableAdapter.Fill(this.quanLySanDataSet.TaiKhoanNhanVien);
             LoadData();
         }
 
@@ -162,6 +164,9 @@ namespace BadmintonManager.GUI
                 }
             }
 
-        
+        private void dgvTaiKhoan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

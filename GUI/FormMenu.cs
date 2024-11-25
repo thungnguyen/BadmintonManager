@@ -134,5 +134,10 @@ namespace BadmintonManager.GUI
             currentButton = null;
             btnCloseChildForm.Visible = false;
         }
+
+        private void btnThietLapSan_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new GUI.ThietLapSan(), sender);
+        }
     }
 }

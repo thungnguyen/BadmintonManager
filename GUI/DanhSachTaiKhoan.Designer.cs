@@ -118,7 +118,6 @@
             this.Name = "DanhSachTaiKhoan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh Sách Tài Khoản";
-            this.Load += new System.EventHandler(this.DanhSachTaiKhoan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -26,7 +26,7 @@ namespace BadmintonManager.GUI
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT * FROM TaiKhoanNhanVien";
+                    string query = "SELECT * FROM HangHoa   ";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
@@ -44,7 +44,7 @@ namespace BadmintonManager.GUI
         {
             try
             {
-                DangKyTaiKhoan formDangKy = new DangKyTaiKhoan();
+                ThemHangHoa formDangKy = new ThemHangHoa();
                 if (formDangKy.ShowDialog() == DialogResult.OK) // Chờ form thêm tài khoản đóng
                 {
                     LoadData(); // Cập nhật lại dữ liệu sau khi thêm

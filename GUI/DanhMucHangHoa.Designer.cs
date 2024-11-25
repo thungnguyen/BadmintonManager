@@ -35,6 +35,8 @@
             this.Thembttn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.hangHoaTableAdapter = new BadmintonManager.QuanLySanDataSetTableAdapters.HangHoaTableAdapter();
+            this.Deletebtn = new System.Windows.Forms.Button();
+            this.Updatebtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHangHoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hangHoaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
@@ -62,7 +64,7 @@
             // 
             // Thembttn
             // 
-            this.Thembttn.Location = new System.Drawing.Point(498, 378);
+            this.Thembttn.Location = new System.Drawing.Point(474, 378);
             this.Thembttn.Name = "Thembttn";
             this.Thembttn.Size = new System.Drawing.Size(99, 47);
             this.Thembttn.TabIndex = 1;
@@ -84,11 +86,33 @@
             // 
             this.hangHoaTableAdapter.ClearBeforeFill = true;
             // 
+            // Deletebtn
+            // 
+            this.Deletebtn.Location = new System.Drawing.Point(579, 378);
+            this.Deletebtn.Name = "Deletebtn";
+            this.Deletebtn.Size = new System.Drawing.Size(99, 47);
+            this.Deletebtn.TabIndex = 3;
+            this.Deletebtn.Text = "Xoá";
+            this.Deletebtn.UseVisualStyleBackColor = true;
+            this.Deletebtn.Click += new System.EventHandler(this.Deletebtn_Click);
+            // 
+            // Updatebtn
+            // 
+            this.Updatebtn.Location = new System.Drawing.Point(684, 378);
+            this.Updatebtn.Name = "Updatebtn";
+            this.Updatebtn.Size = new System.Drawing.Size(99, 47);
+            this.Updatebtn.TabIndex = 4;
+            this.Updatebtn.Text = "Cập nhật";
+            this.Updatebtn.UseVisualStyleBackColor = true;
+            this.Updatebtn.Click += new System.EventHandler(this.Updatebtn_Click);
+            // 
             // DanhMucHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Updatebtn);
+            this.Controls.Add(this.Deletebtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Thembttn);
             this.Controls.Add(this.dgvHangHoa);
@@ -111,5 +135,7 @@
         private QuanLySanDataSet quanLySanDataSet;
         private System.Windows.Forms.BindingSource hangHoaBindingSource;
         private QuanLySanDataSetTableAdapters.HangHoaTableAdapter hangHoaTableAdapter;
+        private System.Windows.Forms.Button Deletebtn;
+        private System.Windows.Forms.Button Updatebtn;
     }
 }

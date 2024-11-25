@@ -179,17 +179,17 @@
     <Compile Include="GUI\DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhMucHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
+      <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhSachTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\DanhSachTaiKhoan.Designer.cs">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\frmDanhMucHangHoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\frmDanhMucHangHoa.Designer.cs">
-      <DependentUpon>frmDanhMucHangHoa.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\GDNhanVien.cs">
       <SubType>Form</SubType>
@@ -202,6 +202,12 @@
     </Compile>
     <Compile Include="GUI\GDQuanLy.Designer.cs">
       <DependentUpon>GDQuanLy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ThemHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ThemHangHoa.Designer.cs">
+      <DependentUpon>ThemHangHoa.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,11 +222,14 @@
     <EmbeddedResource Include="GUI\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
+      <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\frmDanhMucHangHoa.resx">
-      <DependentUpon>frmDanhMucHangHoa.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\ThemHangHoa.resx">
+      <DependentUpon>ThemHangHoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

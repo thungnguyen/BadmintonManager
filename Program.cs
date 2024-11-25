@@ -17,7 +17,7 @@ namespace BadmintonManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDanhMucHangHoa());
+            Application.Run(new DanhMucHangHoa());
         }
     }
 }

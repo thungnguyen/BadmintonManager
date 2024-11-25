@@ -1,4 +1,5 @@
 ﻿using BadmintonManager.GUI;
+using qlycaulong.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BadmintonManager
+
 {
     internal static class Program
     {
@@ -17,7 +19,7 @@ namespace BadmintonManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DangNhap());
+            Application.Run(new FormDangKyKhachHang());
         }
     }
 }

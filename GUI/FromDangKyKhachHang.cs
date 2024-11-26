@@ -15,9 +15,11 @@ namespace BadmintonManager.GUI
 
 
         // Hàm tự động sinh mã khách hàng mới
+       
+        // Hàm tự động sinh mã loại khách hàng mới
         private string SinhMaKhachHangMoi()
         {
-            string maKhachHangMoi = "001"; // Giá trị mặc định nếu chưa có khách hàng
+            string maKhachHangMoi = "001"; // Giá trị mặc định nếu chưa có loại khách hàng
             string query = "SELECT MAX(MaKH) AS MaLonNhat FROM KhachHang";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -28,10 +30,8 @@ namespace BadmintonManager.GUI
                 object result = cmd.ExecuteScalar();
                 if (result != null && result != DBNull.Value)
                 {
-                    string maLonNhat = result.ToString(); // Ví dụ: "KH005"
-                    string phanSo = maLonNhat.Substring(10); // Lấy phần số (vd: "005")
-                    int soMoi = int.Parse(phanSo) + 1;
-                    maKhachHangMoi = "" + soMoi.ToString("D3"); // Format lại (vd: "KH006")
+                    int soMoi = int.Parse(result.ToString()) + 1;
+                    maKhachHangMoi = soMoi.ToString("D3"); // Format lại (vd: "002")
                 }
             }
 

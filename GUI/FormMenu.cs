@@ -139,5 +139,11 @@ namespace BadmintonManager.GUI
         {
             OpenChildForm(new GUI.ThietLapSan(), sender);
         }
+
+        private void btnTinhTien_Click(object sender, EventArgs e)
+        {
+            FrmTinhTien frmTinhTien = new FrmTinhTien();
+            frmTinhTien.ShowDialog();
+        }
     }
 }

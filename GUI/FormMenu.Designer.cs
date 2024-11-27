@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.btnThietLapSan = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -47,9 +49,10 @@
             this.btnCloseChildForm = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelDesktopPane = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.btnThietLapSan = new System.Windows.Forms.Button();
+            this.btnTinhTien = new System.Windows.Forms.Button();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -58,12 +61,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.pictureBox8);
+            this.panelMenu.Controls.Add(this.btnTinhTien);
             this.panelMenu.Controls.Add(this.pictureBox7);
             this.panelMenu.Controls.Add(this.btnThietLapSan);
             this.panelMenu.Controls.Add(this.pictureBox6);
@@ -84,6 +89,32 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(220, 496);
             this.panelMenu.TabIndex = 0;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::BadmintonManager.Properties.Resources.badminton_court;
+            this.pictureBox7.Location = new System.Drawing.Point(12, 362);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(36, 32);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 15;
+            this.pictureBox7.TabStop = false;
+            // 
+            // btnThietLapSan
+            // 
+            this.btnThietLapSan.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnThietLapSan.FlatAppearance.BorderSize = 0;
+            this.btnThietLapSan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThietLapSan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThietLapSan.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnThietLapSan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThietLapSan.Location = new System.Drawing.Point(0, 356);
+            this.btnThietLapSan.Name = "btnThietLapSan";
+            this.btnThietLapSan.Size = new System.Drawing.Size(220, 46);
+            this.btnThietLapSan.TabIndex = 14;
+            this.btnThietLapSan.Text = "Thiết lập sân";
+            this.btnThietLapSan.UseVisualStyleBackColor = true;
+            this.btnThietLapSan.Click += new System.EventHandler(this.btnThietLapSan_Click);
             // 
             // pictureBox6
             // 
@@ -308,31 +339,31 @@
             this.panelDesktopPane.Size = new System.Drawing.Size(623, 416);
             this.panelDesktopPane.TabIndex = 2;
             // 
-            // pictureBox7
+            // btnTinhTien
             // 
-            this.pictureBox7.Image = global::BadmintonManager.Properties.Resources.badminton_court;
-            this.pictureBox7.Location = new System.Drawing.Point(12, 362);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(36, 32);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 15;
-            this.pictureBox7.TabStop = false;
+            this.btnTinhTien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTinhTien.FlatAppearance.BorderSize = 0;
+            this.btnTinhTien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTinhTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTinhTien.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnTinhTien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTinhTien.Location = new System.Drawing.Point(0, 402);
+            this.btnTinhTien.Name = "btnTinhTien";
+            this.btnTinhTien.Size = new System.Drawing.Size(220, 46);
+            this.btnTinhTien.TabIndex = 16;
+            this.btnTinhTien.Text = "Tính tiền ";
+            this.btnTinhTien.UseVisualStyleBackColor = true;
+            this.btnTinhTien.Click += new System.EventHandler(this.btnTinhTien_Click);
             // 
-            // btnThietLapSan
+            // pictureBox8
             // 
-            this.btnThietLapSan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnThietLapSan.FlatAppearance.BorderSize = 0;
-            this.btnThietLapSan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThietLapSan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThietLapSan.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnThietLapSan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThietLapSan.Location = new System.Drawing.Point(0, 356);
-            this.btnThietLapSan.Name = "btnThietLapSan";
-            this.btnThietLapSan.Size = new System.Drawing.Size(220, 46);
-            this.btnThietLapSan.TabIndex = 14;
-            this.btnThietLapSan.Text = "Thiết lập sân";
-            this.btnThietLapSan.UseVisualStyleBackColor = true;
-            this.btnThietLapSan.Click += new System.EventHandler(this.btnThietLapSan_Click);
+            this.pictureBox8.Image = global::BadmintonManager.Properties.Resources.target;
+            this.pictureBox8.Location = new System.Drawing.Point(12, 408);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(36, 32);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 17;
+            this.pictureBox8.TabStop = false;
             // 
             // FormMenu
             // 
@@ -347,6 +378,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phần mềm quản lý sân cầu";
             this.panelMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -357,7 +389,7 @@
             this.panelLogo.PerformLayout();
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -385,5 +417,7 @@
         private System.Windows.Forms.Button btnCloseChildForm;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Button btnThietLapSan;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Button btnTinhTien;
     }
 }

@@ -59,6 +59,8 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(319, 9);
@@ -69,6 +71,8 @@
             // 
             // dgvGiaSan
             // 
+            this.dgvGiaSan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvGiaSan.AutoGenerateColumns = false;
             this.dgvGiaSan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGiaSan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -130,6 +134,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(54, 86);
             this.label2.Name = "label2";
@@ -139,6 +144,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(54, 123);
             this.label3.Name = "label3";
@@ -148,6 +154,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(54, 160);
             this.label4.Name = "label4";
@@ -157,6 +164,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(54, 226);
             this.label5.Name = "label5";
@@ -166,6 +174,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(54, 193);
             this.label6.Name = "label6";
@@ -175,6 +184,7 @@
             // 
             // txtMaGia
             // 
+            this.txtMaGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtMaGia.Location = new System.Drawing.Point(123, 79);
             this.txtMaGia.Name = "txtMaGia";
             this.txtMaGia.Size = new System.Drawing.Size(200, 20);
@@ -182,6 +192,7 @@
             // 
             // txtGia
             // 
+            this.txtGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtGia.Location = new System.Drawing.Point(123, 153);
             this.txtGia.Name = "txtGia";
             this.txtGia.Size = new System.Drawing.Size(200, 20);
@@ -189,6 +200,7 @@
             // 
             // cbLoaiKH
             // 
+            this.cbLoaiKH.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbLoaiKH.FormattingEnabled = true;
             this.cbLoaiKH.Location = new System.Drawing.Point(123, 115);
             this.cbLoaiKH.Name = "cbLoaiKH";
@@ -197,6 +209,7 @@
             // 
             // dtpBegin
             // 
+            this.dtpBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.dtpBegin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpBegin.Location = new System.Drawing.Point(123, 186);
             this.dtpBegin.Name = "dtpBegin";
@@ -206,6 +219,7 @@
             // 
             // dtpEnd
             // 
+            this.dtpEnd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpEnd.Location = new System.Drawing.Point(123, 219);
             this.dtpEnd.Name = "dtpEnd";
@@ -215,6 +229,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAdd.Location = new System.Drawing.Point(367, 79);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 39);
@@ -225,6 +240,7 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnUpdate.Location = new System.Drawing.Point(367, 134);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(66, 39);
@@ -235,6 +251,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnDelete.Location = new System.Drawing.Point(367, 186);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(66, 39);

@@ -13,7 +13,7 @@ namespace BadmintonManager.GUI
 {
     public partial class FrmTinhTien : Form
     {
-        private string connectionString = "Data Source=DESKTOP-CESMAPL\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = "Data Source=TIENNGUYENN;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
         public FrmTinhTien()
         {
             InitializeComponent();

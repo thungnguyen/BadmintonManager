@@ -17,7 +17,7 @@ namespace BadmintonManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ThietLapSan());
+            Application.Run(new FormMenu());
         }
     }
 }

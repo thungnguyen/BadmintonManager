@@ -29,39 +29,67 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbLoaiHH = new System.Windows.Forms.ComboBox();
-            this.txtTenHH = new System.Windows.Forms.TextBox();
-            this.btnLamMoi = new System.Windows.Forms.Button();
-            this.btnThemMoi = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.dgvHangHoa = new System.Windows.Forms.DataGridView();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
+            this.cbLoaiHH = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHangHoa)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.dgvHangHoa);
-            this.panel1.Controls.Add(this.btnThemMoi);
-            this.panel1.Controls.Add(this.btnLamMoi);
-            this.panel1.Controls.Add(this.txtTenHH);
+            this.panel1.Controls.Add(this.txtTimKiem);
             this.panel1.Controls.Add(this.cbLoaiHH);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(235, 426);
+            this.panel1.Size = new System.Drawing.Size(188, 426);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // btnSearch
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nhóm";
+            this.btnSearch.Location = new System.Drawing.Point(139, 44);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(42, 20);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // dgvHangHoa
+            // 
+            this.dgvHangHoa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.dgvHangHoa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHangHoa.Location = new System.Drawing.Point(6, 69);
+            this.dgvHangHoa.Name = "dgvHangHoa";
+            this.dgvHangHoa.Size = new System.Drawing.Size(175, 354);
+            this.dgvHangHoa.TabIndex = 6;
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.Location = new System.Drawing.Point(44, 43);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(93, 20);
+            this.txtTimKiem.TabIndex = 3;
+            // 
+            // cbLoaiHH
+            // 
+            this.cbLoaiHH.FormattingEnabled = true;
+            this.cbLoaiHH.Location = new System.Drawing.Point(44, 17);
+            this.cbLoaiHH.Name = "cbLoaiHH";
+            this.cbLoaiHH.Size = new System.Drawing.Size(137, 21);
+            this.cbLoaiHH.TabIndex = 2;
+            this.cbLoaiHH.SelectedValueChanged += new System.EventHandler(this.cbLoaiHH_SelectedValueChanged);
             // 
             // label2
             // 
@@ -72,52 +100,52 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên";
             // 
-            // cbLoaiHH
+            // label1
             // 
-            this.cbLoaiHH.FormattingEnabled = true;
-            this.cbLoaiHH.Location = new System.Drawing.Point(44, 17);
-            this.cbLoaiHH.Name = "cbLoaiHH";
-            this.cbLoaiHH.Size = new System.Drawing.Size(188, 21);
-            this.cbLoaiHH.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nhóm";
             // 
-            // txtTenHH
+            // flowLayoutPanel1
             // 
-            this.txtTenHH.Location = new System.Drawing.Point(44, 43);
-            this.txtTenHH.Name = "txtTenHH";
-            this.txtTenHH.Size = new System.Drawing.Size(71, 20);
-            this.txtTenHH.TabIndex = 3;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(206, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(381, 97);
+            this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // btnLamMoi
+            // flowLayoutPanel2
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(121, 46);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(54, 19);
-            this.btnLamMoi.TabIndex = 4;
-            this.btnLamMoi.Text = "Làm mới";
-            this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(206, 115);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(381, 200);
+            this.flowLayoutPanel2.TabIndex = 2;
             // 
-            // btnThemMoi
+            // flowLayoutPanel3
             // 
-            this.btnThemMoi.Location = new System.Drawing.Point(178, 46);
-            this.btnThemMoi.Name = "btnThemMoi";
-            this.btnThemMoi.Size = new System.Drawing.Size(54, 19);
-            this.btnThemMoi.TabIndex = 5;
-            this.btnThemMoi.Text = "Thêm";
-            this.btnThemMoi.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(206, 321);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(381, 117);
+            this.flowLayoutPanel3.TabIndex = 3;
             // 
-            // dgvHangHoa
+            // flowLayoutPanel4
             // 
-            this.dgvHangHoa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHangHoa.Location = new System.Drawing.Point(6, 71);
-            this.dgvHangHoa.Name = "dgvHangHoa";
-            this.dgvHangHoa.Size = new System.Drawing.Size(185, 336);
-            this.dgvHangHoa.TabIndex = 6;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(593, 12);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(195, 426);
+            this.flowLayoutPanel4.TabIndex = 4;
             // 
             // FrmTinhTien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.flowLayoutPanel4);
+            this.Controls.Add(this.flowLayoutPanel3);
+            this.Controls.Add(this.flowLayoutPanel2);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "FrmTinhTien";
             this.Text = "Tính tiền";
@@ -134,10 +162,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtTenHH;
+        private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.ComboBox cbLoaiHH;
-        private System.Windows.Forms.Button btnLamMoi;
-        private System.Windows.Forms.Button btnThemMoi;
         private System.Windows.Forms.DataGridView dgvHangHoa;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
     }
 }

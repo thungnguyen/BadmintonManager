@@ -25,6 +25,9 @@ namespace BadmintonManager.GUI
             LoadHangHoa();
             dgvHangHoa.RowPostPaint += dgvHangHoa_RowPostPaint;
             cbLoaiHH.SelectedValueChanged += cbLoaiHH_SelectedValueChanged;
+            LoadTenHangHoa();
+            // Đăng ký sự kiện SelectedIndexChanged cho ComboBox cbTenHH
+            cbTenHH.SelectedIndexChanged += cbTenHH_SelectedIndexChanged;
 
         }
         private void LoadLoaiHH()
@@ -40,16 +43,15 @@ namespace BadmintonManager.GUI
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
 
-                    // Thêm dòng "Tất cả" vào DataTable
                     DataRow allRow = dataTable.NewRow();
-                    allRow["MaLoaiHH"] = DBNull.Value; // Giá trị null để nhận diện "Tất cả"
+                    allRow["MaLoaiHH"] = DBNull.Value;
                     allRow["TenLoaiHH"] = "Tất cả";
-                    dataTable.Rows.InsertAt(allRow, 0); // Thêm vào vị trí đầu tiên
+                    dataTable.Rows.InsertAt(allRow, 0);
 
                     cbLoaiHH.DataSource = dataTable;
-                    cbLoaiHH.DisplayMember = "TenLoaiHH"; // Hiển thị tên loại hàng hóa
-                    cbLoaiHH.ValueMember = "MaLoaiHH";   // Giá trị là mã loại hàng hóa
-                    cbLoaiHH.SelectedIndex = 0;          // Chọn "Tất cả" mặc định
+                    cbLoaiHH.DisplayMember = "TenLoaiHH";
+                    cbLoaiHH.ValueMember = "MaLoaiHH";
+                    cbLoaiHH.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -64,7 +66,8 @@ namespace BadmintonManager.GUI
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT MaHH, TenHH, DonViTinhNhap, GiaNhap, GiaBan, SoLuong FROM HangHoa";
+                    string query = @"SELECT MaHH, TenHH, DonViTinhLon, DonViTinhNho, HeSoQuyDoi, GiaBanLon, GiaBanNho, SoLuongTonLon, SoLuongTonNho 
+                                      FROM HangHoa";
 
                     if (!string.IsNullOrEmpty(maLoaiHH))
                     {
@@ -98,6 +101,7 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi khi tải danh sách hàng hóa: " + ex.Message);
             }
         }
+       
         private void dgvHangHoa_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             using (SolidBrush brush = new SolidBrush(dgvHangHoa.RowHeadersDefaultCellStyle.ForeColor))
@@ -110,9 +114,6 @@ namespace BadmintonManager.GUI
                                       e.RowBounds.Location.Y + 4);
             }
         }
-       
-        
-
         private void cbLoaiHH_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cbLoaiHH.SelectedValue == null || cbLoaiHH.SelectedValue == DBNull.Value)
@@ -133,10 +134,9 @@ namespace BadmintonManager.GUI
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = @"
-                SELECT MaHH, TenHH, DonViTinhNhap, GiaNhap, GiaBan, SoLuong
-                FROM HangHoa
-                WHERE (TenHH LIKE @keyword OR MaHH = @mahh)";
+                    string query = @"SELECT MaHH, TenHH, DonViTinhLon, DonViTinhNho, HeSoQuyDoi, GiaBanLon, GiaBanNho, SoLuongTonLon, SoLuongTonNho
+                                      FROM HangHoa
+                                      WHERE (TenHH LIKE @keyword OR MaHH = @mahh)";
 
                     // Nếu có mã loại hàng hóa, thêm điều kiện lọc
                     if (!string.IsNullOrEmpty(maLoaiHH))
@@ -202,5 +202,106 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Không tìm thấy hàng hóa phù hợp!");
             }
         }
+        // phần chọn thêm hàngg
+        // Tải đơn vị tính cho một mã hàng hóa
+        private void LoadTenHangHoa()
+        {
+            string query = "SELECT MaHH, TenHH FROM HangHoa";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable loaiKhachHangTable = new DataTable();
+                adapter.Fill(loaiKhachHangTable);
+
+                cbTenHH.DataSource = loaiKhachHangTable;
+                cbTenHH.DisplayMember = "TenHH";
+                cbTenHH.ValueMember = "MaHH";
+            }
+        }
+        private void LoadDonViTinh(int maHH)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Câu truy vấn để lấy đơn vị tính từ bảng HangHoa theo mã hàng hóa
+                    string query = "SELECT DonViTinhLon, DonViTinhNho FROM HangHoa WHERE MaHH = @MaHH";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@MaHH", maHH);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Xóa dữ liệu cũ trong ComboBox cbDonViTinh trước khi thêm mới
+                    cbDonViTinh.Items.Clear();
+
+                    // Nếu tìm thấy dữ liệu
+                    if (reader.Read())
+                    {
+                        string donViTinhLon = reader["DonViTinhLon"].ToString();
+                        string donViTinhNho = reader["DonViTinhNho"].ToString();
+
+                        // Thêm đơn vị tính vào ComboBox cbDonViTinh
+                        if (!string.IsNullOrEmpty(donViTinhLon))
+                        {
+                            cbDonViTinh.Items.Add(donViTinhLon);
+                        }
+                        if (!string.IsNullOrEmpty(donViTinhNho))
+                        {
+                            cbDonViTinh.Items.Add(donViTinhNho);
+                        }
+
+                        // Chọn đơn vị tính đầu tiên trong ComboBox
+                        if (cbDonViTinh.Items.Count > 0)
+                        {
+                            cbDonViTinh.SelectedIndex = 0;  // Chọn đơn vị tính đầu tiên
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin đơn vị tính cho hàng hóa này.");
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải thông tin đơn vị tính: " + ex.Message);
+            }
+        }
+
+        private void dgvHangHoa_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)  // Kiểm tra xem có phải là hàng hợp lệ không
+            {
+                DataGridViewRow row = dgvHangHoa.Rows[e.RowIndex];
+
+                // Đặt giá trị của ComboBox để hiển thị tên hàng hóa
+                cbTenHH.SelectedValue = row.Cells["MaHH"].Value;
+
+
+            }
+        }
+
+        private void cbTenHH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có giá trị nào được chọn trong ComboBox cbTenHH
+            if (cbTenHH.SelectedValue != null && cbTenHH.SelectedValue != DBNull.Value)
+            {
+                // Lấy đối tượng DataRowView từ SelectedItem
+                DataRowView selectedRow = (DataRowView)cbTenHH.SelectedItem;
+
+                // Lấy mã hàng hóa (MaHH) từ DataRowView
+                int maHH = Convert.ToInt32(selectedRow["MaHH"]);
+
+                // Gọi hàm LoadDonViTinh để tải đơn vị tính cho mã hàng hóa đã chọn
+                LoadDonViTinh(maHH);
+            }
+        }
     }
-}
+
+    }
+

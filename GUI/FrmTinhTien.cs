@@ -30,6 +30,7 @@ namespace BadmintonManager.GUI
             cbTenHH.SelectedIndexChanged += cbTenHH_SelectedIndexChanged;
             // Đặt giá trị mặc định cho txtGiamGia là "0"
             txtGiamGia.Text = "0";
+            LoadSanData();
 
         }
         private void LoadLoaiHH()
@@ -624,6 +625,50 @@ namespace BadmintonManager.GUI
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi xóa hàng hóa: " + ex.Message);
+            }
+        }
+        private void LoadSanData()
+        {
+            // Tạo kết nối với cơ sở dữ liệu
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    // Mở kết nối
+                    conn.Open();
+
+                    // Truy vấn để lấy tên sân
+                    string query = "SELECT MaSan, TenSan FROM San";  // Lấy mã sân và tên sân
+
+                    // Tạo DataAdapter và DataTable để lưu trữ kết quả
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+
+                    // Điền dữ liệu vào DataTable
+                    da.Fill(dt);
+
+                    // Gán dữ liệu vào DataGridView
+                    dgvSan.DataSource = dt;
+
+                    // Ẩn cột MaSan
+                    dgvSan.Columns["MaSan"].Visible = false;
+
+                    // Đặt tiêu đề cột TenSan
+                    dgvSan.Columns["TenSan"].HeaderText = "Tên Sân";
+
+                    // Căn giữa văn bản trong cột TenSan
+                    dgvSan.Columns["TenSan"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    
+                    
+                    // Tự động điều chỉnh kích thước cột theo nội dung
+                    dgvSan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
+                }
             }
         }
     }

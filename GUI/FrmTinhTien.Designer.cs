@@ -52,11 +52,19 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtTongTien = new System.Windows.Forms.TextBox();
             this.dgvDanhSachHangHoa = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvSan = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHangHoa)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHangHoa)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSan)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -129,6 +137,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.dataGridView2);
+            this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.txtThanhTien);
             this.panel2.Controls.Add(this.txtGiamGia);
@@ -290,11 +300,44 @@
             this.dgvDanhSachHangHoa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSachHangHoa_CellClick);
             this.dgvDanhSachHangHoa.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSachHangHoa_CellValueChanged);
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dgvSan);
+            this.panel3.Location = new System.Drawing.Point(667, 101);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(121, 220);
+            this.panel3.TabIndex = 19;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(464, 39);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(115, 178);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(500, 68);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(185, 135);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // dgvSan
+            // 
+            this.dgvSan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSan.Location = new System.Drawing.Point(3, 42);
+            this.dgvSan.Name = "dgvSan";
+            this.dgvSan.Size = new System.Drawing.Size(115, 175);
+            this.dgvSan.TabIndex = 0;
+            // 
             // FrmTinhTien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.txtTongTien);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -308,6 +351,10 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHangHoa)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,5 +386,9 @@
         private System.Windows.Forms.TextBox txtThanhTien;
         private System.Windows.Forms.TextBox txtTongTien;
         private System.Windows.Forms.DataGridView dgvDanhSachHangHoa;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridView dgvSan;
     }
 }

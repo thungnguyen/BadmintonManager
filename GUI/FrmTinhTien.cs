@@ -671,6 +671,32 @@ namespace BadmintonManager.GUI
                 }
             }
         }
+        private void dgvSan_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra xem người dùng có chọn vào hàng hợp lệ hay không
+            if (e.RowIndex >= 0)
+            {
+                // Lấy hàng được chọn
+                DataGridViewRow selectedRow = dgvSan.Rows[e.RowIndex];
+
+                // Lấy tên sân từ cột "TenSan"
+                string tenSan = selectedRow.Cells["TenSan"].Value.ToString();
+
+                // Cập nhật label hiển thị tên sân
+                lbTenSan.Text = tenSan;
+                // Đổi màu label khi cập nhật
+                lbTenSan.ForeColor = Color.Black;
+                lbTenSan.Font = new Font("Arial", 12, FontStyle.Bold);
+            }
+        }
+
+
+
+
+
+
+
+
     }
 
 }

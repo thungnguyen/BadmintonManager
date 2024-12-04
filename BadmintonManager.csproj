@@ -191,6 +191,12 @@
     <Compile Include="GUI\DanhSachTaiKhoan.Designer.cs">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DatSan.Designer.cs">
+      <DependentUpon>DatSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\GDNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>

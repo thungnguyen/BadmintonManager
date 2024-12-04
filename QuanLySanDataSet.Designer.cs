@@ -50,27 +50,27 @@ namespace BadmintonManager {
         
         private ThanhToanDataTable tableThanhToan;
         
-        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaHDS__03BB8E22;
+        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaHDS__477199F1;
         
-        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaLoa__05A3D694;
+        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaLoa__4865BE2A;
         
-        private global::System.Data.DataRelation relationFK__BaoCaoDoan__MaHD__078C1F06;
+        private global::System.Data.DataRelation relationFK__BaoCaoDoan__MaHD__4A4E069C;
         
-        private global::System.Data.DataRelation relationFK__HangHoa__MaLoaiH__09746778;
+        private global::System.Data.DataRelation relationFK__HangHoa__MaLoaiH__4B422AD5;
         
         private global::System.Data.DataRelation relationFK_HangHoa;
         
         private global::System.Data.DataRelation relationFK_HoaDon;
         
-        private global::System.Data.DataRelation relationFK__LichDatSa__MaGia__0D44F85C;
+        private global::System.Data.DataRelation relationFK__LichDatSa__MaGia__4E1E9780;
         
         private global::System.Data.DataRelation relationFK_LichDatSan_KhachHang;
         
         private global::System.Data.DataRelation relationFK_LichDatSan_San;
         
-        private global::System.Data.DataRelation relationFK__ThanhToan__MaHD__10216507;
+        private global::System.Data.DataRelation relationFK__ThanhToan__MaHD__50FB042B;
         
-        private global::System.Data.DataRelation relationFK__ThanhToan__MaHin__13F1F5EB;
+        private global::System.Data.DataRelation relationFK__ThanhToan__MaHin__51EF2864;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -504,17 +504,17 @@ namespace BadmintonManager {
                     this.tableThanhToan.InitVars();
                 }
             }
-            this.relationFK__BaoCaoDoa__MaHDS__03BB8E22 = this.Relations["FK__BaoCaoDoa__MaHDS__03BB8E22"];
-            this.relationFK__BaoCaoDoa__MaLoa__05A3D694 = this.Relations["FK__BaoCaoDoa__MaLoa__05A3D694"];
-            this.relationFK__BaoCaoDoan__MaHD__078C1F06 = this.Relations["FK__BaoCaoDoan__MaHD__078C1F06"];
-            this.relationFK__HangHoa__MaLoaiH__09746778 = this.Relations["FK__HangHoa__MaLoaiH__09746778"];
+            this.relationFK__BaoCaoDoa__MaHDS__477199F1 = this.Relations["FK__BaoCaoDoa__MaHDS__477199F1"];
+            this.relationFK__BaoCaoDoa__MaLoa__4865BE2A = this.Relations["FK__BaoCaoDoa__MaLoa__4865BE2A"];
+            this.relationFK__BaoCaoDoan__MaHD__4A4E069C = this.Relations["FK__BaoCaoDoan__MaHD__4A4E069C"];
+            this.relationFK__HangHoa__MaLoaiH__4B422AD5 = this.Relations["FK__HangHoa__MaLoaiH__4B422AD5"];
             this.relationFK_HangHoa = this.Relations["FK_HangHoa"];
             this.relationFK_HoaDon = this.Relations["FK_HoaDon"];
-            this.relationFK__LichDatSa__MaGia__0D44F85C = this.Relations["FK__LichDatSa__MaGia__0D44F85C"];
+            this.relationFK__LichDatSa__MaGia__4E1E9780 = this.Relations["FK__LichDatSa__MaGia__4E1E9780"];
             this.relationFK_LichDatSan_KhachHang = this.Relations["FK_LichDatSan_KhachHang"];
             this.relationFK_LichDatSan_San = this.Relations["FK_LichDatSan_San"];
-            this.relationFK__ThanhToan__MaHD__10216507 = this.Relations["FK__ThanhToan__MaHD__10216507"];
-            this.relationFK__ThanhToan__MaHin__13F1F5EB = this.Relations["FK__ThanhToan__MaHin__13F1F5EB"];
+            this.relationFK__ThanhToan__MaHD__50FB042B = this.Relations["FK__ThanhToan__MaHD__50FB042B"];
+            this.relationFK__ThanhToan__MaHin__51EF2864 = this.Relations["FK__ThanhToan__MaHin__51EF2864"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -551,22 +551,22 @@ namespace BadmintonManager {
             base.Tables.Add(this.tableTaiKhoanNhanVien);
             this.tableThanhToan = new ThanhToanDataTable();
             base.Tables.Add(this.tableThanhToan);
-            this.relationFK__BaoCaoDoa__MaHDS__03BB8E22 = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaHDS__03BB8E22", new global::System.Data.DataColumn[] {
+            this.relationFK__BaoCaoDoa__MaHDS__477199F1 = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaHDS__477199F1", new global::System.Data.DataColumn[] {
                         this.tableHDSP.MaHDSPColumn}, new global::System.Data.DataColumn[] {
                         this.tableBaoCaoDoanhThu.MaHDSPColumn}, false);
-            this.Relations.Add(this.relationFK__BaoCaoDoa__MaHDS__03BB8E22);
-            this.relationFK__BaoCaoDoa__MaLoa__05A3D694 = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaLoa__05A3D694", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__BaoCaoDoa__MaHDS__477199F1);
+            this.relationFK__BaoCaoDoa__MaLoa__4865BE2A = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaLoa__4865BE2A", new global::System.Data.DataColumn[] {
                         this.tableLoaiBC.MaLoaiBCColumn}, new global::System.Data.DataColumn[] {
                         this.tableBaoCaoDoanhThu.MaLoaiBCColumn}, false);
-            this.Relations.Add(this.relationFK__BaoCaoDoa__MaLoa__05A3D694);
-            this.relationFK__BaoCaoDoan__MaHD__078C1F06 = new global::System.Data.DataRelation("FK__BaoCaoDoan__MaHD__078C1F06", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__BaoCaoDoa__MaLoa__4865BE2A);
+            this.relationFK__BaoCaoDoan__MaHD__4A4E069C = new global::System.Data.DataRelation("FK__BaoCaoDoan__MaHD__4A4E069C", new global::System.Data.DataColumn[] {
                         this.tableHoaDon.MaHDColumn}, new global::System.Data.DataColumn[] {
                         this.tableBaoCaoDoanhThu.MaHDColumn}, false);
-            this.Relations.Add(this.relationFK__BaoCaoDoan__MaHD__078C1F06);
-            this.relationFK__HangHoa__MaLoaiH__09746778 = new global::System.Data.DataRelation("FK__HangHoa__MaLoaiH__09746778", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__BaoCaoDoan__MaHD__4A4E069C);
+            this.relationFK__HangHoa__MaLoaiH__4B422AD5 = new global::System.Data.DataRelation("FK__HangHoa__MaLoaiH__4B422AD5", new global::System.Data.DataColumn[] {
                         this.tableLoaiHH.MaLoaiHHColumn}, new global::System.Data.DataColumn[] {
                         this.tableHangHoa.MaLoaiHHColumn}, false);
-            this.Relations.Add(this.relationFK__HangHoa__MaLoaiH__09746778);
+            this.Relations.Add(this.relationFK__HangHoa__MaLoaiH__4B422AD5);
             this.relationFK_HangHoa = new global::System.Data.DataRelation("FK_HangHoa", new global::System.Data.DataColumn[] {
                         this.tableHangHoa.MaHHColumn}, new global::System.Data.DataColumn[] {
                         this.tableHDSP.MaHHColumn}, false);
@@ -575,10 +575,10 @@ namespace BadmintonManager {
                         this.tableHoaDon.MaHDColumn}, new global::System.Data.DataColumn[] {
                         this.tableHDSP.MaHDColumn}, false);
             this.Relations.Add(this.relationFK_HoaDon);
-            this.relationFK__LichDatSa__MaGia__0D44F85C = new global::System.Data.DataRelation("FK__LichDatSa__MaGia__0D44F85C", new global::System.Data.DataColumn[] {
+            this.relationFK__LichDatSa__MaGia__4E1E9780 = new global::System.Data.DataRelation("FK__LichDatSa__MaGia__4E1E9780", new global::System.Data.DataColumn[] {
                         this.tableBangGiaSan.MaGiaColumn}, new global::System.Data.DataColumn[] {
                         this.tableLichDatSan.MaGiaColumn}, false);
-            this.Relations.Add(this.relationFK__LichDatSa__MaGia__0D44F85C);
+            this.Relations.Add(this.relationFK__LichDatSa__MaGia__4E1E9780);
             this.relationFK_LichDatSan_KhachHang = new global::System.Data.DataRelation("FK_LichDatSan_KhachHang", new global::System.Data.DataColumn[] {
                         this.tableKhachHang.MaKHColumn}, new global::System.Data.DataColumn[] {
                         this.tableLichDatSan.MaKHColumn}, false);
@@ -587,14 +587,14 @@ namespace BadmintonManager {
                         this.tableSan.MaSanColumn}, new global::System.Data.DataColumn[] {
                         this.tableLichDatSan.MaSanColumn}, false);
             this.Relations.Add(this.relationFK_LichDatSan_San);
-            this.relationFK__ThanhToan__MaHD__10216507 = new global::System.Data.DataRelation("FK__ThanhToan__MaHD__10216507", new global::System.Data.DataColumn[] {
+            this.relationFK__ThanhToan__MaHD__50FB042B = new global::System.Data.DataRelation("FK__ThanhToan__MaHD__50FB042B", new global::System.Data.DataColumn[] {
                         this.tableHoaDon.MaHDColumn}, new global::System.Data.DataColumn[] {
                         this.tableThanhToan.MaHDColumn}, false);
-            this.Relations.Add(this.relationFK__ThanhToan__MaHD__10216507);
-            this.relationFK__ThanhToan__MaHin__13F1F5EB = new global::System.Data.DataRelation("FK__ThanhToan__MaHin__13F1F5EB", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__ThanhToan__MaHD__50FB042B);
+            this.relationFK__ThanhToan__MaHin__51EF2864 = new global::System.Data.DataRelation("FK__ThanhToan__MaHin__51EF2864", new global::System.Data.DataColumn[] {
                         this.tableHinhThucThanhToan.MaHinhThucTTColumn}, new global::System.Data.DataColumn[] {
                         this.tableThanhToan.MaHinhThucTTColumn}, false);
-            this.Relations.Add(this.relationFK__ThanhToan__MaHin__13F1F5EB);
+            this.Relations.Add(this.relationFK__ThanhToan__MaHin__51EF2864);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1269,7 +1269,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BaoCaoDoanhThuRow AddBaoCaoDoanhThuRow(int MaBC, LoaiBCRow parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__05A3D694, HoaDonRow parentHoaDonRowByFK__BaoCaoDoan__MaHD__078C1F06, HDSPRow parentHDSPRowByFK__BaoCaoDoa__MaHDS__03BB8E22, int MaDatSan, System.DateTime TgianBD, System.DateTime TgianKT, decimal TongDoanhThuSan, decimal TongDoanhThuSP, decimal TongDoanhThu) {
+            public BaoCaoDoanhThuRow AddBaoCaoDoanhThuRow(int MaBC, LoaiBCRow parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__4865BE2A, HoaDonRow parentHoaDonRowByFK__BaoCaoDoan__MaHD__4A4E069C, HDSPRow parentHDSPRowByFK__BaoCaoDoa__MaHDS__477199F1, int MaDatSan, System.DateTime TgianBD, System.DateTime TgianKT, decimal TongDoanhThuSan, decimal TongDoanhThuSP, decimal TongDoanhThu) {
                 BaoCaoDoanhThuRow rowBaoCaoDoanhThuRow = ((BaoCaoDoanhThuRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaBC,
@@ -1282,14 +1282,14 @@ namespace BadmintonManager {
                         TongDoanhThuSan,
                         TongDoanhThuSP,
                         TongDoanhThu};
-                if ((parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__05A3D694 != null)) {
-                    columnValuesArray[1] = parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__05A3D694[0];
+                if ((parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__4865BE2A != null)) {
+                    columnValuesArray[1] = parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__4865BE2A[0];
                 }
-                if ((parentHoaDonRowByFK__BaoCaoDoan__MaHD__078C1F06 != null)) {
-                    columnValuesArray[2] = parentHoaDonRowByFK__BaoCaoDoan__MaHD__078C1F06[0];
+                if ((parentHoaDonRowByFK__BaoCaoDoan__MaHD__4A4E069C != null)) {
+                    columnValuesArray[2] = parentHoaDonRowByFK__BaoCaoDoan__MaHD__4A4E069C[0];
                 }
-                if ((parentHDSPRowByFK__BaoCaoDoa__MaHDS__03BB8E22 != null)) {
-                    columnValuesArray[3] = parentHDSPRowByFK__BaoCaoDoa__MaHDS__03BB8E22[0];
+                if ((parentHDSPRowByFK__BaoCaoDoa__MaHDS__477199F1 != null)) {
+                    columnValuesArray[3] = parentHDSPRowByFK__BaoCaoDoa__MaHDS__477199F1[0];
                 }
                 rowBaoCaoDoanhThuRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBaoCaoDoanhThuRow);
@@ -1692,7 +1692,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public HangHoaRow AddHangHoaRow(int MaHH, string TenHH, string MoTa, string DonViTinhLon, string DonViTinhNho, decimal HeSoQuyDoi, decimal GiaNhapLon, decimal GiaNhapNho, decimal GiaBanLon, decimal GiaBanNho, int SoLuongTonLon, int SoLuongTonNho, LoaiHHRow parentLoaiHHRowByFK__HangHoa__MaLoaiH__09746778) {
+            public HangHoaRow AddHangHoaRow(int MaHH, string TenHH, string MoTa, string DonViTinhLon, string DonViTinhNho, decimal HeSoQuyDoi, decimal GiaNhapLon, decimal GiaNhapNho, decimal GiaBanLon, decimal GiaBanNho, int SoLuongTonLon, int SoLuongTonNho, LoaiHHRow parentLoaiHHRowByFK__HangHoa__MaLoaiH__4B422AD5) {
                 HangHoaRow rowHangHoaRow = ((HangHoaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaHH,
@@ -1708,8 +1708,8 @@ namespace BadmintonManager {
                         SoLuongTonLon,
                         SoLuongTonNho,
                         null};
-                if ((parentLoaiHHRowByFK__HangHoa__MaLoaiH__09746778 != null)) {
-                    columnValuesArray[12] = parentLoaiHHRowByFK__HangHoa__MaLoaiH__09746778[0];
+                if ((parentLoaiHHRowByFK__HangHoa__MaLoaiH__4B422AD5 != null)) {
+                    columnValuesArray[12] = parentLoaiHHRowByFK__HangHoa__MaLoaiH__4B422AD5[0];
                 }
                 rowHangHoaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowHangHoaRow);
@@ -2851,8 +2851,6 @@ namespace BadmintonManager {
             
             private global::System.Data.DataColumn columnSDT;
             
-            private global::System.Data.DataColumn columnLoaiKH;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public KhachHangDataTable() {
@@ -2912,14 +2910,6 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn LoaiKHColumn {
-                get {
-                    return this.columnLoaiKH;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2955,13 +2945,12 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public KhachHangRow AddKhachHangRow(int MaKH, string TenKH, string SDT, bool LoaiKH) {
+            public KhachHangRow AddKhachHangRow(string TenKH, string SDT) {
                 KhachHangRow rowKhachHangRow = ((KhachHangRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        MaKH,
+                        null,
                         TenKH,
-                        SDT,
-                        LoaiKH};
+                        SDT};
                 rowKhachHangRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowKhachHangRow);
                 return rowKhachHangRow;
@@ -2994,7 +2983,6 @@ namespace BadmintonManager {
                 this.columnMaKH = base.Columns["MaKH"];
                 this.columnTenKH = base.Columns["TenKH"];
                 this.columnSDT = base.Columns["SDT"];
-                this.columnLoaiKH = base.Columns["LoaiKH"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3006,15 +2994,18 @@ namespace BadmintonManager {
                 base.Columns.Add(this.columnTenKH);
                 this.columnSDT = new global::System.Data.DataColumn("SDT", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSDT);
-                this.columnLoaiKH = new global::System.Data.DataColumn("LoaiKH", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLoaiKH);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMaKH}, true));
+                this.columnMaKH.AutoIncrement = true;
+                this.columnMaKH.AutoIncrementSeed = -1;
+                this.columnMaKH.AutoIncrementStep = -1;
                 this.columnMaKH.AllowDBNull = false;
+                this.columnMaKH.ReadOnly = true;
                 this.columnMaKH.Unique = true;
-                this.columnTenKH.MaxLength = 100;
-                this.columnSDT.MaxLength = 15;
-                this.columnLoaiKH.AllowDBNull = false;
+                this.columnTenKH.AllowDBNull = false;
+                this.columnTenKH.MaxLength = 255;
+                this.columnSDT.AllowDBNull = false;
+                this.columnSDT.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3368,7 +3359,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LichDatSanRow AddLichDatSanRow(SanRow parentSanRowByFK_LichDatSan_San, KhachHangRow parentKhachHangRowByFK_LichDatSan_KhachHang, BangGiaSanRow parentBangGiaSanRowByFK__LichDatSa__MaGia__0D44F85C, System.DateTime TuNgay, System.DateTime DenNgay, System.TimeSpan TuGio, System.TimeSpan DenGio, int ThoiGian, string LoaiKH, int SoBuoi, decimal LayGia, decimal CanThanhToan, decimal DaTra, decimal ConLai) {
+            public LichDatSanRow AddLichDatSanRow(SanRow parentSanRowByFK_LichDatSan_San, KhachHangRow parentKhachHangRowByFK_LichDatSan_KhachHang, BangGiaSanRow parentBangGiaSanRowByFK__LichDatSa__MaGia__4E1E9780, System.DateTime TuNgay, System.DateTime DenNgay, System.TimeSpan TuGio, System.TimeSpan DenGio, int ThoiGian, string LoaiKH, int SoBuoi, decimal LayGia, decimal CanThanhToan, decimal DaTra, decimal ConLai) {
                 LichDatSanRow rowLichDatSanRow = ((LichDatSanRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3392,8 +3383,8 @@ namespace BadmintonManager {
                 if ((parentKhachHangRowByFK_LichDatSan_KhachHang != null)) {
                     columnValuesArray[2] = parentKhachHangRowByFK_LichDatSan_KhachHang[0];
                 }
-                if ((parentBangGiaSanRowByFK__LichDatSa__MaGia__0D44F85C != null)) {
-                    columnValuesArray[3] = parentBangGiaSanRowByFK__LichDatSa__MaGia__0D44F85C[0];
+                if ((parentBangGiaSanRowByFK__LichDatSa__MaGia__4E1E9780 != null)) {
+                    columnValuesArray[3] = parentBangGiaSanRowByFK__LichDatSa__MaGia__4E1E9780[0];
                 }
                 rowLichDatSanRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLichDatSanRow);
@@ -4920,7 +4911,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ThanhToanRow AddThanhToanRow(int MaTT, HoaDonRow parentHoaDonRowByFK__ThanhToan__MaHD__10216507, HinhThucThanhToanRow parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__13F1F5EB, System.DateTime NgayThanhToan, decimal SoTien, string TrangThai) {
+            public ThanhToanRow AddThanhToanRow(int MaTT, HoaDonRow parentHoaDonRowByFK__ThanhToan__MaHD__50FB042B, HinhThucThanhToanRow parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__51EF2864, System.DateTime NgayThanhToan, decimal SoTien, string TrangThai) {
                 ThanhToanRow rowThanhToanRow = ((ThanhToanRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaTT,
@@ -4929,11 +4920,11 @@ namespace BadmintonManager {
                         NgayThanhToan,
                         SoTien,
                         TrangThai};
-                if ((parentHoaDonRowByFK__ThanhToan__MaHD__10216507 != null)) {
-                    columnValuesArray[1] = parentHoaDonRowByFK__ThanhToan__MaHD__10216507[0];
+                if ((parentHoaDonRowByFK__ThanhToan__MaHD__50FB042B != null)) {
+                    columnValuesArray[1] = parentHoaDonRowByFK__ThanhToan__MaHD__50FB042B[0];
                 }
-                if ((parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__13F1F5EB != null)) {
-                    columnValuesArray[2] = parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__13F1F5EB[0];
+                if ((parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__51EF2864 != null)) {
+                    columnValuesArray[2] = parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__51EF2864[0];
                 }
                 rowThanhToanRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowThanhToanRow);
@@ -5190,11 +5181,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LichDatSanRow[] GetLichDatSanRows() {
-                if ((this.Table.ChildRelations["FK__LichDatSa__MaGia__0D44F85C"] == null)) {
+                if ((this.Table.ChildRelations["FK__LichDatSa__MaGia__4E1E9780"] == null)) {
                     return new LichDatSanRow[0];
                 }
                 else {
-                    return ((LichDatSanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__LichDatSa__MaGia__0D44F85C"])));
+                    return ((LichDatSanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__LichDatSa__MaGia__4E1E9780"])));
                 }
             }
         }
@@ -5372,10 +5363,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HDSPRow HDSPRow {
                 get {
-                    return ((HDSPRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__03BB8E22"])));
+                    return ((HDSPRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__477199F1"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__03BB8E22"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__477199F1"]);
                 }
             }
             
@@ -5383,10 +5374,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LoaiBCRow LoaiBCRow {
                 get {
-                    return ((LoaiBCRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__05A3D694"])));
+                    return ((LoaiBCRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__05A3D694"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"]);
                 }
             }
             
@@ -5394,10 +5385,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HoaDonRow HoaDonRow {
                 get {
-                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__078C1F06"])));
+                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__4A4E069C"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__078C1F06"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__4A4E069C"]);
                 }
             }
             
@@ -5671,10 +5662,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LoaiHHRow LoaiHHRow {
                 get {
-                    return ((LoaiHHRow)(this.GetParentRow(this.Table.ParentRelations["FK__HangHoa__MaLoaiH__09746778"])));
+                    return ((LoaiHHRow)(this.GetParentRow(this.Table.ParentRelations["FK__HangHoa__MaLoaiH__4B422AD5"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__HangHoa__MaLoaiH__09746778"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__HangHoa__MaLoaiH__4B422AD5"]);
                 }
             }
             
@@ -5880,11 +5871,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BaoCaoDoanhThuRow[] GetBaoCaoDoanhThuRows() {
-                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__03BB8E22"] == null)) {
+                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__477199F1"] == null)) {
                     return new BaoCaoDoanhThuRow[0];
                 }
                 else {
-                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__03BB8E22"])));
+                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__477199F1"])));
                 }
             }
         }
@@ -5945,11 +5936,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ThanhToanRow[] GetThanhToanRows() {
-                if ((this.Table.ChildRelations["FK__ThanhToan__MaHin__13F1F5EB"] == null)) {
+                if ((this.Table.ChildRelations["FK__ThanhToan__MaHin__51EF2864"] == null)) {
                     return new ThanhToanRow[0];
                 }
                 else {
-                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHin__13F1F5EB"])));
+                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHin__51EF2864"])));
                 }
             }
         }
@@ -6066,11 +6057,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BaoCaoDoanhThuRow[] GetBaoCaoDoanhThuRows() {
-                if ((this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__078C1F06"] == null)) {
+                if ((this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__4A4E069C"] == null)) {
                     return new BaoCaoDoanhThuRow[0];
                 }
                 else {
-                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__078C1F06"])));
+                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__4A4E069C"])));
                 }
             }
             
@@ -6088,11 +6079,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ThanhToanRow[] GetThanhToanRows() {
-                if ((this.Table.ChildRelations["FK__ThanhToan__MaHD__10216507"] == null)) {
+                if ((this.Table.ChildRelations["FK__ThanhToan__MaHD__50FB042B"] == null)) {
                     return new ThanhToanRow[0];
                 }
                 else {
-                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHD__10216507"])));
+                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHD__50FB042B"])));
                 }
             }
         }
@@ -6126,12 +6117,7 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string TenKH {
                 get {
-                    try {
-                        return ((string)(this[this.tableKhachHang.TenKHColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TenKH\' in table \'KhachHang\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableKhachHang.TenKHColumn]));
                 }
                 set {
                     this[this.tableKhachHang.TenKHColumn] = value;
@@ -6142,51 +6128,11 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string SDT {
                 get {
-                    try {
-                        return ((string)(this[this.tableKhachHang.SDTColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SDT\' in table \'KhachHang\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableKhachHang.SDTColumn]));
                 }
                 set {
                     this[this.tableKhachHang.SDTColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool LoaiKH {
-                get {
-                    return ((bool)(this[this.tableKhachHang.LoaiKHColumn]));
-                }
-                set {
-                    this[this.tableKhachHang.LoaiKHColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTenKHNull() {
-                return this.IsNull(this.tableKhachHang.TenKHColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetTenKHNull() {
-                this[this.tableKhachHang.TenKHColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsSDTNull() {
-                return this.IsNull(this.tableKhachHang.SDTColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetSDTNull() {
-                this[this.tableKhachHang.SDTColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6389,10 +6335,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BangGiaSanRow BangGiaSanRow {
                 get {
-                    return ((BangGiaSanRow)(this.GetParentRow(this.Table.ParentRelations["FK__LichDatSa__MaGia__0D44F85C"])));
+                    return ((BangGiaSanRow)(this.GetParentRow(this.Table.ParentRelations["FK__LichDatSa__MaGia__4E1E9780"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__LichDatSa__MaGia__0D44F85C"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__LichDatSa__MaGia__4E1E9780"]);
                 }
             }
             
@@ -6487,11 +6433,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BaoCaoDoanhThuRow[] GetBaoCaoDoanhThuRows() {
-                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__05A3D694"] == null)) {
+                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"] == null)) {
                     return new BaoCaoDoanhThuRow[0];
                 }
                 else {
-                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__05A3D694"])));
+                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"])));
                 }
             }
         }
@@ -6552,11 +6498,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HangHoaRow[] GetHangHoaRows() {
-                if ((this.Table.ChildRelations["FK__HangHoa__MaLoaiH__09746778"] == null)) {
+                if ((this.Table.ChildRelations["FK__HangHoa__MaLoaiH__4B422AD5"] == null)) {
                     return new HangHoaRow[0];
                 }
                 else {
-                    return ((HangHoaRow[])(base.GetChildRows(this.Table.ChildRelations["FK__HangHoa__MaLoaiH__09746778"])));
+                    return ((HangHoaRow[])(base.GetChildRows(this.Table.ChildRelations["FK__HangHoa__MaLoaiH__4B422AD5"])));
                 }
             }
         }
@@ -6833,10 +6779,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HoaDonRow HoaDonRow {
                 get {
-                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHD__10216507"])));
+                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHD__50FB042B"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHD__10216507"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHD__50FB042B"]);
                 }
             }
             
@@ -6844,10 +6790,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HinhThucThanhToanRow HinhThucThanhToanRow {
                 get {
-                    return ((HinhThucThanhToanRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHin__13F1F5EB"])));
+                    return ((HinhThucThanhToanRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHin__51EF2864"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHin__13F1F5EB"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHin__51EF2864"]);
                 }
             }
             
@@ -10159,46 +10105,34 @@ SELECT MaHD, MaDatSan, NgayLap, TongTien FROM HoaDon WHERE (MaHD = @MaHD)";
             tableMapping.ColumnMappings.Add("MaKH", "MaKH");
             tableMapping.ColumnMappings.Add("TenKH", "TenKH");
             tableMapping.ColumnMappings.Add("SDT", "SDT");
-            tableMapping.ColumnMappings.Add("LoaiKH", "LoaiKH");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[KhachHang] WHERE (([MaKH] = @Original_MaKH) AND ((@IsNull_TenK" +
-                "H = 1 AND [TenKH] IS NULL) OR ([TenKH] = @Original_TenKH)) AND ((@IsNull_SDT = 1" +
-                " AND [SDT] IS NULL) OR ([SDT] = @Original_SDT)) AND ([LoaiKH] = @Original_LoaiKH" +
-                "))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[KhachHang] WHERE (([MaKH] = @Original_MaKH) AND ([TenKH] = @Or" +
+                "iginal_TenKH) AND ([SDT] = @Original_SDT))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MaKH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaKH", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TenKH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TenKH", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TenKH", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TenKH", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SDT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoaiKH", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoaiKH", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[KhachHang] ([MaKH], [TenKH], [SDT], [LoaiKH]) VALUES (@MaKH, @" +
-                "TenKH, @SDT, @LoaiKH);\r\nSELECT MaKH, TenKH, SDT, LoaiKH FROM KhachHang WHERE (Ma" +
-                "KH = @MaKH)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[KhachHang] ([TenKH], [SDT]) VALUES (@TenKH, @SDT);\r\nSELECT MaK" +
+                "H, TenKH, SDT FROM KhachHang WHERE (MaKH = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MaKH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaKH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TenKH", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TenKH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SDT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoaiKH", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoaiKH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[KhachHang] SET [MaKH] = @MaKH, [TenKH] = @TenKH, [SDT] = @SDT, [LoaiKH] = @LoaiKH WHERE (([MaKH] = @Original_MaKH) AND ((@IsNull_TenKH = 1 AND [TenKH] IS NULL) OR ([TenKH] = @Original_TenKH)) AND ((@IsNull_SDT = 1 AND [SDT] IS NULL) OR ([SDT] = @Original_SDT)) AND ([LoaiKH] = @Original_LoaiKH));
-SELECT MaKH, TenKH, SDT, LoaiKH FROM KhachHang WHERE (MaKH = @MaKH)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[KhachHang] SET [TenKH] = @TenKH, [SDT] = @SDT WHERE (([MaKH] = @Ori" +
+                "ginal_MaKH) AND ([TenKH] = @Original_TenKH) AND ([SDT] = @Original_SDT));\r\nSELEC" +
+                "T MaKH, TenKH, SDT FROM KhachHang WHERE (MaKH = @MaKH)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MaKH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaKH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TenKH", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TenKH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SDT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoaiKH", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoaiKH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MaKH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaKH", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TenKH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TenKH", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TenKH", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TenKH", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SDT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoaiKH", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoaiKH", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MaKH", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "MaKH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10214,7 +10148,7 @@ SELECT MaKH, TenKH, SDT, LoaiKH FROM KhachHang WHERE (MaKH = @MaKH)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT MaKH, TenKH, SDT, LoaiKH FROM dbo.KhachHang";
+            this._commandCollection[0].CommandText = "SELECT MaKH, TenKH, SDT FROM dbo.KhachHang";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -10275,25 +10209,20 @@ SELECT MaKH, TenKH, SDT, LoaiKH FROM KhachHang WHERE (MaKH = @MaKH)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_MaKH, string Original_TenKH, string Original_SDT, bool Original_LoaiKH) {
+        public virtual int Delete(int Original_MaKH, string Original_TenKH, string Original_SDT) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_MaKH));
             if ((Original_TenKH == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_TenKH");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_TenKH));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_TenKH));
             }
             if ((Original_SDT == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_SDT");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_SDT));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_SDT));
             }
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_LoaiKH));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10314,21 +10243,19 @@ SELECT MaKH, TenKH, SDT, LoaiKH FROM KhachHang WHERE (MaKH = @MaKH)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int MaKH, string TenKH, string SDT, bool LoaiKH) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(MaKH));
+        public virtual int Insert(string TenKH, string SDT) {
             if ((TenKH == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("TenKH");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(TenKH));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(TenKH));
             }
             if ((SDT == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("SDT");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(SDT));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(SDT));
             }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(LoaiKH));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10349,39 +10276,33 @@ SELECT MaKH, TenKH, SDT, LoaiKH FROM KhachHang WHERE (MaKH = @MaKH)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int MaKH, string TenKH, string SDT, bool LoaiKH, int Original_MaKH, string Original_TenKH, string Original_SDT, bool Original_LoaiKH) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(MaKH));
+        public virtual int Update(string TenKH, string SDT, int Original_MaKH, string Original_TenKH, string Original_SDT, int MaKH) {
             if ((TenKH == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("TenKH");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TenKH));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(TenKH));
             }
             if ((SDT == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("SDT");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(SDT));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(SDT));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(LoaiKH));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_MaKH));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_MaKH));
             if ((Original_TenKH == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_TenKH");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_TenKH));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_TenKH));
             }
             if ((Original_SDT == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_SDT");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_SDT));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_SDT));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Original_LoaiKH));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(MaKH));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10402,8 +10323,8 @@ SELECT MaKH, TenKH, SDT, LoaiKH FROM KhachHang WHERE (MaKH = @MaKH)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string TenKH, string SDT, bool LoaiKH, int Original_MaKH, string Original_TenKH, string Original_SDT, bool Original_LoaiKH) {
-            return this.Update(Original_MaKH, TenKH, SDT, LoaiKH, Original_MaKH, Original_TenKH, Original_SDT, Original_LoaiKH);
+        public virtual int Update(string TenKH, string SDT, int Original_MaKH, string Original_TenKH, string Original_SDT) {
+            return this.Update(TenKH, SDT, Original_MaKH, Original_TenKH, Original_SDT, Original_MaKH);
         }
     }
     

@@ -16,5 +16,10 @@ namespace BadmintonManager.GUI
         {
             InitializeComponent();
         }
+
+        private void GDNhanVien_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

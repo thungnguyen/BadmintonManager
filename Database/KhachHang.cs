@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Forms;
 
 
 namespace qlycaulong.Database

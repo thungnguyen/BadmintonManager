@@ -1,9 +1,11 @@
-﻿using System;
+﻿using qlycaulong.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,11 +30,76 @@ namespace BadmintonManager.GUI
             LoadTenHangHoa();
             // Đăng ký sự kiện SelectedIndexChanged cho ComboBox cbTenHH
             cbTenHH.SelectedIndexChanged += cbTenHH_SelectedIndexChanged;
-            // Đặt giá trị mặc định cho txtGiamGia là "0"
             txtGiamGia.Text = "0";
             LoadSanData();
-
+            LoadKhachHang();
+            LoadLoaiKH();
+            nudSoGioThue.Value = 1;
+            txtGiaSan.Text = "0";
+            cbLoaiKH.SelectedIndexChanged += cbLoaiKH_SelectedIndexChanged;
+            // Đặt giá trị ban đầu cho txtTienCuoi là 0đ
+            txtTienCuoi.Text = "0";
+            txtTongTien.Text = "0";
+            txtKhachDua.Text = "0";
+            txtTienThua.Text = "0";
         }
+        private void LoadLoaiKH()
+        {
+            // Tạo DataTable để chứa các lựa chọn
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("TenLoaiKH", typeof(string)); // Cột để hiển thị
+            dataTable.Columns.Add("MaLoaiKH", typeof(string)); // Cột để lưu giá trị tương ứng
+
+            // Thêm các lựa chọn vào DataTable
+            dataTable.Rows.Add("Vãng Lai", "Vang lai");
+            dataTable.Rows.Add("Cố Định", "Co dinh");
+
+            // Gắn dữ liệu vào ComboBox
+            cbLoaiKH.DataSource = dataTable;
+            cbLoaiKH.DisplayMember = "TenLoaiKH"; // Hiển thị tên
+            cbLoaiKH.ValueMember = "MaLoaiKH"; // Giá trị là mã loại khách hàng (vang lai/co dinh)
+            cbLoaiKH.SelectedIndex = 0; // Mặc định chọn Vãng Lai
+        }
+        // Phương thức để load danh sách khách hàng vào ComboBox
+        private void LoadKhachHang()
+            {
+                try
+                {
+
+                    // Tạo kết nối tới cơ sở dữ liệu
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        // Mở kết nối
+                        connection.Open();
+
+                        // Câu lệnh SQL để lấy danh sách khách hàng
+                        string query = "SELECT MaKH, TenKH FROM KhachHang";
+
+                        // Tạo SqlDataAdapter để thực thi câu lệnh và lưu kết quả vào DataTable
+                        SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                        DataTable dtKhachHang = new DataTable();
+                        dataAdapter.Fill(dtKhachHang);
+
+                        // Thêm dòng "Tất cả" vào đầu DataTable
+                        DataRow row = dtKhachHang.NewRow();
+                        row["MaKH"] = 0;  // Mã khách hàng cho "Tất cả" (có thể là giá trị đặc biệt như 0 hoặc null)
+                        row["TenKH"] = "Tất cả";
+                        dtKhachHang.Rows.InsertAt(row, 0);
+
+                        // Đặt nguồn dữ liệu cho ComboBox
+                        cbKhachHang.DataSource = dtKhachHang;
+                        cbKhachHang.DisplayMember = "TenKH"; // Hiển thị tên khách hàng
+                        cbKhachHang.ValueMember = "MaKH";   // Giá trị của mỗi mục trong ComboBox là mã khách hàng
+
+                        // Đóng kết nối
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải danh sách khách hàng: " + ex.Message);
+                }
+            }
         private void LoadLoaiHH()
         {
             try
@@ -104,7 +171,7 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi khi tải danh sách hàng hóa: " + ex.Message);
             }
         }
-       
+
         private void dgvHangHoa_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             using (SolidBrush brush = new SolidBrush(dgvHangHoa.RowHeadersDefaultCellStyle.ForeColor))
@@ -357,7 +424,7 @@ namespace BadmintonManager.GUI
                         }
 
                         // Hiển thị giá bán vào ô txtDonGia
-                        txtDonGia.Text = giaBan.ToString("N2"); // Định dạng giá theo kiểu tiền tệ
+                        txtDonGia.Text = giaBan.ToString("N0"); // Định dạng giá theo kiểu tiền tệ
                     }
                     else
                     {
@@ -444,7 +511,7 @@ namespace BadmintonManager.GUI
             }
 
             // Hiển thị thành tiền vào ô txtThanhTien
-            txtThanhTien.Text = thanhTien.ToString("N2");
+            txtThanhTien.Text = thanhTien.ToString("C0", new CultureInfo("vi-VN"));
         }
 
         private void txtGiamGia_TextChanged(object sender, EventArgs e)
@@ -540,15 +607,15 @@ namespace BadmintonManager.GUI
                 {
                     // Lấy giá trị từ cột Gia và SoLuong (cần đảm bảo các cột này có tên đúng)
                     decimal thanhtien = Convert.ToDecimal(row.Cells["thanhTien"].Value);
-                    
 
-                    
+
+
                     tongTien += thanhtien;
                 }
             }
 
             // Cập nhật giá trị vào ô txtTongTien
-            txtTongTien.Text = tongTien.ToString("N2");  // C2 để định dạng thành tiền tệ
+            txtTongTien.Text = tongTien.ToString("C0", new CultureInfo("vi-VN"));  // C2 để định dạng thành tiền tệ
         }
 
         private void dgvDanhSachHangHoa_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -658,12 +725,12 @@ namespace BadmintonManager.GUI
 
                     // Căn giữa văn bản trong cột TenSan
                     dgvSan.Columns["TenSan"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    
-                    
+
+
                     // Tự động điều chỉnh kích thước cột theo nội dung
                     dgvSan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -690,14 +757,214 @@ namespace BadmintonManager.GUI
             }
         }
 
+        //
+        private void TinhGioRa()
+        {
+            DateTime gioVao = dtpGioVao.Value;
+            double soGioThue = (double)nudSoGioThue.Value;
+
+            // Chuyển đổi số giờ thuê thành TimeSpan
+            int hours = (int)soGioThue; // Lấy phần nguyên của giờ
+            int minutes = (int)((soGioThue - hours) * 60); // Lấy phần lẻ và chuyển thành phút
+            TimeSpan thoiGianThue = new TimeSpan(hours, minutes, 0);
+
+            // Tính giờ ra
+            DateTime gioRa = gioVao.Add(thoiGianThue);
+            dtpGioRa.Value = gioRa;
+        }
+
+        private void TinhSoGioThue()
+        {
+            DateTime gioVao = dtpGioVao.Value;
+            DateTime gioRa = dtpGioRa.Value;
+
+            if (gioRa > gioVao)
+            {
+                // Tính số giờ thuê chính xác, không làm tròn
+                TimeSpan thoiGianThue = gioRa - gioVao;
+                double soGioThue = thoiGianThue.TotalHours;
+                nudSoGioThue.Value = (decimal)soGioThue;
+            }
+            else
+            {
+                MessageBox.Show("Giờ ra phải lớn hơn giờ vào!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               
+            }
+        }
+
+        private void TinhTienSan()
+        {
+            DateTime gioVao = dtpGioVao.Value;  // Giờ vào
+            DateTime gioRa = dtpGioRa.Value;    // Giờ ra
+            double soGioThue = (double)nudSoGioThue.Value;  // Số giờ thuê từ NumericUpDown
+
+            // Kiểm tra giờ ra phải lớn hơn giờ vào
+            if (gioRa > gioVao)
+            {
+                // Tính số giờ thuê chính xác
+                TimeSpan thoiGianThue = gioRa - gioVao;
+                soGioThue = thoiGianThue.TotalHours;  // Tính số giờ thực tế
+
+                // Kiểm tra xem có giá trị LoaiKH hợp lệ không
+                if (cbLoaiKH.SelectedValue != null)
+                {
+                    string loaiKH = cbLoaiKH.SelectedValue.ToString();  // Loại khách hàng (Vãng Lai, Cố Định)
+
+                    // Kiểm tra giá trị trả về từ phương thức LayGiaSan
+                    decimal giaSan = LayGiaSan(loaiKH, gioVao);  // Phương thức này sẽ truy vấn cơ sở dữ liệu
+
+                    if (giaSan > 0)
+                    {
+                        // Tính tổng tiền sân
+                        decimal tienSan = giaSan * (decimal)soGioThue;
+                        txtGiaSan.Text = tienSan.ToString("C0", new CultureInfo("vi-VN"));  // Hiển thị tiền Việt
+                    }
+                }
+            }
+        }
+
+        // Phương thức lấy giá sân từ cơ sở dữ liệu
+        private decimal LayGiaSan(string loaiKH, DateTime gioVao)
+        {
+            decimal giaSan = 0;
+
+            if (string.IsNullOrEmpty(loaiKH))
+            {
+                return giaSan;  // Nếu loaiKH không hợp lệ, trả về 0
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT Gia FROM BangGiaSan WHERE LoaiKH = @LoaiKH AND @GioVao BETWEEN GioBatDau AND GioKetThuc";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@LoaiKH", loaiKH);
+                        command.Parameters.AddWithValue("@GioVao", gioVao.TimeOfDay);  // Chỉ lấy phần giờ từ GioVao
+
+                        // Thực thi câu lệnh và lấy kết quả
+                        var result = command.ExecuteScalar();
+                        if (result != DBNull.Value)
+                        {
+                            giaSan = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi truy vấn cơ sở dữ liệu: " + ex.Message);
+            }
+
+            return giaSan;
+        }
 
 
+        private void dtpGioVao_ValueChanged(object sender, EventArgs e)
+        {
+            // Tự động tính toán số giờ thuê khi thay đổi giờ vào
+            TinhSoGioThue();
+            TinhTienSan();
+        }
 
+        private void dtpGioRa_ValueChanged(object sender, EventArgs e)
+        {
+            // Tự động tính toán số giờ thuê khi thay đổi giờ ra
+            TinhSoGioThue();
+            TinhTienSan();
+        }
 
+        private void nudSoGioThue_ValueChanged(object sender, EventArgs e)
+        {
+            // Tính toán giờ ra khi thay đổi số giờ thuê
+            TinhGioRa();
+            TinhTienSan();
+        }
+        
+        // Hàm tính tổng tiền cuối và hiển thị vào txtTienCuoi
+        private void TinhTienCuoi()
+        {
+            // Tính tiền sân (đã có sẵn trong TinhTienSan)
+            decimal tienSan = 0;
+            if (decimal.TryParse(txtGiaSan.Text, NumberStyles.Currency, new CultureInfo("vi-VN"), out tienSan))
+            {
+                // Tính tiền hàng hóa (đã có sẵn trong TinhTongTien)
+                decimal tongTienHangHoa = 0;
+                if (decimal.TryParse(txtTongTien.Text, NumberStyles.Currency, new CultureInfo("vi-VN"), out tongTienHangHoa))
+                {
+                    // Tổng tiền cuối là tổng tiền sân + tiền hàng hóa
+                    decimal tienCuoi = tienSan + tongTienHangHoa;
 
+                    // Hiển thị vào txtTienCuoi
+                    txtTienCuoi.Text = tienCuoi.ToString("C0", new CultureInfo("vi-VN"));
+                }
+            }
+        }
+        private void TinhTienThua()
+        {
+            decimal tienCuoi = 0;
+            decimal khachDua = 0;
 
+            // Kiểm tra và chuyển đổi giá trị tiền cuối
+            if (decimal.TryParse(txtTienCuoi.Text, NumberStyles.Currency, new CultureInfo("vi-VN"), out tienCuoi))
+            {
+                // Kiểm tra và chuyển đổi giá trị tiền khách đưa, nếu chưa nhập thì giữ giá trị 0
+                if (decimal.TryParse(txtKhachDua.Text, NumberStyles.Currency, new CultureInfo("vi-VN"), out khachDua))
+                {
+                    // Tính tiền thừa: Khách đưa - Tiền cuối
+                    decimal tienThua = khachDua - tienCuoi;
 
+                    // Nếu tiền thừa là âm, đặt lại tiền thừa về 0
+                    if (tienThua < 0)
+                    {
+                        tienThua = 0;
+                    }
+
+                    // Hiển thị tiền thừa vào txtTienThua
+                    txtTienThua.Text = tienThua.ToString("C0", new CultureInfo("vi-VN"));
+                }
+                else
+                {
+                    // Nếu chưa nhập tiền khách đưa thì đặt giá trị tiền thừa về 0
+                    txtTienThua.Text = "0";
+                }
+            }
+            else
+            {
+                // Nếu chưa nhập tiền cuối, đặt giá trị tiền thừa về 0
+                txtTienThua.Text = "0";
+            }
+        }
+
+        private void txtGiaSan_TextChanged(object sender, EventArgs e)
+        {
+            TinhTienCuoi();
+        }
+
+        private void txtTongTien_TextChanged(object sender, EventArgs e)
+        {
+            TinhTienCuoi();
+        }
+
+        private void txtTienCuoi_TextChanged(object sender, EventArgs e)
+        {
+            TinhTienThua();
+        }
+
+        private void txtKhachDua_TextChanged(object sender, EventArgs e)
+        {
+            TinhTienThua();
+        }
+
+        private void cbLoaiKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TinhTienSan();
+        }
     }
-
 }
+
+
 

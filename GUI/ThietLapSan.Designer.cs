@@ -31,11 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDanhSachSan = new System.Windows.Forms.DataGridView();
-            this.quanLySanDataSet = new BadmintonManager.QuanLySanDataSet();
             this.sanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.quanLySanDataSet = new BadmintonManager.QuanLySanDataSet();
             this.sanTableAdapter = new BadmintonManager.QuanLySanDataSetTableAdapters.SanTableAdapter();
-            this.maSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtTenSan = new System.Windows.Forms.TextBox();
@@ -44,9 +42,11 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrices = new System.Windows.Forms.Button();
+            this.maSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachSan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -74,31 +74,19 @@
             this.dgvDanhSachSan.TabIndex = 1;
             this.dgvDanhSachSan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSachSan_CellClick);
             // 
-            // quanLySanDataSet
-            // 
-            this.quanLySanDataSet.DataSetName = "QuanLySanDataSet";
-            this.quanLySanDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // sanBindingSource
             // 
             this.sanBindingSource.DataMember = "San";
             this.sanBindingSource.DataSource = this.quanLySanDataSet;
             // 
+            // quanLySanDataSet
+            // 
+            this.quanLySanDataSet.DataSetName = "QuanLySanDataSet";
+            this.quanLySanDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // sanTableAdapter
             // 
             this.sanTableAdapter.ClearBeforeFill = true;
-            // 
-            // maSanDataGridViewTextBoxColumn
-            // 
-            this.maSanDataGridViewTextBoxColumn.DataPropertyName = "MaSan";
-            this.maSanDataGridViewTextBoxColumn.HeaderText = "MaSan";
-            this.maSanDataGridViewTextBoxColumn.Name = "maSanDataGridViewTextBoxColumn";
-            // 
-            // tenSanDataGridViewTextBoxColumn
-            // 
-            this.tenSanDataGridViewTextBoxColumn.DataPropertyName = "TenSan";
-            this.tenSanDataGridViewTextBoxColumn.HeaderText = "TenSan";
-            this.tenSanDataGridViewTextBoxColumn.Name = "tenSanDataGridViewTextBoxColumn";
             // 
             // label2
             // 
@@ -172,6 +160,18 @@
             this.btnPrices.UseVisualStyleBackColor = true;
             this.btnPrices.Click += new System.EventHandler(this.btnPrices_Click);
             // 
+            // maSanDataGridViewTextBoxColumn
+            // 
+            this.maSanDataGridViewTextBoxColumn.DataPropertyName = "MaSan";
+            this.maSanDataGridViewTextBoxColumn.HeaderText = "MaSan";
+            this.maSanDataGridViewTextBoxColumn.Name = "maSanDataGridViewTextBoxColumn";
+            // 
+            // tenSanDataGridViewTextBoxColumn
+            // 
+            this.tenSanDataGridViewTextBoxColumn.DataPropertyName = "TenSan";
+            this.tenSanDataGridViewTextBoxColumn.HeaderText = "TenSan";
+            this.tenSanDataGridViewTextBoxColumn.Name = "tenSanDataGridViewTextBoxColumn";
+            // 
             // ThietLapSan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,8 +191,8 @@
             this.Text = "Thiết Lập Sân";
             this.Load += new System.EventHandler(this.ThietLapSan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachSan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,8 +205,6 @@
         private QuanLySanDataSet quanLySanDataSet;
         private System.Windows.Forms.BindingSource sanBindingSource;
         private QuanLySanDataSetTableAdapters.SanTableAdapter sanTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maSanDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenSanDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTenSan;
@@ -215,5 +213,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnPrices;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maSanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenSanDataGridViewTextBoxColumn;
     }
 }

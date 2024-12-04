@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvGiaSan = new System.Windows.Forms.DataGridView();
-            this.maGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maLoaiKHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gioBatDauDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gioKetThucDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giaSanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quanLySanDataSet = new BadmintonManager.QuanLySanDataSet();
-            this.giaSanTableAdapter = new BadmintonManager.QuanLySanDataSetTableAdapters.GiaSanTableAdapter();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,14 +38,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtMaGia = new System.Windows.Forms.TextBox();
             this.txtGia = new System.Windows.Forms.TextBox();
-            this.cbLoaiKH = new System.Windows.Forms.ComboBox();
             this.dtpBegin = new System.Windows.Forms.DateTimePicker();
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.txtLoaiKH = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGiaSan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.giaSanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,64 +64,17 @@
             // 
             this.dgvGiaSan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvGiaSan.AutoGenerateColumns = false;
             this.dgvGiaSan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGiaSan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.maGiaDataGridViewTextBoxColumn,
-            this.maLoaiKHDataGridViewTextBoxColumn,
-            this.giaDataGridViewTextBoxColumn,
-            this.gioBatDauDataGridViewTextBoxColumn,
-            this.gioKetThucDataGridViewTextBoxColumn});
-            this.dgvGiaSan.DataSource = this.giaSanBindingSource;
-            this.dgvGiaSan.Location = new System.Drawing.Point(12, 267);
+            this.dgvGiaSan.Location = new System.Drawing.Point(28, 258);
             this.dgvGiaSan.Name = "dgvGiaSan";
             this.dgvGiaSan.Size = new System.Drawing.Size(544, 171);
             this.dgvGiaSan.TabIndex = 1;
             this.dgvGiaSan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGiaSan_CellClick);
             // 
-            // maGiaDataGridViewTextBoxColumn
-            // 
-            this.maGiaDataGridViewTextBoxColumn.DataPropertyName = "MaGia";
-            this.maGiaDataGridViewTextBoxColumn.HeaderText = "MaGia";
-            this.maGiaDataGridViewTextBoxColumn.Name = "maGiaDataGridViewTextBoxColumn";
-            // 
-            // maLoaiKHDataGridViewTextBoxColumn
-            // 
-            this.maLoaiKHDataGridViewTextBoxColumn.DataPropertyName = "MaLoaiKH";
-            this.maLoaiKHDataGridViewTextBoxColumn.HeaderText = "MaLoaiKH";
-            this.maLoaiKHDataGridViewTextBoxColumn.Name = "maLoaiKHDataGridViewTextBoxColumn";
-            // 
-            // giaDataGridViewTextBoxColumn
-            // 
-            this.giaDataGridViewTextBoxColumn.DataPropertyName = "Gia";
-            this.giaDataGridViewTextBoxColumn.HeaderText = "Gia";
-            this.giaDataGridViewTextBoxColumn.Name = "giaDataGridViewTextBoxColumn";
-            // 
-            // gioBatDauDataGridViewTextBoxColumn
-            // 
-            this.gioBatDauDataGridViewTextBoxColumn.DataPropertyName = "GioBatDau";
-            this.gioBatDauDataGridViewTextBoxColumn.HeaderText = "GioBatDau";
-            this.gioBatDauDataGridViewTextBoxColumn.Name = "gioBatDauDataGridViewTextBoxColumn";
-            // 
-            // gioKetThucDataGridViewTextBoxColumn
-            // 
-            this.gioKetThucDataGridViewTextBoxColumn.DataPropertyName = "GioKetThuc";
-            this.gioKetThucDataGridViewTextBoxColumn.HeaderText = "GioKetThuc";
-            this.gioKetThucDataGridViewTextBoxColumn.Name = "gioKetThucDataGridViewTextBoxColumn";
-            // 
-            // giaSanBindingSource
-            // 
-            this.giaSanBindingSource.DataMember = "GiaSan";
-            this.giaSanBindingSource.DataSource = this.quanLySanDataSet;
-            // 
             // quanLySanDataSet
             // 
             this.quanLySanDataSet.DataSetName = "QuanLySanDataSet";
             this.quanLySanDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // giaSanTableAdapter
-            // 
-            this.giaSanTableAdapter.ClearBeforeFill = true;
             // 
             // label2
             // 
@@ -198,15 +142,6 @@
             this.txtGia.Size = new System.Drawing.Size(200, 20);
             this.txtGia.TabIndex = 8;
             // 
-            // cbLoaiKH
-            // 
-            this.cbLoaiKH.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cbLoaiKH.FormattingEnabled = true;
-            this.cbLoaiKH.Location = new System.Drawing.Point(123, 115);
-            this.cbLoaiKH.Name = "cbLoaiKH";
-            this.cbLoaiKH.Size = new System.Drawing.Size(200, 21);
-            this.cbLoaiKH.TabIndex = 9;
-            // 
             // dtpBegin
             // 
             this.dtpBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -260,17 +195,25 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // txtLoaiKH
+            // 
+            this.txtLoaiKH.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtLoaiKH.Location = new System.Drawing.Point(123, 116);
+            this.txtLoaiKH.Name = "txtLoaiKH";
+            this.txtLoaiKH.Size = new System.Drawing.Size(200, 20);
+            this.txtLoaiKH.TabIndex = 15;
+            // 
             // GiaSan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtLoaiKH);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.dtpBegin);
-            this.Controls.Add(this.cbLoaiKH);
             this.Controls.Add(this.txtGia);
             this.Controls.Add(this.txtMaGia);
             this.Controls.Add(this.label6);
@@ -284,7 +227,6 @@
             this.Text = "GiaSan";
             this.Load += new System.EventHandler(this.GiaSan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGiaSan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.giaSanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -296,8 +238,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvGiaSan;
         private QuanLySanDataSet quanLySanDataSet;
-        private System.Windows.Forms.BindingSource giaSanBindingSource;
-        private QuanLySanDataSetTableAdapters.GiaSanTableAdapter giaSanTableAdapter;
+        
+        
         private System.Windows.Forms.DataGridViewTextBoxColumn maGiaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn maLoaiKHDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn giaDataGridViewTextBoxColumn;
@@ -310,11 +252,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtMaGia;
         private System.Windows.Forms.TextBox txtGia;
-        private System.Windows.Forms.ComboBox cbLoaiKH;
         private System.Windows.Forms.DateTimePicker dtpBegin;
         private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.TextBox txtLoaiKH;
     }
 }

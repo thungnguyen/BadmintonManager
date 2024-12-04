@@ -159,5 +159,10 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi khi cập nhật dữ liệu: " + ex.Message);
             }
         }
+
+        private void dgvHangHoa_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

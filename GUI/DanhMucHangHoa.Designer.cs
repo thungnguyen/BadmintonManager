@@ -51,6 +51,7 @@
             this.dgvHangHoa.RowTemplate.Height = 24;
             this.dgvHangHoa.Size = new System.Drawing.Size(776, 260);
             this.dgvHangHoa.TabIndex = 0;
+            this.dgvHangHoa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHangHoa_CellContentClick);
             // 
             // hangHoaBindingSource
             // 

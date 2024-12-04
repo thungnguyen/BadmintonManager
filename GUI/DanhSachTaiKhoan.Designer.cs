@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace BadmintonManager.GUI
+﻿namespace BadmintonManager.GUI
 {
     partial class DanhSachTaiKhoan
     {
@@ -118,6 +116,5 @@ namespace BadmintonManager.GUI
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnXoa;
-        private Control btnLamMoi;
     }
 }

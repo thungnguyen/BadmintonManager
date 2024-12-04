@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Forms;
 
 
-namespace qlycaulong.Database
+namespace BadmintonManager.Database
 {
 
     public class DatabaseHelper
     {
-        private string connectionString = "Data Source=LAPTOP-G5HQJSJ2\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = "Data Source=MSIALPHA15;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
 
         public List<KhachHang> GetKhachHangList()
         {

@@ -34,6 +34,24 @@ namespace BadmintonManager.GUI
                     adapter.Fill(dataTable);
 
                     dgvTaiKhoan.DataSource = dataTable;
+
+                    // Ẩn cột VaiTro
+                    if (dgvTaiKhoan.Columns["VaiTro"] != null)
+                    {
+                        dgvTaiKhoan.Columns["VaiTro"].Visible = false;
+                    }
+
+                    // Ẩn cột MaNV
+                    if (dgvTaiKhoan.Columns["MaNV"] != null)
+                    {
+                        dgvTaiKhoan.Columns["MaNV"].Visible = false;
+                    }
+
+                    // Đổi tên cột VaiTroHienThi
+                    //if (dgvTaiKhoan.Columns["VaiTroHienThi"] != null)
+                    //{
+                    //    dgvTaiKhoan.Columns["VaiTroHienThi"].HeaderText = "Vai Trò";
+                    //}
                 }
             }
             catch (Exception ex)

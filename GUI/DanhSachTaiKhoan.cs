@@ -33,7 +33,34 @@ namespace BadmintonManager.GUI
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
 
+                    // Thêm cột VaiTroHienThi vào DataTable
+                    //dataTable.Columns.Add("VaiTroHienThi", typeof(string));
+
+                    //foreach (DataRow row in dataTable.Rows)
+                    //{
+                    //    row["VaiTroHienThi"] = row["VaiTro"].ToString() == "0" ? "Quản lý" : "Nhân viên";
+                    //}
+
+                    // Gán DataSource trước
                     dgvTaiKhoan.DataSource = dataTable;
+
+                    // Ẩn cột VaiTro
+                    if (dgvTaiKhoan.Columns["VaiTro"] != null)
+                    {
+                        dgvTaiKhoan.Columns["VaiTro"].Visible = false;
+                    }
+
+                    // Ẩn cột MaNV
+                    if (dgvTaiKhoan.Columns["MaNV"] != null)
+                    {
+                        dgvTaiKhoan.Columns["MaNV"].Visible = false;
+                    }
+
+                    // Đổi tên cột VaiTroHienThi
+                    //if (dgvTaiKhoan.Columns["VaiTroHienThi"] != null)
+                    //{
+                    //    dgvTaiKhoan.Columns["VaiTroHienThi"].HeaderText = "Vai Trò";
+                    //}
                 }
             }
             catch (Exception ex)
@@ -41,6 +68,7 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
             }
         }
+
 
         // Nút Thêm: Chuyển sang form DangKyTaiKhoan
         private void btnThem_Click(object sender, EventArgs e)
@@ -162,6 +190,9 @@ namespace BadmintonManager.GUI
                 }
             }
 
-        
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }

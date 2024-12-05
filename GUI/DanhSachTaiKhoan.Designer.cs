@@ -33,7 +33,9 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgvTaiKhoanmoi = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoanmoi)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvTaiKhoan
@@ -48,6 +50,7 @@
             // 
             // btnThem
             // 
+            this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThem.Location = new System.Drawing.Point(429, 371);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(67, 33);
@@ -60,7 +63,7 @@
             // 
             this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(531, 371);
+            this.btnXoa.Location = new System.Drawing.Point(526, 369);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(79, 33);
             this.btnXoa.TabIndex = 2;
@@ -70,6 +73,7 @@
             // 
             // btnSua
             // 
+            this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSua.Location = new System.Drawing.Point(643, 371);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(101, 33);
@@ -89,11 +93,20 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "DANH SÁCH TÀI KHOẢN";
             // 
+            // dgvTaiKhoanmoi
+            // 
+            this.dgvTaiKhoanmoi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTaiKhoanmoi.Location = new System.Drawing.Point(149, 123);
+            this.dgvTaiKhoanmoi.Name = "dgvTaiKhoanmoi";
+            this.dgvTaiKhoanmoi.RowHeadersWidth = 51;
+            this.dgvTaiKhoanmoi.RowTemplate.Height = 24;
+            this.dgvTaiKhoanmoi.Size = new System.Drawing.Size(422, 210);
+            this.dgvTaiKhoanmoi.TabIndex = 5;
+            // 
             // DanhSachTaiKhoan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnLamMoi);
+            this.ClientSize = new System.Drawing.Size(795, 448);
+            this.Controls.Add(this.dgvTaiKhoanmoi);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnXoa);
@@ -104,6 +117,7 @@
             this.Text = "DanhSachTaiKhoan";
             this.Load += new System.EventHandler(this.DanhSachTaiKhoan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoanmoi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,5 +130,6 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.DataGridView dgvTaiKhoanmoi;
     }
 }

@@ -50,27 +50,27 @@ namespace BadmintonManager {
         
         private ThanhToanDataTable tableThanhToan;
         
-        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaHDS__477199F1;
+        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaHDS__0C85DE4D;
         
-        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaLoa__4865BE2A;
+        private global::System.Data.DataRelation relationFK__BaoCaoDoa__MaLoa__0D7A0286;
         
-        private global::System.Data.DataRelation relationFK__BaoCaoDoan__MaHD__4A4E069C;
+        private global::System.Data.DataRelation relationFK__BaoCaoDoan__MaHD__0E6E26BF;
         
-        private global::System.Data.DataRelation relationFK__HangHoa__MaLoaiH__4B422AD5;
+        private global::System.Data.DataRelation relationFK__HangHoa__MaLoaiH__0F624AF8;
         
         private global::System.Data.DataRelation relationFK_HangHoa;
         
         private global::System.Data.DataRelation relationFK_HoaDon;
         
-        private global::System.Data.DataRelation relationFK__LichDatSa__MaGia__4E1E9780;
+        private global::System.Data.DataRelation relationFK__LichDatSa__MaGia__3E1D39E1;
         
         private global::System.Data.DataRelation relationFK_LichDatSan_KhachHang;
         
         private global::System.Data.DataRelation relationFK_LichDatSan_San;
         
-        private global::System.Data.DataRelation relationFK__ThanhToan__MaHD__50FB042B;
+        private global::System.Data.DataRelation relationFK__ThanhToan__MaHD__114A936A;
         
-        private global::System.Data.DataRelation relationFK__ThanhToan__MaHin__51EF2864;
+        private global::System.Data.DataRelation relationFK__ThanhToan__MaHin__1332DBDC;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -504,17 +504,17 @@ namespace BadmintonManager {
                     this.tableThanhToan.InitVars();
                 }
             }
-            this.relationFK__BaoCaoDoa__MaHDS__477199F1 = this.Relations["FK__BaoCaoDoa__MaHDS__477199F1"];
-            this.relationFK__BaoCaoDoa__MaLoa__4865BE2A = this.Relations["FK__BaoCaoDoa__MaLoa__4865BE2A"];
-            this.relationFK__BaoCaoDoan__MaHD__4A4E069C = this.Relations["FK__BaoCaoDoan__MaHD__4A4E069C"];
-            this.relationFK__HangHoa__MaLoaiH__4B422AD5 = this.Relations["FK__HangHoa__MaLoaiH__4B422AD5"];
+            this.relationFK__BaoCaoDoa__MaHDS__0C85DE4D = this.Relations["FK__BaoCaoDoa__MaHDS__0C85DE4D"];
+            this.relationFK__BaoCaoDoa__MaLoa__0D7A0286 = this.Relations["FK__BaoCaoDoa__MaLoa__0D7A0286"];
+            this.relationFK__BaoCaoDoan__MaHD__0E6E26BF = this.Relations["FK__BaoCaoDoan__MaHD__0E6E26BF"];
+            this.relationFK__HangHoa__MaLoaiH__0F624AF8 = this.Relations["FK__HangHoa__MaLoaiH__0F624AF8"];
             this.relationFK_HangHoa = this.Relations["FK_HangHoa"];
             this.relationFK_HoaDon = this.Relations["FK_HoaDon"];
-            this.relationFK__LichDatSa__MaGia__4E1E9780 = this.Relations["FK__LichDatSa__MaGia__4E1E9780"];
+            this.relationFK__LichDatSa__MaGia__3E1D39E1 = this.Relations["FK__LichDatSa__MaGia__3E1D39E1"];
             this.relationFK_LichDatSan_KhachHang = this.Relations["FK_LichDatSan_KhachHang"];
             this.relationFK_LichDatSan_San = this.Relations["FK_LichDatSan_San"];
-            this.relationFK__ThanhToan__MaHD__50FB042B = this.Relations["FK__ThanhToan__MaHD__50FB042B"];
-            this.relationFK__ThanhToan__MaHin__51EF2864 = this.Relations["FK__ThanhToan__MaHin__51EF2864"];
+            this.relationFK__ThanhToan__MaHD__114A936A = this.Relations["FK__ThanhToan__MaHD__114A936A"];
+            this.relationFK__ThanhToan__MaHin__1332DBDC = this.Relations["FK__ThanhToan__MaHin__1332DBDC"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -551,22 +551,22 @@ namespace BadmintonManager {
             base.Tables.Add(this.tableTaiKhoanNhanVien);
             this.tableThanhToan = new ThanhToanDataTable();
             base.Tables.Add(this.tableThanhToan);
-            this.relationFK__BaoCaoDoa__MaHDS__477199F1 = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaHDS__477199F1", new global::System.Data.DataColumn[] {
+            this.relationFK__BaoCaoDoa__MaHDS__0C85DE4D = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaHDS__0C85DE4D", new global::System.Data.DataColumn[] {
                         this.tableHDSP.MaHDSPColumn}, new global::System.Data.DataColumn[] {
                         this.tableBaoCaoDoanhThu.MaHDSPColumn}, false);
-            this.Relations.Add(this.relationFK__BaoCaoDoa__MaHDS__477199F1);
-            this.relationFK__BaoCaoDoa__MaLoa__4865BE2A = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaLoa__4865BE2A", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__BaoCaoDoa__MaHDS__0C85DE4D);
+            this.relationFK__BaoCaoDoa__MaLoa__0D7A0286 = new global::System.Data.DataRelation("FK__BaoCaoDoa__MaLoa__0D7A0286", new global::System.Data.DataColumn[] {
                         this.tableLoaiBC.MaLoaiBCColumn}, new global::System.Data.DataColumn[] {
                         this.tableBaoCaoDoanhThu.MaLoaiBCColumn}, false);
-            this.Relations.Add(this.relationFK__BaoCaoDoa__MaLoa__4865BE2A);
-            this.relationFK__BaoCaoDoan__MaHD__4A4E069C = new global::System.Data.DataRelation("FK__BaoCaoDoan__MaHD__4A4E069C", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__BaoCaoDoa__MaLoa__0D7A0286);
+            this.relationFK__BaoCaoDoan__MaHD__0E6E26BF = new global::System.Data.DataRelation("FK__BaoCaoDoan__MaHD__0E6E26BF", new global::System.Data.DataColumn[] {
                         this.tableHoaDon.MaHDColumn}, new global::System.Data.DataColumn[] {
                         this.tableBaoCaoDoanhThu.MaHDColumn}, false);
-            this.Relations.Add(this.relationFK__BaoCaoDoan__MaHD__4A4E069C);
-            this.relationFK__HangHoa__MaLoaiH__4B422AD5 = new global::System.Data.DataRelation("FK__HangHoa__MaLoaiH__4B422AD5", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__BaoCaoDoan__MaHD__0E6E26BF);
+            this.relationFK__HangHoa__MaLoaiH__0F624AF8 = new global::System.Data.DataRelation("FK__HangHoa__MaLoaiH__0F624AF8", new global::System.Data.DataColumn[] {
                         this.tableLoaiHH.MaLoaiHHColumn}, new global::System.Data.DataColumn[] {
                         this.tableHangHoa.MaLoaiHHColumn}, false);
-            this.Relations.Add(this.relationFK__HangHoa__MaLoaiH__4B422AD5);
+            this.Relations.Add(this.relationFK__HangHoa__MaLoaiH__0F624AF8);
             this.relationFK_HangHoa = new global::System.Data.DataRelation("FK_HangHoa", new global::System.Data.DataColumn[] {
                         this.tableHangHoa.MaHHColumn}, new global::System.Data.DataColumn[] {
                         this.tableHDSP.MaHHColumn}, false);
@@ -575,10 +575,10 @@ namespace BadmintonManager {
                         this.tableHoaDon.MaHDColumn}, new global::System.Data.DataColumn[] {
                         this.tableHDSP.MaHDColumn}, false);
             this.Relations.Add(this.relationFK_HoaDon);
-            this.relationFK__LichDatSa__MaGia__4E1E9780 = new global::System.Data.DataRelation("FK__LichDatSa__MaGia__4E1E9780", new global::System.Data.DataColumn[] {
+            this.relationFK__LichDatSa__MaGia__3E1D39E1 = new global::System.Data.DataRelation("FK__LichDatSa__MaGia__3E1D39E1", new global::System.Data.DataColumn[] {
                         this.tableBangGiaSan.MaGiaColumn}, new global::System.Data.DataColumn[] {
                         this.tableLichDatSan.MaGiaColumn}, false);
-            this.Relations.Add(this.relationFK__LichDatSa__MaGia__4E1E9780);
+            this.Relations.Add(this.relationFK__LichDatSa__MaGia__3E1D39E1);
             this.relationFK_LichDatSan_KhachHang = new global::System.Data.DataRelation("FK_LichDatSan_KhachHang", new global::System.Data.DataColumn[] {
                         this.tableKhachHang.MaKHColumn}, new global::System.Data.DataColumn[] {
                         this.tableLichDatSan.MaKHColumn}, false);
@@ -587,14 +587,14 @@ namespace BadmintonManager {
                         this.tableSan.MaSanColumn}, new global::System.Data.DataColumn[] {
                         this.tableLichDatSan.MaSanColumn}, false);
             this.Relations.Add(this.relationFK_LichDatSan_San);
-            this.relationFK__ThanhToan__MaHD__50FB042B = new global::System.Data.DataRelation("FK__ThanhToan__MaHD__50FB042B", new global::System.Data.DataColumn[] {
+            this.relationFK__ThanhToan__MaHD__114A936A = new global::System.Data.DataRelation("FK__ThanhToan__MaHD__114A936A", new global::System.Data.DataColumn[] {
                         this.tableHoaDon.MaHDColumn}, new global::System.Data.DataColumn[] {
                         this.tableThanhToan.MaHDColumn}, false);
-            this.Relations.Add(this.relationFK__ThanhToan__MaHD__50FB042B);
-            this.relationFK__ThanhToan__MaHin__51EF2864 = new global::System.Data.DataRelation("FK__ThanhToan__MaHin__51EF2864", new global::System.Data.DataColumn[] {
+            this.Relations.Add(this.relationFK__ThanhToan__MaHD__114A936A);
+            this.relationFK__ThanhToan__MaHin__1332DBDC = new global::System.Data.DataRelation("FK__ThanhToan__MaHin__1332DBDC", new global::System.Data.DataColumn[] {
                         this.tableHinhThucThanhToan.MaHinhThucTTColumn}, new global::System.Data.DataColumn[] {
                         this.tableThanhToan.MaHinhThucTTColumn}, false);
-            this.Relations.Add(this.relationFK__ThanhToan__MaHin__51EF2864);
+            this.Relations.Add(this.relationFK__ThanhToan__MaHin__1332DBDC);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1269,7 +1269,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BaoCaoDoanhThuRow AddBaoCaoDoanhThuRow(int MaBC, LoaiBCRow parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__4865BE2A, HoaDonRow parentHoaDonRowByFK__BaoCaoDoan__MaHD__4A4E069C, HDSPRow parentHDSPRowByFK__BaoCaoDoa__MaHDS__477199F1, int MaDatSan, System.DateTime TgianBD, System.DateTime TgianKT, decimal TongDoanhThuSan, decimal TongDoanhThuSP, decimal TongDoanhThu) {
+            public BaoCaoDoanhThuRow AddBaoCaoDoanhThuRow(int MaBC, LoaiBCRow parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__0D7A0286, HoaDonRow parentHoaDonRowByFK__BaoCaoDoan__MaHD__0E6E26BF, HDSPRow parentHDSPRowByFK__BaoCaoDoa__MaHDS__0C85DE4D, int MaDatSan, System.DateTime TgianBD, System.DateTime TgianKT, decimal TongDoanhThuSan, decimal TongDoanhThuSP, decimal TongDoanhThu) {
                 BaoCaoDoanhThuRow rowBaoCaoDoanhThuRow = ((BaoCaoDoanhThuRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaBC,
@@ -1282,14 +1282,14 @@ namespace BadmintonManager {
                         TongDoanhThuSan,
                         TongDoanhThuSP,
                         TongDoanhThu};
-                if ((parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__4865BE2A != null)) {
-                    columnValuesArray[1] = parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__4865BE2A[0];
+                if ((parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__0D7A0286 != null)) {
+                    columnValuesArray[1] = parentLoaiBCRowByFK__BaoCaoDoa__MaLoa__0D7A0286[0];
                 }
-                if ((parentHoaDonRowByFK__BaoCaoDoan__MaHD__4A4E069C != null)) {
-                    columnValuesArray[2] = parentHoaDonRowByFK__BaoCaoDoan__MaHD__4A4E069C[0];
+                if ((parentHoaDonRowByFK__BaoCaoDoan__MaHD__0E6E26BF != null)) {
+                    columnValuesArray[2] = parentHoaDonRowByFK__BaoCaoDoan__MaHD__0E6E26BF[0];
                 }
-                if ((parentHDSPRowByFK__BaoCaoDoa__MaHDS__477199F1 != null)) {
-                    columnValuesArray[3] = parentHDSPRowByFK__BaoCaoDoa__MaHDS__477199F1[0];
+                if ((parentHDSPRowByFK__BaoCaoDoa__MaHDS__0C85DE4D != null)) {
+                    columnValuesArray[3] = parentHDSPRowByFK__BaoCaoDoa__MaHDS__0C85DE4D[0];
                 }
                 rowBaoCaoDoanhThuRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBaoCaoDoanhThuRow);
@@ -1692,7 +1692,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public HangHoaRow AddHangHoaRow(int MaHH, string TenHH, string MoTa, string DonViTinhLon, string DonViTinhNho, decimal HeSoQuyDoi, decimal GiaNhapLon, decimal GiaNhapNho, decimal GiaBanLon, decimal GiaBanNho, int SoLuongTonLon, int SoLuongTonNho, LoaiHHRow parentLoaiHHRowByFK__HangHoa__MaLoaiH__4B422AD5) {
+            public HangHoaRow AddHangHoaRow(int MaHH, string TenHH, string MoTa, string DonViTinhLon, string DonViTinhNho, decimal HeSoQuyDoi, decimal GiaNhapLon, decimal GiaNhapNho, decimal GiaBanLon, decimal GiaBanNho, int SoLuongTonLon, int SoLuongTonNho, LoaiHHRow parentLoaiHHRowByFK__HangHoa__MaLoaiH__0F624AF8) {
                 HangHoaRow rowHangHoaRow = ((HangHoaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaHH,
@@ -1708,8 +1708,8 @@ namespace BadmintonManager {
                         SoLuongTonLon,
                         SoLuongTonNho,
                         null};
-                if ((parentLoaiHHRowByFK__HangHoa__MaLoaiH__4B422AD5 != null)) {
-                    columnValuesArray[12] = parentLoaiHHRowByFK__HangHoa__MaLoaiH__4B422AD5[0];
+                if ((parentLoaiHHRowByFK__HangHoa__MaLoaiH__0F624AF8 != null)) {
+                    columnValuesArray[12] = parentLoaiHHRowByFK__HangHoa__MaLoaiH__0F624AF8[0];
                 }
                 rowHangHoaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowHangHoaRow);
@@ -3359,7 +3359,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LichDatSanRow AddLichDatSanRow(SanRow parentSanRowByFK_LichDatSan_San, KhachHangRow parentKhachHangRowByFK_LichDatSan_KhachHang, BangGiaSanRow parentBangGiaSanRowByFK__LichDatSa__MaGia__4E1E9780, System.DateTime TuNgay, System.DateTime DenNgay, System.TimeSpan TuGio, System.TimeSpan DenGio, int ThoiGian, string LoaiKH, int SoBuoi, decimal LayGia, decimal CanThanhToan, decimal DaTra, decimal ConLai) {
+            public LichDatSanRow AddLichDatSanRow(SanRow parentSanRowByFK_LichDatSan_San, KhachHangRow parentKhachHangRowByFK_LichDatSan_KhachHang, BangGiaSanRow parentBangGiaSanRowByFK__LichDatSa__MaGia__3E1D39E1, System.DateTime TuNgay, System.DateTime DenNgay, System.TimeSpan TuGio, System.TimeSpan DenGio, int ThoiGian, string LoaiKH, int SoBuoi, decimal LayGia, decimal CanThanhToan, decimal DaTra, decimal ConLai) {
                 LichDatSanRow rowLichDatSanRow = ((LichDatSanRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3383,8 +3383,8 @@ namespace BadmintonManager {
                 if ((parentKhachHangRowByFK_LichDatSan_KhachHang != null)) {
                     columnValuesArray[2] = parentKhachHangRowByFK_LichDatSan_KhachHang[0];
                 }
-                if ((parentBangGiaSanRowByFK__LichDatSa__MaGia__4E1E9780 != null)) {
-                    columnValuesArray[3] = parentBangGiaSanRowByFK__LichDatSa__MaGia__4E1E9780[0];
+                if ((parentBangGiaSanRowByFK__LichDatSa__MaGia__3E1D39E1 != null)) {
+                    columnValuesArray[3] = parentBangGiaSanRowByFK__LichDatSa__MaGia__3E1D39E1[0];
                 }
                 rowLichDatSanRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLichDatSanRow);
@@ -4911,7 +4911,7 @@ namespace BadmintonManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ThanhToanRow AddThanhToanRow(int MaTT, HoaDonRow parentHoaDonRowByFK__ThanhToan__MaHD__50FB042B, HinhThucThanhToanRow parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__51EF2864, System.DateTime NgayThanhToan, decimal SoTien, string TrangThai) {
+            public ThanhToanRow AddThanhToanRow(int MaTT, HoaDonRow parentHoaDonRowByFK__ThanhToan__MaHD__114A936A, HinhThucThanhToanRow parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__1332DBDC, System.DateTime NgayThanhToan, decimal SoTien, string TrangThai) {
                 ThanhToanRow rowThanhToanRow = ((ThanhToanRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaTT,
@@ -4920,11 +4920,11 @@ namespace BadmintonManager {
                         NgayThanhToan,
                         SoTien,
                         TrangThai};
-                if ((parentHoaDonRowByFK__ThanhToan__MaHD__50FB042B != null)) {
-                    columnValuesArray[1] = parentHoaDonRowByFK__ThanhToan__MaHD__50FB042B[0];
+                if ((parentHoaDonRowByFK__ThanhToan__MaHD__114A936A != null)) {
+                    columnValuesArray[1] = parentHoaDonRowByFK__ThanhToan__MaHD__114A936A[0];
                 }
-                if ((parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__51EF2864 != null)) {
-                    columnValuesArray[2] = parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__51EF2864[0];
+                if ((parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__1332DBDC != null)) {
+                    columnValuesArray[2] = parentHinhThucThanhToanRowByFK__ThanhToan__MaHin__1332DBDC[0];
                 }
                 rowThanhToanRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowThanhToanRow);
@@ -5181,11 +5181,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LichDatSanRow[] GetLichDatSanRows() {
-                if ((this.Table.ChildRelations["FK__LichDatSa__MaGia__4E1E9780"] == null)) {
+                if ((this.Table.ChildRelations["FK__LichDatSa__MaGia__3E1D39E1"] == null)) {
                     return new LichDatSanRow[0];
                 }
                 else {
-                    return ((LichDatSanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__LichDatSa__MaGia__4E1E9780"])));
+                    return ((LichDatSanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__LichDatSa__MaGia__3E1D39E1"])));
                 }
             }
         }
@@ -5363,10 +5363,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HDSPRow HDSPRow {
                 get {
-                    return ((HDSPRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__477199F1"])));
+                    return ((HDSPRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__0C85DE4D"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__477199F1"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaHDS__0C85DE4D"]);
                 }
             }
             
@@ -5374,10 +5374,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LoaiBCRow LoaiBCRow {
                 get {
-                    return ((LoaiBCRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"])));
+                    return ((LoaiBCRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__0D7A0286"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoa__MaLoa__0D7A0286"]);
                 }
             }
             
@@ -5385,10 +5385,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HoaDonRow HoaDonRow {
                 get {
-                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__4A4E069C"])));
+                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__0E6E26BF"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__4A4E069C"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__BaoCaoDoan__MaHD__0E6E26BF"]);
                 }
             }
             
@@ -5662,10 +5662,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LoaiHHRow LoaiHHRow {
                 get {
-                    return ((LoaiHHRow)(this.GetParentRow(this.Table.ParentRelations["FK__HangHoa__MaLoaiH__4B422AD5"])));
+                    return ((LoaiHHRow)(this.GetParentRow(this.Table.ParentRelations["FK__HangHoa__MaLoaiH__0F624AF8"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__HangHoa__MaLoaiH__4B422AD5"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__HangHoa__MaLoaiH__0F624AF8"]);
                 }
             }
             
@@ -5871,11 +5871,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BaoCaoDoanhThuRow[] GetBaoCaoDoanhThuRows() {
-                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__477199F1"] == null)) {
+                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__0C85DE4D"] == null)) {
                     return new BaoCaoDoanhThuRow[0];
                 }
                 else {
-                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__477199F1"])));
+                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaHDS__0C85DE4D"])));
                 }
             }
         }
@@ -5936,11 +5936,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ThanhToanRow[] GetThanhToanRows() {
-                if ((this.Table.ChildRelations["FK__ThanhToan__MaHin__51EF2864"] == null)) {
+                if ((this.Table.ChildRelations["FK__ThanhToan__MaHin__1332DBDC"] == null)) {
                     return new ThanhToanRow[0];
                 }
                 else {
-                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHin__51EF2864"])));
+                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHin__1332DBDC"])));
                 }
             }
         }
@@ -6057,11 +6057,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BaoCaoDoanhThuRow[] GetBaoCaoDoanhThuRows() {
-                if ((this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__4A4E069C"] == null)) {
+                if ((this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__0E6E26BF"] == null)) {
                     return new BaoCaoDoanhThuRow[0];
                 }
                 else {
-                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__4A4E069C"])));
+                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoan__MaHD__0E6E26BF"])));
                 }
             }
             
@@ -6079,11 +6079,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ThanhToanRow[] GetThanhToanRows() {
-                if ((this.Table.ChildRelations["FK__ThanhToan__MaHD__50FB042B"] == null)) {
+                if ((this.Table.ChildRelations["FK__ThanhToan__MaHD__114A936A"] == null)) {
                     return new ThanhToanRow[0];
                 }
                 else {
-                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHD__50FB042B"])));
+                    return ((ThanhToanRow[])(base.GetChildRows(this.Table.ChildRelations["FK__ThanhToan__MaHD__114A936A"])));
                 }
             }
         }
@@ -6335,10 +6335,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BangGiaSanRow BangGiaSanRow {
                 get {
-                    return ((BangGiaSanRow)(this.GetParentRow(this.Table.ParentRelations["FK__LichDatSa__MaGia__4E1E9780"])));
+                    return ((BangGiaSanRow)(this.GetParentRow(this.Table.ParentRelations["FK__LichDatSa__MaGia__3E1D39E1"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__LichDatSa__MaGia__4E1E9780"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__LichDatSa__MaGia__3E1D39E1"]);
                 }
             }
             
@@ -6433,11 +6433,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BaoCaoDoanhThuRow[] GetBaoCaoDoanhThuRows() {
-                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"] == null)) {
+                if ((this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__0D7A0286"] == null)) {
                     return new BaoCaoDoanhThuRow[0];
                 }
                 else {
-                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__4865BE2A"])));
+                    return ((BaoCaoDoanhThuRow[])(base.GetChildRows(this.Table.ChildRelations["FK__BaoCaoDoa__MaLoa__0D7A0286"])));
                 }
             }
         }
@@ -6498,11 +6498,11 @@ namespace BadmintonManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HangHoaRow[] GetHangHoaRows() {
-                if ((this.Table.ChildRelations["FK__HangHoa__MaLoaiH__4B422AD5"] == null)) {
+                if ((this.Table.ChildRelations["FK__HangHoa__MaLoaiH__0F624AF8"] == null)) {
                     return new HangHoaRow[0];
                 }
                 else {
-                    return ((HangHoaRow[])(base.GetChildRows(this.Table.ChildRelations["FK__HangHoa__MaLoaiH__4B422AD5"])));
+                    return ((HangHoaRow[])(base.GetChildRows(this.Table.ChildRelations["FK__HangHoa__MaLoaiH__0F624AF8"])));
                 }
             }
         }
@@ -6779,10 +6779,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HoaDonRow HoaDonRow {
                 get {
-                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHD__50FB042B"])));
+                    return ((HoaDonRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHD__114A936A"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHD__50FB042B"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHD__114A936A"]);
                 }
             }
             
@@ -6790,10 +6790,10 @@ namespace BadmintonManager {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public HinhThucThanhToanRow HinhThucThanhToanRow {
                 get {
-                    return ((HinhThucThanhToanRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHin__51EF2864"])));
+                    return ((HinhThucThanhToanRow)(this.GetParentRow(this.Table.ParentRelations["FK__ThanhToan__MaHin__1332DBDC"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHin__51EF2864"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__ThanhToan__MaHin__1332DBDC"]);
                 }
             }
             
@@ -7473,7 +7473,7 @@ SELECT MaGia, GioBatDau, GioKetThuc, LoaiKH, Gia FROM BangGiaSan WHERE (MaGia = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7860,7 +7860,7 @@ SELECT MaBC, MaLoaiBC, MaHD, MaHDSP, MaDatSan, TgianBD, TgianKT, TongDoanhThuSan
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8499,7 +8499,7 @@ SELECT MaHH, TenHH, MoTa, DonViTinhLon, DonViTinhNho, HeSoQuyDoi, GiaNhapLon, Gi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8989,7 +8989,7 @@ SELECT MaHDSP, MaHD, SoLuong, DonGia, ThanhTien, MaHH FROM HDSP WHERE (MaHDSP = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9416,7 +9416,7 @@ SELECT MaHinhThucTT, TenHinhThucTT FROM HinhThucThanhToan WHERE (MaHinhThucTT = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9755,7 +9755,7 @@ SELECT MaHD, MaDatSan, NgayLap, TongTien FROM HoaDon WHERE (MaHD = @MaHD)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10139,7 +10139,7 @@ SELECT MaHD, MaDatSan, NgayLap, TongTien FROM HoaDon WHERE (MaHD = @MaHD)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10544,7 +10544,7 @@ SELECT MaDatSan, MaSan, MaKH, MaGia, TuNgay, DenNgay, TuGio, DenGio, ThoiGian, L
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10987,7 +10987,7 @@ SELECT MaLoaiBC, TenLoaiBC FROM LoaiBC WHERE (MaLoaiBC = @MaLoaiBC)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11313,7 +11313,7 @@ SELECT MaLoaiHH, TenLoaiHH FROM LoaiHH WHERE (MaLoaiHH = @MaLoaiHH)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11639,7 +11639,7 @@ SELECT MaLoaiHH, TenLoaiHH FROM LoaiHH WHERE (MaLoaiHH = @MaLoaiHH)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11984,7 +11984,7 @@ SELECT MaNV, TenNV, TenDangNhap, MatKhau, VaiTro, SDT FROM TaiKhoanNhanVien WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12431,7 +12431,7 @@ SELECT MaTT, MaHD, MaHinhThucTT, NgayThanhToan, SoTien, TrangThai FROM ThanhToan
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString1;
+            this._connection.ConnectionString = global::BadmintonManager.Properties.Settings.Default.QuanLySanConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

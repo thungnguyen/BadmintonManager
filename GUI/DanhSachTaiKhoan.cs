@@ -33,7 +33,25 @@ namespace BadmintonManager.GUI
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
 
-                    dgvTaiKhoan.DataSource = dataTable;
+                    dgvTaiKhoanmoi.DataSource = dataTable;
+
+                    // Ẩn cột VaiTro
+                    if (dgvTaiKhoanmoi.Columns["VaiTro"] != null)
+                    {
+                        dgvTaiKhoanmoi.Columns["VaiTro"].Visible = false;
+                    }
+
+                    // Ẩn cột MaNV
+                    if (dgvTaiKhoanmoi.Columns["MaNV"] != null)
+                    {
+                        dgvTaiKhoanmoi.Columns["MaNV"].Visible = false;
+                    }
+
+                    // Đổi tên cột VaiTroHienThi
+                    //if (dgvTaiKhoan.Columns["VaiTroHienThi"] != null)
+                    //{
+                    //    dgvTaiKhoan.Columns["VaiTroHienThi"].HeaderText = "Vai Trò";
+                    //}
                 }
             }
             catch (Exception ex)
@@ -82,7 +100,7 @@ namespace BadmintonManager.GUI
             
                 try
                 {
-                    DataTable changes = ((DataTable)dgvTaiKhoan.DataSource).GetChanges(); // Lấy các thay đổi
+                    DataTable changes = ((DataTable)dgvTaiKhoanmoi.DataSource).GetChanges(); // Lấy các thay đổi
                     if (changes != null)
                     {
                         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -128,11 +146,11 @@ namespace BadmintonManager.GUI
 
                 try
                 {
-                    if (dgvTaiKhoan.SelectedRows.Count > 0)
+                    if (dgvTaiKhoanmoi.SelectedRows.Count > 0)
                     {
                         if (MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            foreach (DataGridViewRow row in dgvTaiKhoan.SelectedRows)
+                            foreach (DataGridViewRow row in dgvTaiKhoanmoi.SelectedRows)
                             {
                                 int maNV = Convert.ToInt32(row.Cells["MaNV"].Value); // Khóa chính
 

@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using BadmintonManager.Database;
 
 
 namespace BadmintonManager.GUI
@@ -397,19 +399,34 @@ namespace BadmintonManager.GUI
                     MessageBox.Show("Đã đặt lịch cho khách vãng lai.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-                    CapNhatSoBuoi();
-                    // Gọi hàm tính giá và hiển thị lên txtLayGia
-                    decimal gia = TinhGia();
-                    txtLayGia.Text = gia.ToString("#,0");
+            CapNhatSoBuoi();
+            // Gọi hàm tính giá và hiển thị lên txtLayGia
+            decimal gia = TinhGia();
+            txtLayGia.Text = gia.ToString("#,0");
 
-                    decimal soBuoi = Convert.ToDecimal(txtBuoi.Text);  // Số buổi đã được tính từ dgvDanhSachNgay
+            decimal soBuoi = Convert.ToDecimal(txtBuoi.Text);  // Số buổi đã được tính từ dgvDanhSachNgay
 
-                    // Tính tổng số tiền thanh toán
-                    decimal thanhToan = soBuoi * gia;
+            // Tính tổng số tiền thanh toán
+            decimal thanhToan = soBuoi * gia;
 
 
-                    // Hiển thị kết quả vào txtThanhToan
-                    txtThanhToan.Text = thanhToan.ToString("#,0");
+            // Hiển thị kết quả vào txtThanhToan
+            txtThanhToan.Text = thanhToan.ToString("#,0");
+
+
+            // Lấy giá trị đã trả từ txtDaTra
+            decimal daTra = 0;
+            if (!decimal.TryParse(txtDaTra.Text, out daTra))
+            {
+                MessageBox.Show("Vui lòng nhập số tiền đã trả hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Tính số tiền còn lại
+            decimal conLai = thanhToan - daTra;
+
+            // Hiển thị kết quả vào txtConLai
+            txtConLai.Text = conLai.ToString("#,0");
 
         }
 
@@ -419,6 +436,87 @@ namespace BadmintonManager.GUI
         }
 
         private void txtLayGia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void btnThuTien_Click(object sender, EventArgs e)
+        {
+            // Lấy giá trị còn lại từ txtConLai
+            decimal conLai = 0;
+            if (!decimal.TryParse(txtConLai.Text, out conLai) || conLai < 0)
+            {
+                MessageBox.Show("Số tiền còn lại không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Kiểm tra nếu số tiền còn lại <= 0
+            if (conLai <= 0)
+            {
+                MessageBox.Show("Đã thu đủ số tiền.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // Dừng lại nếu đã thu đủ tiền
+            }
+
+            // Kiểm tra nếu hình thức thanh toán chưa được chọn
+            if (cbHinhThuc.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn hình thức thanh toán.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Dừng lại nếu không chọn hình thức thanh toán
+            }
+
+            // Lấy giá trị số tiền nhập từ txtSoTien
+            decimal soTienThu = 0;
+            if (!decimal.TryParse(txtSoTien.Text, out soTienThu) || soTienThu < 0)
+            {
+                MessageBox.Show("Vui lòng nhập số tiền hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Kiểm tra nếu số tiền nhập vào lớn hơn số tiền cần thanh toán
+            decimal thanhToan = 0;
+            if (!decimal.TryParse(txtThanhToan.Text, out thanhToan))
+            {
+                MessageBox.Show("Không thể đọc giá trị thanh toán. Vui lòng kiểm tra lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (soTienThu > thanhToan)
+            {
+                MessageBox.Show("Số tiền nhập vào không thể lớn hơn số tiền cần thanh toán.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Dừng lại nếu số tiền nhập vào lớn hơn số tiền cần thanh toán
+            }
+
+            // Làm tròn và định dạng số tiền theo kiểu tiền tệ
+            txtSoTien.Text = soTienThu.ToString("#,0");  // Định dạng với dấu chấm phân cách nhóm ba chữ số
+
+            // Lấy giá trị đã trả trước đó từ txtDaTra
+            decimal daTra = 0;
+            if (!decimal.TryParse(txtDaTra.Text, out daTra))
+            {
+                daTra = 0; // Nếu chưa có giá trị, mặc định là 0
+            }
+
+            // Cộng thêm số tiền vừa thu vào tổng số tiền đã trả
+            daTra += soTienThu;
+
+            // Cập nhật giá trị mới vào txtDaTra
+            txtDaTra.Text = daTra.ToString("#,0");
+
+            // Tính số tiền còn lại
+            decimal conLaiMoi = thanhToan - daTra;
+
+            // Cập nhật giá trị vào txtConLai
+            txtConLai.Text = conLaiMoi.ToString("#,0");
+
+            // Cập nhật thông tin vào txtGhiChu (lựa chọn hình thức thanh toán)
+            string hinhThucThanhToan = cbHinhThuc.SelectedItem.ToString(); // Lấy giá trị lựa chọn từ ComboBox
+            txtGhiChu.Text = hinhThucThanhToan;
+
+            // Thông báo thành công
+            MessageBox.Show("Thu tiền thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void dgvDanhSachNgay_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

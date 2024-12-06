@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace BadmintonManager.GUI
+﻿namespace BadmintonManager.GUI
 {
     partial class DanhSachTaiKhoan
     {
@@ -35,7 +33,9 @@ namespace BadmintonManager.GUI
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgvTaiKhoanmoi = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoanmoi)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvTaiKhoan
@@ -50,6 +50,7 @@ namespace BadmintonManager.GUI
             // 
             // btnThem
             // 
+            this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThem.Location = new System.Drawing.Point(429, 371);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(67, 33);
@@ -60,8 +61,9 @@ namespace BadmintonManager.GUI
             // 
             // btnXoa
             // 
+            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(531, 371);
+            this.btnXoa.Location = new System.Drawing.Point(526, 369);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(79, 33);
             this.btnXoa.TabIndex = 2;
@@ -71,6 +73,7 @@ namespace BadmintonManager.GUI
             // 
             // btnSua
             // 
+            this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSua.Location = new System.Drawing.Point(643, 371);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(101, 33);
@@ -84,26 +87,37 @@ namespace BadmintonManager.GUI
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(184, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(467, 42);
             this.label1.TabIndex = 4;
             this.label1.Text = "DANH SÁCH TÀI KHOẢN";
             // 
+            // dgvTaiKhoanmoi
+            // 
+            this.dgvTaiKhoanmoi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTaiKhoanmoi.Location = new System.Drawing.Point(149, 123);
+            this.dgvTaiKhoanmoi.Name = "dgvTaiKhoanmoi";
+            this.dgvTaiKhoanmoi.RowHeadersWidth = 51;
+            this.dgvTaiKhoanmoi.RowTemplate.Height = 24;
+            this.dgvTaiKhoanmoi.Size = new System.Drawing.Size(422, 210);
+            this.dgvTaiKhoanmoi.TabIndex = 5;
+            // 
             // DanhSachTaiKhoan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(795, 448);
+            this.Controls.Add(this.dgvTaiKhoanmoi);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.dgvTaiKhoan);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DanhSachTaiKhoan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DanhSachTaiKhoan";
             this.Load += new System.EventHandler(this.DanhSachTaiKhoan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoanmoi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,6 +130,6 @@ namespace BadmintonManager.GUI
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnXoa;
-        private Control btnLamMoi;
+        private System.Windows.Forms.DataGridView dgvTaiKhoanmoi;
     }
 }

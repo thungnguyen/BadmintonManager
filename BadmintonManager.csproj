@@ -152,21 +152,21 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Databasee\BaoCaoDoanhThu.cs" />
-    <Compile Include="Databasee\ChiTietHDSP.cs" />
-    <Compile Include="Databasee\DatSan.cs" />
-    <Compile Include="Databasee\GiaSan.cs" />
-    <Compile Include="Databasee\HangHoa.cs" />
-    <Compile Include="Databasee\HinhThucThanhToan.cs" />
-    <Compile Include="Databasee\HoaDon.cs" />
-    <Compile Include="Databasee\KhachHang.cs" />
-    <Compile Include="Databasee\LichSan.cs" />
-    <Compile Include="Databasee\LoaiBC.cs" />
-    <Compile Include="Databasee\LoaiHH.cs" />
-    <Compile Include="Databasee\LoaiKhachHang.cs" />
-    <Compile Include="Databasee\San.cs" />
-    <Compile Include="Databasee\TaiKhoanNhanVien.cs" />
-    <Compile Include="Databasee\ThanhToan.cs" />
+    <Compile Include="Database\BaoCaoDoanhThu.cs" />
+    <Compile Include="Database\ChiTietHDSP.cs" />
+    <Compile Include="Database\DatSan.cs" />
+    <Compile Include="Database\GiaSan.cs" />
+    <Compile Include="Database\HangHoa.cs" />
+    <Compile Include="Database\HinhThucThanhToan.cs" />
+    <Compile Include="Database\HoaDon.cs" />
+    <Compile Include="Database\KhachHang.cs" />
+    <Compile Include="Database\LichSan.cs" />
+    <Compile Include="Database\LoaiBC.cs" />
+    <Compile Include="Database\LoaiHH.cs" />
+    <Compile Include="Database\LoaiKhachHang.cs" />
+    <Compile Include="Database\San.cs" />
+    <Compile Include="Database\TaiKhoanNhanVien.cs" />
+    <Compile Include="Database\ThanhToan.cs" />
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>

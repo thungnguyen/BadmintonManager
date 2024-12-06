@@ -152,21 +152,26 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\HangHoaBLL.cs" />
+    <Compile Include="BLL\LoaiHHBLL.cs" />
+    <Compile Include="DAL\DatabaseConnection.cs" />
+    <Compile Include="DAL\HangHoaDAL.cs" />
+    <Compile Include="DAL\LoaiHHDAL.cs" />
     <Compile Include="Database\BaoCaoDoanhThu.cs" />
     <Compile Include="Database\ChiTietHDSP.cs" />
     <Compile Include="Database\DatSan.cs" />
     <Compile Include="Database\GiaSan.cs" />
-    <Compile Include="Database\HangHoa.cs" />
     <Compile Include="Database\HinhThucThanhToan.cs" />
     <Compile Include="Database\HoaDon.cs" />
     <Compile Include="Database\KhachHang.cs" />
     <Compile Include="Database\LichSan.cs" />
     <Compile Include="Database\LoaiBC.cs" />
-    <Compile Include="Database\LoaiHH.cs" />
     <Compile Include="Database\LoaiKhachHang.cs" />
     <Compile Include="Database\San.cs" />
     <Compile Include="Database\TaiKhoanNhanVien.cs" />
     <Compile Include="Database\ThanhToan.cs" />
+    <Compile Include="DTO\HangHoa.cs" />
+    <Compile Include="DTO\LoaiHH.cs" />
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +189,12 @@
     </Compile>
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\QuanLySanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\QuanLySanPham.Designer.cs">
+      <DependentUpon>QuanLySanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\DanhSachTaiKhoan.cs">
       <SubType>Form</SubType>
@@ -236,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\QuanLySanPham.resx">
+      <DependentUpon>QuanLySanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>

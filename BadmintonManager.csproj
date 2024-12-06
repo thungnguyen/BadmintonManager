@@ -284,7 +284,6 @@
     </None>
     <None Include="QuanLySanDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QuanLySanDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="QuanLySanDataSet.xss">

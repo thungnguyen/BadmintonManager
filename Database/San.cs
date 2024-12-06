@@ -11,8 +11,7 @@ namespace qlycaulong.Database
 
     public class SanDatabaseHelper
     {
-        private string connectionString = "Data Source=LAPTOP-G5HQJSJ2\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
-
+        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
         public List<San> GetSanList()
         {
             List<San> sans = new List<San>();

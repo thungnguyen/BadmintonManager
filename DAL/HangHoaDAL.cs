@@ -1,8 +1,7 @@
-﻿using System;
+﻿using BadmintonManager.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using BadmintonManager.DAL;
-using BadmintonManager.DTO;
 
 namespace BadmintonManager.DAL
 {

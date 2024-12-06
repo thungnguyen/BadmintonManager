@@ -1,10 +1,7 @@
-﻿using BadmintonManager.DTO;
-using BadmintonManager.DAL;
-using System;
+﻿using BadmintonManager.DAL;
+using BadmintonManager.DTO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BadmintonManager.BLL
 {

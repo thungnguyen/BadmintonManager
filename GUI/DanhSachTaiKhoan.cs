@@ -97,89 +97,89 @@ namespace BadmintonManager.GUI
         private void btnSua_Click_1(object sender, EventArgs e)
         {
             // Nút Sửa: Cập nhật thông tin tài khoản
-            
-                try
+
+            try
+            {
+                DataTable changes = ((DataTable)dgvTaiKhoanmoi.DataSource).GetChanges(); // Lấy các thay đổi
+                if (changes != null)
                 {
-                    DataTable changes = ((DataTable)dgvTaiKhoanmoi.DataSource).GetChanges(); // Lấy các thay đổi
-                    if (changes != null)
+                    using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        connection.Open();
+                        foreach (DataRow row in changes.Rows)
                         {
-                            connection.Open();
-                            foreach (DataRow row in changes.Rows)
-                            {
-                                string query = @"UPDATE TaiKhoanNhanVien
+                            string query = @"UPDATE TaiKhoanNhanVien
                                              SET TenNV = @TenNV, TenDangNhap = @TenDangNhap, 
                                                  MatKhau = @MatKhau, VaiTro = @VaiTro, SDT = @SDT
                                              WHERE MaNV = @MaNV";
 
-                                using (SqlCommand command = new SqlCommand(query, connection))
-                                {
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
                                 command.Parameters.AddWithValue("@MaNV", row["MaNV"]);
                                 command.Parameters.AddWithValue("@TenNV", row["TenNV"]);
-                                    command.Parameters.AddWithValue("@TenDangNhap", row["TenDangNhap"]);
-                                    command.Parameters.AddWithValue("@MatKhau", row["MatKhau"]);
-                                    command.Parameters.AddWithValue("@VaiTro", row["VaiTro"]);
-                                    command.Parameters.AddWithValue("@SDT", row["SDT"]);
+                                command.Parameters.AddWithValue("@TenDangNhap", row["TenDangNhap"]);
+                                command.Parameters.AddWithValue("@MatKhau", row["MatKhau"]);
+                                command.Parameters.AddWithValue("@VaiTro", row["VaiTro"]);
+                                command.Parameters.AddWithValue("@SDT", row["SDT"]);
 
-                                    command.ExecuteNonQuery();
-                                }
+                                command.ExecuteNonQuery();
                             }
                         }
-                        MessageBox.Show("Cập nhật thành công!");
-                        LoadData(); // Cập nhật lại dữ liệu
                     }
-                    else
-                    {
-                        MessageBox.Show("Không có thay đổi nào cần lưu.");
-                    }
+                    MessageBox.Show("Cập nhật thành công!");
+                    LoadData(); // Cập nhật lại dữ liệu
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi khi cập nhật dữ liệu: " + ex.Message);
+                    MessageBox.Show("Không có thay đổi nào cần lưu.");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật dữ liệu: " + ex.Message);
+            }
+        }
 
         private void btnXoa_Click_1(object sender, EventArgs e)
         {
             // Nút Xóa: Xóa tài khoản đã chọn
 
-                try
+            try
+            {
+                if (dgvTaiKhoanmoi.SelectedRows.Count > 0)
                 {
-                    if (dgvTaiKhoanmoi.SelectedRows.Count > 0)
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        if (MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        foreach (DataGridViewRow row in dgvTaiKhoanmoi.SelectedRows)
                         {
-                            foreach (DataGridViewRow row in dgvTaiKhoanmoi.SelectedRows)
-                            {
-                                int maNV = Convert.ToInt32(row.Cells["MaNV"].Value); // Khóa chính
+                            int maNV = Convert.ToInt32(row.Cells["MaNV"].Value); // Khóa chính
 
-                                using (SqlConnection connection = new SqlConnection(connectionString))
+                            using (SqlConnection connection = new SqlConnection(connectionString))
+                            {
+                                connection.Open();
+                                string query = "DELETE FROM TaiKhoanNhanVien WHERE MaNV = @MaNV";
+                                using (SqlCommand command = new SqlCommand(query, connection))
                                 {
-                                    connection.Open();
-                                    string query = "DELETE FROM TaiKhoanNhanVien WHERE MaNV = @MaNV";
-                                    using (SqlCommand command = new SqlCommand(query, connection))
-                                    {
-                                        command.Parameters.AddWithValue("@MaNV", maNV);
-                                        command.ExecuteNonQuery();
-                                    }
+                                    command.Parameters.AddWithValue("@MaNV", maNV);
+                                    command.ExecuteNonQuery();
                                 }
                             }
-                            MessageBox.Show("Xóa thành công!");
-                            LoadData(); // Tải lại dữ liệu
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Vui lòng chọn tài khoản cần xóa.");
+                        MessageBox.Show("Xóa thành công!");
+                        LoadData(); // Tải lại dữ liệu
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi khi xóa tài khoản: " + ex.Message);
+                    MessageBox.Show("Vui lòng chọn tài khoản cần xóa.");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa tài khoản: " + ex.Message);
+            }
+        }
 
-        
+
     }
 }

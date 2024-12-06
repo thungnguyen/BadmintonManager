@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BadmintonManager.GUI
@@ -90,7 +84,7 @@ namespace BadmintonManager.GUI
 
         private void button3_Click(object sender, EventArgs e)//btnTaiKhoan
         {
-            OpenChildForm(new GUI.DanhSachTaiKhoan(),sender);
+            OpenChildForm(new GUI.DanhSachTaiKhoan(), sender);
         }
 
         private void btnLichSan_Click(object sender, EventArgs e)
@@ -115,7 +109,7 @@ namespace BadmintonManager.GUI
 
         private void btnQuanLySan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DatSan(), sender);
+            OpenChildForm(new GUI.DanhSachTaiKhoan(), sender);
         }
 
         private void btnCloseChildForm_Click(object sender, EventArgs e)
@@ -133,6 +127,17 @@ namespace BadmintonManager.GUI
             panelLogo.BackColor = Color.FromArgb(39, 39, 58);
             currentButton = null;
             btnCloseChildForm.Visible = false;
+        }
+
+        private void btnThietLapSan_Click(object sender, EventArgs e)
+        {
+            //OpenChildForm(new GUI.ThietLapSan(), sender);
+        }
+
+        private void btnTinhTien_Click(object sender, EventArgs e)
+        {
+            //FrmTinhTien frmTinhTien = new FrmTinhTien();
+            //frmTinhTien.ShowDialog();
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BadmintonManager.DTO
+﻿namespace BadmintonManager.DTO
 {
     public class HangHoa
     {
@@ -26,4 +20,4 @@ namespace BadmintonManager.DTO
         public LoaiHH LoaiHH { get; set; }
 
     }
-}   
+}

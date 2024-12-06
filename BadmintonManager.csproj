@@ -170,6 +170,7 @@
     <Compile Include="Database\San.cs" />
     <Compile Include="Database\TaiKhoanNhanVien.cs" />
     <Compile Include="Database\ThanhToan.cs" />
+    <Compile Include="Database\ThemeColor.cs" />
     <Compile Include="DTO\HangHoa.cs" />
     <Compile Include="DTO\LoaiHH.cs" />
     <Compile Include="GUI\DangKyTaiKhoan.cs">
@@ -189,6 +190,24 @@
     </Compile>
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FrmTinhTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FrmTinhTien.Designer.cs">
+      <DependentUpon>FrmTinhTien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\GiaSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\GiaSan.Designer.cs">
+      <DependentUpon>GiaSan.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\QuanLySanPham.cs">
       <SubType>Form</SubType>
@@ -232,6 +251,12 @@
     <Compile Include="GUI\ThemHangHoa.Designer.cs">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ThietLapSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ThietLapSan.Designer.cs">
+      <DependentUpon>ThietLapSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -253,6 +278,12 @@
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\GiaSan.resx">
+      <DependentUpon>GiaSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\QuanLySanPham.resx">
       <DependentUpon>QuanLySanPham.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThemHangHoa.resx">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ThietLapSan.resx">
+      <DependentUpon>ThietLapSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

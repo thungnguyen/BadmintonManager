@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
 using System.Data.SqlClient;
 
 
@@ -50,7 +45,7 @@ namespace BadmintonManager.Database
                             MatKhau = reader["MatKhau"].ToString(),
                             VaiTro = reader["VaiTro"].ToString(),
                             SDT = reader["SDT"].ToString(),
-                            
+
                         };
 
                         return taiKhoan; // Trả về đối tượng nếu thông tin đúng

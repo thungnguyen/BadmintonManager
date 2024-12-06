@@ -16,5 +16,10 @@ namespace BadmintonManager.GUI
         {
             InitializeComponent();
         }
+
+        private void GDQuanLy_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using BadmintonManager.Database;
 
 
 namespace BadmintonManager.GUI
@@ -399,19 +397,19 @@ namespace BadmintonManager.GUI
                     MessageBox.Show("Đã đặt lịch cho khách vãng lai.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            CapNhatSoBuoi();
-            // Gọi hàm tính giá và hiển thị lên txtLayGia
-            decimal gia = TinhGia();
-            txtLayGia.Text = gia.ToString("#,0");
+                    CapNhatSoBuoi();
+                    // Gọi hàm tính giá và hiển thị lên txtLayGia
+                    decimal gia = TinhGia();
+                    txtLayGia.Text = gia.ToString("#,0");
 
-            decimal soBuoi = Convert.ToDecimal(txtBuoi.Text);  // Số buổi đã được tính từ dgvDanhSachNgay
+                    decimal soBuoi = Convert.ToDecimal(txtBuoi.Text);  // Số buổi đã được tính từ dgvDanhSachNgay
 
-            // Tính tổng số tiền thanh toán
-            decimal thanhToan = soBuoi * gia;
+                    // Tính tổng số tiền thanh toán
+                    decimal thanhToan = soBuoi * gia;
 
 
-            // Hiển thị kết quả vào txtThanhToan
-            txtThanhToan.Text = thanhToan.ToString("#,0");
+                    // Hiển thị kết quả vào txtThanhToan
+                    txtThanhToan.Text = thanhToan.ToString("#,0");
 
         }
 

@@ -152,21 +152,21 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\BaoCaoDoanhThu.cs" />
-    <Compile Include="Database\ChiTietHDSP.cs" />
-    <Compile Include="Database\DatSan.cs" />
-    <Compile Include="Database\GiaSan.cs" />
-    <Compile Include="Database\HangHoa.cs" />
-    <Compile Include="Database\HinhThucThanhToan.cs" />
-    <Compile Include="Database\HoaDon.cs" />
-    <Compile Include="Database\KhachHang.cs" />
-    <Compile Include="Database\LichSan.cs" />
-    <Compile Include="Database\LoaiBC.cs" />
-    <Compile Include="Database\LoaiHH.cs" />
-    <Compile Include="Database\LoaiKhachHang.cs" />
-    <Compile Include="Database\San.cs" />
-    <Compile Include="Database\TaiKhoanNhanVien.cs" />
-    <Compile Include="Database\ThanhToan.cs" />
+    <Compile Include="DTO\BaoCaoDoanhThu.cs" />
+    <Compile Include="DTO\ChiTietHDSP.cs" />
+    <Compile Include="DTO\DatSan.cs" />
+    <Compile Include="DTO\GiaSan.cs" />
+    <Compile Include="DTO\HangHoa.cs" />
+    <Compile Include="DTO\HinhThucThanhToan.cs" />
+    <Compile Include="DTO\HoaDon.cs" />
+    <Compile Include="DTO\KhachHang.cs" />
+    <Compile Include="DTO\LichSan.cs" />
+    <Compile Include="DTO\LoaiBC.cs" />
+    <Compile Include="DTO\LoaiHH.cs" />
+    <Compile Include="DTO\LoaiKhachHang.cs" />
+    <Compile Include="DTO\San.cs" />
+    <Compile Include="DTO\TaiKhoanNhanVien.cs" />
+    <Compile Include="DTO\ThanhToan.cs" />
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +291,7 @@
     <Content Include="Resources\calendar.png" />
     <Content Include="Resources\Datlich.jpg" />
     <Content Include="Resources\features.png" />
+    <None Include="Resources\Horizonbmt.jpg" />
     <Content Include="Resources\revenue.png" />
     <Content Include="Resources\target.png" />
     <Content Include="Resources\user.png" />

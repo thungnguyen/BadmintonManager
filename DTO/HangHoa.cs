@@ -1,4 +1,6 @@
-﻿namespace BadmintonManager.Models
+﻿
+
+namespace BadmintonManager.Models
 {
     public class HangHoa
     {

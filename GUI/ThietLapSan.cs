@@ -15,7 +15,7 @@ namespace BadmintonManager.GUI
 {
     public partial class ThietLapSan : Form
     {
-        private string connectionString = "Data Source=DESKTOP-CESMAPL\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = "Data Source=MSIALPHA15;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
 
         public ThietLapSan()
         {

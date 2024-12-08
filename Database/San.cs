@@ -8,6 +8,7 @@ namespace qlycaulong.Database
 {
     public class San
     {
+        public static int Width { get; internal set; }
         public int MaSan { get; set; }
         public string TenSan { get; set; }
     }

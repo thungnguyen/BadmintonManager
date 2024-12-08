@@ -1,6 +1,6 @@
 ﻿namespace BadmintonManager.GUI
 {
-    partial class ThemHangHoa
+    partial class SuaHangHoa
     {
         /// <summary>
         /// Required designer variable.
@@ -69,9 +69,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(266, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(337, 29);
+            this.label1.Size = new System.Drawing.Size(316, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Thêm danh mục hàng hoá mới";
+            this.label1.Text = "Sửa danh mục hàng hoá mới";
             // 
             // txtTenHH
             // 
@@ -289,7 +289,7 @@
             this.btnsave.TabIndex = 25;
             this.btnsave.Text = "Lưu";
             this.btnsave.UseVisualStyleBackColor = true;
-            this.btnsave.Click += new System.EventHandler(this.btnsave_Click_1);
+            this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
             // btnCancel
             // 
@@ -301,7 +301,7 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // ThemHangHoa
+            // SuaHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -333,9 +333,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTenHH);
             this.Controls.Add(this.label1);
-            this.Name = "ThemHangHoa";
+            this.Name = "SuaHangHoa";
             this.Text = "ThemHangHoa";
-            this.Load += new System.EventHandler(this.ThemHangHoa_Load);
+            this.Load += new System.EventHandler(this.SuaHangHoa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loaiHHBindingSource)).EndInit();
             this.ResumeLayout(false);

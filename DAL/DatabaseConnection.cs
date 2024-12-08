@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 
 namespace BadmintonManager.DAL
 {
@@ -16,9 +17,17 @@ namespace BadmintonManager.DAL
         /// </summary>
         public static SqlConnection GetConnection()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            return connection;
+            try
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                connection.Open();  // Open the connection here
+                return connection;
+            }
+            catch (Exception ex)
+            {
+                // Log error here
+                throw new InvalidOperationException("Database connection could not be established.", ex);
+            }
         }
 
         /// <summary>
@@ -26,9 +35,13 @@ namespace BadmintonManager.DAL
         /// </summary>
         public static void CloseConnection(SqlConnection connection)
         {
-            if (connection != null && connection.State == System.Data.ConnectionState.Open)
+            if (connection != null)
             {
-                connection.Close();
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+                connection.Dispose(); // Ensure it is disposed
             }
         }
     }

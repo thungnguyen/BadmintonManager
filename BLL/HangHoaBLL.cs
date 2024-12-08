@@ -2,8 +2,8 @@
 using BadmintonManager.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-
 
 namespace BadmintonManager.BLL
 {
@@ -13,10 +13,12 @@ namespace BadmintonManager.BLL
     public class HangHoaBLL
     {
         private HangHoaDAL _hangHoaDAL;
+        private LoaiHHDAL _loaiHHDAL;
 
         public HangHoaBLL()
         {
             _hangHoaDAL = new HangHoaDAL();
+            _loaiHHDAL = new LoaiHHDAL();
         }
 
         /// <summary>
@@ -24,43 +26,148 @@ namespace BadmintonManager.BLL
         /// </summary>
         public List<HangHoa> GetAllProducts()
         {
-            var products = _hangHoaDAL.GetAllProducts();
+            try
+            {
+                // Fetch all products from DAL
+                var products = _hangHoaDAL.GetAllProducts();
 
-            // Example of LINQ-based business logic
-            return products
-                .Where(p => p.GiaBanLon > 0)
-                .OrderBy(p => p.TenHH)
-                .ToList();
+                //
+                return products;
+
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the error
+                throw new ApplicationException("Error retrieving products", ex);
+            }
         }
 
-        /// <summary>
-        /// Validates and adds a new product
-        /// </summary>
-        public int AddProduct(HangHoa product)
+        public DataTable GetTable()
         {
-            // Business validation
+            HangHoaDAL dal = new HangHoaDAL();
+            return dal.GetTableProduct();  
+        }
+
+        public DataTable GetProducts(string searchTerm = null)
+        {
+            return _hangHoaDAL.GetProducts(searchTerm);
+        }
+
+        public HangHoa GetProductById(int productId)
+        {
+            if (productId <= 0)
+            {
+                throw new ArgumentException("Mã sản phẩm không hợp lệ!");
+            }
+
+            return _hangHoaDAL.GetProductById(productId);
+        }
+
+
+        /// <summary>
+        /// Retrieves all product categories from business logic
+        /// </summary>
+        public List<LoaiHH> GetProductCategories()
+        {
+            try
+            {
+                return _hangHoaDAL.GetProductCategories();
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the error
+                throw new ApplicationException("Error retrieving product categories", ex);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Adds a new product to the system after validating its data
+        /// </summary>
+        public void AddProduct(HangHoa product)
+        {
+            // Kiểm tra thông tin cơ bản
             if (string.IsNullOrWhiteSpace(product.TenHH))
             {
-                throw new ArgumentException("Product name cannot be empty");
+                throw new ArgumentException("Tên hàng hoá không được để trống.");
             }
 
-            if (product.GiaBanLon <= 0)
+            if (product.MaLoaiHH <= 0)
             {
-                throw new ArgumentException("Product price must be greater than zero");
+                throw new ArgumentException("Loại hàng hoá không hợp lệ.");
             }
 
-            return _hangHoaDAL.AddProduct(product);
+            if (product.HeSoQuyDoi <= 0)
+            {
+                throw new ArgumentException("Hệ số quy đổi phải lớn hơn 0.");
+            }
+
+            if (product.GiaNhapLon <= 0 || product.GiaNhapNho <= 0 || product.GiaBanLon <= 0 || product.GiaBanNho <= 0)
+            {
+                throw new ArgumentException("Giá nhập và giá bán phải là số dương.");
+            }
+
+            if (product.GiaBanLon < product.GiaNhapLon || product.GiaBanNho < product.GiaNhapNho)
+            {
+                throw new ArgumentException("Giá bán không được nhỏ hơn giá nhập.");
+            }
+
+            if (product.SoLuongTonLon < 0 || product.SoLuongTonNho < 0)
+            {
+                throw new ArgumentException("Số lượng tồn kho phải là số không âm.");
+            }
+
+            // Kiểm tra xem loại hàng hoá có tồn tại trong cơ sở dữ liệu không
+            var categoryExists = _loaiHHDAL.GetAllCategories().Any(c => c.MaLoaiHH == product.MaLoaiHH);
+            if (!categoryExists)
+            {
+                throw new ArgumentException("Loại hàng hoá không tồn tại.");
+            }
+
+            // Sau khi kiểm tra, gửi đến DAL để lưu trữ
+            _hangHoaDAL.AddProduct(product);
         }
 
-        /// <summary>
-        /// Gets products by category
-        /// </summary>
-        public List<HangHoa> GetProductsByCategory(int categoryId)
+        public void DeleteProduct(int maHH)
         {
-            var products = _hangHoaDAL.GetAllProducts();
-            return products
-                .Where(p => p.MaLoaiHH == categoryId)
-                .ToList();
+            _hangHoaDAL.DeleteProduct(maHH);
         }
+
+
+        public void UpdateProduct(HangHoa product)
+        {
+            // Kiểm tra dữ liệu trước khi gửi đến DAL (Validation)
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product), "Sản phẩm không được null!");
+            }
+
+            if (string.IsNullOrWhiteSpace(product.TenHH))
+            {
+                throw new ArgumentException("Tên hàng hoá không được để trống!");
+            }
+
+            if (product.MaLoaiHH <= 0)
+            {
+                throw new ArgumentException("Loại hàng hoá không hợp lệ!");
+            }
+
+            if (product.HeSoQuyDoi <= 0)
+            {
+                throw new ArgumentException("Hệ số quy đổi phải là số dương!");
+            }
+
+            if (product.GiaNhapLon <= 0 || product.GiaNhapNho <= 0 ||
+                product.GiaBanLon <= 0 || product.GiaBanNho <= 0)
+            {
+                throw new ArgumentException("Giá nhập và giá bán phải là số dương!");
+            }
+
+            // Gọi DAL để thực hiện cập nhật
+            _hangHoaDAL.UpdateProduct(product);
+        }
+
+
     }
 }

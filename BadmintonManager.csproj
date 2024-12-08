@@ -44,6 +44,7 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Data.SqlClient.5.2.2\lib\net462\Microsoft.Data.SqlClient.dll</HintPath>
     </Reference>
@@ -209,12 +210,6 @@
     <Compile Include="GUI\GiaSan.Designer.cs">
       <DependentUpon>GiaSan.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\QuanLySanPham.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\QuanLySanPham.Designer.cs">
-      <DependentUpon>QuanLySanPham.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\DanhSachTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +239,12 @@
     </Compile>
     <Compile Include="GUI\LichDatSan.Designer.cs">
       <DependentUpon>LichDatSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SuaHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\SuaHangHoa.Designer.cs">
+      <DependentUpon>SuaHangHoa.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\ThemHangHoa.cs">
       <SubType>Form</SubType>
@@ -281,11 +282,11 @@
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FrmTinhTien.resx">
+      <DependentUpon>FrmTinhTien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\GiaSan.resx">
       <DependentUpon>GiaSan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\QuanLySanPham.resx">
-      <DependentUpon>QuanLySanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
@@ -295,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LichDatSan.resx">
       <DependentUpon>LichDatSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SuaHangHoa.resx">
+      <DependentUpon>SuaHangHoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThemHangHoa.resx">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>

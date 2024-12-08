@@ -153,8 +153,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\HangHoaBLL.cs" />
-    <Compile Include="BLL\LoaiHHBLL.cs" />
+    <Compile Include="BAL\HangHoaBLL.cs" />
+    <Compile Include="BAL\LoaiHHBLL.cs" />
     <Compile Include="DAL\DatabaseConnection.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
@@ -172,8 +172,14 @@
     <Compile Include="Database\TaiKhoanNhanVien.cs" />
     <Compile Include="Database\ThanhToan.cs" />
     <Compile Include="Database\ThemeColor.cs" />
+    <Compile Include="DTO\BangGiaSanDTO.cs" />
+    <Compile Include="DTO\GiaSanDTO.cs" />
     <Compile Include="DTO\HangHoa.cs" />
+    <Compile Include="DTO\KhachHangDTO.cs" />
+    <Compile Include="DTO\LichDatSanDTO.cs" />
     <Compile Include="DTO\LoaiHH.cs" />
+    <Compile Include="DTO\SanDTO.cs" />
+    <Compile Include="DTO\TaiKhoanNhanVienDTO.cs" />
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>

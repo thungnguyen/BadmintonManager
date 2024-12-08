@@ -1,4 +1,4 @@
-﻿using BadmintonManager.BLL;
+﻿using BadmintonManager.BAL;
 using BadmintonManager.DTO;
 using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using System;

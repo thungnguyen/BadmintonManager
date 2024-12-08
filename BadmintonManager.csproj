@@ -153,11 +153,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BAL\BangGiaSanBAL .cs" />
+    <Compile Include="BAL\GiaSanBAL.cs" />
     <Compile Include="BAL\HangHoaBLL.cs" />
+    <Compile Include="BAL\KhachHangBAL.cs" />
+    <Compile Include="BAL\LichDatSanBAL.cs" />
     <Compile Include="BAL\LoaiHHBLL.cs" />
+    <Compile Include="BAL\SanBAL.cs" />
+    <Compile Include="BAL\TaiKhoanNhanVienBAL .cs" />
+    <Compile Include="DAL\BangGiaSanDAL.cs" />
     <Compile Include="DAL\DatabaseConnection.cs" />
+    <Compile Include="DAL\GiaSanDAL.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
+    <Compile Include="DAL\KhachHangDAL.cs" />
+    <Compile Include="DAL\LichDatSanDAL.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
+    <Compile Include="DAL\SanDAL.cs" />
+    <Compile Include="DAL\TaiKhoanNhanVienDAL.cs" />
     <Compile Include="Database\BaoCaoDoanhThu.cs" />
     <Compile Include="Database\ChiTietHDSP.cs" />
     <Compile Include="Database\DatSan.cs" />
@@ -198,6 +210,12 @@
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DatSan.Designer.cs">
+      <DependentUpon>DatSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,12 +239,6 @@
     </Compile>
     <Compile Include="GUI\DanhSachTaiKhoan.Designer.cs">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\DatSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\DatSan.Designer.cs">
-      <DependentUpon>DatSan.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\GDNhanVien.cs">
       <SubType>Form</SubType>
@@ -285,6 +297,9 @@
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DatSan.resx">
+      <DependentUpon>DatSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,9 +311,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\DatSan.resx">
-      <DependentUpon>DatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LichDatSan.resx">
       <DependentUpon>LichDatSan.cs</DependentUpon>

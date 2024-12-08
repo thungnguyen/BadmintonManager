@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace BadmintonManager.DTO
 {
-    namespace BadmintonManager.DTO
-    {
         public class KhachHang
         {
             public int MaKH { get; set; }
@@ -15,5 +13,5 @@ namespace BadmintonManager.DTO
             
             public string SDT { get; set; }
         }
-    }
 }
+

@@ -68,7 +68,7 @@
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.btnCheckSan = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
@@ -229,6 +229,7 @@
             this.cbbTenSan.Name = "cbbTenSan";
             this.cbbTenSan.Size = new System.Drawing.Size(281, 21);
             this.cbbTenSan.TabIndex = 14;
+            this.cbbTenSan.SelectedIndexChanged += new System.EventHandler(this.cbbTenSan_SelectedIndexChanged);
             // 
             // btnThemKhach
             // 
@@ -491,14 +492,15 @@
             this.label18.TabIndex = 52;
             this.label18.Text = "*Kiểm tra trùng lịch :";
             // 
-            // button5
+            // btnLuu
             // 
-            this.button5.Location = new System.Drawing.Point(161, 430);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(89, 37);
-            this.button5.TabIndex = 53;
-            this.button5.Text = "Lưu";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnLuu.Location = new System.Drawing.Point(161, 430);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(89, 37);
+            this.btnLuu.TabIndex = 53;
+            this.btnLuu.Text = "Lưu";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click_1);
             // 
             // button7
             // 
@@ -582,7 +584,7 @@
             // btnDatLich
             // 
             this.btnDatLich.Location = new System.Drawing.Point(279, 430);
-            this.btnDatLich.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDatLich.Margin = new System.Windows.Forms.Padding(2);
             this.btnDatLich.Name = "btnDatLich";
             this.btnDatLich.Size = new System.Drawing.Size(89, 37);
             this.btnDatLich.TabIndex = 70;
@@ -593,7 +595,7 @@
             // btnThuTien
             // 
             this.btnThuTien.Location = new System.Drawing.Point(807, 119);
-            this.btnThuTien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnThuTien.Margin = new System.Windows.Forms.Padding(2);
             this.btnThuTien.Name = "btnThuTien";
             this.btnThuTien.Size = new System.Drawing.Size(69, 31);
             this.btnThuTien.TabIndex = 71;
@@ -608,7 +610,7 @@
             "--TM--",
             "--CK--"});
             this.cbHinhThuc.Location = new System.Drawing.Point(688, 89);
-            this.cbHinhThuc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbHinhThuc.Margin = new System.Windows.Forms.Padding(2);
             this.cbHinhThuc.Name = "cbHinhThuc";
             this.cbHinhThuc.Size = new System.Drawing.Size(189, 21);
             this.cbHinhThuc.TabIndex = 72;
@@ -639,7 +641,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 484);
+            this.ClientSize = new System.Drawing.Size(899, 492);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.cbHinhThuc);
@@ -653,7 +655,7 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.btnCheckSan);
             this.Controls.Add(this.txtGhiChu);
@@ -746,7 +748,7 @@
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Button btnCheckSan;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label19;

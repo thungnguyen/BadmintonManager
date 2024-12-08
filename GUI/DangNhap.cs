@@ -1,15 +1,27 @@
-﻿using BadmintonManager.Database;
+﻿using BadmintonManager.BAL;
+using BadmintonManager.DTO;
 using BadmintonManager.GUI;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace BadmintonManager
 {
     public partial class DangNhap : Form
     {
+        private TaiKhoanNhanVienBAL taiKhoanBAL;
+
         public DangNhap()
         {
             InitializeComponent();
+            taiKhoanBAL = new TaiKhoanNhanVienBAL();
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
@@ -17,24 +29,22 @@ namespace BadmintonManager
             string tenDangNhap = txtUsername.Text.Trim();
             string matKhau = txtPassword.Text.Trim();
 
-            TaiKhoanNhanVien taiKhoanDB = new TaiKhoanNhanVien();
-            TaiKhoanNhanVien taiKhoan = taiKhoanDB.DangNhap(tenDangNhap, matKhau);
+            TaiKhoanNhanVienDTO taiKhoan = taiKhoanBAL.DangNhap(tenDangNhap, matKhau);
 
             if (taiKhoan != null)
             {
-                // Kiểm tra vai trò và mở form tương ứng
+                int maNV = taiKhoanBAL.LayMaNV(tenDangNhap, matKhau);
+
                 if (taiKhoan.VaiTro == "0") // Quản lý
                 {
-                    int maNV = taiKhoanDB.LayMaNV(tenDangNhap, matKhau);
                     MessageBox.Show($"Chào quản lý! MaNV: {maNV}");
                     GDQuanLy formQuanLy = new GDQuanLy();
                     formQuanLy.Show();
                 }
                 else if (taiKhoan.VaiTro == "1") // Nhân viên
                 {
-                    int maNV = taiKhoanDB.LayMaNV(tenDangNhap, matKhau);
                     MessageBox.Show($"Chào nhân viên! MaNV: {maNV}");
-                    GDNhanVien formNhanVien = new GDNhanVien();
+                    FormMenu formNhanVien = new FormMenu();
                     formNhanVien.Show();
                 }
 
@@ -44,11 +54,6 @@ namespace BadmintonManager
             {
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!");
             }
-        }
-
-        private void DangNhap_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

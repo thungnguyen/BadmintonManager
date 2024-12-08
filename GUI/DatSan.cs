@@ -1,38 +1,56 @@
-﻿using BadmintonManager.Database;
-using qlycaulong.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+
+using BadmintonManager.BAL;
+using BadmintonManager.DAL;
+using BadmintonManager.DTO;
+
 
 
 namespace BadmintonManager.GUI
 {
     public partial class DatSan : Form
     {
+        private LichDatSanBAL lichDatSanBAL = new LichDatSanBAL();
+        private GiaSanBAL giaSanBAL = new GiaSanBAL();
+        private LichDatSanBAL _bal = new LichDatSanBAL();
+        private SanBAL sanBAL;
+        private KhachHangBAL khachHangBAL;
         public DatSan()
         {
             InitializeComponent();
-            cbbKhachHang.DropDown += cbbKhachHang_DropDown;
-            cbbTenSan.DropDown += cbbTenSan_DropDown;
+            //cbbKhachHang.DropDown += cbbKhachHang_DropDown;
+            //cbbTenSan.DropDown += cbbTenSan_DropDown;
             dtpTuGio.ValueChanged += dtpTuGio_ValueChanged;
             dtpDenGio.ValueChanged += dtpDenGio_ValueChanged;
             dgvDanhSachNgay.Columns.Clear();
             dgvDanhSachNgay.Columns.Add("colNgayDat", "Ngày Đặt");
 
+            sanBAL = new SanBAL();
+            khachHangBAL = new KhachHangBAL();
+            cbbKhachHang.DropDown += cbbKhachHang_DropDown;
+            cbbTenSan.DropDown += cbbTenSan_DropDown;
         }
 
 
         private void cbbKhachHang_DropDown(object sender, EventArgs e)
         {
-            DatabaseHelper dbHelper = new DatabaseHelper();
+            KhachHangDAL dbHelper = new KhachHangDAL();
             List<KhachHang> khachHangs = dbHelper.GetKhachHangList();
 
-            cbbKhachHang.Items.Clear(); // Xóa các mục cũ
-
+            // Thiết lập ValueMember và DisplayMember
+            cbbTenSan.ValueMember = "MaSKH";
+            cbbTenSan.DisplayMember = "TenKH";
             foreach (KhachHang khachHang in khachHangs)
             {
                 cbbKhachHang.Items.Add(khachHang.TenKH); // Hiển thị tên khách hàng
@@ -43,21 +61,24 @@ namespace BadmintonManager.GUI
         {
             try
             {
-                SanDatabaseHelper dbHelper = new SanDatabaseHelper();
+                SanDAL dbHelper = new SanDAL();
                 List<San> sans = dbHelper.GetSanList(); // Lấy danh sách sân từ database
 
-                cbbTenSan.Items.Clear(); // Xóa các mục cũ
+                // Thiết lập ValueMember và DisplayMember
+                cbbTenSan.ValueMember = "MaSan";
+                cbbTenSan.DisplayMember = "TenSan";
 
-                foreach (San san in sans)
-                {
-                    cbbTenSan.Items.Add(san.TenSan); // Hiển thị tên sân
-                }
+                // Gán lại DataSource mà không cần sử dụng Items.Clear()
+                cbbTenSan.DataSource = sans;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
+
+
+
 
 
         // Hàm làm tròn thời gian về giờ tròn hoặc 30 phút
@@ -204,11 +225,6 @@ namespace BadmintonManager.GUI
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbbKhachHang_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -225,108 +241,105 @@ namespace BadmintonManager.GUI
         }
 
 
-        private decimal TinhGia()
-        {
-            try
-            {
-                // Lấy thông tin từ giao diện
-                TimeSpan gioBatDau = dtpTuGio.Value.TimeOfDay;
-                TimeSpan gioKetThuc = dtpDenGio.Value.TimeOfDay;
-                string loaiKhach = cbLoaiKhach.Checked ? "Co dinh" : "Vang lai";
+        //private decimal TinhGia()
+        //{
+        //    try
+        //    {
+        //        // Lấy thông tin từ giao diện
+        //        TimeSpan gioBatDau = dtpTuGio.Value.TimeOfDay;
+        //        TimeSpan gioKetThuc = dtpDenGio.Value.TimeOfDay;
+        //        string loaiKhach = cbLoaiKhach.Checked ? "Co dinh" : "Vang lai";
 
-                // Lấy chuỗi kết nối từ app.config
-                string connectionString = ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+        //        // Lấy chuỗi kết nối từ app.config
+        //        string connectionString = ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
 
-                // Kết nối cơ sở dữ liệu
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
+        //        // Kết nối cơ sở dữ liệu
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
 
-                    // Truy vấn bảng BangGiaSan để lấy giá cho trước và sau 17 giờ
-                    string query = @"
-                SELECT GioBatDau, GioKetThuc, Gia 
-                FROM BangGiaSan 
-                WHERE LoaiKH = @LoaiKhach 
-                ORDER BY GioBatDau";
+        //            // Truy vấn bảng BangGiaSan để lấy giá cho trước và sau 17 giờ
+        //            string query = @"
+        //        SELECT GioBatDau, GioKetThuc, Gia 
+        //        FROM BangGiaSan 
+        //        WHERE LoaiKH = @LoaiKhach 
+        //        ORDER BY GioBatDau";
 
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        // Thêm tham số cho truy vấn
-                        cmd.Parameters.AddWithValue("@LoaiKhach", loaiKhach);
+        //            using (SqlCommand cmd = new SqlCommand(query, conn))
+        //            {
+        //                // Thêm tham số cho truy vấn
+        //                cmd.Parameters.AddWithValue("@LoaiKhach", loaiKhach);
 
-                        // Thực thi truy vấn
-                        SqlDataReader reader = cmd.ExecuteReader();
+        //                // Thực thi truy vấn
+        //                SqlDataReader reader = cmd.ExecuteReader();
 
-                        decimal totalGia = 0;
-                        decimal giaTruoc17 = 0, giaSau17 = 0;
+        //                decimal totalGia = 0;
+        //                decimal giaTruoc17 = 0, giaSau17 = 0;
 
-                        // Duyệt qua tất cả các khung giờ và lấy giá
-                        while (reader.Read())
-                        {
-                            TimeSpan gioBatDauBang = reader.GetTimeSpan(0);
-                            TimeSpan gioKetThucBang = reader.GetTimeSpan(1);
-                            decimal giaTheoGio = reader.GetDecimal(2);
+        //                // Duyệt qua tất cả các khung giờ và lấy giá
+        //                while (reader.Read())
+        //                {
+        //                    TimeSpan gioBatDauBang = reader.GetTimeSpan(0);
+        //                    TimeSpan gioKetThucBang = reader.GetTimeSpan(1);
+        //                    decimal giaTheoGio = reader.GetDecimal(2);
 
-                            // Kiểm tra và lấy giá trước 17 giờ
-                            if (gioKetThucBang <= new TimeSpan(17, 0, 0) && gioBatDauBang < new TimeSpan(17, 0, 0))
-                            {
-                                giaTruoc17 = giaTheoGio;
-                            }
+        //                    // Kiểm tra và lấy giá trước 17 giờ
+        //                    if (gioKetThucBang <= new TimeSpan(17, 0, 0) && gioBatDauBang < new TimeSpan(17, 0, 0))
+        //                    {
+        //                        giaTruoc17 = giaTheoGio;
+        //                    }
 
-                            // Kiểm tra và lấy giá sau 17 giờ
-                            if (gioBatDauBang >= new TimeSpan(17, 0, 0) && gioKetThucBang >= new TimeSpan(17, 0, 0))
-                            {
-                                giaSau17 = giaTheoGio;
-                            }
-                        }
+        //                    // Kiểm tra và lấy giá sau 17 giờ
+        //                    if (gioBatDauBang >= new TimeSpan(17, 0, 0) && gioKetThucBang >= new TimeSpan(17, 0, 0))
+        //                    {
+        //                        giaSau17 = giaTheoGio;
+        //                    }
+        //                }
 
-                        // Nếu thời gian thuê kéo dài qua 17 giờ (ví dụ 16h - 18h)
-                        if (gioBatDau < new TimeSpan(17, 0, 0) && gioKetThuc > new TimeSpan(17, 0, 0))
-                        {
-                            // Tính thời gian trước 17h (từ gioBatDau đến 17h)
-                            decimal soGioTruoc17 = (decimal)(new TimeSpan(17, 0, 0) - gioBatDau).TotalHours;
+        //                // Nếu thời gian thuê kéo dài qua 17 giờ (ví dụ 16h - 18h)
+        //                if (gioBatDau < new TimeSpan(17, 0, 0) && gioKetThuc > new TimeSpan(17, 0, 0))
+        //                {
+        //                    // Tính thời gian trước 17h (từ gioBatDau đến 17h)
+        //                    decimal soGioTruoc17 = (decimal)(new TimeSpan(17, 0, 0) - gioBatDau).TotalHours;
 
-                            // Tính thời gian sau 17h (từ 17h đến gioKetThuc)
-                            decimal soGioSau17 = (decimal)(gioKetThuc - new TimeSpan(17, 0, 0)).TotalHours;
+        //                    // Tính thời gian sau 17h (từ 17h đến gioKetThuc)
+        //                    decimal soGioSau17 = (decimal)(gioKetThuc - new TimeSpan(17, 0, 0)).TotalHours;
 
-                            // Tính giá tổng
-                            totalGia = (giaTruoc17 * soGioTruoc17) + (giaSau17 * soGioSau17);
-                        }
-                        // Nếu thời gian thuê hoàn toàn trước 17 giờ (ví dụ 16h - 17h)
-                        else if (gioKetThuc <= new TimeSpan(17, 0, 0))
-                        {
-                            decimal soGioTruoc17 = (decimal)(gioKetThuc - gioBatDau).TotalHours;
-                            totalGia = giaTruoc17 * soGioTruoc17;
-                        }
-                        // Nếu thời gian thuê hoàn toàn sau 17 giờ (ví dụ 17h - 18h)
-                        else if (gioBatDau >= new TimeSpan(17, 0, 0))
-                        {
-                            decimal soGioSau17 = (decimal)(gioKetThuc - gioBatDau).TotalHours;
-                            totalGia = giaSau17 * soGioSau17;
-                        }
+        //                    // Tính giá tổng
+        //                    totalGia = (giaTruoc17 * soGioTruoc17) + (giaSau17 * soGioSau17);
+        //                }
+        //                // Nếu thời gian thuê hoàn toàn trước 17 giờ (ví dụ 16h - 17h)
+        //                else if (gioKetThuc <= new TimeSpan(17, 0, 0))
+        //                {
+        //                    decimal soGioTruoc17 = (decimal)(gioKetThuc - gioBatDau).TotalHours;
+        //                    totalGia = giaTruoc17 * soGioTruoc17;
+        //                }
+        //                // Nếu thời gian thuê hoàn toàn sau 17 giờ (ví dụ 17h - 18h)
+        //                else if (gioBatDau >= new TimeSpan(17, 0, 0))
+        //                {
+        //                    decimal soGioSau17 = (decimal)(gioKetThuc - gioBatDau).TotalHours;
+        //                    totalGia = giaSau17 * soGioSau17;
+        //                }
 
-                        if (totalGia == 0)
-                        {
-                            MessageBox.Show("Không tìm thấy giá phù hợp cho khung giờ này!", "Thông báo");
-                            return 0;
-                        }
+        //                if (totalGia == 0)
+        //                {
+        //                    MessageBox.Show("Không tìm thấy giá phù hợp cho khung giờ này!", "Thông báo");
+        //                    return 0;
+        //                }
 
-                        return totalGia;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tính giá: " + ex.Message, "Lỗi");
-                return 0;
-            }
-        }
-
-
+        //                return totalGia;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Lỗi khi tính giá: " + ex.Message, "Lỗi");
+        //        return 0;
+        //    }
+        //}
 
 
-
-        private void btnDatLich_Click(object sender, EventArgs e)
+        private void btnDatLich_Click(object sender, EventArgs e) //Nút tính tiền
         {
             {
                 // Lấy khoảng thời gian từ DateTimePicker
@@ -396,7 +409,7 @@ namespace BadmintonManager.GUI
             }
             CapNhatSoBuoi();
             // Gọi hàm tính giá và hiển thị lên txtLayGia
-            decimal gia = TinhGia();
+            decimal gia = giaSanBAL.TinhGia(cbLoaiKhach.Checked, dtpTuGio.Value.TimeOfDay, dtpDenGio.Value.TimeOfDay);
             txtLayGia.Text = gia.ToString("#,0");
 
             decimal soBuoi = Convert.ToDecimal(txtBuoi.Text);  // Số buổi đã được tính từ dgvDanhSachNgay
@@ -422,7 +435,6 @@ namespace BadmintonManager.GUI
 
             // Hiển thị kết quả vào txtConLai
             txtConLai.Text = conLai.ToString("#,0");
-
         }
 
         private void txtBuoi_TextChanged(object sender, EventArgs e)
@@ -510,10 +522,161 @@ namespace BadmintonManager.GUI
             MessageBox.Show("Thu tiền thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void button4_Click(object sender, EventArgs e) // Nút CheckSan kiểm tra lịch sân có trùng không
+        {
+            DateTime tuNgay = dtpTuNgay.Value.Date;
+            DateTime denNgay = dtpDenNgay.Value.Date;
+            TimeSpan tuGio = dtpTuGio.Value.TimeOfDay;
+            TimeSpan denGio = dtpDenGio.Value.TimeOfDay;
+
+            if (cbbTenSan.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn sân trước khi tiếp tục!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string maSan = cbbTenSan.SelectedValue?.ToString(); // Cẩn thận với null
+            if (string.IsNullOrEmpty(maSan))
+            {
+                MessageBox.Show("Vui lòng chọn sân!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Danh sách các ngày được chọn
+            List<DateTime> cacNgayDat = new List<DateTime>();
+            foreach (DataGridViewRow row in dgvDanhSachNgay.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    cacNgayDat.Add(DateTime.Parse(row.Cells[0].Value.ToString()));
+                }
+            }
+
+            // Kiểm tra trùng lịch
+            bool isLichTrung = lichDatSanBAL.KiemTraTrungLich(maSan, cacNgayDat, tuGio, denGio);
+
+            if (isLichTrung)
+            {
+                MessageBox.Show("Lịch đã bị trùng. Vui lòng chọn lại giờ!", "Lỗi trùng lịch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Không có lịch trùng. Tiếp tục đặt sân.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        //// Hàm lấy MaSan từ tên sân
+        //private int GetMaSan(string tenSan, SqlConnection conn)
+        //{
+        //    string query = "SELECT MaSan FROM San WHERE TenSan = @TenSan";
+        //    SqlCommand cmd = new SqlCommand(query, conn);
+        //    cmd.Parameters.AddWithValue("@TenSan", tenSan);
+        //    object result = cmd.ExecuteScalar();
+        //    return result != null ? Convert.ToInt32(result) : 0;
+        //}
+
+        //// Hàm lấy MaKH từ tên khách hàng
+        //private int GetMaKH(string tenKH, SqlConnection conn)
+        //{
+        //    string query = "SELECT MaKH FROM KhachHang WHERE TenKH = @TenKH";
+        //    SqlCommand cmd = new SqlCommand(query, conn);
+        //    cmd.Parameters.AddWithValue("@TenKH", tenKH);
+        //    object result = cmd.ExecuteScalar();
+        //    return result != null ? Convert.ToInt32(result) : 0;
+        //}
 
         private void dgvDanhSachNgay_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
+        private void cbbTenSan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLuu_Click_1(object sender, EventArgs e) //Nút lưu
+        {
+            try
+            {
+                //// Create an instance of the BAL class
+                //LichDatSanBAL bal = new LichDatSanBAL();
+
+                // Get MaSan and MaKH
+                int maSan = _bal.GetMaSan(cbbTenSan.Text);
+                int maKH = _bal.GetMaKH(cbbKhachHang.Text);
+
+
+
+                try
+                {
+                    // Tạo đối tượng LichDatSanBAL
+                    LichDatSanBAL lichDatSanBAL = new LichDatSanBAL();
+
+                    // Lấy giá trị từ giao diện người dùng
+                    bool loaiKhachChecked = cbLoaiKhach.Checked;  // Kiểm tra trạng thái của checkbox
+                    DateTime tuGio = dtpTuGio.Value;  // Lấy thời gian bắt đầu từ DateTimePicker
+
+                    // Gọi phương thức LayMaGia, truyền đủ hai tham số yêu cầu
+                    int maGia = lichDatSanBAL.LayMaGia(loaiKhachChecked, tuGio);
+
+                    // Kiểm tra nếu mã giá không hợp lệ
+                    if (maGia == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy mã giá phù hợp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Tiếp tục xử lý sau khi gọi LayMaGia thành công
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (maSan == 0 || maKH == 0)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin sân hoặc khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Create DTO
+                LichDatSanDTO dto = new LichDatSanDTO
+                {
+                    MaSan = maSan,
+                    MaKH = maKH,
+                    MaGia = _bal.LayMaGia(cbLoaiKhach.Checked, dtpTuGio.Value),
+                    TuNgay = dtpTuNgay.Value,
+                    DenNgay = dtpDenNgay.Value,
+                    TuGio = dtpTuGio.Value.TimeOfDay,
+                    DenGio = dtpDenGio.Value.TimeOfDay,
+                    LoaiKH = cbLoaiKhach.Checked ? "Co dinh" : "Vang lai",
+                    SoBuoi = int.Parse(txtBuoi.Text),
+                    LayGia = decimal.Parse(txtLayGia.Text),
+                    CanThanhToan = decimal.Parse(txtThanhToan.Text),
+                    DaTra = decimal.Parse(txtDaTra.Text),
+                    ConLai = decimal.Parse(txtConLai.Text),
+                    ThoiGian = dtpThoiGian.Value.TimeOfDay,
+                    NgayDat = dgvDanhSachNgay.Rows.Cast<DataGridViewRow>()
+                        .Where(row => row.Cells["colNgayDat"].Value != null)
+                        .Select(row => DateTime.Parse(row.Cells["colNgayDat"].Value.ToString()))
+                        .ToList()
+                };
+
+                // Save data
+                if (_bal.SaveLichDatSan(dto))
+                {
+                    // Additional actions after successful save if needed
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
     }
 }

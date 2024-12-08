@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    namespace BadmintonManager.BLL
+    namespace BadmintonManager.BAL
     {
         internal class LoaiHHBLL
         {

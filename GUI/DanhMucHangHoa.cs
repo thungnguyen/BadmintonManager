@@ -1,4 +1,4 @@
-﻿using BadmintonManager.BLL;
+﻿using BadmintonManager.BAL;
 using System;
 using System.Windows.Forms;
 

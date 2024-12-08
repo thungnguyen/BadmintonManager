@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace BadmintonManager.BLL
+namespace BadmintonManager.BAL
 {
     /// <summary>
     /// Business Logic Layer for Product Management

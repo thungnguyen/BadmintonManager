@@ -162,9 +162,9 @@
     <Compile Include="DAO\BillInfoDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\HHDAO.cs" />
+    <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\LoaiHHDAO.cs" />
     <Compile Include="DAO\MenuDAO.cs" />
-    <Compile Include="DAO\MenuHHDAO.cs" />
     <Compile Include="DAO\SanDAO.cs" />
     <Compile Include="Database\BaoCaoDoanhThu.cs" />
     <Compile Include="Database\ChiTietHDSP.cs" />
@@ -185,9 +185,10 @@
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
     <Compile Include="DTO\HH.cs" />
+    <Compile Include="DTO\KhachHang.cs" />
     <Compile Include="DTO\LoaiHH.cs" />
+    <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
-    <Compile Include="DTO\MenuHH.cs" />
     <Compile Include="DTO\San.cs" />
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>

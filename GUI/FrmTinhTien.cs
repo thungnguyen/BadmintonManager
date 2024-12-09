@@ -27,89 +27,47 @@ namespace BadmintonManager.GUI
         private void FrmTinhTien_Load(object sender, EventArgs e)
         {
             LoadLoaiHH();
-            //LoadHangHoaByLoaiHH();
-            //LoadHangHoa();
-            //cbLoaiHH.SelectedValueChanged += cbLoaiHH_SelectedValueChanged;
-            
-            // Đăng ký sự kiện SelectedIndexChanged cho ComboBox cbTenHH
-            //cbTenHH.SelectedIndexChanged += cbTenHH_SelectedIndexChanged;
-
             LoadSanData();
             LoadKhachHang();
-            LoadLoaiKH();
-            //cbLoaiKH.SelectedIndexChanged += cbLoaiKH_SelectedIndexChanged;
-            // Đặt giá trị ban đầu cho txtTienCuoi là 0đ
-
+            LoadLoaiKHComboBox();
+            
         }
 
         #region methods
-        private void LoadLoaiKH()
-        {
-            // Tạo DataTable để chứa các lựa chọn
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("TenLoaiKH", typeof(string)); // Cột để hiển thị
-            dataTable.Columns.Add("MaLoaiKH", typeof(string)); // Cột để lưu giá trị tương ứng
-
-            // Thêm các lựa chọn vào DataTable
-            dataTable.Rows.Add("Vãng Lai", "Vang lai");
-            dataTable.Rows.Add("Cố Định", "Co dinh");
-
-            // Gắn dữ liệu vào ComboBox
-            cbLoaiKH.DataSource = dataTable;
-            cbLoaiKH.DisplayMember = "TenLoaiKH"; // Hiển thị tên
-            cbLoaiKH.ValueMember = "MaLoaiKH"; // Giá trị là mã loại khách hàng (vang lai/co dinh)
-            cbLoaiKH.SelectedIndex = 0; // Mặc định chọn Vãng Lai
-        }
-        // Phương thức để load danh sách khách hàng vào ComboBox
         private void LoadKhachHang()
         {
-            try
-            {
-
-                // Tạo kết nối tới cơ sở dữ liệu
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    // Mở kết nối
-                    connection.Open();
-
-                    // Câu lệnh SQL để lấy danh sách khách hàng
-                    string query = "SELECT MaKH, TenKH FROM KhachHang";
-
-                    // Tạo SqlDataAdapter để thực thi câu lệnh và lưu kết quả vào DataTable
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-                    DataTable dtKhachHang = new DataTable();
-                    dataAdapter.Fill(dtKhachHang);
-
-                    // Thêm dòng "Tất cả" vào đầu DataTable
-                    DataRow row = dtKhachHang.NewRow();
-                    row["MaKH"] = 0;  // Mã khách hàng cho "Tất cả" (có thể là giá trị đặc biệt như 0 hoặc null)
-                    row["TenKH"] = "Tất cả";
-                    dtKhachHang.Rows.InsertAt(row, 0);
-
-                    // Đặt nguồn dữ liệu cho ComboBox
-                    cbKhachHang.DataSource = dtKhachHang;
-                    cbKhachHang.DisplayMember = "TenKH"; // Hiển thị tên khách hàng
-                    cbKhachHang.ValueMember = "MaKH";   // Giá trị của mỗi mục trong ComboBox là mã khách hàng
-
-                    // Đóng kết nối
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải danh sách khách hàng: " + ex.Message);
-            }
+           List<KhachHang> khachhang = KhachHangDAO.Instance.GetListKhachHang();
+            cbKhachHang.DataSource = khachhang;
+            cbKhachHang.DisplayMember = "TenKH";
+            cbKhachHang.ValueMember = "MaKH";
         }
+        private List<LoaiKH> loaiKHList = new List<LoaiKH>();
+        private void LoadLoaiKHComboBox()
+        {
+            // Thêm các loại khách hàng vào List
+            loaiKHList.Add(new LoaiKH("Vãng Lai", "Vang lai"));
+            loaiKHList.Add(new LoaiKH("Cố Định", "Co dinh"));
 
+            // Thêm giá trị hiển thị vào ComboBox
+            foreach (var loaiKH in loaiKHList)
+            {
+                cbLoaiKH.Items.Add(loaiKH.DisplayName);
+            }
 
+            // Chọn giá trị mặc định (ví dụ chọn "Vãng Lại" mặc định)
+            cbLoaiKH.SelectedIndex = 0;
+        }
+        private string GetLoaiKHSelectedValue()
+        {
+            // Lấy giá trị hiển thị từ ComboBox
+            string selectedDisplayValue = cbLoaiKH.SelectedItem.ToString();
 
+            // Tìm LoaiKH có DisplayName khớp và trả về giá trị thực (Value)
+            LoaiKH selectedLoaiKH = loaiKHList.FirstOrDefault(l => l.DisplayName == selectedDisplayValue);
 
-
-
+            return selectedLoaiKH?.Value;  // Trả về giá trị thực (Value), nếu không tìm thấy thì null
+        }
         //Load Loai Hang Hoa
-
-
-
         private void LoadLoaiHH()
         {
             List<LoaiHH> listLoaiHH = LoaiHHDAO.Instance.GetListLoaiHH();
@@ -136,8 +94,7 @@ namespace BadmintonManager.GUI
             cbTenHH.DisplayMember = "TenHH";
             cbTenHH.ValueMember = "MaHH";
         }
-        //Get dongia for selected
-
+        
         void ShowHangHoa(int maLoaiHH)
         {
             lsvHangHoa.Items.Clear();  // Xóa tất cả các mục hiện tại trong ListView
@@ -145,16 +102,8 @@ namespace BadmintonManager.GUI
 
             foreach (HH item in listHangHoa)
             {
-                // Tạo một ListViewItem với tên hàng hóa
                 ListViewItem lsvItem = new ListViewItem(item.TenHH.ToString());  // Chỉ thêm tên hàng hóa vào cột đầu tiên
-
-                // Lưu mã hàng hóa vào thuộc tính Tag (giá trị ẩn)
                 lsvItem.Tag = item.MaHH;
-
-                // Thêm các thông tin khác nếu cần
-                // Ví dụ: lsvItem.SubItems.Add(item.GiaBanLon.ToString()); để thêm giá bán lớn
-
-                // Thêm ListViewItem vào ListView
                 lsvHangHoa.Items.Add(lsvItem);
             }
         }
@@ -170,8 +119,8 @@ namespace BadmintonManager.GUI
 
                 foreach (var item in listHH)
                 {
-                    donViTinhList.Add(item.DonViTinhLon);  // Thêm DonViTinhLon
                     donViTinhList.Add(item.DonViTinhNho);  // Thêm DonViTinhNho
+                    donViTinhList.Add(item.DonViTinhLon);  // Thêm DonViTinhLon
                 }
 
                 // Đặt DataSource cho ComboBox
@@ -183,29 +132,28 @@ namespace BadmintonManager.GUI
             }
         }
         // Show DonGia theo maHH va donViTinh
-        private void ShowDonGia (int maHH, string donvitinh)
+        private void ShowDonGia ()
         {
-            List<HH> listHH = HHDAO.Instance.GetDonGiaByMaHHAnDVT(maHH, donvitinh);
-            if (listHH != null && listHH.Count > 0)
+            // Kiểm tra ComboBox mã hàng hóa
+            if (cbTenHH.SelectedValue == null || cbDonViTinh.SelectedItem == null)
             {
-                // Tạo danh sách đơn vị tính để thêm vào ComboBox
-                List<decimal> donGiaList = new List<decimal>();
-
-                foreach (var item in listHH)
-                {
-                    donGiaList.Add(item.GiaBanLon);  // Thêm DonViTinhLon
-                    donGiaList.Add(item.GiaBanNho);  // Thêm DonViTinhNho
-                }
-
-                // Đặt DataSource cho ComboBox
-                txtDonGia.tex = donGiaList;
-            }
-            else
-            {
-                cbDonGia.DataSource = null; // Xóa dữ liệu nếu không tìm thấy
+               
+                return;
             }
 
+            // Lấy mã hàng hóa từ cbMaHH
+            int maHH = (int)cbTenHH.SelectedValue;
+
+            // Lấy đơn vị tính từ cbDonViTinh
+            string donViTinh = cbDonViTinh.Text;
+
+            // Ví dụ: Lấy đơn giá từ DAO dựa trên mã hàng hóa và đơn vị tính
+            decimal donGia = HHDAO.Instance.GetDonGiaByMaHHAndDVT(maHH, donViTinh);
+
+            txtDonGia.Text = donGia.ToString();  // Hiển thị đơn giá lên TextBox
         }
+        //Hiển thị thành tiền theo đơn giá và số lượng
+
         //Load Bill
         void ShowBill(int masan)
         {
@@ -250,7 +198,42 @@ namespace BadmintonManager.GUI
                 flpSan.Controls.Add(btnSan);
             }
         }
-      
+        //Show ThanhTien
+        private void ShowThanhTien()
+        {
+            // Lấy số lượng từ NumericUpDown
+            int soLuong = (int)nudSoLuong.Value;
+
+            // Lấy đơn giá từ TextBox
+            decimal donGia;
+            if (decimal.TryParse(txtDonGia.Text, out donGia))
+            {
+                // Tính thành tiền
+                decimal thanhTien = soLuong * donGia;
+
+                // Lấy giá trị giảm giá từ TextBox
+                decimal giamGia = 0;
+                if (decimal.TryParse(txtGiamGia.Text, out giamGia))
+                {
+                    // Giảm giá không được vượt quá thành tiền
+                    if (giamGia > thanhTien)
+                    {
+                        giamGia = thanhTien; // Giới hạn giảm giá không vượt quá thành tiền
+                    }
+
+                    // Áp dụng giảm giá
+                    thanhTien -= giamGia;
+                }
+
+                // Hiển thị thành tiền sau giảm giá vào TextBox, với định dạng tiền tệ
+                txtThanhTien.Text = thanhTien.ToString("C0", new CultureInfo("vi-VN"));
+            }
+            else
+            {
+                return;
+            }
+        }
+        
         #endregion
         #region events
         private void btnSan_Click(object sender, EventArgs e)
@@ -267,17 +250,19 @@ namespace BadmintonManager.GUI
             San san = lsvBill.Tag as San;
 
             int maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan);
-            int foodID = (cbHH.SelectedItem as HH).MaHH;
+            int foodID = (cbTenHH.SelectedItem as HH).MaHH;
             int soLuong = (int)nudSoLuong.Value;
+            decimal donGia = Convert.ToDecimal(txtDonGia.Text);
+            string donViTinh = cbDonViTinh.Text;
             if (maHD == -1)
             {
                 BillDAO.Instance.InsertBill(san.MaSan);
-                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxMaHD(), foodID, soLuong);
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxMaHD(), foodID, soLuong, donGia, donViTinh);
 
             }
             else
             {
-                BillInfoDAO.Instance.InsertBillInfo(maHD, foodID, soLuong);
+                BillInfoDAO.Instance.InsertBillInfo(maHD, foodID, soLuong, donGia, donViTinh);
             }
             ShowBill(san.MaSan);
 
@@ -302,7 +287,7 @@ namespace BadmintonManager.GUI
 
             if (maHD != -1)
             {
-                if (MessageBox.Show("Bạn có chắc muốn thanh toán hóa đơn cho sân " + san.TenSan + " không?", "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                if (MessageBox.Show("Bạn có chắc muốn thanh toán hóa đơn cho " + san.TenSan + " không?", "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
                     BillDAO.Instance.Checkout(maHD);
                     ShowBill(san.MaSan);
@@ -326,18 +311,65 @@ namespace BadmintonManager.GUI
             int maHH = 0;
             if (lsvHangHoa.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = lsvHangHoa.SelectedItems[0];  // Lấy mục được chọn
-                maHH = (int)selectedItem.Tag;  // Lấy mã hàng hóa từ thuộc tính Tag
+                ListViewItem selectedItem = lsvHangHoa.SelectedItems[0];
+                maHH = (int)selectedItem.Tag;
                 ShowDonViTinh(maHH);
-                ShowTenHH(maHH);// Làm gì đó với mã hàng hóa (maHangHoa)
+                ShowTenHH(maHH);
             }
             else
                 return;
         }
+        private void lsvBill_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (lsvBill.SelectedItems.Count > 0)
+            //{
+            //    ListViewItem selectedItem = lsvBill.SelectedItems[0];
+            //    string tenHH = selectedItem.SubItems[0].Text;
+            //    int soLuong = int.Parse(selectedItem.SubItems[1].Text);
+            //    decimal donGia = decimal.Parse(selectedItem.SubItems[3].Text, NumberStyles.Currency);
+            //    string donViTinh = selectedItem.SubItems[2].Text;
+            //    decimal thanhTien = decimal.Parse(selectedItem.SubItems[4].Text, NumberStyles.Currency);
+            //    cbTenHH.Text = tenHH;
+            //    nudSoLuong.Value = soLuong;
+            //    txtDonGia.Text = donGia.ToString();
+            //    cbDonViTinh.Text = donViTinh;
+            //    txtThanhTien.Text = thanhTien.ToString();
+            //}
+        }
+        private void cbTenHH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int maHH = 0;
+            ComboBox cb = sender as ComboBox;
+            if (cbTenHH.SelectedItem == null)
+                return;
+            HH selected = cb.SelectedItem as HH;
+            maHH = selected.MaHH;
+            ShowDonViTinh(maHH);
+        }
+
         private void cbDonViTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Gọi ShowDonGia khi thay đổi đơn vị tính
+            ShowDonGia();
+            
         }
+        private void txtGiamGia_TextChanged(object sender, EventArgs e)
+        {
+            ShowThanhTien();
+        }
+        private void nudSoLuong_ValueChanged(object sender, EventArgs e)
+        {
+            ShowThanhTien();
+        }
+
+        private void txtDonGia_TextChanged(object sender, EventArgs e)
+        {
+            ShowThanhTien();
+        }
+
+
+
+
         #endregion
 
 
@@ -357,23 +389,12 @@ namespace BadmintonManager.GUI
        
         }
 
-        private void cbTenHH_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
+       
         
 
 
-        private void nudSoLuong_ValueChanged(object sender, EventArgs e)
-        {
-         
-        }
-
-        private void txtGiamGia_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
+       
+        
         // phần thêm hàng hóa vào hóa đơn
 
 
@@ -387,76 +408,11 @@ namespace BadmintonManager.GUI
             //TinhTongTien();
         }
 
-        private void dgvDanhSachHangHoa_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.RowIndex >= 0)  // Kiểm tra xem có phải là hàng hợp lệ không
-            //{
-            //    DataGridViewRow row = dgvDanhSachHangHoa.Rows[e.RowIndex];
-
-            //    // Đặt giá trị của ComboBox để hiển thị tên hàng hóa
-            //    cbTenHH.SelectedValue = row.Cells["MaHH"].Value;
-
-            //    // Cập nhật giá trị của NumericUpDown (nudSoLuong) từ cột Số Lượng trong DataGridView
-            //    nudSoLuong.Value = Convert.ToDecimal(row.Cells["SoLuong"].Value);
-            //}
-        }
+      
 
         private void btnDelHH_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    // Kiểm tra nếu có dòng nào được chọn trong DataGridView
-            //    if (dgvDanhSachHangHoa.SelectedRows.Count > 0)
-            //    {
-            //        // Lấy chỉ mục của dòng được chọn
-            //        int selectedIndex = dgvDanhSachHangHoa.SelectedRows[0].Index;
-
-            //        // Lấy mã HDSP của dòng đã chọn
-            //        int maHDSPToDelete = Convert.ToInt32(dgvDanhSachHangHoa.Rows[selectedIndex].Cells["MaHDSP"].Value);
-
-            //        // Tìm đối tượng cần xóa trong danh sách
-            //        var itemToRemove = danhSachHangHoaTemp.FirstOrDefault(item => item.MaHDSP == maHDSPToDelete);
-
-            //        if (itemToRemove != null)
-            //        {
-            //            // Xóa khỏi danh sách
-            //            danhSachHangHoaTemp.Remove(itemToRemove);
-            //        }
-
-            //        // Cập nhật lại MaHDSP cho các dòng còn lại
-            //        for (int i = 0; i < danhSachHangHoaTemp.Count; i++)
-            //        {
-            //            danhSachHangHoaTemp[i].MaHDSP = i + 1; // Gán lại giá trị MaHDSP (tạo lại thứ tự)
-            //        }
-
-            //        // Cập nhật lại DataGridView để phản ánh thay đổi
-            //        dgvDanhSachHangHoa.DataSource = null;
-            //        dgvDanhSachHangHoa.DataSource = danhSachHangHoaTemp;
-
-            //        // Ẩn các cột không cần thiết
-            //        dgvDanhSachHangHoa.Columns["MaHD"].Visible = false;
-            //        dgvDanhSachHangHoa.Columns["MaHH"].Visible = false;
-            //        dgvDanhSachHangHoa.Columns.Remove("DonViTinh");
-
-            //        // Cập nhật lại các header cột
-            //        dgvDanhSachHangHoa.Columns["MaHDSP"].HeaderText = "Mã HDSP";
-            //        dgvDanhSachHangHoa.Columns["TenHH"].HeaderText = "Tên HH";
-            //        dgvDanhSachHangHoa.Columns["SoLuong"].HeaderText = "Số Lượng";
-            //        dgvDanhSachHangHoa.Columns["DonGia"].HeaderText = "Đơn Giá";
-            //        dgvDanhSachHangHoa.Columns["ThanhTien"].HeaderText = "Thành Tiền";
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Vui lòng chọn hàng hóa cần xóa.");
-            //    }
-
-            //    //Tính lại tổng tiền sau khi xóa
-            //        TinhTongTien();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Lỗi khi xóa hàng hóa: " + ex.Message);
-            //}
+         
         }
 
 
@@ -465,16 +421,12 @@ namespace BadmintonManager.GUI
 
         private void dtpGioVao_ValueChanged(object sender, EventArgs e)
         {
-            //// Tự động tính toán số giờ thuê khi thay đổi giờ vào
-            //TinhSoGioThue();
-            //TinhTienSan();
+           
         }
 
         private void dtpGioRa_ValueChanged(object sender, EventArgs e)
         {
-            //// Tự động tính toán số giờ thuê khi thay đổi giờ ra
-            //TinhSoGioThue();
-            //TinhTienSan();
+            
         }
 
         private void nudSoGioThue_ValueChanged(object sender, EventArgs e)
@@ -512,9 +464,7 @@ namespace BadmintonManager.GUI
             //TinhTienSan();
         }
 
-      
-
-       
+        
     }
 }
 

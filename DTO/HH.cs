@@ -71,6 +71,6 @@ namespace BadmintonManager.DTO
             get { return donViTinhNho; }
             set { donViTinhNho = value; }
         }
-        public string DonViTinhHienThi => $"{DonViTinhLon} - {DonViTinhNho}";
+        
     }
 }

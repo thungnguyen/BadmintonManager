@@ -223,6 +223,7 @@
             this.lsvBill.TabIndex = 18;
             this.lsvBill.UseCompatibleStateImageBehavior = false;
             this.lsvBill.View = System.Windows.Forms.View.Details;
+            this.lsvBill.SelectedIndexChanged += new System.EventHandler(this.lsvBill_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -320,6 +321,7 @@
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.Size = new System.Drawing.Size(57, 20);
             this.txtDonGia.TabIndex = 10;
+            this.txtDonGia.TextChanged += new System.EventHandler(this.txtDonGia_TextChanged);
             // 
             // nudSoLuong
             // 
@@ -426,36 +428,36 @@
             // 
             // BtnStart
             // 
-            this.BtnStart.Location = new System.Drawing.Point(370, 130);
+            this.BtnStart.Location = new System.Drawing.Point(370, 122);
             this.BtnStart.Name = "BtnStart";
-            this.BtnStart.Size = new System.Drawing.Size(88, 38);
+            this.BtnStart.Size = new System.Drawing.Size(84, 46);
             this.BtnStart.TabIndex = 12;
             this.BtnStart.Text = "Bắt đầu";
             this.BtnStart.UseVisualStyleBackColor = true;
             // 
             // btnDoiGio
             // 
-            this.btnDoiGio.Location = new System.Drawing.Point(277, 130);
+            this.btnDoiGio.Location = new System.Drawing.Point(280, 122);
             this.btnDoiGio.Name = "btnDoiGio";
-            this.btnDoiGio.Size = new System.Drawing.Size(84, 38);
+            this.btnDoiGio.Size = new System.Drawing.Size(84, 46);
             this.btnDoiGio.TabIndex = 11;
             this.btnDoiGio.Text = "Đổi giờ";
             this.btnDoiGio.UseVisualStyleBackColor = true;
             // 
             // btnTimKhach
             // 
-            this.btnTimKhach.Location = new System.Drawing.Point(370, 77);
+            this.btnTimKhach.Location = new System.Drawing.Point(370, 61);
             this.btnTimKhach.Name = "btnTimKhach";
-            this.btnTimKhach.Size = new System.Drawing.Size(88, 36);
+            this.btnTimKhach.Size = new System.Drawing.Size(84, 46);
             this.btnTimKhach.TabIndex = 10;
             this.btnTimKhach.Text = "Tìm tên";
             this.btnTimKhach.UseVisualStyleBackColor = true;
             // 
             // btnKhachMoi
             // 
-            this.btnKhachMoi.Location = new System.Drawing.Point(277, 77);
+            this.btnKhachMoi.Location = new System.Drawing.Point(280, 61);
             this.btnKhachMoi.Name = "btnKhachMoi";
-            this.btnKhachMoi.Size = new System.Drawing.Size(84, 38);
+            this.btnKhachMoi.Size = new System.Drawing.Size(84, 46);
             this.btnKhachMoi.TabIndex = 9;
             this.btnKhachMoi.Text = "Khách mới";
             this.btnKhachMoi.UseVisualStyleBackColor = true;
@@ -464,7 +466,7 @@
             // 
             this.btnChooseLichSan.Location = new System.Drawing.Point(339, 29);
             this.btnChooseLichSan.Name = "btnChooseLichSan";
-            this.btnChooseLichSan.Size = new System.Drawing.Size(119, 23);
+            this.btnChooseLichSan.Size = new System.Drawing.Size(115, 26);
             this.btnChooseLichSan.TabIndex = 8;
             this.btnChooseLichSan.Text = "Chọn từ lịch sân";
             this.btnChooseLichSan.UseVisualStyleBackColor = true;

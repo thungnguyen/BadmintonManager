@@ -36,12 +36,11 @@ namespace BadmintonManager.DAO
             }
             return listBillInfo;
         }
-        public void InsertBillInfo(int maHD, int maHH, int soLuong)
+        public void InsertBillInfo(int maHD, int maHH, int soLuong, decimal donGia, string donViTinh)
         {
-            DataProvider.Instance.ExecuteNonQuery("EXEC USP_InsertBillInfo @maHD , @maHH , @soLuong", new object[] { maHD, maHH, soLuong  });
-
+            // Gọi stored procedure với đầy đủ tham số
+            DataProvider.Instance.ExecuteNonQuery("EXEC USP_InsertBillInfo @maHD , @maHH , @soLuong , @donGia , @donViTinh",
+                new object[] { maHD, maHH, soLuong, donGia, donViTinh });
         }
-        
-
     }
 }

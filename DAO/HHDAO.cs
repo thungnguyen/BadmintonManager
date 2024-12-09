@@ -53,18 +53,23 @@ namespace BadmintonManager.DAO
             }
             return list;
         }
-        public List<HH> GetDonGiaByMaHHAnDVT(int maHH, string donViTinh)
+        public decimal GetDonGiaByMaHHAndDVT(int maHH, string donViTinh)
         {
-            List <HH> list = new List<HH>();
-            
-            DataTable data = DataProvider.Instance.ExecuteQuery("USP_GetDonGiaByMaHHAndDonViTinh @MaHH, @DonViTinh ", new object[] { maHH, donViTinh });
-            foreach (DataRow item in data.Rows)
+            // Truy vấn cơ sở dữ liệu với tham số mã hàng hóa và đơn vị tính
+            string query = "USP_GetDonGiaByMaHHAndDonViTinh @MaHH , @DonViTinh";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { maHH, donViTinh });
+
+            // Nếu kết quả trả về không null, chuyển đổi thành kiểu decimal
+            if (result != null && result != DBNull.Value)
             {
-                HH hangHoa = new HH(item);
-                list.Add(hangHoa);
+                return Convert.ToDecimal(result);
             }
-            return list;
+
+            // Trường hợp không tìm thấy đơn giá, trả về 0 (hoặc giá trị mặc định khác)
+            return 0;
         }
+
+
 
 
 

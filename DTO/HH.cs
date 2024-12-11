@@ -21,13 +21,13 @@ namespace BadmintonManager.DTO
         }
         public HH(DataRow row)
         {
-            this.MaHH = (int)row["maHH"];
-            this.TenHH = row["tenHH"].ToString();
-            this.MaLoaiHH = (int)row["maLoaiHH"];
-            this.GiaBanLon = (decimal)row["giaBanLon"];
-            this.GiaBanNho = (decimal)row["giaBanNho"];
-            this.DonViTinhLon = row["donViTinhLon"].ToString();
-            this.DonViTinhNho = row["donViTinhNho"].ToString();
+            this.MaHH = row["maHH"] != DBNull.Value ? Convert.ToInt32(row["maHH"]) : 0;
+            this.TenHH = row["tenHH"] != DBNull.Value ? row["tenHH"].ToString() : string.Empty;
+            this.MaLoaiHH = row["maLoaiHH"] != DBNull.Value ? Convert.ToInt32(row["maLoaiHH"]) : 0;
+            this.GiaBanLon = row["giaBanLon"] != DBNull.Value ? Convert.ToDecimal(row["giaBanLon"]) : 0;
+            this.GiaBanNho = row["giaBanNho"] != DBNull.Value ? Convert.ToDecimal(row["giaBanNho"]) : 0;
+            this.DonViTinhLon = row["donViTinhLon"] != DBNull.Value ? row["donViTinhLon"].ToString() : string.Empty;
+            this.DonViTinhNho = row["donViTinhNho"] != DBNull.Value ? row["donViTinhNho"].ToString() : string.Empty;
         }
         private int maHH;
         public int MaHH

@@ -106,6 +106,29 @@ namespace BadmintonManager.DAO
             }
             return data;
         }
+        public void ExecuteStoredProcedure(string storedProcedureName, SqlParameter[] parameters)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(storedProcedureName, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddRange(parameters);
+
+                        // Thực thi thủ tục và lấy kết quả
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+        }
+
 
     }
 }

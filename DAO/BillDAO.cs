@@ -44,9 +44,9 @@ namespace BadmintonManager.DAO
             string query = "UPDATE dbo.HoaDon SET status = 1 WHERE MaHD = " + maHD;
             DataProvider.Instance.ExecuteNonQuery(query);
         }
-        public void InsertBill(int maSan)
+        public void InsertBill(int maSan, decimal giaGioChoi)
         {
-            DataProvider.Instance.ExecuteNonQuery("EXEC USP_InsertBill @maSan", new object[] { maSan });
+            DataProvider.Instance.ExecuteNonQuery("EXEC USP_InsertBill @maSan , @giaGioChoi", new object[] { maSan, giaGioChoi });
         }
 
         public int GetMaxMaHD()

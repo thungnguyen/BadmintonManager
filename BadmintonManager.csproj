@@ -165,6 +165,7 @@
     <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\LoaiHHDAO.cs" />
     <Compile Include="DAO\MenuDAO.cs" />
+    <Compile Include="DAO\PricePerHourDAO.cs" />
     <Compile Include="DAO\SanDAO.cs" />
     <Compile Include="Database\BaoCaoDoanhThu.cs" />
     <Compile Include="Database\ChiTietHDSP.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="DTO\LoaiHH.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
+    <Compile Include="DTO\PricePerHour.cs" />
     <Compile Include="DTO\San.cs" />
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>

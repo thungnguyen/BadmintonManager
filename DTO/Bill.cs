@@ -9,11 +9,11 @@ namespace BadmintonManager.DTO
 {
     public class Bill
     {
-        public Bill(int maDatSan, int maHD, DateTime? ngayLap, decimal tongTien)
+        public Bill(int maDatSan, int maHD, DateTime? ngayLap)
         {
             this.MaHD = maHD;
             this.NgayLap = ngayLap;
-            this.TongTien = tongTien;
+            //this.TongTien = tongTien;
             this.MaDatSan = maDatSan;
             //this.MaSan = maSan;
         }
@@ -23,11 +23,11 @@ namespace BadmintonManager.DTO
             this.NgayLap = (DateTime?)row["ngayLap"];
 
             var NgayLapTemp = row["ngayLap"];
-            if (NgayLapTemp.ToString() != "")
+            if (NgayLapTemp != DBNull.Value && NgayLapTemp != null)
             {
                 this.ngayLap = (DateTime?)NgayLapTemp;
             }
-            this.TongTien = (decimal)row["tongTien"];
+            //this.TongTien = (decimal?)row["tongTien"];
 
             //
             // Gán giá trị cho MaDatSan
@@ -44,7 +44,7 @@ namespace BadmintonManager.DTO
         public int MaHD { get => maHD; set => maHD = value; }
         private DateTime? ngayLap;
         public DateTime? NgayLap { get => ngayLap; set => ngayLap = value; }
-        private decimal tongTien;
-        public decimal TongTien { get => tongTien; set => tongTien = value; }
+        //private decimal? tongTien;
+        //public decimal? TongTien { get => tongTien; set => tongTien = value; }
     }
 }

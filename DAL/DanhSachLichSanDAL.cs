@@ -1,61 +1,103 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using BadmintonManager.DTO;
-
 
 namespace BadmintonManager.DAL
 {
     public class DanhSachLichSanDAL
     {
-        private string connectionString = "Data Source=LAPTOP-13092004\\SQLEXPRESS01;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = "Data Source=LAPTOP-JDM8N7NE;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
 
         public DataTable LayDanhSachLichSan()
         {
             string query = "SELECT * FROM LichDatSan";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            DataTable dataTable = new DataTable();
+            try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                return dataTable;
+                // Mở kết nối với SQL Server
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open(); // Đảm bảo kết nối được mở
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+
+                    // Điền dữ liệu vào DataTable
+                    adapter.Fill(dataTable);
+                }
             }
+            catch (SqlException ex)
+            {
+                // Bắt lỗi SQL, có thể kết nối bị lỗi hoặc câu lệnh không hợp lệ
+                Console.WriteLine("Lỗi SQL: " + ex.Message);
+                // Bạn có thể hiển thị thông báo lỗi ở đây nếu cần
+            }
+            catch (Exception ex)
+            {
+                // Bắt tất cả các loại lỗi khác
+                Console.WriteLine("Lỗi: " + ex.Message);
+            }
+
+            return dataTable;
         }
 
         public bool XoaLichSan(int maDatSan)
         {
             string query = "DELETE FROM LichDatSan WHERE MaDatSan = @MaDatSan";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaDatSan", maDatSan);
-                return cmd.ExecuteNonQuery() > 0;
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open(); // Đảm bảo kết nối mở
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi và hiển thị thông báo
+                Console.WriteLine("Lỗi khi xóa lịch: " + ex.Message);
+                return false;
             }
         }
 
         public DataTable TimKiemLichSan(DateTime tuNgay, DateTime denNgay)
         {
             string query = "SELECT * FROM LichDatSan WHERE TuNgay >= @TuNgay AND TuNgay <= @DenNgay";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            DataTable dataTable = new DataTable();
+            try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                adapter.SelectCommand.Parameters.AddWithValue("@TuNgay", tuNgay);
-                adapter.SelectCommand.Parameters.AddWithValue("@DenNgay", denNgay);
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open(); // Đảm bảo kết nối mở
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
 
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                return dataTable;
+                    // Thêm tham số vào câu truy vấn
+                    adapter.SelectCommand.Parameters.AddWithValue("@TuNgay", tuNgay);
+                    adapter.SelectCommand.Parameters.AddWithValue("@DenNgay", denNgay);
+
+                    // Điền dữ liệu vào DataTable
+                    adapter.Fill(dataTable);
+                }
             }
+            catch (SqlException ex)
+            {
+                // Bắt lỗi SQL
+                Console.WriteLine("Lỗi SQL khi tìm kiếm lịch: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi chung
+                Console.WriteLine("Lỗi: " + ex.Message);
+            }
+
+            return dataTable;
         }
     }
-}
 
-namespace BadmintonManager.DAL
-{
     public class DanhSachPhieuChiDAL
     {
-        private string connectionString = "your_connection_string_here";
+        private string connectionString = "Data Source=LAPTOP-JDM8N7NE;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
 
         public bool HuyPhieuChi(int maPhieuChi)
         {
@@ -63,7 +105,7 @@ namespace BadmintonManager.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
+                    conn.Open(); // Đảm bảo kết nối mở
                     string query = "DELETE FROM PhieuChi WHERE MaPhieuChi = @MaPhieuChi";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@MaPhieuChi", maPhieuChi);
@@ -71,8 +113,16 @@ namespace BadmintonManager.DAL
                     return rowsAffected > 0;
                 }
             }
-            catch
+            catch (SqlException ex)
             {
+                // Xử lý lỗi SQL
+                Console.WriteLine("Lỗi SQL khi hủy phiếu chi: " + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi chung
+                Console.WriteLine("Lỗi: " + ex.Message);
                 return false;
             }
         }

@@ -1,52 +1,37 @@
-﻿// SanDAL.cs
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SqlClient;
-using BadmintonManager.DTO;
-using System.Configuration;
-using System.Windows.Forms;
+using QuanLySan.DTO;
 
-
-namespace BadmintonManager.DAL
+namespace QuanLySan.DAL
 {
     public class KhachHangDAL
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+        private string connectionString = "Data Source=your_server;Initial Catalog=QuanLySan;Integrated Security=True";
 
-        public List<KhachHang> GetKhachHangList()
+        public int ThemKhachHang(KhachHangDTO khachHang)
         {
-            List<KhachHang> khachHangs = new List<KhachHang>();
-            string query = "SELECT MaKH, TenKH, SDT FROM KhachHang";
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(query, connection);
-
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        KhachHang khachHang = new KhachHang
-                        {
-                            MaKH = Convert.ToInt32(reader["MaKH"]),
-                            TenKH = reader["TenKH"].ToString(),
-                            SDT = reader["SDT"].ToString()
-                        };
-                        khachHangs.Add(khachHang);
-                    }
+                    string query = "INSERT INTO KhachHang (TenKH, SDT) OUTPUT INSERTED.MaKH VALUES (@TenKH, @SDT)";
+                    SqlCommand cmd = new SqlCommand(query, connection);
 
-                    reader.Close();
+                    cmd.Parameters.AddWithValue("@TenKH", khachHang.TenKH);
+                    cmd.Parameters.AddWithValue("@SDT", khachHang.SDT);
+
+                    // Thực thi câu lệnh và trả về MaKH mới
+                    int maKH = (int)cmd.ExecuteScalar();
+                    return maKH;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi lấy dữ liệu: " + ex.Message);
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                    return -1; // Trả về mã lỗi
                 }
             }
-
-            return khachHangs;
         }
     }
 }

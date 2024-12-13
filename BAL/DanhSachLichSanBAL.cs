@@ -28,6 +28,8 @@ namespace  BadmintonManager.BAL
         {
             return lichSanDAL.TimKiemLichSan(tuNgay, denNgay);
         }
+
+
     }
 }
 

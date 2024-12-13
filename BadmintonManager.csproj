@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BAL\BangGiaSanBAL .cs" />
+    <Compile Include="BAL\BaoCaoDoanhThuBAL.cs" />
     <Compile Include="BAL\DanhSachLichSanBAL.cs" />
     <Compile Include="BAL\GiaSanBAL.cs" />
     <Compile Include="BAL\HangHoaBLL.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="BAL\SanBAL.cs" />
     <Compile Include="BAL\TaiKhoanNhanVienBAL .cs" />
     <Compile Include="DAL\BangGiaSanDAL.cs" />
+    <Compile Include="DAL\BaoCaoDoanhThuDAL.cs" />
     <Compile Include="DAL\DanhSachLichSanDAL.cs" />
     <Compile Include="DAL\DatabaseConnection.cs" />
     <Compile Include="DAL\GiaSanDAL.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Database\ThanhToan.cs" />
     <Compile Include="Database\ThemeColor.cs" />
     <Compile Include="DTO\BangGiaSanDTO.cs" />
+    <Compile Include="DTO\BaoCaoDoanhThuDTO.cs" />
     <Compile Include="DTO\DanhSachLichSanDTO.cs" />
     <Compile Include="DTO\GiaSanDTO.cs" />
     <Compile Include="DTO\HangHoa.cs" />
@@ -213,17 +216,23 @@
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DatSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\DatSan.Designer.cs">
-      <DependentUpon>DatSan.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormThemKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormThemKhachHang.Designer.cs">
+      <DependentUpon>FormThemKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Form3.cs">
       <SubType>Form</SubType>
@@ -236,6 +245,12 @@
     </Compile>
     <Compile Include="GUI\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FrmThemKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FrmThemKhachHang.Designer.cs">
+      <DependentUpon>FrmThemKhachHang.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FrmTinhTien.cs">
       <SubType>Form</SubType>
@@ -312,14 +327,23 @@
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\DatSan.resx">
-      <DependentUpon>DatSan.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormThemKhachHang.resx">
+      <DependentUpon>FormThemKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FrmThemKhachHang.resx">
+      <DependentUpon>FrmThemKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmTinhTien.resx">
       <DependentUpon>FrmTinhTien.cs</DependentUpon>

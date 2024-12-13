@@ -22,6 +22,7 @@ namespace BadmintonManager.GUI
             txtMaKH.Text = phieuChiDTO.MaKH.ToString();
             txtTuNgay.Text = phieuChiDTO.TuNgay.ToString("yyyy-MM-dd");
             txtDaTra.Text = phieuChiDTO.DaTra.ToString();
+
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
@@ -42,6 +43,16 @@ namespace BadmintonManager.GUI
         private void btnHuy_Click(object sender, EventArgs e)
         {
             this.Close(); // Đóng form mà không thực hiện hành động gì
+        }
+
+        private void lblTuNgay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDaTra_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

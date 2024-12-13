@@ -36,5 +36,22 @@ namespace BadmintonManager.DAL
 
             return categories;
         }
+
+        public void InsertCategory(LoaiHH category)
+        {
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            {
+                string query = "INSERT INTO LoaiHH (MaLoaiHH, TenLoaiHH) VALUES (@MaLoaiHH, @TenLoaiHH)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@MaLoaiHH", category.MaLoaiHH);
+                    command.Parameters.AddWithValue("@TenLoaiHH", category.TenLoaiHH);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

@@ -1,7 +1,8 @@
-﻿    using BadmintonManager.DAL;
-    using BadmintonManager.DTO;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using BadmintonManager.DAL;
+using BadmintonManager.DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
     namespace BadmintonManager.BAL
     {
@@ -23,5 +24,37 @@
                     .OrderBy(c => c.TenLoaiHH)
                     .ToList();
             }
+
+            public void AddCategory(LoaiHH category)
+            {
+            if (category.MaLoaiHH <= 0)
+            {
+                throw new ArgumentException("Mã Loại HH phải là số dương.");
+            }
+
+            if (string.IsNullOrWhiteSpace(category.TenLoaiHH))
+            {
+                throw new ArgumentException("Tên Loại HH không được để trống.");
+            }
+
+            _loaiHHDAL.InsertCategory(category);
+            }
+
+
+        public bool IsCategoryExists(int maLoaiHH)
+        {
+            return _loaiHHDAL.GetAllCategories().Any(c => c.MaLoaiHH == maLoaiHH);
         }
+
+        public void UpdateCategory(LoaiHH category)
+        {
+            
+        }
+
+        public void DeleteCategory(int maLoaiHH)
+        {
+            
+        }
+
     }
+}

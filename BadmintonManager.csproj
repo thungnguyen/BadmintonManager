@@ -192,6 +192,12 @@
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhSachLoaiHH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachLoaiHH.Designer.cs">
+      <DependentUpon>DanhSachLoaiHH.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,12 @@
     <Compile Include="GUI\ThemHangHoa.Designer.cs">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ThemLoaiHH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ThemLoaiHH.Designer.cs">
+      <DependentUpon>ThemLoaiHH.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ThietLapSan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,9 +291,13 @@
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhSachLoaiHH.resx">
+      <DependentUpon>DanhSachLoaiHH.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormMenuNV.resx" />
     <EmbeddedResource Include="GUI\FrmTinhTien.resx">
       <DependentUpon>FrmTinhTien.cs</DependentUpon>
     </EmbeddedResource>
@@ -302,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThemHangHoa.resx">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ThemLoaiHH.resx">
+      <DependentUpon>ThemLoaiHH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThietLapSan.resx">
       <DependentUpon>ThietLapSan.cs</DependentUpon>

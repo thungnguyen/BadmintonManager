@@ -112,5 +112,13 @@ namespace BadmintonManager.GUI
                 }
             }
         }
+
+        private void addnewLoaiHHbtn_Click(object sender, EventArgs e)
+        {
+            using (DanhSachLoaiHH formDanhSachLoaiHH = new DanhSachLoaiHH())
+            {
+                formDanhSachLoaiHH.ShowDialog(); // Open the form modally
+            }
+        }
     }
 }

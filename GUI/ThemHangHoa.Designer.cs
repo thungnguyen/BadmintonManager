@@ -278,6 +278,7 @@
             // 
             this.txtSoLuongTonNho.Location = new System.Drawing.Point(618, 241);
             this.txtSoLuongTonNho.Name = "txtSoLuongTonNho";
+            this.txtSoLuongTonNho.ReadOnly = true;
             this.txtSoLuongTonNho.Size = new System.Drawing.Size(225, 22);
             this.txtSoLuongTonNho.TabIndex = 24;
             // 

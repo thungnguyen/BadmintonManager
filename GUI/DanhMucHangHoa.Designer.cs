@@ -37,6 +37,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.addnewLoaiHHbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHangHoa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             this.dgvHangHoa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHangHoa.Location = new System.Drawing.Point(12, 112);
             this.dgvHangHoa.Name = "dgvHangHoa";
+            this.dgvHangHoa.ReadOnly = true;
             this.dgvHangHoa.RowHeadersWidth = 51;
             this.dgvHangHoa.RowTemplate.Height = 24;
             this.dgvHangHoa.Size = new System.Drawing.Size(1083, 365);
@@ -53,7 +55,7 @@
             // 
             // addbtn
             // 
-            this.addbtn.Location = new System.Drawing.Point(511, 483);
+            this.addbtn.Location = new System.Drawing.Point(624, 483);
             this.addbtn.Name = "addbtn";
             this.addbtn.Size = new System.Drawing.Size(153, 65);
             this.addbtn.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             // refreshbtn
             // 
-            this.refreshbtn.Location = new System.Drawing.Point(352, 483);
+            this.refreshbtn.Location = new System.Drawing.Point(465, 483);
             this.refreshbtn.Name = "refreshbtn";
             this.refreshbtn.Size = new System.Drawing.Size(153, 65);
             this.refreshbtn.TabIndex = 2;
@@ -112,7 +114,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(670, 483);
+            this.btnDelete.Location = new System.Drawing.Point(783, 483);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(153, 65);
             this.btnDelete.TabIndex = 7;
@@ -122,7 +124,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(829, 483);
+            this.btnEdit.Location = new System.Drawing.Point(942, 483);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(153, 65);
             this.btnEdit.TabIndex = 8;
@@ -130,11 +132,23 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // addnewLoaiHHbtn
+            // 
+            this.addnewLoaiHHbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addnewLoaiHHbtn.Location = new System.Drawing.Point(819, 51);
+            this.addnewLoaiHHbtn.Name = "addnewLoaiHHbtn";
+            this.addnewLoaiHHbtn.Size = new System.Drawing.Size(276, 46);
+            this.addnewLoaiHHbtn.TabIndex = 9;
+            this.addnewLoaiHHbtn.Text = "Danh sách các loại hàng hoá";
+            this.addnewLoaiHHbtn.UseVisualStyleBackColor = true;
+            this.addnewLoaiHHbtn.Click += new System.EventHandler(this.addnewLoaiHHbtn_Click);
+            // 
             // DanhMucHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 560);
+            this.Controls.Add(this.addnewLoaiHHbtn);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSearch);
@@ -163,5 +177,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button addnewLoaiHHbtn;
     }
 }

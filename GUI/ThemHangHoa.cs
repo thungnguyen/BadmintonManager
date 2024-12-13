@@ -27,10 +27,36 @@ namespace BadmintonManager.GUI
                 cmbLoaiHH.DataSource = categories;
                 cmbLoaiHH.DisplayMember = "TenLoaiHH"; // Column for display
                 cmbLoaiHH.ValueMember = "MaLoaiHH";   // Column for value
+
+                // Make SoLuongTonNho readonly
+                txtSoLuongTonNho.ReadOnly = true;
+
+                // Attach event handlers for real-time calculation
+                txtSoLuongTonLon.TextChanged += (s, ev) => UpdateSoLuongTonNho();
+                txtHeSoQuyDoi.TextChanged += (s, ev) => UpdateSoLuongTonNho();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading product categories: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateSoLuongTonNho()
+        {
+            if (int.TryParse(txtSoLuongTonLon.Text, out int soLuongTonLon) &&
+                int.TryParse(txtHeSoQuyDoi.Text, out int heSoQuyDoi) &&
+                heSoQuyDoi > 0) // Ensure HeSoQuyDoi is valid
+            {
+                // Calculate SoLuongTonNho
+                int soLuongTonNho = soLuongTonLon * heSoQuyDoi;
+
+                // Update the readonly textbox
+                txtSoLuongTonNho.Text = soLuongTonNho.ToString();
+            }
+            else
+            {
+                // Clear the SoLuongTonNho textbox if inputs are invalid
+                txtSoLuongTonNho.Text = string.Empty;
             }
         }
 

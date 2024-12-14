@@ -243,9 +243,7 @@
     <Compile Include="GUI\GDQuanLy.Designer.cs">
       <DependentUpon>GDQuanLy.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\GiaSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="GUI\GiaSan.cs" />
     <Compile Include="GUI\GiaSan.Designer.cs">
       <DependentUpon>GiaSan.cs</DependentUpon>
     </Compile>

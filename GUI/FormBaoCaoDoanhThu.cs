@@ -19,10 +19,6 @@ namespace BadmintonManager.GUI
 
         private void FormBaoCaoDoanhThu_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'quanLySanDataSet1.ThanhToan' table. You can move, or remove it, as needed.
-            this.thanhToanTableAdapter.Fill(this.quanLySanDataSet1.ThanhToan);
-            // TODO: This line of code loads data into the 'quanLySanDataSet1.BaoCaoDoanhThu' table. You can move, or remove it, as needed.
-            this.baoCaoDoanhThuTableAdapter.Fill(this.quanLySanDataSet1.BaoCaoDoanhThu);
             // Nạp dữ liệu từ bảng HoaDon vào dataset khi form được tải
             this.hoaDonTableAdapter.Fill(this.quanLySanDataSet1.HoaDon);
         }

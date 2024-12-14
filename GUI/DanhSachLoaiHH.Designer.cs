@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvLoaiHH = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.quanLySanDataSet = new BadmintonManager.QuanLySanDataSet();
-            this.loaiHHBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.loaiHHTableAdapter = new BadmintonManager.QuanLySanDataSetTableAdapters.LoaiHHTableAdapter();
             this.maLoaiHHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenLoaiHHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loaiHHBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.quanLySanDataSet = new BadmintonManager.QuanLySanDataSet();
+            this.label1 = new System.Windows.Forms.Label();
+            this.loaiHHTableAdapter = new BadmintonManager.QuanLySanDataSetTableAdapters.LoaiHHTableAdapter();
             this.maloaiHHtxt = new System.Windows.Forms.TextBox();
             this.tenloaiHHtxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,11 +44,9 @@
             this.cancelbtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.deletebtn = new System.Windows.Forms.Button();
-            this.editbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiHH)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loaiHHBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +66,33 @@
             this.dgvLoaiHH.TabIndex = 0;
             this.dgvLoaiHH.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLoaiHH_CellContentClick);
             // 
+            // maLoaiHHDataGridViewTextBoxColumn
+            // 
+            this.maLoaiHHDataGridViewTextBoxColumn.DataPropertyName = "MaLoaiHH";
+            this.maLoaiHHDataGridViewTextBoxColumn.HeaderText = "MaLoaiHH";
+            this.maLoaiHHDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maLoaiHHDataGridViewTextBoxColumn.Name = "maLoaiHHDataGridViewTextBoxColumn";
+            this.maLoaiHHDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maLoaiHHDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // tenLoaiHHDataGridViewTextBoxColumn
+            // 
+            this.tenLoaiHHDataGridViewTextBoxColumn.DataPropertyName = "TenLoaiHH";
+            this.tenLoaiHHDataGridViewTextBoxColumn.HeaderText = "TenLoaiHH";
+            this.tenLoaiHHDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tenLoaiHHDataGridViewTextBoxColumn.Name = "tenLoaiHHDataGridViewTextBoxColumn";
+            this.tenLoaiHHDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // loaiHHBindingSource
+            // 
+            this.loaiHHBindingSource.DataMember = "LoaiHH";
+            this.loaiHHBindingSource.DataSource = this.quanLySanDataSet;
+            // 
+            // quanLySanDataSet
+            // 
+            this.quanLySanDataSet.DataSetName = "QuanLySanDataSet";
+            this.quanLySanDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -78,35 +103,9 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Danh sách loại hàng hoá";
             // 
-            // quanLySanDataSet
-            // 
-            this.quanLySanDataSet.DataSetName = "QuanLySanDataSet";
-            this.quanLySanDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // loaiHHBindingSource
-            // 
-            this.loaiHHBindingSource.DataMember = "LoaiHH";
-            this.loaiHHBindingSource.DataSource = this.quanLySanDataSet;
-            // 
             // loaiHHTableAdapter
             // 
             this.loaiHHTableAdapter.ClearBeforeFill = true;
-            // 
-            // maLoaiHHDataGridViewTextBoxColumn
-            // 
-            this.maLoaiHHDataGridViewTextBoxColumn.DataPropertyName = "MaLoaiHH";
-            this.maLoaiHHDataGridViewTextBoxColumn.HeaderText = "MaLoaiHH";
-            this.maLoaiHHDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maLoaiHHDataGridViewTextBoxColumn.Name = "maLoaiHHDataGridViewTextBoxColumn";
-            this.maLoaiHHDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // tenLoaiHHDataGridViewTextBoxColumn
-            // 
-            this.tenLoaiHHDataGridViewTextBoxColumn.DataPropertyName = "TenLoaiHH";
-            this.tenLoaiHHDataGridViewTextBoxColumn.HeaderText = "TenLoaiHH";
-            this.tenLoaiHHDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tenLoaiHHDataGridViewTextBoxColumn.Name = "tenLoaiHHDataGridViewTextBoxColumn";
-            this.tenLoaiHHDataGridViewTextBoxColumn.Width = 125;
             // 
             // maloaiHHtxt
             // 
@@ -178,8 +177,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.editbtn);
-            this.panel1.Controls.Add(this.deletebtn);
             this.panel1.Controls.Add(this.cancelbtn);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.savebtn);
@@ -191,28 +188,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(443, 310);
             this.panel1.TabIndex = 9;
-            // 
-            // deletebtn
-            // 
-            this.deletebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deletebtn.Location = new System.Drawing.Point(203, 210);
-            this.deletebtn.Name = "deletebtn";
-            this.deletebtn.Size = new System.Drawing.Size(75, 35);
-            this.deletebtn.TabIndex = 9;
-            this.deletebtn.Text = "Xoá";
-            this.deletebtn.UseVisualStyleBackColor = true;
-            this.deletebtn.Click += new System.EventHandler(this.deletebtn_Click);
-            // 
-            // editbtn
-            // 
-            this.editbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editbtn.Location = new System.Drawing.Point(301, 210);
-            this.editbtn.Name = "editbtn";
-            this.editbtn.Size = new System.Drawing.Size(75, 35);
-            this.editbtn.TabIndex = 10;
-            this.editbtn.Text = "Sửa";
-            this.editbtn.UseVisualStyleBackColor = true;
-            this.editbtn.Click += new System.EventHandler(this.editbtn_Click);
             // 
             // DanhSachLoaiHH
             // 
@@ -226,8 +201,8 @@
             this.Text = "DanhSachLoaiHH";
             this.Load += new System.EventHandler(this.DanhSachLoaiHH_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiHH)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loaiHHBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -252,7 +227,5 @@
         private System.Windows.Forms.Button cancelbtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button editbtn;
-        private System.Windows.Forms.Button deletebtn;
     }
 }

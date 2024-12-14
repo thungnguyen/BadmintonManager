@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\GiaSanBLL.cs" />
+    <Compile Include="DAO\BangGiaSanDAO.cs" />
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillInfoDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
@@ -243,21 +244,11 @@
     <Compile Include="GUI\GDQuanLy.Designer.cs">
       <DependentUpon>GDQuanLy.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\GiaSan.cs" />
-    <Compile Include="GUI\GiaSan.Designer.cs">
-      <DependentUpon>GiaSan.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\TaoSan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\TaoSan.Designer.cs">
       <DependentUpon>TaoSan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\ThietLapSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\ThietLapSan.Designer.cs">
-      <DependentUpon>ThietLapSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,14 +275,8 @@
     <EmbeddedResource Include="GUI\FrmTinhTien.resx">
       <DependentUpon>FrmTinhTien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\GiaSan.resx">
-      <DependentUpon>GiaSan.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\TaoSan.resx">
       <DependentUpon>TaoSan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\ThietLapSan.resx">
-      <DependentUpon>ThietLapSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -20,6 +20,12 @@ namespace BadmintonManager.GUI
         }
        
 
+
+
+        private void TaoSan_Load(object sender, EventArgs e)
+        {
+            LoadData(); // Tải dữ liệu lên DataGridView khi form khởi động
+        }
         private void LoadData()
         {
             lsvSan.Items.Clear();  // Xóa tất cả các mục hiện tại trong ListView
@@ -61,12 +67,6 @@ namespace BadmintonManager.GUI
                 txtTenSan.Clear(); // Xóa text nếu không có mục nào được chọn
             }
         }
-
-        private void TaoSan_Load(object sender, EventArgs e)
-        {
-            LoadData(); // Tải dữ liệu lên DataGridView khi form khởi động
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string tenSan = txtTenSan.Text;

@@ -48,5 +48,28 @@ namespace BadmintonManager.DAL
 
             return khachHangs;
         }
+        public bool AddKhachHang(KhachHang khachHang)
+        {
+            string query = "INSERT INTO KhachHang (TenKH, SDT) VALUES (@TenKH, @SDT)";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@TenKH", khachHang.TenKH);
+                command.Parameters.AddWithValue("@SDT", khachHang.SDT);
+
+                try
+                {
+                    connection.Open();
+                    int result = command.ExecuteNonQuery();
+                    return result > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi thêm khách hàng: " + ex.Message);
+                    return false;
+                }
+            }
+        }
     }
 }

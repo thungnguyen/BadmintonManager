@@ -19,5 +19,10 @@ namespace BadmintonManager.BAL
         {
             return khachHangDAL.GetKhachHangList();
         }
+
+        public bool AddKhachHang(KhachHang khachHang)
+        {
+            return khachHangDAL.AddKhachHang(khachHang);
+        }
     }
 }

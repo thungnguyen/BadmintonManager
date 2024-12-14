@@ -12,8 +12,9 @@ namespace BadmintonManager.BAL
         public class TaiKhoanNhanVienBAL
         {
             private TaiKhoanNhanVienDAL taiKhoanDAL;
+            private readonly TaiKhoanNhanVienDAL _dal = new TaiKhoanNhanVienDAL();
 
-            public TaiKhoanNhanVienBAL()
+        public TaiKhoanNhanVienBAL()
             {
                 taiKhoanDAL = new TaiKhoanNhanVienDAL();
             }
@@ -23,7 +24,11 @@ namespace BadmintonManager.BAL
                 return taiKhoanDAL.DangNhap(tenDangNhap, matKhau);
             }
 
-            public int LayMaNV(string tenDangNhap, string matKhau)
+            public bool ThemTaiKhoan(TaiKhoanNhanVienDTO taiKhoan)
+            {
+                return _dal.ThemTaiKhoan(taiKhoan);
+            }
+        public int LayMaNV(string tenDangNhap, string matKhau)
             {
                 return taiKhoanDAL.LayMaNV(tenDangNhap, matKhau);
             }

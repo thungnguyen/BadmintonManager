@@ -161,6 +161,7 @@
     <Compile Include="BAL\LichDatSanBAL.cs" />
     <Compile Include="BAL\LoaiHHBLL.cs" />
     <Compile Include="BAL\SanBAL.cs" />
+    <Compile Include="BAL\TaiKhoanBAL.cs" />
     <Compile Include="BAL\TaiKhoanNhanVienBAL .cs" />
     <Compile Include="DAL\BangGiaSanDAL.cs" />
     <Compile Include="DAL\DanhSachLichSanDAL.cs" />
@@ -171,21 +172,17 @@
     <Compile Include="DAL\LichDatSanDAL.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
     <Compile Include="DAL\SanDAL.cs" />
+    <Compile Include="DAL\TaiKhoanDAL.cs" />
     <Compile Include="DAL\TaiKhoanNhanVienDAL.cs" />
-    <Compile Include="Database\BaoCaoDoanhThu.cs" />
-    <Compile Include="Database\ChiTietHDSP.cs" />
-    <Compile Include="Database\DatSan.cs" />
-    <Compile Include="Database\GiaSan.cs" />
-    <Compile Include="Database\HinhThucThanhToan.cs" />
-    <Compile Include="Database\HoaDon.cs" />
-    <Compile Include="Database\KhachHang.cs" />
-    <Compile Include="Database\LichSan.cs" />
-    <Compile Include="Database\LoaiBC.cs" />
-    <Compile Include="Database\LoaiKhachHang.cs" />
-    <Compile Include="Database\San.cs" />
-    <Compile Include="Database\TaiKhoanNhanVien.cs" />
-    <Compile Include="Database\ThanhToan.cs" />
-    <Compile Include="Database\ThemeColor.cs" />
+    <Compile Include="DTO\Bill.cs" />
+    <Compile Include="DTO\BillInfo.cs" />
+    <Compile Include="DTO\HH.cs" />
+    <Compile Include="DTO\KhachHang.cs" />
+    <Compile Include="DTO\LoaiKH.cs" />
+    <Compile Include="DTO\Menu.cs" />
+    <Compile Include="DTO\PricePerHour.cs" />
+    <Compile Include="DTO\San.cs" />
+    <Compile Include="Theme\ThemeColor.cs" />
     <Compile Include="DTO\BangGiaSanDTO.cs" />
     <Compile Include="DTO\DanhSachLichSanDTO.cs" />
     <Compile Include="DTO\GiaSanDTO.cs" />
@@ -195,6 +192,12 @@
     <Compile Include="DTO\LoaiHH.cs" />
     <Compile Include="DTO\SanDTO.cs" />
     <Compile Include="DTO\TaiKhoanNhanVienDTO.cs" />
+    <Compile Include="GUI\AddKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddKhachHang.Designer.cs">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +318,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AddKhachHang.resx">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DangKyTaiKhoan.resx">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>

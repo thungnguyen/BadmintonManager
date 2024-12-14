@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace BadmintonManager
+namespace BadmintonManager.Theme
 {
     public static class ThemeColor
     {

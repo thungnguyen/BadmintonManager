@@ -44,6 +44,27 @@ namespace BadmintonManager.DAL
             return null; // Trả về null nếu thông tin đăng nhập không đúng
         }
 
+         public bool ThemTaiKhoan(TaiKhoanNhanVienDTO taiKhoan)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"INSERT INTO TaiKhoanNhanVien (TenNV, TenDangNhap, MatKhau, VaiTro, SDT) 
+                                 VALUES (@TenNV, @TenDangNhap, @MatKhau, @VaiTro, @SDT)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TenNV", taiKhoan.TenNV);
+                    command.Parameters.AddWithValue("@TenDangNhap", taiKhoan.TenDangNhap);
+                    command.Parameters.AddWithValue("@MatKhau", taiKhoan.MatKhau);
+                    command.Parameters.AddWithValue("@VaiTro", taiKhoan.VaiTro ?? "1");
+                    command.Parameters.AddWithValue("@SDT", taiKhoan.SDT);
+
+                    return command.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
         public int LayMaNV(string tenDangNhap, string matKhau)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

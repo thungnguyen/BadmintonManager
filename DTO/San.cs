@@ -10,11 +10,12 @@ namespace BadmintonManager.DTO
     public class San
     {
 
-        public San(int maSan, string tenSan, string status)
+        public San(int maSan, string tenSan, string status, decimal giaSan)
         {
             this.MaSan = maSan;
             this.TenSan = tenSan;
             this.Status = status;
+            this.GiaSan = giaSan;
         }
         public San (DataRow row)
         {
@@ -39,6 +40,12 @@ namespace BadmintonManager.DTO
         {
             get { return status; }
             set { status = value; }
+        }
+        private decimal giaSan;
+        public decimal GiaSan
+        {
+            get { return giaSan; }
+            set { giaSan = value; }
         }
     }
 }

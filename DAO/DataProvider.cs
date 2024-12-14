@@ -26,7 +26,7 @@ namespace BadmintonManager.DAO
             private set => instance = value;
         }
         private DataProvider() { }
-        private string connectionString = "Data Source=DESKTOP-CESMAPL\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = "Data Source=TIENNGUYENN;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();

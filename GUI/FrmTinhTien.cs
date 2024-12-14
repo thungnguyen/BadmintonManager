@@ -18,7 +18,6 @@ namespace BadmintonManager.GUI
 {
     public partial class FrmTinhTien : Form
     {
-        private string connectionString = "Data Source=DESKTOP-CESMAPL\\SQLEXPRESS;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
         public FrmTinhTien()
         {
             InitializeComponent();
@@ -307,19 +306,68 @@ namespace BadmintonManager.GUI
                 // Hiển thị thành tiền vào TextBox, với định dạng tiền tệ
                 txtThanhTien.Text = thanhTien.ToString("N0");
         }
+        // Hàm làm tròn thời gian về giờ tròn hoặc 30 phút
+        private DateTime RoundToNearestHalfHour(DateTime dt)
+        {
+            int minutes = dt.Minute;
+
+            // Nếu phút nhỏ hơn 15, làm tròn xuống 00 phút
+            if (minutes < 15)
+                minutes = 0;
+            // Nếu phút từ 15 đến 45, làm tròn xuống 30 phút
+            else if (minutes < 45)
+                minutes = 30;
+            // Nếu phút lớn hơn hoặc bằng 45, làm tròn lên 00 phút và tăng giờ
+            else
+            {
+                minutes = 0;
+                dt = dt.AddHours(1);
+            }
+
+            return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, minutes, 0);
+        }
+        private void UpdateDuration()
+        {
+            // Tính sự chênh lệch giữa 2 thời gian
+            TimeSpan duration = dtpGioRa.Value - dtpGioVao.Value;
+
+            DateTime startTime = DateTime.Now; // Hoặc có thể thay bằng thời gian bắt đầu khác
+            DateTime resultTime = startTime.AddHours((double)nudSoGioThue.Value).Add(duration);
+        }
+        private Dictionary<int, decimal> giaSanCache = new Dictionary<int, decimal>();
 
 
         #endregion
         #region events
         private void dtpGioVao_ValueChanged(object sender, EventArgs e)
         {
-            TinhSoGioThue();
+            // Làm tròn thời gian của dtpTuGio
+            dtpGioVao.Value = RoundToNearestHalfHour(dtpGioVao.Value);
+
+            // Kiểm tra nếu dtpDenGio nhỏ hơn dtpTuGio, điều chỉnh lại giá trị của dtpDenGio
+            if (dtpGioRa.Value < dtpGioVao.Value)
+            {
+                dtpGioRa.Value = dtpGioVao.Value; // Đặt lại Đến giờ về Từ giờ nếu nhỏ hơn
+            }
+
+            // Cập nhật thời gian chênh lệch
+            UpdateDuration();
 
         }
 
         private void dtpGioRa_ValueChanged(object sender, EventArgs e)
         {
-            TinhSoGioThue();
+            // Nếu thời gian Đến giờ nhỏ hơn Từ giờ, thông báo lỗi hoặc tự động chỉnh sửa
+            if (dtpGioRa.Value < dtpGioVao.Value)
+            {
+                dtpGioRa.Value = dtpGioVao.Value;
+            }
+            else
+            {
+                // Nếu không có vấn đề gì, làm tròn thời gian và cập nhật thời gian chênh lệch
+                dtpGioRa.Value = RoundToNearestHalfHour(dtpGioRa.Value);
+                UpdateDuration(); // Cập nhật thời gian chênh lệch
+            }
         }
 
         private void nudSoGioThue_ValueChanged(object sender, EventArgs e)

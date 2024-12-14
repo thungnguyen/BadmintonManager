@@ -1,0 +1,9 @@
+Sau khi chuyển file .bak sang thiết bị, bạn có thể thực hiện khôi phục cơ sở dữ liệu theo các bước sau:
+1. Mở SQL Server Management Studio (SSMS) trên thiết bị mới và kết nối đến SQL Server.
+2. Trong Object Explorer, nhấp chuột phải vào Databases và chọn Restore Database....
+3. Trong cửa sổ Restore Database, chọn Device và nhấn vào biểu tượng ba chấm (...) để chọn file sao lưu.
+4. Chọn file sao lưu .bak mà bạn đã chuyển sang thiết bị mới.
+5. Chọn OK và tiếp tục thực hiện các bước trong cửa sổ Restore:
+6. Trong phần Destination, bạn có thể đặt tên cơ sở dữ liệu mà bạn muốn khôi phục (nếu không muốn giữ tên cũ).
+7. Chọn các tùy chọn khác nếu cần, chẳng hạn như Overwrite the existing database nếu bạn muốn ghi đè lên cơ sở dữ liệu đã có.
+8. Nhấn OK để bắt đầu quá trình khôi phục. SQL Server sẽ khôi phục cơ sở dữ liệu và các đối tượng như bảng, trigger, thủ tục lưu trữ (Stored Procedures), v.v.

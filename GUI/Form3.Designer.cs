@@ -92,10 +92,10 @@
             this.lblTuNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTuNgay.Location = new System.Drawing.Point(77, 180);
             this.lblTuNgay.Name = "lblTuNgay";
-            this.lblTuNgay.Size = new System.Drawing.Size(84, 22);
+            this.lblTuNgay.Size = new System.Drawing.Size(122, 22);
             this.lblTuNgay.TabIndex = 6;
-            this.lblTuNgay.Text = "Từ Ngày:";
-            this.lblTuNgay.Click += new System.EventHandler(this.lblTuNgay_Click);
+            this.lblTuNgay.Text = "Ngày bắt đầu:";
+            //
             // 
             // txtTuNgay
             // 
@@ -115,7 +115,6 @@
             this.lblDaTra.Size = new System.Drawing.Size(206, 22);
             this.lblDaTra.TabIndex = 8;
             this.lblDaTra.Text = "Số tiền cần hoàn trả KH:";
-            this.lblDaTra.Click += new System.EventHandler(this.lblDaTra_Click);
             // 
             // txtDaTra
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BadmintonManager.DTO;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -93,38 +94,103 @@ namespace BadmintonManager.DAL
 
             return dataTable;
         }
-    }
-
-    public class DanhSachPhieuChiDAL
-    {
-        private string connectionString = "Data Source=LAPTOP-JDM8N7NE;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
-
-        public bool HuyPhieuChi(int maPhieuChi)
+        public DataTable TimLichSanTheoTenKH(string tenKhachHang)
         {
+            DataTable dataTable = new DataTable();
+
+            // Truy vấn cơ sở dữ liệu theo tên khách hàng với phép JOIN
+            string query = @"
+        SELECT LichDatSan.*, KhachHang.TenKH
+        FROM LichDatSan
+        INNER JOIN KhachHang ON LichDatSan.MaKH = KhachHang.MaKH
+        WHERE KhachHang.TenKH LIKE @TenKH";
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open(); // Đảm bảo kết nối mở
-                    string query = "DELETE FROM PhieuChi WHERE MaPhieuChi = @MaPhieuChi";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@MaPhieuChi", maPhieuChi);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    conn.Open();  // Đảm bảo kết nối được mở
+
+                    // Khởi tạo câu lệnh SqlCommand
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        // Thêm tham số tên khách hàng vào câu lệnh
+                        cmd.Parameters.AddWithValue("@TenKH", "%" + tenKhachHang + "%");
+
+                        // Sử dụng SqlDataAdapter để điền dữ liệu vào DataTable
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(dataTable);
+                    }
                 }
             }
             catch (SqlException ex)
             {
                 // Xử lý lỗi SQL
-                Console.WriteLine("Lỗi SQL khi hủy phiếu chi: " + ex.Message);
-                return false;
+                Console.WriteLine("Lỗi SQL khi tìm kiếm lịch: " + ex.Message);
             }
             catch (Exception ex)
             {
                 // Bắt lỗi chung
                 Console.WriteLine("Lỗi: " + ex.Message);
-                return false;
             }
+
+            return dataTable;
+        }
+
+
+    }
+    public class DataProvider
+    {
+        private static string connectionString = "Data Source=LAPTOP-JDM8N7NE;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+
+        public static int ExecuteNonQuery(string query, SqlParameter[] parameters)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open(); // Mở kết nối đến SQL Server
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddRange(parameters); // Thêm tham số vào câu lệnh SQL
+
+                    return cmd.ExecuteNonQuery(); // Thực thi câu lệnh và trả về số dòng bị ảnh hưởng
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Xử lý lỗi SQL
+                Console.WriteLine("Lỗi SQL: " + ex.Message);
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi chung
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return 0;
+            }
+        }
+    }
+
+}
+
+namespace BadmintonManager.DAL
+{
+    public class PhieuChiDAL
+    {
+        public bool ThemPhieuChi(PhieuChiDTO phieuChi)
+        {
+            string query = "INSERT INTO PhieuChi (MaDatSan, MaSan, MaKH, TuNgay, DaTra, NgayLap) " +
+                           "VALUES (@MaDatSan, @MaSan, @MaKH, @TuNgay, @DaTra, @NgayLap)";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@MaDatSan", phieuChi.MaDatSan),
+                new SqlParameter("@MaSan", phieuChi.MaSan),
+                new SqlParameter("@MaKH", phieuChi.MaKH),
+                new SqlParameter("@TuNgay", phieuChi.TuNgay),
+                new SqlParameter("@DaTra", phieuChi.DaTra),
+                new SqlParameter("@NgayLap", phieuChi.NgayLap)
+            };
+            return DataProvider.ExecuteNonQuery(query, parameters) > 0;
         }
     }
 }

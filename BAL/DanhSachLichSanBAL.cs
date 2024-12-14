@@ -35,18 +35,18 @@ namespace  BadmintonManager.BAL
 
 namespace BadmintonManager.BAL
 {
-    public class DanhSachPhieuChiBAL
+    public class PhieuChiBAL
     {
-        private DanhSachPhieuChiDAL dal;
+        private PhieuChiDAL phieuChiDAL;
 
-        public DanhSachPhieuChiBAL()
+        public PhieuChiBAL()
         {
-            dal = new DanhSachPhieuChiDAL();
+            phieuChiDAL = new PhieuChiDAL();
         }
 
-        public bool HuyPhieuChi(int maPhieuChi)
+        public bool LuuPhieuChi(PhieuChiDTO phieuChi)
         {
-            return dal.HuyPhieuChi(maPhieuChi);
+            return phieuChiDAL.ThemPhieuChi(phieuChi);
         }
     }
 }

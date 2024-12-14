@@ -116,9 +116,9 @@ namespace BadmintonManager.DAL
         /// <summary>
         /// Retrieves product categories
         /// </summary>
-        public List<LoaiHH> GetProductCategories()
+        public List<LoaiHHDTO> GetProductCategories()
         {
-            var categories = new List<LoaiHH>();
+            var categories = new List<LoaiHHDTO>();
             using (SqlConnection connection = DatabaseConnection.GetConnection())
             {
                 var command = new SqlCommand("SELECT * FROM LoaiHH", connection);
@@ -126,7 +126,7 @@ namespace BadmintonManager.DAL
                 {
                     while (reader.Read())
                     {
-                        categories.Add(new LoaiHH
+                        categories.Add(new LoaiHHDTO
                         {
                             MaLoaiHH = (int)reader["MaLoai"],
                             TenLoaiHH = reader["TenLoai"].ToString()

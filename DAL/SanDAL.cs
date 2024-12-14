@@ -12,9 +12,9 @@ namespace BadmintonManager.DAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
 
-        public List<San> GetSanList()
+        public List<SanDTO> GetSanList()
         {
-            List<San> sans = new List<San>();
+            List<SanDTO> sans = new List<SanDTO>();
             string query = "SELECT MaSan, TenSan FROM San";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -28,7 +28,7 @@ namespace BadmintonManager.DAL
 
                     while (reader.Read())
                     {
-                        San san = new San
+                        SanDTO san = new SanDTO
                         {
                             MaSan = Convert.ToInt32(reader["MaSan"]),
                             TenSan = reader["TenSan"].ToString()

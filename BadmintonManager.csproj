@@ -153,35 +153,84 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BAL\BangGiaSanBAL.cs" />
+    <Compile Include="BAL\BangGiaSanBAL .cs" />
     <Compile Include="BAL\DanhSachLichSanBAL.cs" />
     <Compile Include="BAL\GiaSanBAL.cs" />
     <Compile Include="BAL\HangHoaBLL.cs" />
     <Compile Include="BAL\KhachHangBAL.cs" />
+    <Compile Include="BAL\KhachHangBLL.cs" />
     <Compile Include="BAL\LichDatSanBAL.cs" />
     <Compile Include="BAL\LoaiHHBLL.cs" />
+    <Compile Include="BAL\PhieuChiBAL.cs" />
     <Compile Include="BAL\SanBAL.cs" />
     <Compile Include="BAL\TaiKhoanBAL.cs" />
     <Compile Include="BAL\TaiKhoanNhanVienBAL .cs" />
     <Compile Include="DAL\BangGiaSanDAL.cs" />
+    <Compile Include="DAL\BillDAO.cs" />
+    <Compile Include="DAL\BillInfoDAO.cs" />
     <Compile Include="DAL\DanhSachLichSanDAL.cs" />
     <Compile Include="DAL\DatabaseConnection.cs" />
+    <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="DAL\GiaSanDAL.cs" />
+    <Compile Include="DAL\GiaSanDAO.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
+    <Compile Include="DAL\HHDAO.cs" />
     <Compile Include="DAL\KhachHangDAL.cs" />
+    <Compile Include="DAL\KhachHangDAO.cs" />
     <Compile Include="DAL\LichDatSanDAL.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
+    <Compile Include="DAL\LoaiHHDAO.cs" />
+    <Compile Include="DAL\MenuDAO.cs" />
+    <Compile Include="DAL\PricePerHourDAO.cs" />
     <Compile Include="DAL\SanDAL.cs" />
+    <Compile Include="DAL\SanDAO.cs" />
     <Compile Include="DAL\TaiKhoanDAL.cs" />
     <Compile Include="DAL\TaiKhoanNhanVienDAL.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
     <Compile Include="DTO\HH.cs" />
     <Compile Include="DTO\KhachHang.cs" />
+    <Compile Include="DTO\LoaiHHDTO.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\PricePerHour.cs" />
     <Compile Include="DTO\San.cs" />
+    <Compile Include="GUI\BangGiaSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BangGiaSan.Designer.cs">
+      <DependentUpon>BangGiaSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form1.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormBaoCaoDoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormBaoCaoDoanhThu.Designer.cs">
+      <DependentUpon>FormBaoCaoDoanhThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SuaTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\SuaTaiKhoan.Designer.cs">
+      <DependentUpon>SuaTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaoSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaoSan.Designer.cs">
+      <DependentUpon>TaoSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLySanDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Theme\ThemeColor.cs" />
     <Compile Include="DTO\BangGiaSanDTO.cs" />
     <Compile Include="DTO\DanhSachLichSanDTO.cs" />
@@ -227,12 +276,6 @@
     </Compile>
     <Compile Include="GUI\DatSan.Designer.cs">
       <DependentUpon>DatSan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Form3.cs">
       <SubType>Form</SubType>
@@ -313,13 +356,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="QuanLySanDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="GUI\AddKhachHang.resx">
       <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\BangGiaSan.resx">
+      <DependentUpon>BangGiaSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DangKyTaiKhoan.resx">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
@@ -342,11 +383,17 @@
     <EmbeddedResource Include="GUI\Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormBaoCaoDoanhThu.resx">
+      <DependentUpon>FormBaoCaoDoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmTinhTien.resx">
       <DependentUpon>FrmTinhTien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\GDNhanVien.resx">
+      <DependentUpon>GDNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\GiaSan.resx">
       <DependentUpon>GiaSan.cs</DependentUpon>
@@ -359,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\SuaHangHoa.resx">
       <DependentUpon>SuaHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TaoSan.resx">
+      <DependentUpon>TaoSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThemHangHoa.resx">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>
@@ -384,16 +434,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="QuanLySanDataSet.xsc">
-      <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="QuanLySanDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QuanLySanDataSet.xss">
-      <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -405,7 +445,21 @@
     <Content Include="Resources\calendar.png" />
     <Content Include="Resources\Datlich.jpg" />
     <Content Include="Resources\features.png" />
+    <None Include="QuanLySanDataSet.xsc">
+      <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLySanDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLySanDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLySanDataSet.xss">
+      <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Horizonbmt.jpg" />
+    <Content Include="Resources\Horizonbmt1.jpg" />
+    <Content Include="Resources\logout.png" />
+    <Content Include="Resources\logout1.png" />
     <Content Include="Resources\revenue.png" />
     <Content Include="Resources\target.png" />
     <Content Include="Resources\user.png" />

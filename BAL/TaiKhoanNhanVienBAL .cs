@@ -28,6 +28,7 @@ namespace BadmintonManager.BAL
             {
                 return _dal.ThemTaiKhoan(taiKhoan);
             }
+
         public int LayMaNV(string tenDangNhap, string matKhau)
             {
                 return taiKhoanDAL.LayMaNV(tenDangNhap, matKhau);

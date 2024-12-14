@@ -13,9 +13,9 @@ namespace BadmintonManager.DAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
 
-        public List<KhachHang> GetKhachHangList()
+        public List<KhachHangDTO> GetKhachHangList()
         {
-            List<KhachHang> khachHangs = new List<KhachHang>();
+            List<KhachHangDTO> khachHangs = new List<KhachHangDTO>();
             string query = "SELECT MaKH, TenKH, SDT FROM KhachHang";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -29,7 +29,7 @@ namespace BadmintonManager.DAL
 
                     while (reader.Read())
                     {
-                        KhachHang khachHang = new KhachHang
+                        KhachHangDTO khachHang = new KhachHangDTO
                         {
                             MaKH = Convert.ToInt32(reader["MaKH"]),
                             TenKH = reader["TenKH"].ToString(),
@@ -48,7 +48,7 @@ namespace BadmintonManager.DAL
 
             return khachHangs;
         }
-        public bool AddKhachHang(KhachHang khachHang)
+        public bool AddKhachHang(KhachHangDTO khachHang)
         {
             string query = "INSERT INTO KhachHang (TenKH, SDT) VALUES (@TenKH, @SDT)";
 

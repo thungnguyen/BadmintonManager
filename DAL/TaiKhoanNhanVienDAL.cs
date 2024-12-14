@@ -65,6 +65,8 @@ namespace BadmintonManager.DAL
             }
         }
 
+
+
         public int LayMaNV(string tenDangNhap, string matKhau)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

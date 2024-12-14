@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using BadmintonManager.Theme;
 
+
 namespace BadmintonManager.GUI
 {
     public partial class FormMenu : Form
@@ -90,7 +91,7 @@ namespace BadmintonManager.GUI
 
         private void btnLichSan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DangKyTaiKhoan(), sender);
+            OpenChildForm(new GUI.DatSan(), sender);
         }
 
         private void btnHangHoa_Click(object sender, EventArgs e)
@@ -110,7 +111,7 @@ namespace BadmintonManager.GUI
 
         private void btnQuanLySan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DanhSachTaiKhoan(), sender);
+            OpenChildForm(new GUI.DatSan(), sender);
         }
 
         private void btnCloseChildForm_Click(object sender, EventArgs e)
@@ -123,12 +124,22 @@ namespace BadmintonManager.GUI
         private void Reset()
         {
             DisableButton();
-            lblTitle.Text = "HOME";
+            lblTitle.Text = "HOME"; // Cập nhật tiêu đề mặc định
             panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
             panelLogo.BackColor = Color.FromArgb(39, 39, 58);
             currentButton = null;
-            btnCloseChildForm.Visible = false;
+
+            // Chỉ ẩn nút khi không có form con
+            if (activeForm == null)
+            {
+                btnCloseChildForm.Visible = false;
+            }
+            else
+            {
+                btnCloseChildForm.Visible = true;
+            }
         }
+
 
         private void btnThietLapSan_Click(object sender, EventArgs e)
         {
@@ -137,8 +148,18 @@ namespace BadmintonManager.GUI
 
         private void btnTinhTien_Click(object sender, EventArgs e)
         {
-            //FrmTinhTien frmTinhTien = new FrmTinhTien();
-            //frmTinhTien.ShowDialog();
+            OpenChildForm(new GUI.FrmTinhTien(), sender);
+        }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            // Đóng form hiện tại
+            this.Hide();
+
+            // Mở form đăng nhập
+            DangNhap formDangNhap = new DangNhap();
+                formDangNhap.Show();
+
         }
     }
 }

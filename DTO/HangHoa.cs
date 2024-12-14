@@ -17,7 +17,7 @@
         public int MaLoaiHH { get; set; }
 
         // Navigation property
-        public LoaiHH LoaiHH { get; set; }
+        public LoaiHHDTO LoaiHHdto { get; set; }
 
     }
 }

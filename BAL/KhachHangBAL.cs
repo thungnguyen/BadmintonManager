@@ -15,12 +15,12 @@ namespace BadmintonManager.BAL
             khachHangDAL = new KhachHangDAL();
         }
 
-        public List<KhachHang> GetAllKhachHangs()
+        public List<KhachHangDTO> GetAllKhachHangs()
         {
             return khachHangDAL.GetKhachHangList();
         }
 
-        public bool AddKhachHang(KhachHang khachHang)
+        public bool AddKhachHang(KhachHangDTO khachHang)
         {
             return khachHangDAL.AddKhachHang(khachHang);
         }

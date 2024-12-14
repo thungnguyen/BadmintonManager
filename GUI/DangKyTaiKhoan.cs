@@ -1,11 +1,18 @@
-﻿using BadmintonManager.Database;
+﻿using BadmintonManager.BAL;
 using System;
 using System.Windows.Forms;
+using BadmintonManager.DTO;
 
 namespace BadmintonManager.GUI
 {
     public partial class DangKyTaiKhoan : Form
     {
+                private readonly TaiKhoanNhanVienBAL _bal = new TaiKhoanNhanVienBAL();
+
+
+        // Tạo sự kiện DataUpdated
+        public event EventHandler DataUpdated;
+
         public DangKyTaiKhoan()
         {
             InitializeComponent();
@@ -17,7 +24,6 @@ namespace BadmintonManager.GUI
             {
                 try
                 {
-                    // Lấy dữ liệu từ các TextBox
                     string tenNV = txtTenNV.Text.Trim();
                     string sdt = txtSDT.Text.Trim();
                     string tenDangNhap = txtTenDangNhap.Text.Trim();
@@ -29,8 +35,7 @@ namespace BadmintonManager.GUI
                         return;
                     }
 
-                    // Tạo đối tượng tài khoản mới
-                    TaiKhoanNhanVien taiKhoan = new TaiKhoanNhanVien
+                    TaiKhoanNhanVienDTO taiKhoan = new TaiKhoanNhanVienDTO
                     {
                         TenNV = tenNV,
                         SDT = sdt,
@@ -39,19 +44,19 @@ namespace BadmintonManager.GUI
                         VaiTro = "Nhân viên"
                     };
 
-                    // Thêm vào database
-                    TaiKhoanNhanVien db = new TaiKhoanNhanVien();
-                    if (db.ThemTaiKhoan(taiKhoan))
+                    if (_bal.ThemTaiKhoan(taiKhoan))
                     {
                         MessageBox.Show("Đăng ký tài khoản thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-
+                        // Gọi sự kiện DataUpdated
+                        DataUpdated?.Invoke(this, EventArgs.Empty);
+                        Close();
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+             
             }
         }
 

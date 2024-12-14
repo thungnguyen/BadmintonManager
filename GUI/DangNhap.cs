@@ -35,13 +35,13 @@ namespace BadmintonManager
             {
                 int maNV = taiKhoanBAL.LayMaNV(tenDangNhap, matKhau);
 
-                if (taiKhoan.VaiTro == "0") // Quản lý
+                if (taiKhoan.VaiTro == "Quản lý") // Quản lý
                 {
                     MessageBox.Show($"Chào quản lý! MaNV: {maNV}");
-                    GDQuanLy formQuanLy = new GDQuanLy();
-                    formQuanLy.Show();
+                    FormMenu formNhanVien = new FormMenu();
+                    formNhanVien.Show();
                 }
-                else if (taiKhoan.VaiTro == "1") // Nhân viên
+                else if (taiKhoan.VaiTro == "Nhân viên") // Nhân viên
                 {
                     MessageBox.Show($"Chào nhân viên! MaNV: {maNV}");
                     FormMenu formNhanVien = new FormMenu();
@@ -54,6 +54,12 @@ namespace BadmintonManager
             {
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!");
             }
+        }
+
+        private void DangNhap_Load(object sender, EventArgs e)
+        {
+            txtUsername.Text = "taikhoanquanly";
+            txtPassword.Text = "1";
         }
     }
 }

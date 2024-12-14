@@ -75,7 +75,7 @@ namespace BadmintonManager.GUI
                 }
 
                 // Create a new category
-                LoaiHH category = new LoaiHH
+                LoaiHHDTO category = new LoaiHHDTO
                 {
                     MaLoaiHH = maLoaiHH,
                     TenLoaiHH = tenloaiHHtxt.Text.Trim()
@@ -144,13 +144,13 @@ namespace BadmintonManager.GUI
                     return;
                 }
 
-                LoaiHH updatedCategory = new LoaiHH
+                LoaiHHDTO updatedCategory = new LoaiHHDTO
                 {
                     MaLoaiHH = maLoaiHH,
                     TenLoaiHH = tenloaiHHtxt.Text.Trim()
                 };
 
-                _loaiHHBLL.UpdateCategory(updatedCategory); // Implement this method in BLL
+                //_loaiHHBLL.UpdateCategory(updatedCategory); // Implement this method in BLL
 
                 MessageBox.Show("Loại hàng hoá đã được cập nhật thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

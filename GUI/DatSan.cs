@@ -25,7 +25,7 @@ namespace BadmintonManager.GUI
         private GiaSanBAL giaSanBAL = new GiaSanBAL();
         private LichDatSanBAL _bal = new LichDatSanBAL();
         private SanBAL sanBAL;
-        private KhachHangBAL khachHangBAL;
+        private KhachHangBLL khachHangBAL;
         public DatSan()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace BadmintonManager.GUI
             dgvDanhSachNgay.Columns.Add("colNgayDat", "Ngày Đặt");
 
             sanBAL = new SanBAL();
-            khachHangBAL = new KhachHangBAL();
+            khachHangBAL = new KhachHangBLL();
             cbbKhachHang.DropDown += cbbKhachHang_DropDown;
             cbbTenSan.DropDown += cbbTenSan_DropDown;
         }
@@ -46,12 +46,12 @@ namespace BadmintonManager.GUI
         private void cbbKhachHang_DropDown(object sender, EventArgs e)
         {
             KhachHangDAL dbHelper = new KhachHangDAL();
-            List<KhachHang> khachHangs = dbHelper.GetKhachHangList();
+            List<KhachHangDTO> khachHangs = dbHelper.GetKhachHangList();
 
             // Thiết lập ValueMember và DisplayMember
             cbbTenSan.ValueMember = "MaSKH";
             cbbTenSan.DisplayMember = "TenKH";
-            foreach (KhachHang khachHang in khachHangs)
+            foreach (KhachHangDTO khachHang in khachHangs)
             {
                 cbbKhachHang.Items.Add(khachHang.TenKH); // Hiển thị tên khách hàng
             }
@@ -62,7 +62,7 @@ namespace BadmintonManager.GUI
             try
             {
                 SanDAL dbHelper = new SanDAL();
-                List<San> sans = dbHelper.GetSanList(); // Lấy danh sách sân từ database
+                List<SanDTO> sans = dbHelper.GetSanList(); // Lấy danh sách sân từ database
 
                 // Thiết lập ValueMember và DisplayMember
                 cbbTenSan.ValueMember = "MaSan";
@@ -143,7 +143,6 @@ namespace BadmintonManager.GUI
 
 
         // Cập nhật thời gian chênh lệch giữa 2 DateTimePicker (dtpDenGio - dtpTuGio)
-        // Cập nhật thời gian chênh lệch giữa 2 DateTimePicker
         private void UpdateDuration()
         {
             // Tính sự chênh lệch giữa 2 thời gian
@@ -235,109 +234,9 @@ namespace BadmintonManager.GUI
             // Đếm số dòng trong DataGridView nhưng bỏ qua dòng trống (nếu có)
             int soNgay = dgvDanhSachNgay.Rows.Cast<DataGridViewRow>()
                                          .Count(row => !row.IsNewRow && row.Cells[0].Value != null);
-
             // Hiển thị số ngày vào txtBuoi
             txtBuoi.Text = soNgay.ToString();
         }
-
-
-        //private decimal TinhGia()
-        //{
-        //    try
-        //    {
-        //        // Lấy thông tin từ giao diện
-        //        TimeSpan gioBatDau = dtpTuGio.Value.TimeOfDay;
-        //        TimeSpan gioKetThuc = dtpDenGio.Value.TimeOfDay;
-        //        string loaiKhach = cbLoaiKhach.Checked ? "Co dinh" : "Vang lai";
-
-        //        // Lấy chuỗi kết nối từ app.config
-        //        string connectionString = ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
-
-        //        // Kết nối cơ sở dữ liệu
-        //        using (SqlConnection conn = new SqlConnection(connectionString))
-        //        {
-        //            conn.Open();
-
-        //            // Truy vấn bảng BangGiaSan để lấy giá cho trước và sau 17 giờ
-        //            string query = @"
-        //        SELECT GioBatDau, GioKetThuc, Gia 
-        //        FROM BangGiaSan 
-        //        WHERE LoaiKH = @LoaiKhach 
-        //        ORDER BY GioBatDau";
-
-        //            using (SqlCommand cmd = new SqlCommand(query, conn))
-        //            {
-        //                // Thêm tham số cho truy vấn
-        //                cmd.Parameters.AddWithValue("@LoaiKhach", loaiKhach);
-
-        //                // Thực thi truy vấn
-        //                SqlDataReader reader = cmd.ExecuteReader();
-
-        //                decimal totalGia = 0;
-        //                decimal giaTruoc17 = 0, giaSau17 = 0;
-
-        //                // Duyệt qua tất cả các khung giờ và lấy giá
-        //                while (reader.Read())
-        //                {
-        //                    TimeSpan gioBatDauBang = reader.GetTimeSpan(0);
-        //                    TimeSpan gioKetThucBang = reader.GetTimeSpan(1);
-        //                    decimal giaTheoGio = reader.GetDecimal(2);
-
-        //                    // Kiểm tra và lấy giá trước 17 giờ
-        //                    if (gioKetThucBang <= new TimeSpan(17, 0, 0) && gioBatDauBang < new TimeSpan(17, 0, 0))
-        //                    {
-        //                        giaTruoc17 = giaTheoGio;
-        //                    }
-
-        //                    // Kiểm tra và lấy giá sau 17 giờ
-        //                    if (gioBatDauBang >= new TimeSpan(17, 0, 0) && gioKetThucBang >= new TimeSpan(17, 0, 0))
-        //                    {
-        //                        giaSau17 = giaTheoGio;
-        //                    }
-        //                }
-
-        //                // Nếu thời gian thuê kéo dài qua 17 giờ (ví dụ 16h - 18h)
-        //                if (gioBatDau < new TimeSpan(17, 0, 0) && gioKetThuc > new TimeSpan(17, 0, 0))
-        //                {
-        //                    // Tính thời gian trước 17h (từ gioBatDau đến 17h)
-        //                    decimal soGioTruoc17 = (decimal)(new TimeSpan(17, 0, 0) - gioBatDau).TotalHours;
-
-        //                    // Tính thời gian sau 17h (từ 17h đến gioKetThuc)
-        //                    decimal soGioSau17 = (decimal)(gioKetThuc - new TimeSpan(17, 0, 0)).TotalHours;
-
-        //                    // Tính giá tổng
-        //                    totalGia = (giaTruoc17 * soGioTruoc17) + (giaSau17 * soGioSau17);
-        //                }
-        //                // Nếu thời gian thuê hoàn toàn trước 17 giờ (ví dụ 16h - 17h)
-        //                else if (gioKetThuc <= new TimeSpan(17, 0, 0))
-        //                {
-        //                    decimal soGioTruoc17 = (decimal)(gioKetThuc - gioBatDau).TotalHours;
-        //                    totalGia = giaTruoc17 * soGioTruoc17;
-        //                }
-        //                // Nếu thời gian thuê hoàn toàn sau 17 giờ (ví dụ 17h - 18h)
-        //                else if (gioBatDau >= new TimeSpan(17, 0, 0))
-        //                {
-        //                    decimal soGioSau17 = (decimal)(gioKetThuc - gioBatDau).TotalHours;
-        //                    totalGia = giaSau17 * soGioSau17;
-        //                }
-
-        //                if (totalGia == 0)
-        //                {
-        //                    MessageBox.Show("Không tìm thấy giá phù hợp cho khung giờ này!", "Thông báo");
-        //                    return 0;
-        //                }
-
-        //                return totalGia;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Lỗi khi tính giá: " + ex.Message, "Lỗi");
-        //        return 0;
-        //    }
-        //}
-
 
         private void btnDatLich_Click(object sender, EventArgs e) //Nút tính tiền
         {
@@ -675,8 +574,15 @@ namespace BadmintonManager.GUI
             }
         }
 
+        private void dtpThoiGian_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
 
-
+        private void btnThemKhach_Click(object sender, EventArgs e)
+        {
+            AddKhachHang themKH = new AddKhachHang();
+            themKH.Show();
+        }
     }
 }

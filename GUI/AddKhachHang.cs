@@ -38,7 +38,7 @@ namespace BadmintonManager.GUI
                 return;
             }
 
-            KhachHang khachHang = new KhachHang
+            KhachHangDTO khachHang = new KhachHangDTO
             {
                 TenKH = tenKH,
                 SDT = sdt

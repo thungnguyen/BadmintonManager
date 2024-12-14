@@ -18,14 +18,14 @@ using System.Linq;
             /// <summary>
             /// Gets all product categories
             /// </summary>
-            public List<LoaiHH> GetAllCategories()
+            public List<LoaiHHDTO> GetAllCategories()
             {
                 return _loaiHHDAL.GetAllCategories()
                     .OrderBy(c => c.TenLoaiHH)
                     .ToList();
             }
 
-            public void AddCategory(LoaiHH category)
+            public void AddCategory(LoaiHHDTO category)
             {
             if (category.MaLoaiHH <= 0)
             {

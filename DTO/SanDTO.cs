@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BadmintonManager.DTO
 {
 
-        public class San
+        public class SanDTO
         {
             public int MaSan { get; set; }
             public string TenSan { get; set; }

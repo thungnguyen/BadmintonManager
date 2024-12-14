@@ -52,7 +52,7 @@ namespace BadmintonManager.GUI
                     }
 
                     // Create a new category
-                    LoaiHH category = new LoaiHH
+                    LoaiHHDTO category = new LoaiHHDTO
                     {
                         MaLoaiHH = maLoaiHH,
                         TenLoaiHH = tenLoaiHHtxt.Text.Trim()

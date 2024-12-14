@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangNhap));
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -41,7 +42,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(410, 321);
+            this.btnThoat.Location = new System.Drawing.Point(436, 308);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(109, 48);
@@ -51,7 +52,7 @@
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(267, 321);
+            this.btnDangNhap.Location = new System.Drawing.Point(280, 308);
             this.btnDangNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(111, 48);
@@ -62,7 +63,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(423, 221);
+            this.txtPassword.Location = new System.Drawing.Point(423, 219);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -71,7 +72,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(423, 175);
+            this.txtUsername.Location = new System.Drawing.Point(423, 172);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(177, 22);
@@ -81,7 +82,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(281, 221);
+            this.label3.Location = new System.Drawing.Point(275, 219);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 25);
             this.label3.TabIndex = 16;
@@ -91,7 +92,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(281, 172);
+            this.label2.Location = new System.Drawing.Point(275, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 25);
             this.label2.TabIndex = 15;
@@ -101,7 +102,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(330, 89);
+            this.label1.Location = new System.Drawing.Point(316, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(189, 32);
             this.label1.TabIndex = 14;
@@ -110,10 +111,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BadmintonManager.Properties.Resources.Horizonbmt;
-            this.pictureBox1.Location = new System.Drawing.Point(52, 122);
+            this.pictureBox1.Location = new System.Drawing.Point(37, 110);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 170);
+            this.pictureBox1.Size = new System.Drawing.Size(215, 201);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
@@ -122,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 437);
+            this.ClientSize = new System.Drawing.Size(708, 404);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnDangNhap);
@@ -131,10 +132,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "DangNhap";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login-BadmintonManager";
-            //this.Load += new System.EventHandler(this.DangNhap_Load);
+            this.Load += new System.EventHandler(this.DangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

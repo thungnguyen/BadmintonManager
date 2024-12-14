@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BadmintonManager.DTO
 {
-    internal class BangGiaSanDTO
+    public class BangGiaSanDTO
     {
         public int MaGia { get; set; }
         public string LoaiKH { get; set; }

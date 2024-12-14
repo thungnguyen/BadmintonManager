@@ -19,7 +19,7 @@ namespace BadmintonManager.GUI
             // Hiển thị thông tin lịch sân vào các textbox
             txtMaDatSan.Text = phieuChiDTO.MaDatSan.ToString();
             txtMaSan.Text = phieuChiDTO.MaSan.ToString();
-            txtMaKH.Text = phieuChiDTO.MaKH.ToString();
+            //txtMaKH.Text = phieuChiDTO.MaKH.ToString();
             txtTuNgay.Text = phieuChiDTO.TuNgay.ToString("yyyy-MM-dd");
             txtDaTra.Text = phieuChiDTO.DaTra.ToString();
 

@@ -1,57 +1,49 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using BadmintonManager.DTO;
+using BadmintonManager.BAL;
 
 namespace BadmintonManager.GUI
 {
     public partial class DanhSachTaiKhoan : Form
     {
-        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+        private TaiKhoanBAL taiKhoanBAL = new TaiKhoanBAL();
 
         public DanhSachTaiKhoan()
         {
             InitializeComponent();
         }
 
-        // Khi Form tải, tải dữ liệu lên DataGridView
         private void DanhSachTaiKhoan_Load(object sender, EventArgs e)
         {
             LoadData();
         }
 
-        // Phương thức tải dữ liệu từ database lên DataGridView
         private void LoadData()
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                List<TaiKhoanNhanVienDTO> accounts = taiKhoanBAL.GetAllAccounts();
+                dgvTaiKhoanmoi.DataSource = accounts.Select(account => new
                 {
-                    connection.Open();
-                    string query = "SELECT * FROM TaiKhoanNhanVien";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                    account.MaNV,
+                    account.TenNV,
+                    account.TenDangNhap,
+                    account.MatKhau,
+                    account.VaiTro,
+                    account.SDT
+                }).ToList();
 
-                    dgvTaiKhoanmoi.DataSource = dataTable;
+                if (dgvTaiKhoanmoi.Columns["VaiTro"] != null)
+                {
+                    dgvTaiKhoanmoi.Columns["VaiTro"].Visible = false;
+                }
 
-                    // Ẩn cột VaiTro
-                    if (dgvTaiKhoanmoi.Columns["VaiTro"] != null)
-                    {
-                        dgvTaiKhoanmoi.Columns["VaiTro"].Visible = false;
-                    }
-
-                    // Ẩn cột MaNV
-                    if (dgvTaiKhoanmoi.Columns["MaNV"] != null)
-                    {
-                        dgvTaiKhoanmoi.Columns["MaNV"].Visible = false;
-                    }
-
-                    // Đổi tên cột VaiTroHienThi
-                    //if (dgvTaiKhoan.Columns["VaiTroHienThi"] != null)
-                    //{
-                    //    dgvTaiKhoan.Columns["VaiTroHienThi"].HeaderText = "Vai Trò";
-                    //}
+                if (dgvTaiKhoanmoi.Columns["MaNV"] != null)
+                {
+                    dgvTaiKhoanmoi.Columns["MaNV"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -60,13 +52,15 @@ namespace BadmintonManager.GUI
             }
         }
 
-        // Nút Thêm: Chuyển sang form DangKyTaiKhoan
+        // Phương thức sự kiện cho nút Thêm
         private void btnThem_Click(object sender, EventArgs e)
         {
             try
             {
                 DangKyTaiKhoan formDangKy = new DangKyTaiKhoan();
-                if (formDangKy.ShowDialog() == DialogResult.OK) // Chờ form thêm tài khoản đóng
+                formDangKy.DataUpdated += FormDangKy_DataUpdated; // Đăng ký sự kiện
+
+                if (formDangKy.ShowDialog() == DialogResult.OK)
                 {
                     LoadData(); // Cập nhật lại dữ liệu sau khi thêm
                 }
@@ -77,97 +71,135 @@ namespace BadmintonManager.GUI
             }
         }
 
-
-        private void btnThem_Click_1(object sender, EventArgs e)
+        // Phương thức gọi lại khi sự kiện DataUpdated được gọi
+        private void FormDangKy_DataUpdated(object sender, EventArgs e)
         {
-            try
-            {
-                DangKyTaiKhoan formDangKy = new DangKyTaiKhoan();
-                if (formDangKy.ShowDialog() == DialogResult.OK) // Chờ form thêm tài khoản đóng
-                {
-                    LoadData(); // Cập nhật lại dữ liệu sau khi thêm
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi mở form thêm tài khoản: " + ex.Message);
-            }
+            LoadData(); // Làm mới dữ liệu sau khi thêm tài khoản
         }
 
-        private void btnSua_Click_1(object sender, EventArgs e)
+        private void dgvTaiKhoanmoi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Nút Sửa: Cập nhật thông tin tài khoản
-
-            try
+            if (e.RowIndex >= 0) // Đảm bảo không phải header
             {
-                DataTable changes = ((DataTable)dgvTaiKhoanmoi.DataSource).GetChanges(); // Lấy các thay đổi
-                if (changes != null)
+                DataGridViewRow row = dgvTaiKhoanmoi.Rows[e.RowIndex];
+
+                // Lấy dữ liệu từ TenDangNhap để tìm tài khoản
+                string tenDangNhap = row.Cells["TenDangNhap"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(tenDangNhap))
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        connection.Open();
-                        foreach (DataRow row in changes.Rows)
-                        {
-                            string query = @"UPDATE TaiKhoanNhanVien
-                                             SET TenNV = @TenNV, TenDangNhap = @TenDangNhap, 
-                                                 MatKhau = @MatKhau, VaiTro = @VaiTro, SDT = @SDT
-                                             WHERE MaNV = @MaNV";
-
-                            using (SqlCommand command = new SqlCommand(query, connection))
-                            {
-                                command.Parameters.AddWithValue("@MaNV", row["MaNV"]);
-                                command.Parameters.AddWithValue("@TenNV", row["TenNV"]);
-                                command.Parameters.AddWithValue("@TenDangNhap", row["TenDangNhap"]);
-                                command.Parameters.AddWithValue("@MatKhau", row["MatKhau"]);
-                                command.Parameters.AddWithValue("@VaiTro", row["VaiTro"]);
-                                command.Parameters.AddWithValue("@SDT", row["SDT"]);
-
-                                command.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                    MessageBox.Show("Cập nhật thành công!");
-                    LoadData(); // Cập nhật lại dữ liệu
+                    // Hiển thị dữ liệu lên các TextBox
+                    txtTenNV.Text = row.Cells["TenNV"].Value?.ToString();
+                    txtTenDangNhap.Text = tenDangNhap;
+                    txtMatKhau.Text = row.Cells["MatKhau"].Value?.ToString();
+                    txtSDT.Text = row.Cells["SDT"].Value?.ToString();
                 }
                 else
                 {
-                    MessageBox.Show("Không có thay đổi nào cần lưu.");
+                    MessageBox.Show("Không thể lấy dữ liệu Tên Đăng Nhập.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+
+        private bool isEditing = false; // Biến trạng thái để theo dõi chế độ chỉnh sửa
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!isEditing) // Khi bấm nút lần đầu để hiển thị thông tin
+                {
+                    if (dgvTaiKhoanmoi.SelectedRows.Count == 1)
+                    {
+                        DataGridViewRow selectedRow = dgvTaiKhoanmoi.SelectedRows[0];
+
+                        // Lấy thông tin từ hàng được chọn
+                        txtTenNV.Text = selectedRow.Cells["TenNV"].Value.ToString();
+                        txtTenDangNhap.Text = selectedRow.Cells["TenDangNhap"].Value.ToString();
+                        txtMatKhau.Text = selectedRow.Cells["MatKhau"].Value.ToString();
+                        txtSDT.Text = selectedRow.Cells["SDT"].Value.ToString();
+
+                        // Chuyển sang chế độ chỉnh sửa
+                        isEditing = true;
+                        btnSua.Text = "Lưu";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng chọn một tài khoản để sửa.");
+                    }
+                }
+                else // Khi bấm nút lần thứ hai để lưu thay đổi
+                {
+                    if (string.IsNullOrEmpty(txtTenNV.Text) || string.IsNullOrEmpty(txtTenDangNhap.Text) ||
+                        string.IsNullOrEmpty(txtMatKhau.Text) || string.IsNullOrEmpty(txtSDT.Text))
+                    {
+                        MessageBox.Show("Vui lòng điền đầy đủ thông tin trước khi lưu.");
+                        return;
+                    }
+
+                    // Lấy MaNV từ hàng đang được chọn
+                    int maNV = Convert.ToInt32(dgvTaiKhoanmoi.SelectedRows[0].Cells["MaNV"].Value);
+
+                    // Tạo đối tượng DTO từ dữ liệu trong TextBox
+                    TaiKhoanNhanVienDTO taiKhoan = new TaiKhoanNhanVienDTO
+                    {
+                        MaNV = maNV,
+                        TenNV = txtTenNV.Text.Trim(),
+                        TenDangNhap = txtTenDangNhap.Text.Trim(),
+                        MatKhau = txtMatKhau.Text.Trim(),
+                        SDT = txtSDT.Text.Trim(),
+                        VaiTro = "Nhân viên" // Hoặc lấy từ dữ liệu nếu cần
+                    };
+
+                    // Gọi phương thức BAL để cập nhật
+                    taiKhoanBAL.UpdateAccount(taiKhoan);
+
+                    // Hiển thị thông báo và làm mới dữ liệu
+                    MessageBox.Show("Cập nhật thành công!");
+                    LoadData();
+
+                    // Đặt lại trạng thái và nút
+                    isEditing = false;
+                    btnSua.Text = "Sửa";
+
+                    // Xóa thông tin trong TextBox
+                    ClearTextBoxes();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi cập nhật dữ liệu: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
-        private void btnXoa_Click_1(object sender, EventArgs e)
+        // Hàm xóa thông tin trong các TextBox
+        private void ClearTextBoxes()
         {
-            // Nút Xóa: Xóa tài khoản đã chọn
+            txtTenNV.Clear();
+            txtTenDangNhap.Clear();
+            txtMatKhau.Clear();
+            txtSDT.Clear();
+        }
 
+
+
+
+        // Phương thức sự kiện cho nút Xóa
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
             try
             {
                 if (dgvTaiKhoanmoi.SelectedRows.Count > 0)
                 {
-                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    foreach (DataGridViewRow row in dgvTaiKhoanmoi.SelectedRows)
                     {
-                        foreach (DataGridViewRow row in dgvTaiKhoanmoi.SelectedRows)
-                        {
-                            int maNV = Convert.ToInt32(row.Cells["MaNV"].Value); // Khóa chính
-
-                            using (SqlConnection connection = new SqlConnection(connectionString))
-                            {
-                                connection.Open();
-                                string query = "DELETE FROM TaiKhoanNhanVien WHERE MaNV = @MaNV";
-                                using (SqlCommand command = new SqlCommand(query, connection))
-                                {
-                                    command.Parameters.AddWithValue("@MaNV", maNV);
-                                    command.ExecuteNonQuery();
-                                }
-                            }
-                        }
-                        MessageBox.Show("Xóa thành công!");
-                        LoadData(); // Tải lại dữ liệu
+                        int maNV = Convert.ToInt32(row.Cells["MaNV"].Value);
+                        taiKhoanBAL.DeleteAccount(maNV);
                     }
+                    MessageBox.Show("Xóa thành công!");
+                    LoadData(); // Tải lại dữ liệu
                 }
                 else
                 {
@@ -179,7 +211,5 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi khi xóa tài khoản: " + ex.Message);
             }
         }
-
-
     }
 }

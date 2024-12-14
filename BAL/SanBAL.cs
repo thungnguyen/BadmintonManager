@@ -17,7 +17,7 @@ namespace BadmintonManager.BAL
             sanDAL = new SanDAL();
         }
 
-        public List<San> GetAllSans()
+        public List<SanDTO> GetAllSans()
         {
             return sanDAL.GetSanList();
         }

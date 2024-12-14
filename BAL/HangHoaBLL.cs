@@ -67,7 +67,7 @@ namespace BadmintonManager.BAL
         /// <summary>
         /// Retrieves all product categories from business logic
         /// </summary>
-        public List<LoaiHH> GetProductCategories()
+        public List<LoaiHHDTO> GetProductCategories()
         {
             try
             {

@@ -61,6 +61,9 @@ namespace BadmintonManager.GUI
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtTenKH = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TimTenKH = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lichDatSanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
@@ -86,12 +89,12 @@ namespace BadmintonManager.GUI
             this.canThanhToanDataGridViewTextBoxColumn,
             this.daTraDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.lichDatSanBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 146);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 182);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1125, 204);
+            this.dataGridView1.Size = new System.Drawing.Size(1266, 255);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -225,10 +228,10 @@ namespace BadmintonManager.GUI
             // btnHuyLich
             // 
             this.btnHuyLich.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnHuyLich.Location = new System.Drawing.Point(11, 98);
+            this.btnHuyLich.Location = new System.Drawing.Point(1140, 92);
             this.btnHuyLich.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHuyLich.Name = "btnHuyLich";
-            this.btnHuyLich.Size = new System.Drawing.Size(98, 36);
+            this.btnHuyLich.Size = new System.Drawing.Size(110, 45);
             this.btnHuyLich.TabIndex = 1;
             this.btnHuyLich.Text = "Hủy Lịch";
             this.btnHuyLich.UseVisualStyleBackColor = true;
@@ -237,28 +240,28 @@ namespace BadmintonManager.GUI
             // dateTimePickerTuNgay
             // 
             this.dateTimePickerTuNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.dateTimePickerTuNgay.Location = new System.Drawing.Point(535, 58);
+            this.dateTimePickerTuNgay.Location = new System.Drawing.Point(602, 72);
             this.dateTimePickerTuNgay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerTuNgay.Name = "dateTimePickerTuNgay";
-            this.dateTimePickerTuNgay.Size = new System.Drawing.Size(272, 24);
+            this.dateTimePickerTuNgay.Size = new System.Drawing.Size(306, 28);
             this.dateTimePickerTuNgay.TabIndex = 2;
             // 
             // dateTimePickerDenNgay
             // 
             this.dateTimePickerDenNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.dateTimePickerDenNgay.Location = new System.Drawing.Point(535, 98);
+            this.dateTimePickerDenNgay.Location = new System.Drawing.Point(602, 122);
             this.dateTimePickerDenNgay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerDenNgay.Name = "dateTimePickerDenNgay";
-            this.dateTimePickerDenNgay.Size = new System.Drawing.Size(272, 24);
+            this.dateTimePickerDenNgay.Size = new System.Drawing.Size(306, 28);
             this.dateTimePickerDenNgay.TabIndex = 3;
             // 
             // btnTim
             // 
             this.btnTim.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnTim.Location = new System.Drawing.Point(821, 74);
+            this.btnTim.Location = new System.Drawing.Point(924, 92);
             this.btnTim.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(91, 36);
+            this.btnTim.Size = new System.Drawing.Size(102, 45);
             this.btnTim.TabIndex = 4;
             this.btnTim.Text = "Tìm";
             this.btnTim.UseVisualStyleBackColor = true;
@@ -268,9 +271,9 @@ namespace BadmintonManager.GUI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.Location = new System.Drawing.Point(445, 58);
+            this.label1.Location = new System.Drawing.Point(501, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 18);
+            this.label1.Size = new System.Drawing.Size(76, 22);
             this.label1.TabIndex = 5;
             this.label1.Text = "Từ ngày";
             // 
@@ -278,29 +281,63 @@ namespace BadmintonManager.GUI
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label2.Location = new System.Drawing.Point(445, 98);
+            this.label2.Location = new System.Drawing.Point(501, 122);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 18);
+            this.label2.Size = new System.Drawing.Size(87, 22);
             this.label2.TabIndex = 6;
             this.label2.Text = "Đến ngày";
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.button1.Location = new System.Drawing.Point(917, 74);
+            this.button1.Location = new System.Drawing.Point(1032, 92);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 36);
+            this.button1.Size = new System.Drawing.Size(102, 45);
             this.button1.TabIndex = 7;
             this.button1.Text = "Làm mới";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
+            // txtTenKH
+            // 
+            this.txtTenKH.Location = new System.Drawing.Point(131, 91);
+            this.txtTenKH.Name = "txtTenKH";
+            this.txtTenKH.Size = new System.Drawing.Size(237, 26);
+            this.txtTenKH.TabIndex = 8;
+            this.txtTenKH.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label3.Location = new System.Drawing.Point(12, 92);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 22);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Nhập tên KH";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // TimTenKH
+            // 
+            this.TimTenKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.TimTenKH.Location = new System.Drawing.Point(374, 81);
+            this.TimTenKH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TimTenKH.Name = "TimTenKH";
+            this.TimTenKH.Size = new System.Drawing.Size(94, 45);
+            this.TimTenKH.TabIndex = 10;
+            this.TimTenKH.Text = "Tìm";
+            this.TimTenKH.UseVisualStyleBackColor = true;
+            this.TimTenKH.Click += new System.EventHandler(this.btnTimTenKH_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1145, 360);
+            this.ClientSize = new System.Drawing.Size(1288, 450);
+            this.Controls.Add(this.TimTenKH);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtTenKH);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -348,5 +385,8 @@ namespace BadmintonManager.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn layGiaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn canThanhToanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn daTraDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox txtTenKH;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button TimTenKH;
     }
 }

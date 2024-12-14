@@ -10,9 +10,9 @@ namespace BadmintonManager.DAL
         /// <summary>
         /// Retrieves all product categories from the database
         /// </summary>
-        public List<LoaiHH> GetAllCategories()
+        public List<LoaiHHDTO> GetAllCategories()
         {
-            List<LoaiHH> categories = new List<LoaiHH>();
+            List<LoaiHHDTO> categories = new List<LoaiHHDTO>();
 
             using (SqlConnection connection = DatabaseConnection.GetConnection())
             {
@@ -24,7 +24,7 @@ namespace BadmintonManager.DAL
                     {
                         while (reader.Read())
                         {
-                            categories.Add(new LoaiHH
+                            categories.Add(new LoaiHHDTO
                             {
                                 MaLoaiHH = Convert.ToInt32(reader["MaLoaiHH"]),
                                 TenLoaiHH = reader["TenLoaiHH"].ToString()
@@ -37,7 +37,7 @@ namespace BadmintonManager.DAL
             return categories;
         }
 
-        public void InsertCategory(LoaiHH category)
+        public void InsertCategory(LoaiHHDTO category)
         {
             using (SqlConnection connection = DatabaseConnection.GetConnection())
             {

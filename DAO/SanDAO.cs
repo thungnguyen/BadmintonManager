@@ -38,5 +38,20 @@ namespace BadmintonManager.DAO
             }
             return sanList;
         }
+        public void InsertSan (string tenSan)
+            {
+            DataProvider.Instance.ExecuteNonQuery("USP_InsertSan @tenSan", new object[] { tenSan });
+            }
+        public void UpdateSan(int maSan, string tenSan)
+        {
+            {
+                DataProvider.Instance.ExecuteNonQuery("EXEC [dbo].[UpdateSan] @maSan , @tenSan", new object[] { maSan, tenSan });
+            }
+        }
+        public void DeleteSan(int maSan)
+        {
+            string query = "DELETE FROM dbo.San WHERE MaSan = " + maSan;
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
     }
 }

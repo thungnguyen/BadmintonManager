@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvGiaSan = new System.Windows.Forms.DataGridView();
             this.quanLySanDataSet = new BadmintonManager.QuanLySanDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,7 +43,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtLoaiKH = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvGiaSan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,17 +57,6 @@
             this.label1.Size = new System.Drawing.Size(153, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "Giá Sân";
-            // 
-            // dgvGiaSan
-            // 
-            this.dgvGiaSan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvGiaSan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGiaSan.Location = new System.Drawing.Point(28, 258);
-            this.dgvGiaSan.Name = "dgvGiaSan";
-            this.dgvGiaSan.Size = new System.Drawing.Size(544, 171);
-            this.dgvGiaSan.TabIndex = 1;
-            this.dgvGiaSan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGiaSan_CellClick);
             // 
             // quanLySanDataSet
             // 
@@ -221,12 +208,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvGiaSan);
             this.Controls.Add(this.label1);
             this.Name = "GiaSan";
             this.Text = "GiaSan";
             this.Load += new System.EventHandler(this.GiaSan_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvGiaSan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -236,7 +221,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvGiaSan;
         private QuanLySanDataSet quanLySanDataSet;
         
         

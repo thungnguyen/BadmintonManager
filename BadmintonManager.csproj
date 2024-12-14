@@ -158,9 +158,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\GiaSanBLL.cs" />
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillInfoDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DAO\GiaSanDAO.cs" />
     <Compile Include="DAO\HHDAO.cs" />
     <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\LoaiHHDAO.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Database\TaiKhoanNhanVien.cs" />
     <Compile Include="Database\ThanhToan.cs" />
     <Compile Include="Database\ThemeColor.cs" />
+    <Compile Include="DTO\BangGiaSanDTO.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
     <Compile Include="DTO\HH.cs" />
@@ -192,6 +195,12 @@
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\PricePerHour.cs" />
     <Compile Include="DTO\San.cs" />
+    <Compile Include="GUI\BangGiaSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BangGiaSan.Designer.cs">
+      <DependentUpon>BangGiaSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +249,12 @@
     <Compile Include="GUI\GiaSan.Designer.cs">
       <DependentUpon>GiaSan.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TaoSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaoSan.Designer.cs">
+      <DependentUpon>TaoSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ThietLapSan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +268,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\BangGiaSan.resx">
+      <DependentUpon>BangGiaSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DangKyTaiKhoan.resx">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\GiaSan.resx">
       <DependentUpon>GiaSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TaoSan.resx">
+      <DependentUpon>TaoSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThietLapSan.resx">
       <DependentUpon>ThietLapSan.cs</DependentUpon>

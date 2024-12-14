@@ -58,7 +58,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.BtnStart = new System.Windows.Forms.Button();
             this.btnTinhGiaSan = new System.Windows.Forms.Button();
-            this.btnTimKhach = new System.Windows.Forms.Button();
             this.btnKhachMoi = new System.Windows.Forms.Button();
             this.btnChooseLichSan = new System.Windows.Forms.Button();
             this.nudSoGioThue = new System.Windows.Forms.NumericUpDown();
@@ -115,7 +114,7 @@
             // cbHH
             // 
             this.cbHH.FormattingEnabled = true;
-            this.cbHH.Location = new System.Drawing.Point(44, 43);
+            this.cbHH.Location = new System.Drawing.Point(44, 46);
             this.cbHH.Name = "cbHH";
             this.cbHH.Size = new System.Drawing.Size(137, 21);
             this.cbHH.TabIndex = 9;
@@ -154,7 +153,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 46);
+            this.label2.Location = new System.Drawing.Point(3, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 1;
@@ -352,7 +351,6 @@
             this.panel4.Controls.Add(this.label18);
             this.panel4.Controls.Add(this.BtnStart);
             this.panel4.Controls.Add(this.btnTinhGiaSan);
-            this.panel4.Controls.Add(this.btnTimKhach);
             this.panel4.Controls.Add(this.btnKhachMoi);
             this.panel4.Controls.Add(this.btnChooseLichSan);
             this.panel4.Controls.Add(this.nudSoGioThue);
@@ -371,7 +369,7 @@
             // cbLoaiKH
             // 
             this.cbLoaiKH.FormattingEnabled = true;
-            this.cbLoaiKH.Location = new System.Drawing.Point(71, 61);
+            this.cbLoaiKH.Location = new System.Drawing.Point(71, 66);
             this.cbLoaiKH.Name = "cbLoaiKH";
             this.cbLoaiKH.Size = new System.Drawing.Size(200, 21);
             this.cbLoaiKH.TabIndex = 14;
@@ -380,7 +378,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(4, 69);
+            this.label18.Location = new System.Drawing.Point(4, 74);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(45, 13);
             this.label18.TabIndex = 13;
@@ -390,7 +388,7 @@
             // 
             this.BtnStart.Location = new System.Drawing.Point(370, 122);
             this.BtnStart.Name = "BtnStart";
-            this.BtnStart.Size = new System.Drawing.Size(84, 46);
+            this.BtnStart.Size = new System.Drawing.Size(84, 52);
             this.BtnStart.TabIndex = 12;
             this.BtnStart.Text = "Bắt đầu";
             this.BtnStart.UseVisualStyleBackColor = true;
@@ -399,35 +397,26 @@
             // 
             this.btnTinhGiaSan.Location = new System.Drawing.Point(280, 122);
             this.btnTinhGiaSan.Name = "btnTinhGiaSan";
-            this.btnTinhGiaSan.Size = new System.Drawing.Size(84, 46);
+            this.btnTinhGiaSan.Size = new System.Drawing.Size(84, 52);
             this.btnTinhGiaSan.TabIndex = 11;
             this.btnTinhGiaSan.Text = "Tính giá";
             this.btnTinhGiaSan.UseVisualStyleBackColor = true;
             this.btnTinhGiaSan.Click += new System.EventHandler(this.btnTinhGiaSan_Click);
             // 
-            // btnTimKhach
-            // 
-            this.btnTimKhach.Location = new System.Drawing.Point(370, 61);
-            this.btnTimKhach.Name = "btnTimKhach";
-            this.btnTimKhach.Size = new System.Drawing.Size(84, 46);
-            this.btnTimKhach.TabIndex = 10;
-            this.btnTimKhach.Text = "Tìm tên";
-            this.btnTimKhach.UseVisualStyleBackColor = true;
-            // 
             // btnKhachMoi
             // 
             this.btnKhachMoi.Location = new System.Drawing.Point(280, 61);
             this.btnKhachMoi.Name = "btnKhachMoi";
-            this.btnKhachMoi.Size = new System.Drawing.Size(84, 46);
+            this.btnKhachMoi.Size = new System.Drawing.Size(84, 52);
             this.btnKhachMoi.TabIndex = 9;
             this.btnKhachMoi.Text = "Khách mới";
             this.btnKhachMoi.UseVisualStyleBackColor = true;
             // 
             // btnChooseLichSan
             // 
-            this.btnChooseLichSan.Location = new System.Drawing.Point(339, 29);
+            this.btnChooseLichSan.Location = new System.Drawing.Point(370, 61);
             this.btnChooseLichSan.Name = "btnChooseLichSan";
-            this.btnChooseLichSan.Size = new System.Drawing.Size(115, 26);
+            this.btnChooseLichSan.Size = new System.Drawing.Size(84, 52);
             this.btnChooseLichSan.TabIndex = 8;
             this.btnChooseLichSan.Text = "Chọn từ lịch sân";
             this.btnChooseLichSan.UseVisualStyleBackColor = true;
@@ -468,7 +457,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 155);
+            this.label12.Location = new System.Drawing.Point(4, 155);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 13);
             this.label12.TabIndex = 5;
@@ -486,7 +475,7 @@
             // cbKhachHang
             // 
             this.cbKhachHang.FormattingEnabled = true;
-            this.cbKhachHang.Location = new System.Drawing.Point(71, 29);
+            this.cbKhachHang.Location = new System.Drawing.Point(71, 34);
             this.cbKhachHang.Name = "cbKhachHang";
             this.cbKhachHang.Size = new System.Drawing.Size(259, 21);
             this.cbKhachHang.TabIndex = 3;
@@ -494,7 +483,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 130);
+            this.label11.Location = new System.Drawing.Point(4, 129);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(61, 13);
             this.label11.TabIndex = 2;
@@ -512,7 +501,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 37);
+            this.label9.Location = new System.Drawing.Point(4, 42);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 13);
             this.label9.TabIndex = 0;
@@ -555,6 +544,7 @@
             this.btnThoat.TabIndex = 24;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // panel6
             // 
@@ -570,9 +560,9 @@
             // 
             this.flpSan.AutoScroll = true;
             this.flpSan.Controls.Add(this.lbListSan);
-            this.flpSan.Location = new System.Drawing.Point(670, 89);
+            this.flpSan.Location = new System.Drawing.Point(670, 12);
             this.flpSan.Name = "flpSan";
-            this.flpSan.Size = new System.Drawing.Size(121, 297);
+            this.flpSan.Size = new System.Drawing.Size(121, 374);
             this.flpSan.TabIndex = 26;
             // 
             // lbListSan
@@ -783,7 +773,6 @@
         private System.Windows.Forms.NumericUpDown nudSoGioThue;
         private System.Windows.Forms.Button btnChooseLichSan;
         private System.Windows.Forms.Button btnTinhGiaSan;
-        private System.Windows.Forms.Button btnTimKhach;
         private System.Windows.Forms.Button btnKhachMoi;
         private System.Windows.Forms.Button btnCheckOut;
         private System.Windows.Forms.Button btnInPhieu;

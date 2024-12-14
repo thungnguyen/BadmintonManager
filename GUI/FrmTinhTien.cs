@@ -36,8 +36,7 @@ namespace BadmintonManager.GUI
 
         #region methods
         private void LoadTongTien()
-        {
-            
+        {  
             decimal giaSan = Convert.ToDecimal(txtGiaSan.Text);
             decimal tongTien = Convert.ToDecimal(txtTongTien.Text);
             decimal tienCuoi = giaSan + tongTien;
@@ -334,11 +333,24 @@ namespace BadmintonManager.GUI
             DateTime startTime = DateTime.Now; // Hoặc có thể thay bằng thời gian bắt đầu khác
             DateTime resultTime = startTime.AddHours((double)nudSoGioThue.Value).Add(duration);
         }
-        private Dictionary<int, decimal> giaSanCache = new Dictionary<int, decimal>();
+        private Dictionary<int, decimal> sanPrices = new Dictionary<int, decimal>();
+        private void CalculateAndSaveSanPrice(San san)
+        {
+            string loaiKH = GetLoaiKHSelectedValue();
+            TimeSpan gioBatDau = dtpGioVao.Value.TimeOfDay;
+            TimeSpan gioKetThuc = dtpGioRa.Value.TimeOfDay;
 
+            decimal giaSan = CalculateTotalPrice(gioBatDau, gioKetThuc, loaiKH);
+
+            // Lưu giá sân vào từ điển
+            sanPrices[san.MaSan] = giaSan;
+
+            // Hiển thị giá sân
+            txtGiaSan.Text = giaSan.ToString();
+        }
 
         #endregion
-        #region events
+        #region events 
         private void dtpGioVao_ValueChanged(object sender, EventArgs e)
         {
             // Làm tròn thời gian của dtpTuGio
@@ -379,12 +391,21 @@ namespace BadmintonManager.GUI
 
         private void btnSan_Click(object sender, EventArgs e)
         {
-            int maSan = ((sender as Button).Tag as San).MaSan;
-            lsvBill.Tag = (sender as Button).Tag;
-            ShowBill(maSan);
-            // Lấy tên sân từ đối tượng San dựa trên MaSan
-            string tenSan = ((sender as Button).Tag as San).TenSan;
-            lbTenSan.Text = tenSan;
+            San selectedSan = (sender as Button).Tag as San;
+            lsvBill.Tag = selectedSan;
+
+            ShowBill(selectedSan.MaSan);
+            lbTenSan.Text = selectedSan.TenSan;
+
+            // Hiển thị giá sân từ từ điển nếu đã lưu
+            if (sanPrices.ContainsKey(selectedSan.MaSan))
+            {
+                txtGiaSan.Text = sanPrices[selectedSan.MaSan].ToString();
+            }
+            else
+            {
+                txtGiaSan.Text = "0";
+            }
         }
         private void btnAddHH_Click(object sender, EventArgs e)
         {
@@ -445,11 +466,19 @@ namespace BadmintonManager.GUI
 
             if (maHD != -1)
             {
+                // Lấy giá sân từ từ điển
+                decimal giaSan = 0;
+                if (sanPrices.ContainsKey(san.MaSan))
+                {
+                    giaSan = sanPrices[san.MaSan];
+                }
+
                 if (MessageBox.Show("Bạn có chắc muốn thanh toán hóa đơn cho " + san.TenSan + " không?", "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
-                    BillDAO.Instance.Checkout(maHD);
-                    ShowBill(san.MaSan);
-
+                    // Truyền giá sân vào thủ tục thanh toán
+                    BillDAO.Instance.Checkout(maHD, giaSan);
+                    sanPrices.Remove(san.MaSan);
+                    ShowBill(san.MaSan);  // Cập nhật lại hóa đơn sau khi thanh toán
                 }
             }
         }
@@ -529,22 +558,24 @@ namespace BadmintonManager.GUI
 
         private void btnTinhGiaSan_Click(object sender, EventArgs e)
         {
-            // Lấy giá trị loại khách hàng từ ComboBox
-            string loaiKH = GetLoaiKHSelectedValue();
-
-            // Lấy thời gian từ các DateTimePicker (gioVao và gioRa)
-            TimeSpan gioBatDau = dtpGioVao.Value.TimeOfDay;  // Lấy giá trị giờ vào từ dtpGioVao
-            TimeSpan gioKetThuc = dtpGioRa.Value.TimeOfDay;  // Lấy giá trị giờ ra từ dtpGioRa
-
-            // Gọi phương thức tính giá sân
-            decimal giaTien = CalculateTotalPrice(gioBatDau, gioKetThuc, loaiKH);
-
-            // Hiển thị giá trị vào một label hoặc một nơi hiển thị khác
-            txtGiaSan.Text = giaTien.ToString("N0");
+            San selectedSan = lsvBill.Tag as San;
+            if (selectedSan != null)
+            {
+                CalculateAndSaveSanPrice(selectedSan);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn sân trước khi tính giá.", "Thông báo");
+            }
+        }
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();  // Đóng form hiện tại
         }
 
-
         #endregion
+
+
     }
 }
 

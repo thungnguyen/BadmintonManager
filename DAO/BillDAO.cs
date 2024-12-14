@@ -39,11 +39,13 @@ namespace BadmintonManager.DAO
             }
             return -1;
     }
-        public void Checkout(int maHD)
+        public void Checkout(int maHD, decimal giaSan)
         {
-            string query = "UPDATE dbo.HoaDon SET status = 1 WHERE MaHD = " + maHD;
+            // Gọi thủ tục thanh toán và truyền giá sân vào
+            string query = "EXEC USP_ThanhToan @maHD = " + maHD + ", @giaGioChoi = " + giaSan;
             DataProvider.Instance.ExecuteNonQuery(query);
         }
+
         public void InsertBill(int maSan, decimal giaGioChoi)
         {
             DataProvider.Instance.ExecuteNonQuery("EXEC USP_InsertBill @maSan , @giaGioChoi", new object[] { maSan, giaGioChoi });

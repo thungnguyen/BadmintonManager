@@ -160,8 +160,9 @@
     <Compile Include="BAL\KhachHangBAL.cs" />
     <Compile Include="BAL\KhachHangBLL.cs" />
     <Compile Include="BAL\LichDatSanBAL.cs" />
+    <Compile Include="BAL\LichSuNhapHangBAL.cs" />
     <Compile Include="BAL\LoaiHHBLL.cs" />
-    <Compile Include="BAL\PhieuChiBAL.cs" />
+    <Compile Include="BAL\PhieuNhapHangBAL.cs" />
     <Compile Include="BAL\SanBAL.cs" />
     <Compile Include="BAL\TaiKhoanBAL.cs" />
     <Compile Include="BAL\TaiKhoanNhanVienBAL .cs" />
@@ -178,9 +179,11 @@
     <Compile Include="DAL\KhachHangDAL.cs" />
     <Compile Include="DAL\KhachHangDAO.cs" />
     <Compile Include="DAL\LichDatSanDAL.cs" />
+    <Compile Include="DAL\LichSuNhapHangDAL.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
     <Compile Include="DAL\LoaiHHDAO.cs" />
     <Compile Include="DAL\MenuDAO.cs" />
+    <Compile Include="DAL\PhieuNhapHangDAL.cs" />
     <Compile Include="DAL\PricePerHourDAO.cs" />
     <Compile Include="DAL\SanDAL.cs" />
     <Compile Include="DAL\SanDAO.cs" />
@@ -190,9 +193,11 @@
     <Compile Include="DTO\BillInfo.cs" />
     <Compile Include="DTO\HH.cs" />
     <Compile Include="DTO\KhachHang.cs" />
+    <Compile Include="DTO\LichSuNhapHangDTO.cs" />
     <Compile Include="DTO\LoaiHHDTO.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
+    <Compile Include="DTO\PhieuNhapHang.cs" />
     <Compile Include="DTO\PricePerHour.cs" />
     <Compile Include="DTO\San.cs" />
     <Compile Include="GUI\BangGiaSan.cs">
@@ -219,6 +224,12 @@
     </Compile>
     <Compile Include="GUI\FormBaoCaoDoanhThu.Designer.cs">
       <DependentUpon>FormBaoCaoDoanhThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormPhieuNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormPhieuNhapHang.Designer.cs">
+      <DependentUpon>FormPhieuNhapHang.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\TaoSan.cs">
       <SubType>Form</SubType>
@@ -379,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormPhieuNhapHang.resx">
+      <DependentUpon>FormPhieuNhapHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmTinhTien.resx">
       <DependentUpon>FrmTinhTien.cs</DependentUpon>

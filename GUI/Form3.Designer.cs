@@ -1,4 +1,6 @@
-﻿namespace BadmintonManager.GUI
+﻿using System;
+
+namespace BadmintonManager.GUI
 {
     partial class Form3
     {
@@ -168,6 +170,16 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void lblDaTra_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void lblTuNgay_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private System.Windows.Forms.Label lblMaDatSan;

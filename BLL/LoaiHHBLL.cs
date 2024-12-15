@@ -17,14 +17,6 @@ namespace BadmintonManager.BLL
             _loaiHHDAL = new LoaiHHDAL();
         }
 
-        /// <summary>
-        /// Gets all product categories
-        /// </summary>
-        public List<LoaiHH> GetAllCategories()
-        {
-            return _loaiHHDAL.GetAllCategories()
-                .OrderBy(c => c.TenLoaiHH)
-                .ToList();
-        }
+       
     }
 }

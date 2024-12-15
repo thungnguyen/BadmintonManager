@@ -10,34 +10,13 @@ namespace BadmintonManager.DAL
 {
     internal class LoaiHHDAL
     {
-        /// <summary>
-        /// Retrieves all product categories from the database
-        /// </summary>
-        public List<LoaiHH> GetAllCategories()
+        private readonly MongoDBConnection _dbConnection; 
+
+        public LoaiHHDAL()
         {
-            List<LoaiHH> categories = new List<LoaiHH>();
-
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = "SELECT * FROM LoaiHH";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            categories.Add(new LoaiHH
-                            {
-                                MaLoaiHH = Convert.ToInt32(reader["MaLoaiHH"]),
-                                TenLoaiHH = reader["TenLoaiHH"].ToString()
-                            });
-                        }
-                    }
-                }
-            }
-
-            return categories;
+            _dbConnection = new MongoDBConnection();
         }
+
+
     }
 }

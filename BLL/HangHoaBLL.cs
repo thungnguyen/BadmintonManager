@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Web;
 using BadmintonManager.DAL;
 using BadmintonManager.DTO;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
+
 
 
 namespace BadmintonManager.BLL
@@ -12,55 +18,78 @@ namespace BadmintonManager.BLL
     /// </summary>
     public class HangHoaBLL
     {
-        private HangHoaDAL _hangHoaDAL;
+        private HangHoaDAL _hanghoaDAL;
 
         public HangHoaBLL()
         {
-            _hangHoaDAL = new HangHoaDAL();
+            _hanghoaDAL = new HangHoaDAL();
         }
 
-        /// <summary>
-        /// Gets all products with business logic applied
-        /// </summary>
-        public List<HangHoa> GetAllProducts()
+        // Phương thức lấy danh sách hàng hóa từ DAL và chuyển đổi thành danh sách đối tượng HangHoa
+        public List<HangHoa> HangHoaList(string sortCriteria = null)
         {
-            var products = _hangHoaDAL.GetAllProducts();
+            // Lấy danh sách BsonDocument từ DAL
+            List<BsonDocument> hhListBson = _hanghoaDAL.ListHangHoa();
 
-            // Example of LINQ-based business logic
-            return products
-                .Where(p => p.GiaBanLon > 0)
-                .OrderBy(p => p.TenHH)
-                .ToList();
-        }
-
-        /// <summary>
-        /// Validates and adds a new product
-        /// </summary>
-        public int AddProduct(HangHoa product)
-        {
-            // Business validation
-            if (string.IsNullOrWhiteSpace(product.TenHH))
+            // Chuyển đổi BsonDocument thành đối tượng HangHoa
+            List<HangHoa> hhList = new List<HangHoa>();
+            foreach (var item in hhListBson)
             {
-                throw new ArgumentException("Product name cannot be empty");
+                HangHoa hh = new HangHoa
+                {
+                    Id = item["_id"].ToString(),
+                    TenHH = item["tenHH"].ToString(),
+                    MoTa = item["moTa"].ToString(),
+                    DonViTinhLon = item["donViTinhLon"].ToString(),
+                    DonViTinhNho = item["donViTinhNho"].ToString(),
+                    HeSoQuyDoi = item["heSoQuyDoi"].ToInt32(),
+                    GiaNhapLon = item["giaNhapLon"].ToDecimal(),
+                    GiaNhapNho = item["giaNhapNho"].ToDecimal(),
+                    GiaBanLon = item["giaBanLon"].ToDecimal(),
+                    GiaBanNho = item["giaBanNho"].ToDecimal(),
+                    SoLuongTonLon = item["soLuongTonLon"].ToInt32(),
+                    SoLuongTonNho = item["soLuongTonNho"].ToInt32(),
+                    MaLoaiHH = item["maLoaiHH"].ToInt32(),
+                    MaHH = item["maHH"].ToString()
+                };
+
+                // Thêm vào danh sách hàng hóa
+                hhList.Add(hh);
             }
 
-            if (product.GiaBanLon <= 0)
-            {
-                throw new ArgumentException("Product price must be greater than zero");
-            }
-
-            return _hangHoaDAL.AddProduct(product);
+            return hhList;
         }
 
-        /// <summary>
-        /// Gets products by category
-        /// </summary>
-        public List<HangHoa> GetProductsByCategory(int categoryId)
+        public void ThemHH(HangHoa hh)
         {
-            var products = _hangHoaDAL.GetAllProducts();
-            return products
-                .Where(p => p.MaLoaiHH == categoryId)
-                .ToList();
+            // Tạo BsonDocument từ đối tượng HangHoa
+            var newhh = new BsonDocument
+                {
+                    { "tenHH", hh.TenHH },
+                    { "moTa", hh.MoTa },
+                    { "donViTinhLon", hh.DonViTinhLon },
+                    { "donViTinhNho", hh.DonViTinhNho },
+                    { "heSoQuyDoi", hh.HeSoQuyDoi },
+                    { "giaNhapLon", hh.GiaNhapLon },
+                    { "giaNhapNho", hh.GiaNhapNho },
+                    { "giaBanLon", hh.GiaBanLon },
+                    { "giaBanNho", hh.GiaBanNho },
+                    { "soLuongTonLon", hh.SoLuongTonLon },
+                    { "soLuongTonNho", hh.SoLuongTonNho },
+                    { "maLoaiHH", hh.MaLoaiHH },
+                    { "maHH", hh.MaHH }
+                };
+            _hanghoaDAL.ThemHH(newhh);
+        } 
+      
+        public void SuaHH(HangHoa updatedhh)
+        {
+            _hanghoaDAL.SuaHH(updatedhh);
+        }
+
+        public void XoaHH(HangHoa hh)
+        {
+            _hanghoaDAL.XoaHH(hh);
         }
     }
 }

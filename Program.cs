@@ -1,4 +1,5 @@
-﻿using BadmintonManager.GUI;
+﻿
+using BadmintonManager.GUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace BadmintonManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuanLySanPham());
+            Application.Run(new DanhMucHangHoa());
         }
     }
 }

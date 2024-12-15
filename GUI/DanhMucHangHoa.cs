@@ -1,21 +1,14 @@
 ﻿using BadmintonManager.BLL;
 using BadmintonManager.DTO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace BadmintonManager.GUI
 {
     public partial class DanhMucHangHoa : Form
     {
         private HangHoaBLL _hangHoaBLL;
+
         public DanhMucHangHoa()
         {
             InitializeComponent();
@@ -23,27 +16,112 @@ namespace BadmintonManager.GUI
             LoadTable();
         }
 
-        private void LoadTable()
+
+        private void LoadTable(string searchTerm = null)
         {
             try
             {
-                var products = _hangHoaBLL.GetAllProducts();
-                dgvHangHoa.DataSource = products;
-            }
+                // Fetch products, optionally filtered by search term
+                var dataTable = _hangHoaBLL.HangHoaList(searchTerm);
+                dgvHangHoa.DataSource = dataTable;
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading products: {ex.Message}");
             }
         }
 
-        private void dgvHangHoa_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void addbtn_Click(object sender, EventArgs e)
         {
+            //using (var addForm = new ThemHangHoa())
+            //{
+            //    var result = addForm.ShowDialog();
 
+            //    if (result == DialogResult.OK)
+            //    {
+            //        LoadTable();
+            //    }
+            //}
+        }
+
+
+        private void dgvHangHoa_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void refreshbtn_Click(object sender, EventArgs e)
+        {
+            LoadTable();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = searchbar.Text.Trim();
+            LoadTable(searchTerm); // Pass the search term to filter results
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvHangHoa.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a product to delete.");
+                return;
+            }
+
+
+            var selectedRow = dgvHangHoa.SelectedRows[0];
+            var maHH = selectedRow.Cells["MaHH"].Value.ToString();
+            string xoama = maHH.ToString();
+
+
+            var confirmResult = MessageBox.Show(
+                "Bạn có muốn xoá danh mục sản phẩm này?",
+                "Xác nhận xoá danh mục sản phẩm",
+                MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    HangHoa hhxoa = new HangHoa { MaHH = xoama };
+                    _hangHoaBLL.XoaHH(hhxoa);
+                    MessageBox.Show("Sản phẩm xoá thành công");
+                    LoadTable();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi xoá: {ex.Message}");
+                }
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //if (dgvHangHoa.CurrentRow != null)
+            //{
+            //    // Lấy sản phẩm được chọn từ DataGridView
+            //    int selectedProductId = (int)dgvHangHoa.CurrentRow.Cells["MaHH"].Value;
+            //    var product = _hangHoaBLL.GetProductById(selectedProductId);
+
+            //    if (product != null)
+            //    {
+            //        // Mở form sửa hàng hoá
+            //        var editForm = new SuaHangHoa(product);
+            //        editForm.ShowDialog();
+
+            //        // Refresh lại danh sách sau khi sửa
+            //        LoadTable();
+            //    }
+            //}
+        }
+
+        private void addnewLoaiHHbtn_Click(object sender, EventArgs e)
+        {
+            //using (DanhSachLoaiHH formDanhSachLoaiHH = new DanhSachLoaiHH())
+            //{
+            //    formDanhSachLoaiHH.ShowDialog(); // Open the form modally
+            //}
         }
     }
 }

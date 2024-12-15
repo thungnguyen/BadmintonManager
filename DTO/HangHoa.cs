@@ -20,6 +20,6 @@ namespace BadmintonManager.DTO
         public decimal GiaBanNho { get; set; }
         public int SoLuongTonLon { get; set; }
         public int SoLuongTonNho { get; set; }
-        public int MaLoaiHH { get; set; }
+        public string MaLoaiHH { get; set; }
     } 
 }

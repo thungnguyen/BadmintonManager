@@ -12,7 +12,8 @@ namespace BadmintonManager.DTO
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int MaLoaiHH { get; set; }
+        public string Id { get; set; }
+        public string MaLoaiHH { get; set; }
         public string TenLoaiHH { get; set; }
     }
 

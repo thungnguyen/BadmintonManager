@@ -27,21 +27,21 @@ namespace BadmintonManager.GUI
             } 
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading products: {ex.Message}");
+                MessageBox.Show($"Gặp lỗi khi lấy hàng hoá: {ex.Message}");
             }
         }
 
         private void addbtn_Click(object sender, EventArgs e)
         {
-            //using (var addForm = new ThemHangHoa())
-            //{
-            //    var result = addForm.ShowDialog();
+            using (var addForm = new ThemHangHoa())
+            {
+                var result = addForm.ShowDialog();
 
-            //    if (result == DialogResult.OK)
-            //    {
-            //        LoadTable();
-            //    }
-            //}
+                if (result == DialogResult.OK)
+                {
+                    LoadTable();
+                }
+            }
         }
 
 
@@ -65,36 +65,41 @@ namespace BadmintonManager.GUI
         {
             if (dgvHangHoa.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a product to delete.");
+                MessageBox.Show("Hãy chọn một sản phẩm để xoá.");
                 return;
             }
 
-
+            // Get the selected row
             var selectedRow = dgvHangHoa.SelectedRows[0];
-            var maHH = selectedRow.Cells["MaHH"].Value.ToString();
-            string xoama = maHH.ToString();
+            var maHH = selectedRow.Cells["MaHH"].Value?.ToString();
 
+            if (string.IsNullOrEmpty(maHH))
+            {
+                MessageBox.Show("Không thể xác định mã sản phẩm để xoá.");
+                return;
+            }
 
+            // Confirm deletion
             var confirmResult = MessageBox.Show(
-                "Bạn có muốn xoá danh mục sản phẩm này?",
-                "Xác nhận xoá danh mục sản phẩm",
+                "Bạn có chắc chắn muốn xoá sản phẩm này?",
+                "Xác nhận xoá",
                 MessageBoxButtons.YesNo);
 
             if (confirmResult == DialogResult.Yes)
             {
                 try
                 {
-                    HangHoa hhxoa = new HangHoa { MaHH = xoama };
-                    _hangHoaBLL.XoaHH(hhxoa);
-                    MessageBox.Show("Sản phẩm xoá thành công");
+                    _hangHoaBLL.XoaHH(new HangHoa { MaHH = maHH });
+                    MessageBox.Show("Sản phẩm đã được xoá thành công.");
                     LoadTable();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi khi xoá: {ex.Message}");
+                    MessageBox.Show($"Lỗi khi xoá sản phẩm: {ex.Message}");
                 }
             }
         }
+
 
         private void btnEdit_Click(object sender, EventArgs e)
         {

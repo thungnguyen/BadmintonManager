@@ -49,7 +49,7 @@ namespace BadmintonManager.BLL
                     GiaBanNho = item["giaBanNho"].ToDecimal(),
                     SoLuongTonLon = item["soLuongTonLon"].ToInt32(),
                     SoLuongTonNho = item["soLuongTonNho"].ToInt32(),
-                    MaLoaiHH = item["maLoaiHH"].ToInt32(),
+                    MaLoaiHH = item["maLoaiHH"].ToString(),
                     MaHH = item["maHH"].ToString()
                 };
 
@@ -77,7 +77,6 @@ namespace BadmintonManager.BLL
                     { "soLuongTonLon", hh.SoLuongTonLon },
                     { "soLuongTonNho", hh.SoLuongTonNho },
                     { "maLoaiHH", hh.MaLoaiHH },
-                    { "maHH", hh.MaHH }
                 };
             _hanghoaDAL.ThemHH(newhh);
         } 
@@ -89,7 +88,13 @@ namespace BadmintonManager.BLL
 
         public void XoaHH(HangHoa hh)
         {
-            _hanghoaDAL.XoaHH(hh);
+            if (hh == null || string.IsNullOrEmpty(hh.MaHH))
+            {
+                throw new ArgumentException("Invalid HangHoa object for deletion.");
+            }
+
+            _hanghoaDAL.XoaHH(hh.MaHH);
         }
+
     }
 }

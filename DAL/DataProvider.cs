@@ -27,7 +27,7 @@ namespace BadmintonManager.DAO
         }
         private DataProvider() { }
         private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MongoDbConnectionString"].ConnectionString;
-d
+ 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();

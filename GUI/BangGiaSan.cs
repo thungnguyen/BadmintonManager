@@ -69,10 +69,10 @@ namespace BadmintonManager.GUI
                 ListViewItem selectedItem = lsvGiaSan.SelectedItems[0];
 
                 // Lấy giá trị từ các cột của dòng được chọn và gán vào các ô nhập liệu (TextBox)
-                string loaiKH = selectedItem.SubItems[0].Text;  // Cột Loại KH
-                DateTime gioBatDau = DateTime.Parse(selectedItem.SubItems[1].Text);  // Cột Giờ Bắt Đầu
-                DateTime gioKetThuc = DateTime.Parse(selectedItem.SubItems[2].Text);  // Cột Giờ Kết Thúc
-                decimal gia = decimal.Parse(selectedItem.SubItems[3].Text);  // Cột Giá
+                string loaiKH = selectedItem.SubItems[1].Text;  // Cột Loại KH
+                DateTime gioBatDau = DateTime.Parse(selectedItem.SubItems[3].Text);  // Cột Giờ Bắt Đầu
+                DateTime gioKetThuc = DateTime.Parse(selectedItem.SubItems[4].Text);  // Cột Giờ Kết Thúc
+                decimal gia = decimal.Parse(selectedItem.SubItems[2].Text);  // Cột Giá
 
                 // Gán các giá trị này vào các TextBox hoặc DateTimePicker tương ứng
                 txtLoaiKH.Text = loaiKH;

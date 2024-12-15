@@ -46,7 +46,7 @@ namespace BadmintonManager.DAO
         }
         public void UpdateGiaSan(int maGia, string loaiKH, TimeSpan gioBatDau, TimeSpan gioKetThuc, decimal gia)
         {
-            string query = "UPDATE dbo.BangGiaSan SET LoaiKH = @loaiKH, GioBatDau = @gioBatDau , GioKetThuc = @gioKetThuc , Gia = @gia WHERE MaGia = @maGia";
+            string query = "UPDATE dbo.BangGiaSan SET LoaiKH = @loaiKH , GioBatDau = @gioBatDau , GioKetThuc = @gioKetThuc , Gia = @gia WHERE MaGia = @maGia";
             object[] parameters = new object[] { loaiKH, gioBatDau, gioKetThuc, gia, maGia };
             DataProvider.Instance.ExecuteNonQuery(query, parameters);
         }

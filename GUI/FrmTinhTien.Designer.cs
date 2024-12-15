@@ -420,6 +420,7 @@
             this.btnChooseLichSan.TabIndex = 8;
             this.btnChooseLichSan.Text = "Chọn từ lịch sân";
             this.btnChooseLichSan.UseVisualStyleBackColor = true;
+            this.btnChooseLichSan.Click += new System.EventHandler(this.btnChooseLichSan_Click);
             // 
             // nudSoGioThue
             // 
@@ -447,9 +448,11 @@
             // 
             // dtpGioRa
             // 
-            this.dtpGioRa.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpGioRa.CustomFormat = "HH:mm:ss";
+            this.dtpGioRa.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpGioRa.Location = new System.Drawing.Point(71, 148);
             this.dtpGioRa.Name = "dtpGioRa";
+            this.dtpGioRa.ShowUpDown = true;
             this.dtpGioRa.Size = new System.Drawing.Size(200, 20);
             this.dtpGioRa.TabIndex = 6;
             this.dtpGioRa.ValueChanged += new System.EventHandler(this.dtpGioRa_ValueChanged);
@@ -465,9 +468,11 @@
             // 
             // dtpGioVao
             // 
-            this.dtpGioVao.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpGioVao.CustomFormat = "HH:mm:ss";
+            this.dtpGioVao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpGioVao.Location = new System.Drawing.Point(71, 93);
             this.dtpGioVao.Name = "dtpGioVao";
+            this.dtpGioVao.ShowUpDown = true;
             this.dtpGioVao.Size = new System.Drawing.Size(200, 20);
             this.dtpGioVao.TabIndex = 4;
             this.dtpGioVao.ValueChanged += new System.EventHandler(this.dtpGioVao_ValueChanged);

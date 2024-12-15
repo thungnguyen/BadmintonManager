@@ -26,14 +26,14 @@ namespace BadmintonManager.DAO
         }
 
         private BangGiaSanDAO() { }
-        public List<BangGiaSanDTO> GetListGiaSan()
+        public List<BangGiaSan> GetListGiaSan()
         {
-            List<BangGiaSanDTO> list = new List<BangGiaSanDTO>();
+            List<BangGiaSan> list = new List<BangGiaSan>();
             string query = "SELECT * FROM dbo.BangGiaSan";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
-                BangGiaSanDTO giaSan = new BangGiaSanDTO(item);
+                BangGiaSan giaSan = new BangGiaSan(item);
                 list.Add(giaSan);
             }
             return list;

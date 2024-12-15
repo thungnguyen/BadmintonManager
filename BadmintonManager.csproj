@@ -186,7 +186,7 @@
     <Compile Include="Database\TaiKhoanNhanVien.cs" />
     <Compile Include="Database\ThanhToan.cs" />
     <Compile Include="Database\ThemeColor.cs" />
-    <Compile Include="DTO\BangGiaSanDTO.cs" />
+    <Compile Include="DTO\BangGiaSan.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
     <Compile Include="DTO\HH.cs" />

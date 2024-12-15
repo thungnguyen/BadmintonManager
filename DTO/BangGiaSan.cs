@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BadmintonManager.DTO
 {
-    internal class BangGiaSanDTO
+    internal class BangGiaSan
     {
         public int MaGia { get; set; }
         public string LoaiKH { get; set; }
@@ -15,10 +15,10 @@ namespace BadmintonManager.DTO
         public TimeSpan GioKetThuc { get; set; }
         public decimal Gia { get; set; }
 
-        public BangGiaSanDTO() { }
+        public BangGiaSan() { }
 
         // Constructor for mapping DataRow from database
-        public BangGiaSanDTO(DataRow row)
+        public BangGiaSan(DataRow row)
         {
             MaGia = (int)row["MaGia"];
             LoaiKH = row["LoaiKH"].ToString();

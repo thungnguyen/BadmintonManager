@@ -26,9 +26,9 @@ namespace BadmintonManager.GUI
         private void LoadListGiaSan()
         {
             lsvGiaSan.Items.Clear();  // Xóa tất cả các mục hiện tại trong ListView
-            List<BangGiaSanDTO> listSan = BangGiaSanDAO.Instance.GetListGiaSan();  // Lấy danh sách sân
+            List<DTO.BangGiaSan> listSan = BangGiaSanDAO.Instance.GetListGiaSan();  // Lấy danh sách sân
 
-            foreach (BangGiaSanDTO item in listSan)
+            foreach (DTO.BangGiaSan item in listSan)
             {
                 ListViewItem lsvItem = new ListViewItem(item.MaGia.ToString());  // Thêm mã sân vào cột đầu tiên
                 lsvItem.SubItems.Add(item.LoaiKH.ToString());  // Thêm tên sân vào cột thứ hai

@@ -573,9 +573,11 @@ namespace BadmintonManager.GUI
             this.Close();  // Đóng form hiện tại
         }
 
+        private void btnChooseLichSan_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
-
-
     }
 }
 

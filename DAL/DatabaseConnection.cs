@@ -1,48 +1,48 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using MongoDB.Driver;
+using System;
 
 namespace BadmintonManager.DAL
 {
     internal class DatabaseConnection
     {
         /// <summary>
-        /// Manages database connection and provides utility methods for database interactions
+        /// Manages MongoDB connection and provides utility methods for database interactions
         /// </summary>
 
-        // Connection string from app.config or connection settings
-        private static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+        // MongoDB connection string
+        private static string connectionString = "mongodb+srv://khoa:3112@clusterkhoa.1b5ey.mongodb.net/";
 
-        /// <summary>
-        /// Creates and returns a new SQL connection
-        /// </summary>
-        public static SqlConnection GetConnection()
-        {
-            try
-            {
-                SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();  // Open the connection here
-                return connection;
-            }
-            catch (Exception ex)
-            {
-                // Log error here
-                throw new InvalidOperationException("Database connection could not be established.", ex);
-            }
-        }
+        // Hardcoded database name
+        private static string databaseName = "QuanLySan";
+
+        // MongoDB Client instance
+        private static MongoClient client = null;
+
+        // MongoDatabase instance
+        private static IMongoDatabase database = null;
 
         /// <summary>
-        /// Safely closes a database connection
+        /// Gets a MongoDatabase instance (singleton pattern)
         /// </summary>
-        public static void CloseConnection(SqlConnection connection)
+        public static IMongoDatabase GetDatabase()
         {
-            if (connection != null)
+            if (database == null)
             {
-                if (connection.State == System.Data.ConnectionState.Open)
+                try
                 {
-                    connection.Close();
+                    if (client == null)
+                    {
+                        client = new MongoClient(connectionString);
+                    }
+                    database = client.GetDatabase(databaseName);
                 }
-                connection.Dispose(); // Ensure it is disposed
+                catch (Exception ex)
+                {
+                    // Log error here
+                    throw new InvalidOperationException("MongoDB database could not be initialized.", ex);
+                }
             }
+            return database;
         }
     }
 }

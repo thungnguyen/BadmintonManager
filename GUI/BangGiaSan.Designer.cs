@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lsvGiaSan = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtLoaiKH = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -38,14 +38,17 @@
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpBegin = new System.Windows.Forms.DateTimePicker();
             this.txtGia = new System.Windows.Forms.TextBox();
-            this.txtMaGia = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,15 +65,22 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Giá Sân";
             // 
-            // listView1
+            // lsvGiaSan
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 3);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(397, 155);
-            this.listView1.TabIndex = 30;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.lsvGiaSan.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.lsvGiaSan.HideSelection = false;
+            this.lsvGiaSan.Location = new System.Drawing.Point(3, 3);
+            this.lsvGiaSan.Name = "lsvGiaSan";
+            this.lsvGiaSan.Size = new System.Drawing.Size(397, 155);
+            this.lsvGiaSan.TabIndex = 30;
+            this.lsvGiaSan.UseCompatibleStateImageBehavior = false;
+            this.lsvGiaSan.View = System.Windows.Forms.View.Details;
+            this.lsvGiaSan.SelectedIndexChanged += new System.EventHandler(this.lsvGiaSan_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -81,21 +91,19 @@
             this.panel1.Controls.Add(this.dtpEnd);
             this.panel1.Controls.Add(this.dtpBegin);
             this.panel1.Controls.Add(this.txtGia);
-            this.panel1.Controls.Add(this.txtMaGia);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(12, 82);
+            this.panel1.Location = new System.Drawing.Point(12, 117);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 192);
+            this.panel1.Size = new System.Drawing.Size(400, 157);
             this.panel1.TabIndex = 31;
             // 
             // txtLoaiKH
             // 
             this.txtLoaiKH.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtLoaiKH.Location = new System.Drawing.Point(81, 49);
+            this.txtLoaiKH.Location = new System.Drawing.Point(81, 48);
             this.txtLoaiKH.Name = "txtLoaiKH";
             this.txtLoaiKH.Size = new System.Drawing.Size(200, 20);
             this.txtLoaiKH.TabIndex = 56;
@@ -103,22 +111,24 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDelete.Location = new System.Drawing.Point(325, 119);
+            this.btnDelete.Location = new System.Drawing.Point(325, 107);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(66, 39);
             this.btnDelete.TabIndex = 55;
             this.btnDelete.Text = "Xoá";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnUpdate.Location = new System.Drawing.Point(325, 67);
+            this.btnUpdate.Location = new System.Drawing.Point(325, 62);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(66, 39);
             this.btnUpdate.TabIndex = 54;
             this.btnUpdate.Text = "Sửa";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -129,12 +139,13 @@
             this.btnAdd.TabIndex = 53;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dtpEnd
             // 
             this.dtpEnd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpEnd.Location = new System.Drawing.Point(81, 152);
+            this.dtpEnd.Location = new System.Drawing.Point(81, 126);
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.ShowUpDown = true;
             this.dtpEnd.Size = new System.Drawing.Size(200, 20);
@@ -144,7 +155,7 @@
             // 
             this.dtpBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.dtpBegin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpBegin.Location = new System.Drawing.Point(81, 119);
+            this.dtpBegin.Location = new System.Drawing.Point(81, 100);
             this.dtpBegin.Name = "dtpBegin";
             this.dtpBegin.ShowUpDown = true;
             this.dtpBegin.Size = new System.Drawing.Size(200, 20);
@@ -153,24 +164,16 @@
             // txtGia
             // 
             this.txtGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtGia.Location = new System.Drawing.Point(81, 86);
+            this.txtGia.Location = new System.Drawing.Point(81, 74);
             this.txtGia.Name = "txtGia";
             this.txtGia.Size = new System.Drawing.Size(200, 20);
             this.txtGia.TabIndex = 50;
-            // 
-            // txtMaGia
-            // 
-            this.txtMaGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtMaGia.Location = new System.Drawing.Point(81, 12);
-            this.txtMaGia.Name = "txtMaGia";
-            this.txtMaGia.Size = new System.Drawing.Size(200, 20);
-            this.txtMaGia.TabIndex = 49;
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 126);
+            this.label6.Location = new System.Drawing.Point(12, 108);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 48;
@@ -180,7 +183,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 159);
+            this.label5.Location = new System.Drawing.Point(12, 133);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 47;
@@ -190,7 +193,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 93);
+            this.label4.Location = new System.Drawing.Point(12, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 46;
@@ -200,21 +203,11 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 56);
+            this.label3.Location = new System.Drawing.Point(12, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 45;
             this.label3.Text = "Loại KH:";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 44;
-            this.label2.Text = "Mã Giá:";
             // 
             // btnThoat
             // 
@@ -228,11 +221,40 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.listView1);
+            this.flowLayoutPanel1.Controls.Add(this.lsvGiaSan);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 280);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(409, 158);
             this.flowLayoutPanel1.TabIndex = 55;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Mã giá";
+            this.columnHeader1.Width = 41;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Loại KH";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 73;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Giá ";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 68;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Giờ Bắt Đầu";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 105;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Giờ Kết Thúc";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader5.Width = 108;
             // 
             // BangGiaSan
             // 
@@ -255,7 +277,7 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lsvGiaSan;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtLoaiKH;
         private System.Windows.Forms.Button btnDelete;
@@ -264,13 +286,16 @@
         private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.DateTimePicker dtpBegin;
         private System.Windows.Forms.TextBox txtGia;
-        private System.Windows.Forms.TextBox txtMaGia;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

@@ -167,6 +167,7 @@
     <Compile Include="BAL\TaiKhoanBAL.cs" />
     <Compile Include="BAL\TaiKhoanNhanVienBAL .cs" />
     <Compile Include="DAL\BangGiaSanDAL.cs" />
+    <Compile Include="DAL\BangGiaSanDAO.cs" />
     <Compile Include="DAL\BillDAO.cs" />
     <Compile Include="DAL\BillInfoDAO.cs" />
     <Compile Include="DAL\DanhSachLichSanDAL.cs" />
@@ -324,12 +325,6 @@
     <Compile Include="GUI\GDNhanVien.Designer.cs">
       <DependentUpon>GDNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\GDQuanLy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\GDQuanLy.Designer.cs">
-      <DependentUpon>GDQuanLy.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\SuaHangHoa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -341,12 +336,6 @@
     </Compile>
     <Compile Include="GUI\ThemHangHoa.Designer.cs">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\ThietLapSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\ThietLapSan.Designer.cs">
-      <DependentUpon>ThietLapSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,9 +403,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThemHangHoa.resx">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\ThietLapSan.resx">
-      <DependentUpon>ThietLapSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

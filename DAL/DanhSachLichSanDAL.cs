@@ -7,7 +7,8 @@ namespace BadmintonManager.DAL
 {
     public class DanhSachLichSanDAL
     {
-        private string connectionString = "Data Source=LAPTOP-JDM8N7NE;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+
 
         public DataTable LayDanhSachLichSan()
         {

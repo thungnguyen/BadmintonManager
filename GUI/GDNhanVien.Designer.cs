@@ -106,7 +106,7 @@
             // 
             // pictureBox10
             // 
-            this.pictureBox10.Image = global::BadmintonManager.Properties.Resources.logout1;
+            //this.pictureBox10.Image = global::BadmintonManager.Properties.Resources.logout1;
             this.pictureBox10.Location = new System.Drawing.Point(9, 312);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox10.Name = "pictureBox10";
@@ -419,7 +419,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox9.Image = global::BadmintonManager.Properties.Resources.Horizonbmt1;
+            //this.pictureBox9.Image = global::BadmintonManager.Properties.Resources.Horizonbmt1;
             this.pictureBox9.Location = new System.Drawing.Point(183, 145);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox9.Name = "pictureBox9";

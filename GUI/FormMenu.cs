@@ -91,12 +91,12 @@ namespace BadmintonManager.GUI
 
         private void btnLichSan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DatSan(), sender);
+            OpenChildForm(new GUI.Form1(), sender);
         }
 
         private void btnHangHoa_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DanhSachTaiKhoan(), sender);
+            OpenChildForm(new GUI.DanhMucHangHoa(), sender);
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)
@@ -106,10 +106,10 @@ namespace BadmintonManager.GUI
 
         private void btnDoanhThu_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DanhSachTaiKhoan(), sender);
+            OpenChildForm(new GUI.FormBaoCaoDoanhThu(), sender);
         }
 
-        private void btnQuanLySan_Click(object sender, EventArgs e)
+        private void btnQuanLySan_Click(object sender, EventArgs e) //DatSan
         {
             OpenChildForm(new GUI.DatSan(), sender);
         }
@@ -143,7 +143,7 @@ namespace BadmintonManager.GUI
 
         private void btnThietLapSan_Click(object sender, EventArgs e)
         {
-            //OpenChildForm(new GUI.ThietLapSan(), sender);
+            OpenChildForm(new GUI.TaoSan(), sender);
         }
 
         private void btnTinhTien_Click(object sender, EventArgs e)
@@ -159,6 +159,11 @@ namespace BadmintonManager.GUI
             // Mở form đăng nhập
             DangNhap formDangNhap = new DangNhap();
                 formDangNhap.Show();
+
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -214,23 +214,86 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\GiaSanBAL.cs" />
     <Compile Include="BLL\HangHoaBLL.cs" />
+    <Compile Include="BLL\KhachHangBAL.cs" />
+    <Compile Include="BLL\KhachHangBLL.cs" />
+    <Compile Include="BLL\LichDatSanBAL.cs" />
     <Compile Include="BLL\LoaiHHBLL.cs" />
+    <Compile Include="BLL\SanBAL.cs" />
+    <Compile Include="BLL\TaiKhoanBAL.cs" />
+    <Compile Include="BLL\TaiKhoanNhanVienBAL .cs" />
+    <Compile Include="DAL\GiaSanDAL.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
+    <Compile Include="DAL\KhachHangDAL.cs" />
+    <Compile Include="DAL\LichDatSanDAL.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
     <Compile Include="DAL\MongoDBConnection.cs" />
+    <Compile Include="DAL\SanDAL.cs" />
+    <Compile Include="DAL\TaiKhoanDAL.cs" />
+    <Compile Include="DAL\TaiKhoanNhanVienDAL.cs" />
+    <Compile Include="DTO\GiaSanDTO.cs" />
     <Compile Include="DTO\HangHoa.cs" />
+    <Compile Include="DTO\KhachHangDTO.cs" />
+    <Compile Include="DTO\LichDatSanDTO.cs" />
     <Compile Include="DTO\LoaiHH.cs" />
+    <Compile Include="DTO\SanDTO.cs" />
+    <Compile Include="DTO\TaiKhoanNhanVienDTO.cs" />
+    <Compile Include="GUI\AddKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddKhachHang.Designer.cs">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DangKyTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DangKyTaiKhoan.Designer.cs">
+      <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DangNhap.Designer.cs">
+      <DependentUpon>DangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhMucHangHoa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhSachTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachTaiKhoan.Designer.cs">
+      <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DatSan.Designer.cs">
+      <DependentUpon>DatSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\AddKhachHang.resx">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DangKyTaiKhoan.resx">
+      <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DangNhap.resx">
+      <DependentUpon>DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
+      <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DatSan.resx">
+      <DependentUpon>DatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -240,6 +303,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -257,6 +321,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Horizonbmt.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />

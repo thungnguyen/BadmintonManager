@@ -56,7 +56,7 @@ namespace BadmintonManager.DAL
         {
             var collection = _connection.GetCollection<HangHoa>("HangHoa");
             var filter = Builders<HangHoa>.Filter.Eq("maHH", hh.MaHH);
-            var réult = collection.DeleteOne(filter);
+            var result = collection.DeleteOne(filter);
         }
 
        

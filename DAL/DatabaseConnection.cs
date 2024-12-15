@@ -5,10 +5,7 @@ namespace BadmintonManager.DAL
 {
     internal class DatabaseConnection
     {
-        /// <summary>
-        /// Manages MongoDB connection and provides utility methods for database interactions
-        /// </summary>
-
+\
         // MongoDB connection string
         private static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MongoDbConnectionString"].ConnectionString;
 

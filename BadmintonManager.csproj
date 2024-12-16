@@ -227,6 +227,12 @@
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\SuaHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\SuaHangHoa.Designer.cs">
+      <DependentUpon>SuaHangHoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ThemHangHoa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SuaHangHoa.resx">
+      <DependentUpon>SuaHangHoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ThemHangHoa.resx">
       <DependentUpon>ThemHangHoa.cs</DependentUpon>

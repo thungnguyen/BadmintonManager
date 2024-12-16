@@ -8,7 +8,7 @@ namespace BadmintonManager.DTO
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public string MaHH { get; set; }
+        public int MaHH { get; set; }
         public string TenHH { get; set; }
         public string MoTa { get; set; }
         public string DonViTinhLon { get; set; }

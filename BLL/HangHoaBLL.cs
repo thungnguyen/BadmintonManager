@@ -50,7 +50,7 @@ namespace BadmintonManager.BLL
                     SoLuongTonLon = item["soLuongTonLon"].ToInt32(),
                     SoLuongTonNho = item["soLuongTonNho"].ToInt32(),
                     MaLoaiHH = item["maLoaiHH"].ToString(),
-                    MaHH = item["maHH"].ToString()
+                    MaHH = item["maHH"].ToInt32()
                 };
 
                 // Thêm vào danh sách hàng hóa
@@ -59,6 +59,26 @@ namespace BadmintonManager.BLL
 
             return hhList;
         }
+
+        public HangHoa LayHangHoaByID(int maHH)
+        {
+            if (maHH <= 0)
+            {
+                throw new ArgumentException("Invalid MaHH. It must be a positive integer.");
+            }
+
+            try
+            {
+                // Call the DAL method to retrieve the HangHoa by its MaHH
+                return _hanghoaDAL.LayHangHoaByID(maHH);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception or rethrow as needed
+                throw new Exception($"Error while retrieving HangHoa: {ex.Message}");
+            }
+        }
+
 
         public void ThemHH(HangHoa hh)
         {
@@ -86,14 +106,14 @@ namespace BadmintonManager.BLL
             _hanghoaDAL.SuaHH(updatedhh);
         }
 
-        public void XoaHH(HangHoa hh)
+        public void XoaHH(int maHH)
         {
-            if (hh == null || string.IsNullOrEmpty(hh.MaHH))
+            if (maHH <= 0)
             {
-                throw new ArgumentException("Invalid HangHoa object for deletion.");
+                throw new ArgumentException("Invalid MaHH for deletion.");
             }
 
-            _hanghoaDAL.XoaHH(hh.MaHH);
+            _hanghoaDAL.XoaHH(maHH); // Call the DAL method
         }
 
     }

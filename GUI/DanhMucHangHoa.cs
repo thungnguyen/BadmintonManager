@@ -71,11 +71,11 @@ namespace BadmintonManager.GUI
 
             // Get the selected row
             var selectedRow = dgvHangHoa.SelectedRows[0];
-            var maHH = selectedRow.Cells["MaHH"].Value?.ToString();
 
-            if (string.IsNullOrEmpty(maHH))
+            // Extract MaHH as an integer
+            if (!int.TryParse(selectedRow.Cells["MaHH"].Value?.ToString(), out int maHH) || maHH <= 0)
             {
-                MessageBox.Show("Không thể xác định mã sản phẩm để xoá.");
+                MessageBox.Show("Không thể xác định mã sản phẩm hợp lệ để xoá.");
                 return;
             }
 
@@ -89,9 +89,9 @@ namespace BadmintonManager.GUI
             {
                 try
                 {
-                    _hangHoaBLL.XoaHH(new HangHoa { MaHH = maHH });
+                    _hangHoaBLL.XoaHH(maHH); // Pass MaHH as an integer
                     MessageBox.Show("Sản phẩm đã được xoá thành công.");
-                    LoadTable();
+                    LoadTable(); // Reload the table to reflect changes
                 }
                 catch (Exception ex)
                 {
@@ -103,22 +103,22 @@ namespace BadmintonManager.GUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //if (dgvHangHoa.CurrentRow != null)
-            //{
-            //    // Lấy sản phẩm được chọn từ DataGridView
-            //    int selectedProductId = (int)dgvHangHoa.CurrentRow.Cells["MaHH"].Value;
-            //    var product = _hangHoaBLL.GetProductById(selectedProductId);
+            if (dgvHangHoa.CurrentRow != null)
+            {
+                // Lấy sản phẩm được chọn từ DataGridView
+                int selectedProductId = (int)dgvHangHoa.CurrentRow.Cells["MaHH"].Value;
+                var product = _hangHoaBLL.LayHangHoaByID(selectedProductId);
 
-            //    if (product != null)
-            //    {
-            //        // Mở form sửa hàng hoá
-            //        var editForm = new SuaHangHoa(product);
-            //        editForm.ShowDialog();
+                if (product != null)
+                {
+                    // Mở form sửa hàng hoá
+                    var editForm = new SuaHangHoa(product);
+                    editForm.ShowDialog();
 
-            //        // Refresh lại danh sách sau khi sửa
-            //        LoadTable();
-            //    }
-            //}
+                    // Refresh lại danh sách sau khi sửa
+                    LoadTable();
+                }
+            }
         }
 
         private void addnewLoaiHHbtn_Click(object sender, EventArgs e)

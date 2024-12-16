@@ -1,6 +1,6 @@
 ﻿namespace BadmintonManager.GUI
 {
-    partial class ThemHangHoa
+    partial class SuaHangHoa
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTenHH = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,8 +57,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.cmbLoaiHH = new System.Windows.Forms.ComboBox();
+            this.loaiHHBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.loaiHHBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -347,7 +350,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "ThemHangHoa";
-            this.Load += new System.EventHandler(this.ThemHangHoa_Load);
+            this.Load += new System.EventHandler(this.SuaHangHoa_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.loaiHHBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -363,6 +367,7 @@
         private System.Windows.Forms.TextBox txtTenHH;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource loaiHHBindingSource;
         private System.Windows.Forms.Label labelMoTa;
         private System.Windows.Forms.RichTextBox txtMoTa;
         private System.Windows.Forms.Label label4;

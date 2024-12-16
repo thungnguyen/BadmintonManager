@@ -36,6 +36,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtMaGia = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtLoaiKH = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -49,8 +51,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtMaGia = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -134,6 +134,24 @@
             this.panel1.Size = new System.Drawing.Size(409, 157);
             this.panel1.TabIndex = 31;
             // 
+            // txtMaGia
+            // 
+            this.txtMaGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtMaGia.Location = new System.Drawing.Point(90, 18);
+            this.txtMaGia.Name = "txtMaGia";
+            this.txtMaGia.Size = new System.Drawing.Size(200, 20);
+            this.txtMaGia.TabIndex = 58;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Mã giá:";
+            // 
             // txtLoaiKH
             // 
             this.txtLoaiKH.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -178,7 +196,8 @@
             // dtpEnd
             // 
             this.dtpEnd.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEnd.CustomFormat = "HH:mm:ss";
+            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpEnd.Location = new System.Drawing.Point(90, 126);
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.ShowUpDown = true;
@@ -188,7 +207,8 @@
             // dtpBegin
             // 
             this.dtpBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.dtpBegin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpBegin.CustomFormat = "HH:mm:ss";
+            this.dtpBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpBegin.Location = new System.Drawing.Point(90, 100);
             this.dtpBegin.Name = "dtpBegin";
             this.dtpBegin.ShowUpDown = true;
@@ -260,24 +280,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(409, 158);
             this.flowLayoutPanel1.TabIndex = 55;
-            // 
-            // txtMaGia
-            // 
-            this.txtMaGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtMaGia.Location = new System.Drawing.Point(90, 18);
-            this.txtMaGia.Name = "txtMaGia";
-            this.txtMaGia.Size = new System.Drawing.Size(200, 20);
-            this.txtMaGia.TabIndex = 58;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Mã giá:";
             // 
             // BangGiaSan
             // 

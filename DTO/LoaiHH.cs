@@ -1,19 +1,35 @@
 ﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BadmintonManager.DTO
 {
-    public class LoaiHH
+    internal class LoaiHH
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public int MaLoaiHH { get; set; }
-        public string TenLoaiHH { get; set; }
-    }
+        // Khởi tạo từ các tham số
+        public LoaiHH(int maLoaiHH, string tenLoaiHH)
+        {
+            this.MaLoaiHH = maLoaiHH;
+            this.TenLoaiHH = tenLoaiHH;
+        }
 
+        // Khởi tạo từ BsonDocument
+        public LoaiHH(BsonDocument doc)
+        {
+            this.MaLoaiHH = doc.Contains("maLoaiHH") ? doc["maLoaiHH"].ToInt32() : 0;
+            this.TenLoaiHH = doc.Contains("tenLoaiHH") ? doc["tenLoaiHH"].ToString() : string.Empty;
+        }
+
+        private int maLoaiHH;
+        public int MaLoaiHH
+        {
+            get { return maLoaiHH; }
+            set { maLoaiHH = value; }
+        }
+
+        private string tenLoaiHH;
+        public string TenLoaiHH
+        {
+            get { return tenLoaiHH; }
+            set { tenLoaiHH = value; }
+        }
+    }
 }

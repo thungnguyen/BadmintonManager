@@ -217,12 +217,32 @@
     <Compile Include="BLL\HangHoaBLL.cs" />
     <Compile Include="BLL\LoaiHHBLL.cs" />
     <Compile Include="DAL\BangGiaSanDAO.cs" />
+    <Compile Include="DAL\BillDAO.cs" />
+    <Compile Include="DAL\BillInfoDAO.cs" />
+    <Compile Include="DAL\ChangeStreamNewHoaDon.cs" />
     <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
+    <Compile Include="DAL\HHDAO.cs" />
+    <Compile Include="DAL\KhachHangDAO.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
+    <Compile Include="DAL\LoaiHHDAO.cs" />
+    <Compile Include="DAL\MenuDAO.cs" />
     <Compile Include="DAL\MongoDBConnection.cs" />
+    <Compile Include="DAL\PricePerHourDAO.cs" />
     <Compile Include="DAL\SanDAO.cs" />
     <Compile Include="DTO\BangGiaSanDTO.cs" />
+    <Compile Include="DTO\Bill.cs" />
+    <Compile Include="DTO\BillInfo.cs" />
+    <Compile Include="DTO\HH.cs" />
+    <Compile Include="DTO\KhachHang.cs" />
+    <Compile Include="DTO\LoaiKH.cs" />
+    <Compile Include="DTO\Menu.cs" />
+    <Compile Include="GUI\FrmTinhTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FrmTinhTien.Designer.cs">
+      <DependentUpon>FrmTinhTien.cs</DependentUpon>
+    </Compile>
     <Compile Include="DTO\San.cs" />
     <Compile Include="DTO\HangHoa.cs" />
     <Compile Include="DTO\LoaiHH.cs" />
@@ -246,6 +266,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\FrmTinhTien.resx">
+      <DependentUpon>FrmTinhTien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\BangGiaSan.resx">
       <DependentUpon>BangGiaSan.cs</DependentUpon>
     </EmbeddedResource>

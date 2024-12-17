@@ -1,5 +1,6 @@
 ﻿using BadmintonManager.BAL;
 using BadmintonManager.DTO;
+using BadmintonManager.GUI;
 using System;
 using System.Windows.Forms;
 
@@ -57,22 +58,24 @@ namespace BadmintonManager
             if (taiKhoan.VaiTro == "Quản lý")
             {
                 // Mở form quản lý
-                //FormMenuQuanLy formQuanLy = new FormMenuQuanLy();
-                //formQuanLy.Show();
+                FormMenu formNhanVien = new FormMenu();
+
+                formNhanVien.Show();
             }
             else if (taiKhoan.VaiTro == "Nhân viên")
             {
                 // Mở form nhân viên
-                //FormMenuNhanVien formNhanVien = new FormMenuNhanVien();
-                //formNhanVien.Show();
+                FormMenu formNhanVien = new FormMenu();
+
+                formNhanVien.Show();
             }
         }
 
         private void DangNhap_Load(object sender, EventArgs e)
         {
             // Thiết lập giá trị mặc định cho textbox (chỉ sử dụng khi thử nghiệm)
-            txtUsername.Text = "nhanvien";
-            txtPassword.Text = "1";
+            //txtUsername.Text = "nhanvien";
+            //txtPassword.Text = "1";
         }
     }
 }

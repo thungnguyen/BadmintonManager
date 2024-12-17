@@ -69,11 +69,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(266, 9);
+            this.label1.Location = new System.Drawing.Point(392, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(337, 29);
+            this.label1.Size = new System.Drawing.Size(270, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Thêm danh mục hàng hoá mới";
+            this.label1.Text = "Sửa danh mục hàng hoá";
             // 
             // txtTenHH
             // 
@@ -341,7 +341,7 @@
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
             // 
-            // ThemHangHoa
+            // SuaHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -349,7 +349,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Name = "ThemHangHoa";
+            this.Name = "SuaHangHoa";
             this.Load += new System.EventHandler(this.SuaHangHoa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loaiHHBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);

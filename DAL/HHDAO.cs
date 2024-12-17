@@ -30,8 +30,6 @@ namespace BadmintonManager.DAO
         {
             List<HH> list = new List<HH>();
             string query = "SELECT * FROM dbo.HangHoa WHERE MaLoaiHH ="  + maLoaiHH;
-            DataTable dataTable = DataProvider.Instance.ExecuteQuery(query);
-
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {

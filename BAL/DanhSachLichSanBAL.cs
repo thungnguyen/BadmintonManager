@@ -28,7 +28,10 @@ namespace  BadmintonManager.BAL
         {
             return lichSanDAL.TimKiemLichSan(tuNgay, denNgay);
         }
-
+        public DataTable GetLichSanByMaDatSan(int maDatSan)
+        {
+            return lichSanDAL.GetLichSanByMaDatSan(maDatSan);
+        }
 
     }
 }

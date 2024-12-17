@@ -584,9 +584,64 @@ namespace BadmintonManager.GUI
             this.Close();  // Đóng form hiện tại
         }
 
+        private void btnKhachMoi_Click(object sender, EventArgs e)
+        {
+            AddKhachHang addKhachHang = new AddKhachHang();
+            addKhachHang.ShowDialog();
+            LoadKhachHang();
+        }
+        private void cbKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void btnChooseLichSan_Click(object sender, EventArgs e)
+        {
+            // Mở Form1 (Lịch đặt sân)
+            Form1 chonlichdat = new Form1();
+
+            // Đăng ký sự kiện OnLichSanSelected
+            chonlichdat.OnLichSanSelected += (maSan, maKH, maGia, tuGio, denGio, loaiKH, datRa) =>
+            {
+                //// Gán các giá trị vào giao diện hoặc xử lý dữ liệu
+                //lblMaSan.Text = $"Mã Sân: {maSan}";
+                //lblMaKH.Text = $"Mã Khách Hàng: {maKH}";
+                //lblMaGia.Text = $"Mã Giá: {maGia}";
+                //lblThoiGian.Text = $"Thời gian: {tuGio:HH:mm} - {denGio:HH:mm}";
+                //lblLoaiKH.Text = $"Loại KH: {loaiKH}";
+                //lblDaTra.Text = $"Đã trả: {(datRa ? "Có" : "Không")}";
+
+                // Tự động chọn nút sân có mã sân trùng khớp
+                foreach (Control control in flpSan.Controls)
+                {
+                    if (control is Button btnSan && btnSan.Tag is San san && san.MaSan == maSan)
+                    {
+                        btnSan.PerformClick(); // Kích hoạt sự kiện click của nút sân
+                        break;
+                    }
+                }
+
+                // Tìm kiếm tên khách hàng tương ứng với maKH và gán vào ComboBox
+                KhachHang khachHang = KhachHangDAO.Instance.GetListKhachHang()
+                    .FirstOrDefault(kh => kh.MaKH == maKH);
+
+                if (khachHang != null)
+                {
+                    cbKhachHang.SelectedValue = maKH;
+                }
+                else
+                {
+                    // Nếu không tìm thấy khách hàng, có thể thông báo hoặc bỏ qua
+                    MessageBox.Show("Không tìm thấy khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            };
+
+            // Hiển thị Form1
+            chonlichdat.ShowDialog();
+        }
+
         #endregion
 
-
+      
     }
 }
 

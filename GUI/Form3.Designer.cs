@@ -37,7 +37,7 @@ namespace BadmintonManager.GUI
             this.lblMaDatSan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblMaDatSan.Location = new System.Drawing.Point(77, 24);
             this.lblMaDatSan.Name = "lblMaDatSan";
-            this.lblMaDatSan.Size = new System.Drawing.Size(109, 22);
+            this.lblMaDatSan.Size = new System.Drawing.Size(75, 15);
             this.lblMaDatSan.TabIndex = 0;
             this.lblMaDatSan.Text = "Mã Đặt Sân:";
             // 
@@ -47,7 +47,7 @@ namespace BadmintonManager.GUI
             this.txtMaDatSan.Location = new System.Drawing.Point(244, 20);
             this.txtMaDatSan.Name = "txtMaDatSan";
             this.txtMaDatSan.ReadOnly = true;
-            this.txtMaDatSan.Size = new System.Drawing.Size(200, 26);
+            this.txtMaDatSan.Size = new System.Drawing.Size(200, 20);
             this.txtMaDatSan.TabIndex = 1;
             // 
             // lblMaSan
@@ -56,7 +56,7 @@ namespace BadmintonManager.GUI
             this.lblMaSan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblMaSan.Location = new System.Drawing.Point(77, 72);
             this.lblMaSan.Name = "lblMaSan";
-            this.lblMaSan.Size = new System.Drawing.Size(76, 22);
+            this.lblMaSan.Size = new System.Drawing.Size(53, 15);
             this.lblMaSan.TabIndex = 2;
             this.lblMaSan.Text = "Mã Sân:";
             // 
@@ -66,7 +66,7 @@ namespace BadmintonManager.GUI
             this.txtMaSan.Location = new System.Drawing.Point(244, 68);
             this.txtMaSan.Name = "txtMaSan";
             this.txtMaSan.ReadOnly = true;
-            this.txtMaSan.Size = new System.Drawing.Size(200, 26);
+            this.txtMaSan.Size = new System.Drawing.Size(200, 20);
             this.txtMaSan.TabIndex = 3;
             // 
             // lblMaKH
@@ -75,7 +75,7 @@ namespace BadmintonManager.GUI
             this.lblMaKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblMaKH.Location = new System.Drawing.Point(77, 123);
             this.lblMaKH.Name = "lblMaKH";
-            this.lblMaKH.Size = new System.Drawing.Size(143, 22);
+            this.lblMaKH.Size = new System.Drawing.Size(99, 15);
             this.lblMaKH.TabIndex = 4;
             this.lblMaKH.Text = "Mã Khách Hàng:";
             // 
@@ -85,7 +85,7 @@ namespace BadmintonManager.GUI
             this.txtMaKH.Location = new System.Drawing.Point(244, 119);
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.ReadOnly = true;
-            this.txtMaKH.Size = new System.Drawing.Size(200, 26);
+            this.txtMaKH.Size = new System.Drawing.Size(200, 20);
             this.txtMaKH.TabIndex = 5;
             // 
             // lblTuNgay
@@ -94,7 +94,7 @@ namespace BadmintonManager.GUI
             this.lblTuNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTuNgay.Location = new System.Drawing.Point(77, 180);
             this.lblTuNgay.Name = "lblTuNgay";
-            this.lblTuNgay.Size = new System.Drawing.Size(84, 22);
+            this.lblTuNgay.Size = new System.Drawing.Size(55, 15);
             this.lblTuNgay.TabIndex = 6;
             this.lblTuNgay.Text = "Từ Ngày:";
             this.lblTuNgay.Click += new System.EventHandler(this.lblTuNgay_Click);
@@ -105,16 +105,16 @@ namespace BadmintonManager.GUI
             this.txtTuNgay.Location = new System.Drawing.Point(244, 176);
             this.txtTuNgay.Name = "txtTuNgay";
             this.txtTuNgay.ReadOnly = true;
-            this.txtTuNgay.Size = new System.Drawing.Size(200, 26);
+            this.txtTuNgay.Size = new System.Drawing.Size(200, 20);
             this.txtTuNgay.TabIndex = 7;
             // 
             // lblDaTra
             // 
             this.lblDaTra.AutoSize = true;
             this.lblDaTra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblDaTra.Location = new System.Drawing.Point(77, 232);
+            this.lblDaTra.Location = new System.Drawing.Point(77, 231);
             this.lblDaTra.Name = "lblDaTra";
-            this.lblDaTra.Size = new System.Drawing.Size(206, 22);
+            this.lblDaTra.Size = new System.Drawing.Size(139, 15);
             this.lblDaTra.TabIndex = 8;
             this.lblDaTra.Text = "Số tiền cần hoàn trả KH:";
             this.lblDaTra.Click += new System.EventHandler(this.lblDaTra_Click);
@@ -122,16 +122,16 @@ namespace BadmintonManager.GUI
             // txtDaTra
             // 
             this.txtDaTra.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtDaTra.Location = new System.Drawing.Point(289, 232);
+            this.txtDaTra.Location = new System.Drawing.Point(244, 231);
             this.txtDaTra.Name = "txtDaTra";
             this.txtDaTra.ReadOnly = true;
-            this.txtDaTra.Size = new System.Drawing.Size(200, 26);
+            this.txtDaTra.Size = new System.Drawing.Size(200, 20);
             this.txtDaTra.TabIndex = 9;
             // 
             // btnXacNhan
             // 
             this.btnXacNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnXacNhan.Location = new System.Drawing.Point(165, 306);
+            this.btnXacNhan.Location = new System.Drawing.Point(104, 291);
             this.btnXacNhan.Name = "btnXacNhan";
             this.btnXacNhan.Size = new System.Drawing.Size(144, 38);
             this.btnXacNhan.TabIndex = 10;
@@ -142,7 +142,7 @@ namespace BadmintonManager.GUI
             // btnHuy
             // 
             this.btnHuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnHuy.Location = new System.Drawing.Point(353, 306);
+            this.btnHuy.Location = new System.Drawing.Point(307, 291);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(118, 38);
             this.btnHuy.TabIndex = 11;

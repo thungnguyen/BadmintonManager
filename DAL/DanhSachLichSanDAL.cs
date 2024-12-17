@@ -1,7 +1,9 @@
 ﻿using BadmintonManager.DTO;
+using BadmintonManager.DAO;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace BadmintonManager.DAL
 {
@@ -10,32 +12,59 @@ namespace BadmintonManager.DAL
         private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
 
 
+            public DataTable GetLichSanByMaDatSan(int maDatSan)
+            {
+            string query = "SELECT MaSan, MaKH, MaGia, TuGio, DenGio, LoaiKH, Datra FROM dbo.LichDatSan WHERE MaDatSan = @MaDatSan";
+            DataTable result = new DataTable();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(result);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
+        }
+
+
         public DataTable LayDanhSachLichSan()
         {
+
+
             string query = "SELECT * FROM LichDatSan";
             DataTable dataTable = new DataTable();
             try
             {
-                // Mở kết nối với SQL Server
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open(); // Đảm bảo kết nối được mở
+                    conn.Open();
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-
-                    // Điền dữ liệu vào DataTable
                     adapter.Fill(dataTable);
                 }
             }
             catch (SqlException ex)
             {
-                // Bắt lỗi SQL, có thể kết nối bị lỗi hoặc câu lệnh không hợp lệ
                 Console.WriteLine("Lỗi SQL: " + ex.Message);
-                // Bạn có thể hiển thị thông báo lỗi ở đây nếu cần
             }
             catch (Exception ex)
             {
-                // Bắt tất cả các loại lỗi khác
                 Console.WriteLine("Lỗi: " + ex.Message);
             }
 
@@ -101,10 +130,10 @@ namespace BadmintonManager.DAL
 
             // Truy vấn cơ sở dữ liệu theo tên khách hàng với phép JOIN
             string query = @"
-        SELECT LichDatSan.*, KhachHang.TenKH
-        FROM LichDatSan
-        INNER JOIN KhachHang ON LichDatSan.MaKH = KhachHang.MaKH
-        WHERE KhachHang.TenKH LIKE @TenKH";
+            SELECT LichDatSan.*, KhachHang.TenKH
+            FROM LichDatSan
+            INNER JOIN KhachHang ON LichDatSan.MaKH = KhachHang.MaKH
+            WHERE KhachHang.TenKH LIKE @TenKH";
 
             try
             {
@@ -137,12 +166,15 @@ namespace BadmintonManager.DAL
 
             return dataTable;
         }
-
-
+        public void GetLichSanIntoFrmTinhTien(int maDatSan)
+        {
+            string query = "SELECT * FROM dbo.LichDatSan WHERE MaDatSan = " + maDatSan;
+            
+        }
     }
     public class DataProvider
     {
-        private static string connectionString = "Data Source=LAPTOP-JDM8N7NE;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
+        private static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
 
         public static int ExecuteNonQuery(string query, SqlParameter[] parameters)
         {

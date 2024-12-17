@@ -410,6 +410,7 @@
             this.btnKhachMoi.TabIndex = 9;
             this.btnKhachMoi.Text = "Khách mới";
             this.btnKhachMoi.UseVisualStyleBackColor = true;
+            this.btnKhachMoi.Click += new System.EventHandler(this.btnKhachMoi_Click);
             // 
             // btnChooseLichSan
             // 
@@ -419,6 +420,7 @@
             this.btnChooseLichSan.TabIndex = 8;
             this.btnChooseLichSan.Text = "Chọn từ lịch sân";
             this.btnChooseLichSan.UseVisualStyleBackColor = true;
+            this.btnChooseLichSan.Click += new System.EventHandler(this.btnChooseLichSan_Click);
             // 
             // nudSoGioThue
             // 
@@ -480,6 +482,7 @@
             this.cbKhachHang.Name = "cbKhachHang";
             this.cbKhachHang.Size = new System.Drawing.Size(259, 21);
             this.cbKhachHang.TabIndex = 3;
+            this.cbKhachHang.SelectedIndexChanged += new System.EventHandler(this.cbKhachHang_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -563,7 +566,7 @@
             this.lbListSan.Location = new System.Drawing.Point(3, 0);
             this.lbListSan.Margin = new System.Windows.Forms.Padding(3, 0, 3, 12);
             this.lbListSan.Name = "lbListSan";
-            this.lbListSan.Size = new System.Drawing.Size(93, 32);
+            this.lbListSan.Size = new System.Drawing.Size(114, 16);
             this.lbListSan.TabIndex = 27;
             this.lbListSan.Text = "DANH SÁCH SÂN";
             // 

@@ -9,8 +9,15 @@ namespace BadmintonManager.GUI
 {
     public partial class Form1 : Form
     {
+
         private DanhSachLichSanBAL lichSanBAL;
         private KhachHangBLL khachHangBAL; // Thêm đối tượng để lấy dữ liệu khách hàng
+
+        public delegate void LichSanSelectedHandler(int maDatSan, int maSan, int maKH, int maGia, DateTime tuGio, DateTime denGio, string loaiKH, decimal daTra);
+
+        // Event để thông báo khi một dòng được chọn
+        public event LichSanSelectedHandler OnLichSanSelected;
+
 
         public Form1()
         {
@@ -32,33 +39,26 @@ namespace BadmintonManager.GUI
                 {
                     dataGridView1.DataSource = dataTable;
 
-                    // Thêm cột TenKH vào vị trí của MaKH (nếu chưa có)
                     if (!dataGridView1.Columns.Contains("TenKH"))
                     {
                         DataGridViewTextBoxColumn colTenKH = new DataGridViewTextBoxColumn();
                         colTenKH.Name = "TenKH";
                         colTenKH.HeaderText = "Tên KH";
-
-                        // Insert the new column at the same position as MaKH
                         dataGridView1.Columns.Insert(dataGridView1.Columns["maKHDataGridViewTextBoxColumn"].Index, colTenKH);
                     }
-
-                    // Duyệt qua từng dòng và thay thế MaKH bằng TenKH
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         if (!row.IsNewRow)
                         {
                             int maKH = Convert.ToInt32(row.Cells["maKHDataGridViewTextBoxColumn"].Value);
-                            string tenKH = GetTenKhachHangById(maKH);  // Lấy tên khách hàng từ MaKH
-
-                            // Kiểm tra nếu tên khách hàng không rỗng
+                            string tenKH = GetTenKhachHangById(maKH);
                             if (!string.IsNullOrEmpty(tenKH))
                             {
-                                row.Cells["TenKH"].Value = tenKH; // Cập nhật tên khách hàng vào cột TenKH
+                                row.Cells["TenKH"].Value = tenKH;
                             }
                             else
                             {
-                                row.Cells["TenKH"].Value = "Không tìm thấy"; // Nếu không tìm thấy tên, hiển thị thông báo
+                                row.Cells["TenKH"].Value = "Không tìm thấy";
                             }
                         }
                     }
@@ -73,17 +73,11 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
             }
         }
-
-
-
-        // Phương thức lấy tên khách hàng từ MaKH
         private string GetTenKhachHangById(int maKH)
         {
-            // Truy vấn bảng KhachHang để lấy TenKH từ MaKH
             string tenKH = string.Empty;
             try
             {
-                // Giả sử bạn có phương thức GetTenKhachHangById trong lớp KhachHangBAL
                 tenKH = khachHangBAL.GetTenKhachHangById(maKH);
             }
             catch (Exception ex)
@@ -92,11 +86,8 @@ namespace BadmintonManager.GUI
             }
             return tenKH;
         }
-
-        // Sự kiện khi form được mở
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Load toàn bộ dữ liệu khi form mở lên
             LoadData();
         }
 
@@ -104,24 +95,17 @@ namespace BadmintonManager.GUI
         {
             DateTime tuNgay = dateTimePickerTuNgay.Value;
             DateTime denNgay = dateTimePickerDenNgay.Value;
-
-            // Gọi phương thức để tìm kiếm lịch sân theo khoảng thời gian
             DataTable dataTable = lichSanBAL.TimLichSan(tuNgay, denNgay);
-
-            // Gán dữ liệu tìm được vào DataGridView
             dataGridView1.DataSource = dataTable;
-
-            // Cập nhật tên khách hàng cho các dòng
             if (dataTable != null && dataTable.Rows.Count > 0)
             {
-                // Duyệt qua từng dòng và thay thế MaKH bằng TenKH
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (!row.IsNewRow)
                     {
                         int maKH = Convert.ToInt32(row.Cells["maKHDataGridViewTextBoxColumn"].Value);
-                        string tenKH = GetTenKhachHangById(maKH);  // Lấy tên khách hàng từ MaKH
-                        row.Cells["TenKH"].Value = tenKH; // Cập nhật tên khách hàng vào cột TenKH
+                        string tenKH = GetTenKhachHangById(maKH);
+                        row.Cells["TenKH"].Value = tenKH;
                     }
                 }
             }
@@ -216,10 +200,7 @@ namespace BadmintonManager.GUI
             LoadData();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+      
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -228,6 +209,74 @@ namespace BadmintonManager.GUI
 
         private void label3_Click(object sender, EventArgs e)
         {
+
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void btnTinhTien_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    // Lấy MaDatSan từ dòng được chọn
+                    int maDatSan = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MaDatSan"].Value);
+
+                    // Lấy thông tin chi tiết từ cơ sở dữ liệu
+                    DataTable lichSanDetail = lichSanBAL.GetLichSanByMaDatSan(maDatSan);
+
+                    if (lichSanDetail.Rows.Count > 0)
+                    {
+                        var row = lichSanDetail.Rows[0];
+                        int maSan = Convert.ToInt32(row["MaSan"]);
+                        int maKH = Convert.ToInt32(row["MaKH"]);
+                        int maGia = Convert.ToInt32(row["MaGia"]);
+                        DateTime tuGio = DateTime.Now; // Giá trị mặc định
+                        DateTime denGio = DateTime.Now;
+
+                        if (row["TuGio"] != DBNull.Value && row["TuGio"] is TimeSpan)
+                        {
+                            tuGio = DateTime.Today.Add((TimeSpan)row["TuGio"]);
+                        }
+                        else if (row["TuGio"] != DBNull.Value)
+                        {
+                            tuGio = Convert.ToDateTime(row["TuGio"]);
+                        }
+
+                        if (row["DenGio"] != DBNull.Value && row["DenGio"] is TimeSpan)
+                        {
+                            denGio = DateTime.Today.Add((TimeSpan)row["DenGio"]);
+                        }
+                        else if (row["DenGio"] != DBNull.Value)
+                        {
+                            denGio = Convert.ToDateTime(row["DenGio"]);
+                        }
+                        string loaiKH = row["LoaiKH"].ToString();
+                        decimal datRa = Convert.ToDecimal(row["DaTra"]);
+
+                        // Gọi event để truyền thông tin
+                        OnLichSanSelected?.Invoke(maDatSan, maSan, maKH, maGia, tuGio, denGio, loaiKH, datRa);
+
+                        // Đóng form sau khi chọn
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin chi tiết!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một dòng trước khi tiếp tục!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
         }
     }

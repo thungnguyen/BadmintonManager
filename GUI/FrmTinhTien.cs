@@ -70,25 +70,18 @@ namespace BadmintonManager.GUI
         {
             loaiKHList.Add(new LoaiKH("Vãng Lai", "Vang lai"));
             loaiKHList.Add(new LoaiKH("Cố Định", "Co dinh"));
-
-            // Thêm giá trị hiển thị vào ComboBox
             foreach (var loaiKH in loaiKHList)
             {
                 cbLoaiKH.Items.Add(loaiKH.DisplayName);
             }
-
-            // Chọn giá trị mặc định (ví dụ chọn "Vãng Lại" mặc định)
             cbLoaiKH.SelectedIndex = 0;
         }
         private string GetLoaiKHSelectedValue()
         {
-            // Lấy giá trị hiển thị từ ComboBox
             string selectedDisplayValue = cbLoaiKH.SelectedItem.ToString();
-
-            // Tìm LoaiKH có DisplayName khớp và trả về giá trị thực (Value)
             LoaiKH selectedLoaiKH = loaiKHList.FirstOrDefault(l => l.DisplayName == selectedDisplayValue);
 
-            return selectedLoaiKH?.Value;  // Trả về giá trị thực (Value), nếu không tìm thấy thì null
+            return selectedLoaiKH?.Value;
         }
         //Load Loai Hang Hoa
         private void LoadLoaiHH()
@@ -104,24 +97,17 @@ namespace BadmintonManager.GUI
         {
             decimal giaGioChoi = 0;
             int frameCount = 0;
-
-            // Bước 1: Kiểm tra số lượng khung giờ không trùng lặp
             frameCount = PricePerHourDAO.Instance.GetFrameCount(gioBatDau, gioKetThuc);
-
             if (frameCount <= 0)
             {
-                // Nếu không có khung giờ hợp lệ, trả về 0
                 return 0;
             }
-
-            // Bước 2: Nếu chỉ có một khung giờ, gọi thủ tục tính giá cho một khung giờ
             if (frameCount == 1)
             {
                 giaGioChoi = PricePerHourDAO.Instance.GetPriceForTimeSlot(gioBatDau, gioKetThuc, loaiKH);
             }
             else
             {
-                // Bước 3: Nếu có nhiều khung giờ, gọi thủ tục tính giá cho các khung giờ giữa 2 thời điểm
                 giaGioChoi = PricePerHourDAO.Instance.GetPriceBetweenTimeFrames(gioBatDau, gioKetThuc, loaiKH);
             }
 
@@ -134,12 +120,9 @@ namespace BadmintonManager.GUI
             DateTime gioVao = dtpGioVao.Value;
             double soGioThue = (double)nudSoGioThue.Value;
 
-            // Chuyển đổi số giờ thuê thành TimeSpan
-            int hours = (int)soGioThue; // Lấy phần nguyên của giờ
-            int minutes = (int)((soGioThue - hours) * 60); // Lấy phần lẻ và chuyển thành phút
+            int hours = (int)soGioThue; 
+            int minutes = (int)((soGioThue - hours) * 60); 
             TimeSpan thoiGianThue = new TimeSpan(hours, minutes, 0);
-
-            // Tính giờ ra
             DateTime gioRa = gioVao.Add(thoiGianThue);
             dtpGioRa.Value = gioRa;
         }
@@ -151,7 +134,6 @@ namespace BadmintonManager.GUI
 
             if (gioRa > gioVao)
             {
-                // Tính số giờ thuê chính xác, không làm tròn
                 TimeSpan thoiGianThue = gioRa - gioVao;
                 double soGioThue = thoiGianThue.TotalHours;
                 nudSoGioThue.Value = (decimal)soGioThue;
@@ -178,12 +160,12 @@ namespace BadmintonManager.GUI
         }
         void ShowHangHoa(int maLoaiHH)
         {
-            lsvHangHoa.Items.Clear();  // Xóa tất cả các mục hiện tại trong ListView
-            List<HH> listHangHoa = HHDAO.Instance.GetListByLoaiHH(maLoaiHH);  // Lấy danh sách hàng hóa theo loại
+            lsvHangHoa.Items.Clear();
+            List<HH> listHangHoa = HHDAO.Instance.GetListByLoaiHH(maLoaiHH); 
 
             foreach (HH item in listHangHoa)
             {
-                ListViewItem lsvItem = new ListViewItem(item.TenHH.ToString());  // Chỉ thêm tên hàng hóa vào cột đầu tiên
+                ListViewItem lsvItem = new ListViewItem(item.TenHH.ToString());
                 lsvItem.Tag = item.MaHH;
                 lsvHangHoa.Items.Add(lsvItem);
             }
@@ -206,57 +188,45 @@ namespace BadmintonManager.GUI
             List<HH> listHH = HHDAO.Instance.GetItemByMaHH(maHH);
             if (listHH != null && listHH.Count > 0)
             {
-                // Tạo danh sách đơn vị tính để thêm vào ComboBox
                 List<string> donViTinhList = new List<string>();
 
                 foreach (var item in listHH)
                 {
-                    donViTinhList.Add(item.DonViTinhNho);  // Thêm DonViTinhNho
-                    donViTinhList.Add(item.DonViTinhLon);  // Thêm DonViTinhLon
+                    donViTinhList.Add(item.DonViTinhNho); 
+                    donViTinhList.Add(item.DonViTinhLon);  
                 }
 
-                // Đặt DataSource cho ComboBox
                 cbDonViTinh.DataSource = donViTinhList;
             }
             else
             {
-                cbDonViTinh.DataSource = null; // Xóa dữ liệu nếu không tìm thấy
+                cbDonViTinh.DataSource = null;
             }
         }
         // Show DonGia theo maHH va donViTinh
         private void ShowDonGia()
         {
-            // Kiểm tra ComboBox mã hàng hóa và đơn vị tính
             if (cbTenHH.SelectedValue == null || cbDonViTinh.SelectedItem == null)
             {
-                // Nếu chưa có lựa chọn trong ComboBox, không làm gì và thoát
                 return;
             }
-
             try
             {
-                // Lấy mã hàng hóa từ cbTenHH, chỉ thực hiện nếu có giá trị hợp lệ
                 int maHH = 0;
-                if (int.TryParse(cbTenHH.SelectedValue.ToString(), out maHH))  // Kiểm tra và ép kiểu an toàn
+                if (int.TryParse(cbTenHH.SelectedValue.ToString(), out maHH)) 
                 {
-                    // Lấy đơn vị tính từ cbDonViTinh
                     string donViTinh = cbDonViTinh.Text;
 
-                    // Lấy đơn giá từ DAO dựa trên mã hàng hóa và đơn vị tính
                     decimal donGia = HHDAO.Instance.GetDonGiaByMaHHAndDVT(maHH, donViTinh);
 
-                    // Hiển thị đơn giá lên TextBox
                     txtDonGia.Text = donGia.ToString("N0");
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi nếu có vấn đề xảy ra
                 MessageBox.Show("Có lỗi xảy ra: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //Hiển thị thành tiền theo đơn giá và số lượng
-
         //Load Bill
         void ShowBill(int masan)
         {
@@ -305,29 +275,19 @@ namespace BadmintonManager.GUI
         //Show ThanhTien
         private void ShowThanhTien()
         {
-            // Lấy số lượng từ NumericUpDown
             int soLuong = (int)nudSoLuong.Value;
-
-            // Lấy đơn giá từ TextBox
             decimal donGia = Convert.ToDecimal(txtDonGia.Text);
-
             decimal thanhTien = soLuong * donGia;
-
-            // Hiển thị thành tiền vào TextBox, với định dạng tiền tệ
             txtThanhTien.Text = thanhTien.ToString("N0");
         }
-        // Hàm làm tròn thời gian về giờ tròn hoặc 30 phút
         private DateTime RoundToNearestHalfHour(DateTime dt)
         {
             int minutes = dt.Minute;
 
-            // Nếu phút nhỏ hơn 15, làm tròn xuống 00 phút
             if (minutes < 15)
                 minutes = 0;
-            // Nếu phút từ 15 đến 45, làm tròn xuống 30 phút
             else if (minutes < 45)
                 minutes = 30;
-            // Nếu phút lớn hơn hoặc bằng 45, làm tròn lên 00 phút và tăng giờ
             else
             {
                 minutes = 0;
@@ -338,10 +298,9 @@ namespace BadmintonManager.GUI
         }
         private void UpdateDuration()
         {
-            // Tính sự chênh lệch giữa 2 thời gian
             TimeSpan duration = dtpGioRa.Value - dtpGioVao.Value;
 
-            DateTime startTime = DateTime.Now; // Hoặc có thể thay bằng thời gian bắt đầu khác
+            DateTime startTime = DateTime.Now;
             DateTime resultTime = startTime.AddHours((double)nudSoGioThue.Value).Add(duration);
         }
         private Dictionary<int, decimal> sanPrices = new Dictionary<int, decimal>();
@@ -353,53 +312,39 @@ namespace BadmintonManager.GUI
 
             decimal giaSan = CalculateTotalPrice(gioBatDau, gioKetThuc, loaiKH);
 
-            // Lưu giá sân vào từ điển
             sanPrices[san.MaSan] = giaSan;
-
-            // Hiển thị giá sân
             txtGiaSan.Text = giaSan.ToString();
         }
-
+        private int maGiaChon = -1;
+        private int soBuoiDaDat;
+        private int maDSan;
         #endregion
         #region events 
         private void dtpGioVao_ValueChanged(object sender, EventArgs e)
         {
-            // Làm tròn thời gian của dtpTuGio
             dtpGioVao.Value = RoundToNearestHalfHour(dtpGioVao.Value);
-
-            // Kiểm tra nếu dtpDenGio nhỏ hơn dtpTuGio, điều chỉnh lại giá trị của dtpDenGio
             if (dtpGioRa.Value < dtpGioVao.Value)
             {
-                dtpGioRa.Value = dtpGioVao.Value; // Đặt lại Đến giờ về Từ giờ nếu nhỏ hơn
+                dtpGioRa.Value = dtpGioVao.Value;
             }
-
-            // Cập nhật thời gian chênh lệch
             UpdateDuration();
-
         }
-
         private void dtpGioRa_ValueChanged(object sender, EventArgs e)
         {
-            // Nếu thời gian Đến giờ nhỏ hơn Từ giờ, thông báo lỗi hoặc tự động chỉnh sửa
             if (dtpGioRa.Value < dtpGioVao.Value)
             {
                 dtpGioRa.Value = dtpGioVao.Value;
             }
             else
             {
-                // Nếu không có vấn đề gì, làm tròn thời gian và cập nhật thời gian chênh lệch
                 dtpGioRa.Value = RoundToNearestHalfHour(dtpGioRa.Value);
-                UpdateDuration(); // Cập nhật thời gian chênh lệch
+                UpdateDuration();
             }
         }
-
         private void nudSoGioThue_ValueChanged(object sender, EventArgs e)
         {
             TinhGioRa();
         }
-
-
-
         private void btnSan_Click(object sender, EventArgs e)
         {
             San selectedSan = (sender as Button).Tag as San;
@@ -407,8 +352,6 @@ namespace BadmintonManager.GUI
 
             ShowBill(selectedSan.MaSan);
             lbTenSan.Text = selectedSan.TenSan;
-
-            // Hiển thị giá sân từ từ điển nếu đã lưu
             if (sanPrices.ContainsKey(selectedSan.MaSan))
             {
                 txtGiaSan.Text = sanPrices[selectedSan.MaSan].ToString();
@@ -426,7 +369,6 @@ namespace BadmintonManager.GUI
             int foodID = (cbTenHH.SelectedItem as HH).MaHH;
             int soLuong = (int)nudSoLuong.Value;
             string donViTinh = cbDonViTinh.Text;
-            // Chuyển đổi giá trị thành decimal
             decimal giaSan = Convert.ToDecimal(txtGiaSan.Text);
             decimal donGia = Convert.ToDecimal(txtDonGia.Text);
 
@@ -444,7 +386,6 @@ namespace BadmintonManager.GUI
 
             LoadSanData();
         }
-        //
         private void cbLoaiHH_SelectedIndexChanged(object sender, EventArgs e)
         {
             int loaiHH = 0;
@@ -457,8 +398,6 @@ namespace BadmintonManager.GUI
             LoadHangHoaByLoaiHH(loaiHH);
             ShowHangHoa(loaiHH);
         }
-
-        //
         private void cbHH_SelectedIndexChanged(object sender, EventArgs e)
         {
             int maHH = 0;
@@ -477,7 +416,6 @@ namespace BadmintonManager.GUI
 
             if (maHD != -1)
             {
-                // Lấy giá sân từ từ điển
                 decimal giaSan = 0;
                 if (sanPrices.ContainsKey(san.MaSan))
                 {
@@ -486,10 +424,9 @@ namespace BadmintonManager.GUI
 
                 if (MessageBox.Show("Bạn có chắc muốn thanh toán hóa đơn cho " + san.TenSan + " không?", "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
-                    // Truyền giá sân vào thủ tục thanh toán
                     BillDAO.Instance.Checkout(maHD, giaSan);
                     sanPrices.Remove(san.MaSan);
-                    ShowBill(san.MaSan);  // Cập nhật lại hóa đơn sau khi thanh toán
+                    ShowBill(san.MaSan);
                 }
             }
         }
@@ -509,7 +446,6 @@ namespace BadmintonManager.GUI
         }
         private void lsvBill_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // NHẤN VÀO 1 DÒNG TRONG LISTVIEW
         }
         private void cbTenHH_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -524,7 +460,6 @@ namespace BadmintonManager.GUI
 
         private void cbDonViTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Gọi ShowDonGia khi thay đổi đơn vị tính
             ShowDonGia();
 
         }
@@ -564,7 +499,6 @@ namespace BadmintonManager.GUI
 
         private void cbLoaiKH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TinhTienSan();
         }
 
         private void btnTinhGiaSan_Click(object sender, EventArgs e)
@@ -581,12 +515,93 @@ namespace BadmintonManager.GUI
         }
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();  // Đóng form hiện tại
+            this.Close();
         }
 
+        private void btnKhachMoi_Click(object sender, EventArgs e)
+        {
+            AddKhachHang addKhachHang = new AddKhachHang();
+            addKhachHang.ShowDialog();
+            LoadKhachHang();
+        }
+        private void cbKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void btnChooseLichSan_Click(object sender, EventArgs e)
+        {
+            DanhSachLichSan chonlichdat = new DanhSachLichSan();
+            chonlichdat.OnLichSanSelected += (maDatSan, maSan, maKH, maGia, tuGio, denGio, loaiKH, daTra) =>
+            {
+                maDSan = maDatSan;
+                maGiaChon = maGia;
+                decimal giaSan = BangGiaSanDAO.Instance.LayGia(maGia);
+                if(daTra >= giaSan)
+                {
+                    int SoBuoi = (int)(daTra / giaSan);
+                    soBuoiDaDat = SoBuoi;
+                }
+                foreach (Control control in flpSan.Controls)
+                {
+                    if (control is Button btnSan && btnSan.Tag is San san && san.MaSan == maSan)
+                    {
+                        btnSan.PerformClick();
+                        break;
+                    }
+                }
+                dtpGioVao.Value = tuGio;
+                dtpGioRa.Value = denGio;
+                KhachHang khachHang = KhachHangDAO.Instance.GetListKhachHang()
+                    .FirstOrDefault(kh => kh.MaKH == maKH);
+
+                if (khachHang != null)
+                {
+                    cbKhachHang.SelectedValue = maKH;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                LoaiKH selectedLoaiKH = loaiKHList.FirstOrDefault(lkh => lkh.Value == loaiKH);
+                if (selectedLoaiKH != null)
+                {
+                    cbLoaiKH.SelectedItem = selectedLoaiKH.DisplayName;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy loại khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            };
+            chonlichdat.ShowDialog();
+        }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            Button btnSan = sender as Button;
+            if (btnSan != null && btnSan.Tag != null)
+            {
+                San san = (San)btnSan.Tag;
+
+                int maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan);
+
+                if (maHD == -1)
+                {
+                    decimal giaSan = BangGiaSanDAO.Instance.LayGia(maGiaChon);
+                    BillDAO.Instance.InsertBill(san.MaSan, giaSan);
+                    int soBuoi = soBuoiDaDat;
+                    if (soBuoi > 0)
+                    {
+                        BillDAO.Instance.UpdateSoBuoiDaDat(maDSan, soBuoi);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sân này đã có người sử dụng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
         #endregion
-
-
     }
 }
 

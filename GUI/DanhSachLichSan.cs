@@ -12,6 +12,11 @@ namespace BadmintonManager.GUI
         private DanhSachLichSanBAL lichSanBAL;
         private KhachHangBLL khachHangBAL;
 
+        public delegate void LichSanSelectedHandler(int maDatSan, int maSan, int maKH, int maGia, DateTime tuGio, DateTime denGio, string loaiKH, decimal daTra);
+
+        // Event để thông báo khi một dòng được chọn
+        public event LichSanSelectedHandler OnLichSanSelected;
+
         public DanhSachLichSan()
         {
             InitializeComponent();
@@ -235,6 +240,70 @@ namespace BadmintonManager.GUI
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnTinhTien_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    // Lấy MaDatSan từ dòng được chọn
+                    int maDatSan = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["maDatSanDataGridViewTextBoxColumn"].Value);
+
+                    // Lấy thông tin chi tiết từ cơ sở dữ liệu
+                    DataTable lichSanDetail = lichSanBAL.GetLichSanByMaDatSan(maDatSan);
+
+                    if (lichSanDetail.Rows.Count > 0)
+                    {
+                        var row = lichSanDetail.Rows[0];
+                        int maSan = Convert.ToInt32(row["MaSan"]);
+                        int maKH = Convert.ToInt32(row["MaKH"]);
+                        int maGia = Convert.ToInt32(row["MaGia"]);
+                        DateTime tuGio = DateTime.Now; // Giá trị mặc định
+                        DateTime denGio = DateTime.Now;
+
+                        if (row["TuGio"] != DBNull.Value && row["TuGio"] is TimeSpan)
+                        {
+                            tuGio = DateTime.Today.Add((TimeSpan)row["TuGio"]);
+                        }
+                        else if (row["TuGio"] != DBNull.Value)
+                        {
+                            tuGio = Convert.ToDateTime(row["TuGio"]);
+                        }
+
+                        if (row["DenGio"] != DBNull.Value && row["DenGio"] is TimeSpan)
+                        {
+                            denGio = DateTime.Today.Add((TimeSpan)row["DenGio"]);
+                        }
+                        else if (row["DenGio"] != DBNull.Value)
+                        {
+                            denGio = Convert.ToDateTime(row["DenGio"]);
+                        }
+                        string loaiKH = row["LoaiKH"].ToString();
+                        decimal datRa = Convert.ToDecimal(row["DaTra"]);
+
+                        // Gọi event để truyền thông tin
+                        OnLichSanSelected?.Invoke(maDatSan, maSan, maKH, maGia, tuGio, denGio, loaiKH, datRa);
+
+                        // Đóng form sau khi chọn
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin chi tiết!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một dòng trước khi tiếp tục!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

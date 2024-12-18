@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace BadmintonManager.DAL
 {
@@ -135,6 +136,36 @@ namespace BadmintonManager.DAL
             }
 
             return dataTable;
+        }
+
+        public DataTable GetLichSanByMaDatSan(int maDatSan)
+        {
+            string query = "SELECT MaSan, MaKH, MaGia, TuGio, DenGio, LoaiKH, Datra FROM dbo.LichDatSan WHERE MaDatSan = @MaDatSan";
+            DataTable result = new DataTable();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        adapter.Fill(result);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
         }
 
 

@@ -38,6 +38,17 @@ namespace BadmintonManager.DAO
             }
             return list;
         }
+        public decimal LayGia(int magia)
+        {
+            string query = "SELECT Gia FROM dbo.BangGiaSan WHERE MaGia = @Magia";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { magia });
+            if (result != null && result != DBNull.Value)
+            {
+                return Convert.ToDecimal(result);
+            }
+            return 0;
+        }
+
         public void InsertGiaSan(string loaiKH, TimeSpan gioBatDau, TimeSpan gioKetThuc, decimal gia)
         {
             string query = "INSERT INTO dbo.BangGiaSan (LoaiKH , GioBatDau , GioKetThuc , Gia) VALUES ( @loaiKH , @gioBatDau , @gioKetThuc , @gia )";

@@ -28,23 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenuNV));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.btnDangXuat = new System.Windows.Forms.Button();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.btnTinhTien = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.btnThietLapSan = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnQuanLySan = new System.Windows.Forms.Button();
-            this.btnDoanhThu = new System.Windows.Forms.Button();
             this.btnKhachHang = new System.Windows.Forms.Button();
             this.btnHangHoa = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -60,9 +55,7 @@
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -80,19 +73,15 @@
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.panelMenu.Controls.Add(this.pictureBox12);
             this.panelMenu.Controls.Add(this.pictureBox11);
-            this.panelMenu.Controls.Add(this.pictureBox3);
             this.panelMenu.Controls.Add(this.pictureBox10);
             this.panelMenu.Controls.Add(this.btnDangXuat);
-            this.panelMenu.Controls.Add(this.pictureBox8);
             this.panelMenu.Controls.Add(this.btnTinhTien);
             this.panelMenu.Controls.Add(this.pictureBox7);
-            this.panelMenu.Controls.Add(this.btnThietLapSan);
             this.panelMenu.Controls.Add(this.pictureBox6);
             this.panelMenu.Controls.Add(this.pictureBox5);
             this.panelMenu.Controls.Add(this.pictureBox4);
             this.panelMenu.Controls.Add(this.pictureBox2);
             this.panelMenu.Controls.Add(this.btnQuanLySan);
-            this.panelMenu.Controls.Add(this.btnDoanhThu);
             this.panelMenu.Controls.Add(this.btnKhachHang);
             this.panelMenu.Controls.Add(this.btnHangHoa);
             this.panelMenu.Controls.Add(this.pictureBox1);
@@ -108,7 +97,7 @@
             // pictureBox12
             // 
             this.pictureBox12.Image = global::BadmintonManager.Properties.Resources.target;
-            this.pictureBox12.Location = new System.Drawing.Point(9, 236);
+            this.pictureBox12.Location = new System.Drawing.Point(9, 206);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(27, 24);
@@ -127,21 +116,9 @@
             this.pictureBox11.TabIndex = 21;
             this.pictureBox11.TabStop = false;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::BadmintonManager.Properties.Resources.target;
-            this.pictureBox3.Location = new System.Drawing.Point(9, 278);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(27, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 20;
-            this.pictureBox3.TabStop = false;
-            // 
             // pictureBox10
             // 
-            this.pictureBox10.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox10.InitialImage")));
-            this.pictureBox10.Location = new System.Drawing.Point(9, 312);
+            this.pictureBox10.Location = new System.Drawing.Point(9, 242);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(27, 24);
@@ -158,7 +135,7 @@
             this.btnDangXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangXuat.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnDangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDangXuat.Location = new System.Drawing.Point(0, 306);
+            this.btnDangXuat.Location = new System.Drawing.Point(0, 236);
             this.btnDangXuat.Margin = new System.Windows.Forms.Padding(2);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.Size = new System.Drawing.Size(165, 35);
@@ -166,17 +143,6 @@
             this.btnDangXuat.Text = "Đăng xuất";
             this.btnDangXuat.UseVisualStyleBackColor = true;
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::BadmintonManager.Properties.Resources.target;
-            this.pictureBox8.Location = new System.Drawing.Point(9, 312);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(27, 24);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 17;
-            this.pictureBox8.TabStop = false;
             // 
             // btnTinhTien
             // 
@@ -186,7 +152,7 @@
             this.btnTinhTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTinhTien.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnTinhTien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTinhTien.Location = new System.Drawing.Point(0, 271);
+            this.btnTinhTien.Location = new System.Drawing.Point(0, 201);
             this.btnTinhTien.Margin = new System.Windows.Forms.Padding(2);
             this.btnTinhTien.Name = "btnTinhTien";
             this.btnTinhTien.Size = new System.Drawing.Size(165, 35);
@@ -198,30 +164,13 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::BadmintonManager.Properties.Resources.badminton_court;
-            this.pictureBox7.Location = new System.Drawing.Point(9, 277);
+            this.pictureBox7.Location = new System.Drawing.Point(9, 242);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(27, 24);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 15;
             this.pictureBox7.TabStop = false;
-            // 
-            // btnThietLapSan
-            // 
-            this.btnThietLapSan.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnThietLapSan.FlatAppearance.BorderSize = 0;
-            this.btnThietLapSan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThietLapSan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThietLapSan.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnThietLapSan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThietLapSan.Location = new System.Drawing.Point(0, 236);
-            this.btnThietLapSan.Margin = new System.Windows.Forms.Padding(2);
-            this.btnThietLapSan.Name = "btnThietLapSan";
-            this.btnThietLapSan.Size = new System.Drawing.Size(165, 35);
-            this.btnThietLapSan.TabIndex = 14;
-            this.btnThietLapSan.Text = "Thiết lập sân";
-            this.btnThietLapSan.UseVisualStyleBackColor = true;
-            this.btnThietLapSan.Click += new System.EventHandler(this.btnThietLapSan_Click);
             // 
             // pictureBox6
             // 
@@ -275,7 +224,7 @@
             this.btnQuanLySan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuanLySan.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnQuanLySan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnQuanLySan.Location = new System.Drawing.Point(0, 201);
+            this.btnQuanLySan.Location = new System.Drawing.Point(0, 166);
             this.btnQuanLySan.Margin = new System.Windows.Forms.Padding(2);
             this.btnQuanLySan.Name = "btnQuanLySan";
             this.btnQuanLySan.Size = new System.Drawing.Size(165, 35);
@@ -283,23 +232,6 @@
             this.btnQuanLySan.Text = "Đặt Sân";
             this.btnQuanLySan.UseVisualStyleBackColor = true;
             this.btnQuanLySan.Click += new System.EventHandler(this.btnQuanLySan_Click);
-            // 
-            // btnDoanhThu
-            // 
-            this.btnDoanhThu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDoanhThu.FlatAppearance.BorderSize = 0;
-            this.btnDoanhThu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDoanhThu.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnDoanhThu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDoanhThu.Location = new System.Drawing.Point(0, 166);
-            this.btnDoanhThu.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDoanhThu.Name = "btnDoanhThu";
-            this.btnDoanhThu.Size = new System.Drawing.Size(165, 35);
-            this.btnDoanhThu.TabIndex = 6;
-            this.btnDoanhThu.Text = "Doanh Thu";
-            this.btnDoanhThu.UseVisualStyleBackColor = true;
-            this.btnDoanhThu.Click += new System.EventHandler(this.btnDoanhThu_Click);
             // 
             // btnKhachHang
             // 
@@ -478,9 +410,7 @@
             this.panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -505,7 +435,6 @@
         private System.Windows.Forms.Button btnLichSan;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnQuanLySan;
-        private System.Windows.Forms.Button btnDoanhThu;
         private System.Windows.Forms.Button btnKhachHang;
         private System.Windows.Forms.Button btnHangHoa;
         private System.Windows.Forms.PictureBox pictureBox5;
@@ -518,8 +447,6 @@
         private System.Windows.Forms.Panel panelDesktopPane;
         private System.Windows.Forms.Button btnCloseChildForm;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Button btnThietLapSan;
-        private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Button btnTinhTien;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label2;
@@ -527,6 +454,5 @@
         private System.Windows.Forms.Button btnDangXuat;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

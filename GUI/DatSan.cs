@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-
 using BadmintonManager.BAL;
 using BadmintonManager.DAL;
 using BadmintonManager.DTO;
@@ -48,14 +47,21 @@ namespace BadmintonManager.GUI
             KhachHangDAL dbHelper = new KhachHangDAL();
             List<KhachHangDTO> khachHangs = dbHelper.GetKhachHangList();
 
+            // Xóa các mục cũ trong ComboBox
+            cbbKhachHang.Items.Clear();
+
             // Thiết lập ValueMember và DisplayMember
-            cbbTenSan.ValueMember = "MaSKH";
-            cbbTenSan.DisplayMember = "TenKH";
+            cbbKhachHang.ValueMember = "MaKH";
+            cbbKhachHang.DisplayMember = "TenKH";
+
+            // Thêm dữ liệu vào ComboBox
             foreach (KhachHangDTO khachHang in khachHangs)
             {
                 cbbKhachHang.Items.Add(khachHang.TenKH); // Hiển thị tên khách hàng
             }
         }
+
+
 
         private void cbbTenSan_DropDown(object sender, EventArgs e)
         {
@@ -565,6 +571,8 @@ namespace BadmintonManager.GUI
                 // Save data
                 if (_bal.SaveLichDatSan(dto))
                 {
+                    ClearForm(); // Gọi hàm reset form sau khi lưu thành công
+
                     // Additional actions after successful save if needed
                 }
             }
@@ -572,6 +580,33 @@ namespace BadmintonManager.GUI
             {
                 MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ClearForm()
+        {
+            // Reset các ComboBox về giá trị mặc định
+            cbbTenSan.SelectedIndex = -1;
+            cbbKhachHang.SelectedIndex = -1;
+
+            // Bỏ chọn checkbox
+            cbLoaiKhach.Checked = false;
+
+            // Reset các DateTimePicker về ngày giờ hiện tại
+            dtpTuNgay.Value = DateTime.Now;
+            dtpDenNgay.Value = DateTime.Now;
+            dtpDenGio.Value = DateTime.Now;
+            dtpTuGio.Value = DateTime.Now;
+            dtpThoiGian.Value = DateTime.Now;
+
+            // Reset TextBox về rỗng
+            txtBuoi.Clear();
+            txtLayGia.Clear();
+            txtThanhToan.Clear();
+            txtDaTra.Clear();
+            txtConLai.Clear();
+
+            // Xóa DataGridView nếu có
+            dgvDanhSachNgay.Rows.Clear();
         }
 
         private void dtpThoiGian_ValueChanged(object sender, EventArgs e)

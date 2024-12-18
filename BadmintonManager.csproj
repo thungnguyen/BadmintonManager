@@ -209,7 +209,7 @@
     <Compile Include="DAL\LoaiHHDAL.cs" />
     <Compile Include="DAL\LoaiHHDAO.cs" />
     <Compile Include="DAL\MenuDAO.cs" />
-    <Compile Include="DAL\PheuChiDAL.cs" />
+    <Compile Include="DAL\PhieuChiDAL.cs" />
     <Compile Include="DAL\PhieuNhapHangDAL.cs" />
     <Compile Include="DAL\PricePerHourDAO.cs" />
     <Compile Include="DAL\SanDAL.cs" />
@@ -245,7 +245,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Form1.Designer.cs">
-      <SubType>Form</SubType>
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormBaoCaoChiTraCoc.cs">

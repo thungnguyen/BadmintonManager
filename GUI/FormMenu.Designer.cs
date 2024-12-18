@@ -50,7 +50,6 @@ namespace BadmintonManager.GUI
             this.panelDesktopPane = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
@@ -58,17 +57,16 @@ namespace BadmintonManager.GUI
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
             this.panelDesktopPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -76,18 +74,16 @@ namespace BadmintonManager.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.panelMenu.Controls.Add(this.pictureBox14);
-            this.panelMenu.Controls.Add(this.pictureBox5);
             this.panelMenu.Controls.Add(this.pictureBox13);
             this.panelMenu.Controls.Add(this.pictureBox12);
             this.panelMenu.Controls.Add(this.btnDangXuat);
@@ -99,6 +95,7 @@ namespace BadmintonManager.GUI
             this.panelMenu.Controls.Add(this.pictureBox7);
             this.panelMenu.Controls.Add(this.btnThietLapSan);
             this.panelMenu.Controls.Add(this.pictureBox6);
+            this.panelMenu.Controls.Add(this.pictureBox5);
             this.panelMenu.Controls.Add(this.pictureBox4);
             this.panelMenu.Controls.Add(this.pictureBox3);
             this.panelMenu.Controls.Add(this.pictureBox2);
@@ -288,7 +285,7 @@ namespace BadmintonManager.GUI
             this.label1.Location = new System.Drawing.Point(18, 23);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 25);
+            this.label1.Size = new System.Drawing.Size(145, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Horizon Badminton";
             // 
@@ -329,7 +326,7 @@ namespace BadmintonManager.GUI
             this.lblTitle.Location = new System.Drawing.Point(380, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(95, 31);
+            this.lblTitle.Size = new System.Drawing.Size(78, 26);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "HOME";
             // 
@@ -352,7 +349,7 @@ namespace BadmintonManager.GUI
             this.label2.Location = new System.Drawing.Point(362, 200);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(433, 56);
+            this.label2.Size = new System.Drawing.Size(352, 46);
             this.label2.TabIndex = 1;
             this.label2.Text = "Horizon Badminton";
             // 
@@ -368,20 +365,9 @@ namespace BadmintonManager.GUI
             this.pictureBox9.TabIndex = 0;
             this.pictureBox9.TabStop = false;
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::BadmintonManager.Properties.Resources.bill;
-            this.pictureBox5.Location = new System.Drawing.Point(9, 275);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(27, 24);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 25;
-            this.pictureBox5.TabStop = false;
-            // 
             // pictureBox13
             // 
-            this.pictureBox13.Image = global::BadmintonManager.Properties.Resources.logout1;
+            //this.pictureBox13.Image = global::BadmintonManager.Properties.Resources.logout;
             this.pictureBox13.Location = new System.Drawing.Point(9, 345);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox13.Name = "pictureBox13";
@@ -403,6 +389,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox11
             // 
+            this.pictureBox11.Image = global::BadmintonManager.Properties.Resources.bill;
             this.pictureBox11.Location = new System.Drawing.Point(9, 275);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox11.Name = "pictureBox11";
@@ -456,6 +443,17 @@ namespace BadmintonManager.GUI
             this.pictureBox6.TabIndex = 13;
             this.pictureBox6.TabStop = false;
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::BadmintonManager.Properties.Resources.booking;
+            this.pictureBox5.Location = new System.Drawing.Point(9, 206);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(27, 24);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 12;
+            this.pictureBox5.TabStop = false;
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::BadmintonManager.Properties.Resources.revenue;
@@ -500,20 +498,9 @@ namespace BadmintonManager.GUI
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox14
-            // 
-            this.pictureBox14.Image = global::BadmintonManager.Properties.Resources.booking;
-            this.pictureBox14.Location = new System.Drawing.Point(9, 212);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(27, 24);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox14.TabIndex = 26;
-            this.pictureBox14.TabStop = false;
-            // 
             // FormMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 576);
             this.Controls.Add(this.panelDesktopPane);
@@ -534,7 +521,6 @@ namespace BadmintonManager.GUI
             this.panelDesktopPane.ResumeLayout(false);
             this.panelDesktopPane.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
@@ -542,11 +528,11 @@ namespace BadmintonManager.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -561,6 +547,7 @@ namespace BadmintonManager.GUI
         private System.Windows.Forms.Button btnDoanhThu;
         private System.Windows.Forms.Button btnTaiKhoanNV;
         private System.Windows.Forms.Button btnHangHoa;
+        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -582,7 +569,5 @@ namespace BadmintonManager.GUI
         private System.Windows.Forms.Button btnKhachHang;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.PictureBox pictureBox12;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox14;
     }
 }

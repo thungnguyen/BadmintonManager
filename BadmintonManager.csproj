@@ -72,6 +72,30 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.35.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.IdentityModel.Tokens.6.35.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -162,6 +186,7 @@
     <Compile Include="BAL\LichDatSanBAL.cs" />
     <Compile Include="BAL\LichSuNhapHangBAL.cs" />
     <Compile Include="BAL\LoaiHHBLL.cs" />
+    <Compile Include="BAL\PhieuChiBAL.cs" />
     <Compile Include="BAL\PhieuNhapHangBAL.cs" />
     <Compile Include="BAL\SanBAL.cs" />
     <Compile Include="BAL\TaiKhoanBAL.cs" />
@@ -184,6 +209,7 @@
     <Compile Include="DAL\LoaiHHDAL.cs" />
     <Compile Include="DAL\LoaiHHDAO.cs" />
     <Compile Include="DAL\MenuDAO.cs" />
+    <Compile Include="DAL\PheuChiDAL.cs" />
     <Compile Include="DAL\PhieuNhapHangDAL.cs" />
     <Compile Include="DAL\PricePerHourDAO.cs" />
     <Compile Include="DAL\SanDAL.cs" />
@@ -192,12 +218,14 @@
     <Compile Include="DAL\TaiKhoanNhanVienDAL.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
+    <Compile Include="DTO\DanhSachLichSanDTO.cs" />
     <Compile Include="DTO\HH.cs" />
     <Compile Include="DTO\KhachHang.cs" />
     <Compile Include="DTO\LichSuNhapHangDTO.cs" />
     <Compile Include="DTO\LoaiHHDTO.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
+    <Compile Include="DTO\PhieuChiDTO.cs" />
     <Compile Include="DTO\PhieuNhapHang.cs" />
     <Compile Include="DTO\PricePerHour.cs" />
     <Compile Include="DTO\San.cs" />
@@ -206,6 +234,12 @@
     </Compile>
     <Compile Include="GUI\BangGiaSan.Designer.cs">
       <DependentUpon>BangGiaSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DanhSachLichSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachLichSan.Designer.cs">
+      <DependentUpon>DanhSachLichSan.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Form1.cs">
       <SubType>Form</SubType>
@@ -232,6 +266,12 @@
     <Compile Include="GUI\FormPhieuNhapHang.Designer.cs">
       <DependentUpon>FormPhieuNhapHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\PhieuChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PhieuChi.Designer.cs">
+      <DependentUpon>PhieuChi.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TaoSan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,9 +283,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Theme\ThemeColor.cs" />
     <Compile Include="DTO\BangGiaSanDTO.cs" />
-    <Compile Include="DTO\DanhSachLichSanDTO.cs" />
     <Compile Include="DTO\GiaSanDTO.cs" />
     <Compile Include="DTO\HangHoa.cs" />
     <Compile Include="DTO\KhachHangDTO.cs" />
@@ -359,6 +399,9 @@
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhSachLichSan.resx">
+      <DependentUpon>DanhSachLichSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachLoaiHH.resx">
       <DependentUpon>DanhSachLoaiHH.cs</DependentUpon>
     </EmbeddedResource>
@@ -395,6 +438,9 @@
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PhieuChi.resx">
+      <DependentUpon>PhieuChi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\SuaHangHoa.resx">
       <DependentUpon>SuaHangHoa.cs</DependentUpon>
     </EmbeddedResource>
@@ -426,10 +472,27 @@
   <ItemGroup>
     <Content Include="Resources\381607_complete_icon.png" />
     <Content Include="Resources\badminton-court.png" />
+    <Content Include="Resources\bill.png" />
+    <Content Include="Resources\booking.png" />
     <Content Include="Resources\button.png" />
     <Content Include="Resources\calendar.png" />
     <Content Include="Resources\Datlich.jpg" />
+    <Content Include="Resources\Datlich1.jpg" />
     <Content Include="Resources\features.png" />
+    <Content Include="Resources\logout2.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="QuanLySanDataSet.xsc">
       <DependentUpon>QuanLySanDataSet.xsd</DependentUpon>
     </None>

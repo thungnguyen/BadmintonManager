@@ -151,20 +151,32 @@ namespace BadmintonManager.GUI
             OpenChildForm(new GUI.FrmTinhTien(), sender);
         }
 
-        private void btnDangXuat_Click(object sender, EventArgs e)
+
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnKhachHang_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new GUI.AddKhachHang(), sender);
+        }
+
+        private void FormMenu_Load(object sender, EventArgs e)
+        {
+
+            //this.reportViewer1.RefreshReport();
+        }
+
+        private void btnDangXuat_Click_1(object sender, EventArgs e)
         {
             // Đóng form hiện tại
             this.Hide();
 
             // Mở form đăng nhập
             DangNhap formDangNhap = new DangNhap();
-                formDangNhap.Show();
-
-        }
-
-        private void pictureBox10_Click(object sender, EventArgs e)
-        {
-
+            formDangNhap.Show();
         }
     }
 }

@@ -9,7 +9,6 @@ namespace BadmintonManager.DAL
     {
         private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
 
-
         public DataTable LayDanhSachLichSan()
         {
             string query = "SELECT * FROM LichDatSan";
@@ -139,59 +138,5 @@ namespace BadmintonManager.DAL
         }
 
 
-    }
-    public class DataProvider
-    {
-        private static string connectionString = "Data Source=LAPTOP-JDM8N7NE;Initial Catalog=QuanLySan;Integrated Security=True;Encrypt=False";
-
-        public static int ExecuteNonQuery(string query, SqlParameter[] parameters)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open(); // Mở kết nối đến SQL Server
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddRange(parameters); // Thêm tham số vào câu lệnh SQL
-
-                    return cmd.ExecuteNonQuery(); // Thực thi câu lệnh và trả về số dòng bị ảnh hưởng
-                }
-            }
-            catch (SqlException ex)
-            {
-                // Xử lý lỗi SQL
-                Console.WriteLine("Lỗi SQL: " + ex.Message);
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                // Bắt lỗi chung
-                Console.WriteLine("Lỗi: " + ex.Message);
-                return 0;
-            }
-        }
-    }
-
-}
-
-namespace BadmintonManager.DAL
-{
-    public class PhieuChiDAL
-    {
-        public bool ThemPhieuChi(PhieuChiDTO phieuChi)
-        {
-            string query = "INSERT INTO PhieuChi (MaDatSan, MaSan, MaKH, TuNgay, DaTra, NgayLap) " +
-                           "VALUES (@MaDatSan, @MaSan, @MaKH, @TuNgay, @DaTra, @NgayLap)";
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@MaDatSan", phieuChi.MaDatSan),
-                new SqlParameter("@MaSan", phieuChi.MaSan),
-                new SqlParameter("@MaKH", phieuChi.MaKH),
-                new SqlParameter("@TuNgay", phieuChi.TuNgay),
-                new SqlParameter("@DaTra", phieuChi.DaTra),
-                new SqlParameter("@NgayLap", phieuChi.NgayLap)
-            };
-            return DataProvider.ExecuteNonQuery(query, parameters) > 0;
-        }
     }
 }

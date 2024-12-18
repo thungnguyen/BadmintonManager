@@ -63,11 +63,12 @@
             this.daTraDataGridViewTextBoxColumn,
             this.ngayLapDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.phieuChiBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 184);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 147);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1117, 254);
+            this.dataGridView1.Size = new System.Drawing.Size(993, 203);
             this.dataGridView1.TabIndex = 0;
             // 
             // maPhieuChiDataGridViewTextBoxColumn
@@ -143,24 +144,27 @@
             // 
             // datePickerFrom
             // 
-            this.datePickerFrom.Location = new System.Drawing.Point(337, 87);
+            this.datePickerFrom.Location = new System.Drawing.Point(300, 70);
+            this.datePickerFrom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.datePickerFrom.Name = "datePickerFrom";
-            this.datePickerFrom.Size = new System.Drawing.Size(290, 26);
+            this.datePickerFrom.Size = new System.Drawing.Size(258, 22);
             this.datePickerFrom.TabIndex = 1;
             // 
             // datePickerTo
             // 
-            this.datePickerTo.Location = new System.Drawing.Point(337, 129);
+            this.datePickerTo.Location = new System.Drawing.Point(300, 103);
+            this.datePickerTo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.datePickerTo.Name = "datePickerTo";
-            this.datePickerTo.Size = new System.Drawing.Size(290, 26);
+            this.datePickerTo.Size = new System.Drawing.Size(258, 22);
             this.datePickerTo.TabIndex = 2;
             // 
             // btnTimKiem
             // 
             this.btnTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnTimKiem.Location = new System.Drawing.Point(656, 116);
+            this.btnTimKiem.Location = new System.Drawing.Point(583, 93);
+            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(75, 39);
+            this.btnTimKiem.Size = new System.Drawing.Size(67, 31);
             this.btnTimKiem.TabIndex = 3;
             this.btnTimKiem.Text = "Tìm";
             this.btnTimKiem.UseVisualStyleBackColor = true;
@@ -170,31 +174,33 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.Location = new System.Drawing.Point(810, 134);
+            this.label1.Location = new System.Drawing.Point(720, 107);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 25);
+            this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Tổng chi:";
             // 
             // txtTongTien
             // 
             this.txtTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtTongTien.Location = new System.Drawing.Point(910, 129);
+            this.txtTongTien.Location = new System.Drawing.Point(809, 103);
+            this.txtTongTien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.Size = new System.Drawing.Size(186, 30);
+            this.txtTongTien.Size = new System.Drawing.Size(166, 26);
             this.txtTongTien.TabIndex = 6;
             // 
             // FormBaoCaoChiTraCoc
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1142, 450);
+            this.ClientSize = new System.Drawing.Size(1015, 360);
             this.Controls.Add(this.txtTongTien);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.datePickerTo);
             this.Controls.Add(this.datePickerFrom);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormBaoCaoChiTraCoc";
             this.Text = "Báo cáo chi trả tiền cọc";
             this.Load += new System.EventHandler(this.FormBaoCaoChiTraCoc_Load);

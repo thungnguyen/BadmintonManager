@@ -16,12 +16,14 @@ namespace BadmintonManager
 {
     public partial class DangNhap : Form
     {
-        private TaiKhoanNhanVienBAL taiKhoanBAL;
+        private TaiKhoanBAL taiKhoanBAL;
 
         public DangNhap()
         {
             InitializeComponent();
-            taiKhoanBAL = new TaiKhoanNhanVienBAL();
+            //taiKhoanBAL = new TaiKhoanNhanVienBAL();
+            taiKhoanBAL = new TaiKhoanBAL();
+
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
@@ -60,6 +62,11 @@ namespace BadmintonManager
         {
             txtUsername.Text = "taikhoanquanly";
             txtPassword.Text = "1";
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

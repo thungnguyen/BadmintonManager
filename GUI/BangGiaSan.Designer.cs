@@ -30,6 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.lsvGiaSan = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtLoaiKH = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -44,11 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,9 +59,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(236, 9);
+            this.label1.Location = new System.Drawing.Point(362, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 42);
+            this.label1.Size = new System.Drawing.Size(191, 54);
             this.label1.TabIndex = 16;
             this.label1.Text = "Giá Sân";
             // 
@@ -74,158 +75,14 @@
             this.columnHeader4,
             this.columnHeader5});
             this.lsvGiaSan.HideSelection = false;
-            this.lsvGiaSan.Location = new System.Drawing.Point(3, 3);
+            this.lsvGiaSan.Location = new System.Drawing.Point(4, 4);
+            this.lsvGiaSan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lsvGiaSan.Name = "lsvGiaSan";
-            this.lsvGiaSan.Size = new System.Drawing.Size(397, 155);
+            this.lsvGiaSan.Size = new System.Drawing.Size(528, 190);
             this.lsvGiaSan.TabIndex = 30;
             this.lsvGiaSan.UseCompatibleStateImageBehavior = false;
             this.lsvGiaSan.View = System.Windows.Forms.View.Details;
             this.lsvGiaSan.SelectedIndexChanged += new System.EventHandler(this.lsvGiaSan_SelectedIndexChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtLoaiKH);
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.btnUpdate);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.dtpEnd);
-            this.panel1.Controls.Add(this.dtpBegin);
-            this.panel1.Controls.Add(this.txtGia);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(12, 117);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 157);
-            this.panel1.TabIndex = 31;
-            // 
-            // txtLoaiKH
-            // 
-            this.txtLoaiKH.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtLoaiKH.Location = new System.Drawing.Point(81, 48);
-            this.txtLoaiKH.Name = "txtLoaiKH";
-            this.txtLoaiKH.Size = new System.Drawing.Size(200, 20);
-            this.txtLoaiKH.TabIndex = 56;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDelete.Location = new System.Drawing.Point(325, 107);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(66, 39);
-            this.btnDelete.TabIndex = 55;
-            this.btnDelete.Text = "Xoá";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnUpdate.Location = new System.Drawing.Point(325, 62);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(66, 39);
-            this.btnUpdate.TabIndex = 54;
-            this.btnUpdate.Text = "Sửa";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAdd.Location = new System.Drawing.Point(325, 12);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(66, 39);
-            this.btnAdd.TabIndex = 53;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // dtpEnd
-            // 
-            this.dtpEnd.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpEnd.Location = new System.Drawing.Point(81, 126);
-            this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.ShowUpDown = true;
-            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
-            this.dtpEnd.TabIndex = 52;
-            // 
-            // dtpBegin
-            // 
-            this.dtpBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.dtpBegin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpBegin.Location = new System.Drawing.Point(81, 100);
-            this.dtpBegin.Name = "dtpBegin";
-            this.dtpBegin.ShowUpDown = true;
-            this.dtpBegin.Size = new System.Drawing.Size(200, 20);
-            this.dtpBegin.TabIndex = 51;
-            // 
-            // txtGia
-            // 
-            this.txtGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.txtGia.Location = new System.Drawing.Point(81, 74);
-            this.txtGia.Name = "txtGia";
-            this.txtGia.Size = new System.Drawing.Size(200, 20);
-            this.txtGia.TabIndex = 50;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 108);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 13);
-            this.label6.TabIndex = 48;
-            this.label6.Text = "Giờ bắt đầu:";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 133);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 13);
-            this.label5.TabIndex = 47;
-            this.label5.Text = "Giờ kết thúc:";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 13);
-            this.label4.TabIndex = 46;
-            this.label4.Text = "Giá:";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 45;
-            this.label3.Text = "Loại KH:";
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnThoat.Location = new System.Drawing.Point(561, 399);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(66, 39);
-            this.btnThoat.TabIndex = 54;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.lsvGiaSan);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 280);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(409, 158);
-            this.flowLayoutPanel1.TabIndex = 55;
             // 
             // columnHeader1
             // 
@@ -256,15 +113,175 @@
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader5.Width = 108;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtLoaiKH);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Controls.Add(this.dtpEnd);
+            this.panel1.Controls.Add(this.dtpBegin);
+            this.panel1.Controls.Add(this.txtGia);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Location = new System.Drawing.Point(20, 94);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(533, 193);
+            this.panel1.TabIndex = 31;
+            // 
+            // txtLoaiKH
+            // 
+            this.txtLoaiKH.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtLoaiKH.Location = new System.Drawing.Point(108, 59);
+            this.txtLoaiKH.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLoaiKH.Name = "txtLoaiKH";
+            this.txtLoaiKH.Size = new System.Drawing.Size(265, 22);
+            this.txtLoaiKH.TabIndex = 56;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDelete.Location = new System.Drawing.Point(433, 132);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(88, 48);
+            this.btnDelete.TabIndex = 55;
+            this.btnDelete.Text = "Xoá";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnUpdate.Location = new System.Drawing.Point(433, 76);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(88, 48);
+            this.btnUpdate.TabIndex = 54;
+            this.btnUpdate.Text = "Sửa";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAdd.Location = new System.Drawing.Point(433, 15);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(88, 48);
+            this.btnAdd.TabIndex = 53;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEnd.Location = new System.Drawing.Point(108, 155);
+            this.dtpEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.ShowUpDown = true;
+            this.dtpEnd.Size = new System.Drawing.Size(265, 22);
+            this.dtpEnd.TabIndex = 52;
+            // 
+            // dtpBegin
+            // 
+            this.dtpBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.dtpBegin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpBegin.Location = new System.Drawing.Point(108, 123);
+            this.dtpBegin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBegin.Name = "dtpBegin";
+            this.dtpBegin.ShowUpDown = true;
+            this.dtpBegin.Size = new System.Drawing.Size(265, 22);
+            this.dtpBegin.TabIndex = 51;
+            // 
+            // txtGia
+            // 
+            this.txtGia.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtGia.Location = new System.Drawing.Point(108, 91);
+            this.txtGia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGia.Name = "txtGia";
+            this.txtGia.Size = new System.Drawing.Size(265, 22);
+            this.txtGia.TabIndex = 50;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 133);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 16);
+            this.label6.TabIndex = 48;
+            this.label6.Text = "Giờ bắt đầu:";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 164);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 16);
+            this.label5.TabIndex = 47;
+            this.label5.Text = "Giờ kết thúc:";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 100);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 16);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Giá:";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 68);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 16);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "Loại KH:";
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnThoat.Location = new System.Drawing.Point(701, 493);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(88, 48);
+            this.btnThoat.TabIndex = 54;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.lsvGiaSan);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 295);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(545, 194);
+            this.flowLayoutPanel1.TabIndex = 55;
+            // 
             // BangGiaSan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 450);
+            this.ClientSize = new System.Drawing.Size(802, 554);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "BangGiaSan";
             this.Text = "BangGiaSan";
             this.panel1.ResumeLayout(false);

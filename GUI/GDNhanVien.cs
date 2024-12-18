@@ -90,7 +90,7 @@ namespace BadmintonManager.GUI
 
         private void btnLichSan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DatSan(), sender);
+            OpenChildForm(new GUI.Form1(), sender);
         }
 
         private void btnHangHoa_Click(object sender, EventArgs e)
@@ -100,7 +100,7 @@ namespace BadmintonManager.GUI
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DanhSachTaiKhoan(), sender);
+            OpenChildForm(new GUI.AddKhachHang(), sender);
         }
 
         private void btnDoanhThu_Click(object sender, EventArgs e)

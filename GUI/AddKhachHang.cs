@@ -20,6 +20,8 @@ namespace BadmintonManager.GUI
         {
             InitializeComponent();
             khachHangBAL = new KhachHangBAL();
+            this.Load += AddKhachHang_Load; // Đăng ký sự kiện load
+
         }
 
         private void btnThemKH_Click(object sender, EventArgs e)
@@ -48,14 +50,40 @@ namespace BadmintonManager.GUI
 
             if (isAdded)
             {
-                MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close(); // Đóng form sau khi thêm thành công
-
+                LoadKhachHangData(); // Cập nhật DataGridView
+                txtTenKH.Clear();    // Xóa dữ liệu cũ trên textbox
+                txtSDT.Clear();
             }
             else
             {
                 MessageBox.Show("Thêm khách hàng thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+            private void LoadKhachHangData()
+            {
+                try
+                {
+                    List<KhachHangDTO> danhSachKhachHang = khachHangBAL.GetAllKhachHangs();
+                    dgvKhachHang.DataSource = danhSachKhachHang; // Gán dữ liệu vào DataGridView
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải dữ liệu khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        private void AddKhachHang_Load(object sender, EventArgs e)
+        {
+            LoadKhachHangData();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void AddKhachHang_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

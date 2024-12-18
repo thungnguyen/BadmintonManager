@@ -37,20 +37,10 @@ namespace BadmintonManager.GUI
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.maDatSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maKHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tuNgayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.denNgayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tuGioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.denGioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thoiGianDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loaiKHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soBuoiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.canThanhToanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.daTraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaDatSan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaSan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lichDatSanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quanLySanDataSet = new BadmintonManager.QuanLySanDataSet();
             this.lichDatSanTableAdapter = new BadmintonManager.QuanLySanDataSetTableAdapters.LichDatSanTableAdapter();
@@ -65,10 +55,21 @@ namespace BadmintonManager.GUI
             this.label3 = new System.Windows.Forms.Label();
             this.TimTenKH = new System.Windows.Forms.Button();
             this.btnTinhTien = new System.Windows.Forms.Button();
-            this.MaDatSan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaSan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maDatSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maSanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maKHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tuNgayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.denNgayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tuGioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.denGioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thoiGianDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loaiKHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soBuoiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.canThanhToanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.daTraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.conLaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lichDatSanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLySanDataSet)).BeginInit();
@@ -79,6 +80,10 @@ namespace BadmintonManager.GUI
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaDatSan,
+            this.MaSan,
+            this.MaKH,
+            this.MaGia,
             this.maDatSanDataGridViewTextBoxColumn,
             this.maSanDataGridViewTextBoxColumn,
             this.maKHDataGridViewTextBoxColumn,
@@ -93,10 +98,7 @@ namespace BadmintonManager.GUI
             this.layGiaDataGridViewTextBoxColumn,
             this.canThanhToanDataGridViewTextBoxColumn,
             this.daTraDataGridViewTextBoxColumn,
-            this.MaDatSan,
-            this.MaSan,
-            this.MaKH,
-            this.MaGia});
+            this.conLaiDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.lichDatSanBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(4, 121);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
@@ -107,118 +109,30 @@ namespace BadmintonManager.GUI
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // maDatSanDataGridViewTextBoxColumn
+            // MaDatSan
             // 
-            this.maDatSanDataGridViewTextBoxColumn.DataPropertyName = "MaDatSan";
-            this.maDatSanDataGridViewTextBoxColumn.HeaderText = "Mã đặt sân";
-            this.maDatSanDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.maDatSanDataGridViewTextBoxColumn.Name = "maDatSanDataGridViewTextBoxColumn";
-            this.maDatSanDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maDatSanDataGridViewTextBoxColumn.Width = 150;
+            this.MaDatSan.DataPropertyName = "MaDatSan";
+            this.MaDatSan.HeaderText = "MaDatSan";
+            this.MaDatSan.Name = "MaDatSan";
+            this.MaDatSan.ReadOnly = true;
             // 
-            // maSanDataGridViewTextBoxColumn
+            // MaSan
             // 
-            this.maSanDataGridViewTextBoxColumn.DataPropertyName = "MaSan";
-            this.maSanDataGridViewTextBoxColumn.HeaderText = "Mã sân";
-            this.maSanDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.maSanDataGridViewTextBoxColumn.Name = "maSanDataGridViewTextBoxColumn";
-            this.maSanDataGridViewTextBoxColumn.Width = 150;
+            this.MaSan.DataPropertyName = "MaSan";
+            this.MaSan.HeaderText = "MaSan";
+            this.MaSan.Name = "MaSan";
             // 
-            // maKHDataGridViewTextBoxColumn
+            // MaKH
             // 
-            this.maKHDataGridViewTextBoxColumn.DataPropertyName = "MaKH";
-            this.maKHDataGridViewTextBoxColumn.HeaderText = "Mã KH";
-            this.maKHDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.maKHDataGridViewTextBoxColumn.Name = "maKHDataGridViewTextBoxColumn";
-            this.maKHDataGridViewTextBoxColumn.Width = 150;
+            this.MaKH.DataPropertyName = "MaKH";
+            this.MaKH.HeaderText = "MaKH";
+            this.MaKH.Name = "MaKH";
             // 
-            // maGiaDataGridViewTextBoxColumn
+            // MaGia
             // 
-            this.maGiaDataGridViewTextBoxColumn.DataPropertyName = "MaGia";
-            this.maGiaDataGridViewTextBoxColumn.HeaderText = "Mã giá sân";
-            this.maGiaDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.maGiaDataGridViewTextBoxColumn.Name = "maGiaDataGridViewTextBoxColumn";
-            this.maGiaDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // tuNgayDataGridViewTextBoxColumn
-            // 
-            this.tuNgayDataGridViewTextBoxColumn.DataPropertyName = "TuNgay";
-            this.tuNgayDataGridViewTextBoxColumn.HeaderText = "Ngày bắt đầu";
-            this.tuNgayDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.tuNgayDataGridViewTextBoxColumn.Name = "tuNgayDataGridViewTextBoxColumn";
-            this.tuNgayDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // denNgayDataGridViewTextBoxColumn
-            // 
-            this.denNgayDataGridViewTextBoxColumn.DataPropertyName = "DenNgay";
-            this.denNgayDataGridViewTextBoxColumn.HeaderText = "Ngày kết thúc";
-            this.denNgayDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.denNgayDataGridViewTextBoxColumn.Name = "denNgayDataGridViewTextBoxColumn";
-            this.denNgayDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // tuGioDataGridViewTextBoxColumn
-            // 
-            this.tuGioDataGridViewTextBoxColumn.DataPropertyName = "TuGio";
-            this.tuGioDataGridViewTextBoxColumn.HeaderText = "Từ";
-            this.tuGioDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.tuGioDataGridViewTextBoxColumn.Name = "tuGioDataGridViewTextBoxColumn";
-            this.tuGioDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // denGioDataGridViewTextBoxColumn
-            // 
-            this.denGioDataGridViewTextBoxColumn.DataPropertyName = "DenGio";
-            this.denGioDataGridViewTextBoxColumn.HeaderText = "Đến";
-            this.denGioDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.denGioDataGridViewTextBoxColumn.Name = "denGioDataGridViewTextBoxColumn";
-            this.denGioDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // thoiGianDataGridViewTextBoxColumn
-            // 
-            this.thoiGianDataGridViewTextBoxColumn.DataPropertyName = "ThoiGian";
-            this.thoiGianDataGridViewTextBoxColumn.HeaderText = "Thời gian";
-            this.thoiGianDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.thoiGianDataGridViewTextBoxColumn.Name = "thoiGianDataGridViewTextBoxColumn";
-            this.thoiGianDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // loaiKHDataGridViewTextBoxColumn
-            // 
-            this.loaiKHDataGridViewTextBoxColumn.DataPropertyName = "LoaiKH";
-            this.loaiKHDataGridViewTextBoxColumn.HeaderText = "Loại KH";
-            this.loaiKHDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.loaiKHDataGridViewTextBoxColumn.Name = "loaiKHDataGridViewTextBoxColumn";
-            this.loaiKHDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // soBuoiDataGridViewTextBoxColumn
-            // 
-            this.soBuoiDataGridViewTextBoxColumn.DataPropertyName = "SoBuoi";
-            this.soBuoiDataGridViewTextBoxColumn.HeaderText = "Số buổi";
-            this.soBuoiDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.soBuoiDataGridViewTextBoxColumn.Name = "soBuoiDataGridViewTextBoxColumn";
-            this.soBuoiDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // layGiaDataGridViewTextBoxColumn
-            // 
-            this.layGiaDataGridViewTextBoxColumn.DataPropertyName = "LayGia";
-            this.layGiaDataGridViewTextBoxColumn.HeaderText = "Lấy giá";
-            this.layGiaDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.layGiaDataGridViewTextBoxColumn.Name = "layGiaDataGridViewTextBoxColumn";
-            this.layGiaDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // canThanhToanDataGridViewTextBoxColumn
-            // 
-            this.canThanhToanDataGridViewTextBoxColumn.DataPropertyName = "CanThanhToan";
-            this.canThanhToanDataGridViewTextBoxColumn.HeaderText = "Cần thanh toán";
-            this.canThanhToanDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.canThanhToanDataGridViewTextBoxColumn.Name = "canThanhToanDataGridViewTextBoxColumn";
-            this.canThanhToanDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // daTraDataGridViewTextBoxColumn
-            // 
-            this.daTraDataGridViewTextBoxColumn.DataPropertyName = "DaTra";
-            this.daTraDataGridViewTextBoxColumn.HeaderText = "Đã trả";
-            this.daTraDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.daTraDataGridViewTextBoxColumn.Name = "daTraDataGridViewTextBoxColumn";
-            this.daTraDataGridViewTextBoxColumn.Width = 150;
+            this.MaGia.DataPropertyName = "MaGia";
+            this.MaGia.HeaderText = "MaGia";
+            this.MaGia.Name = "MaGia";
             // 
             // lichDatSanBindingSource
             // 
@@ -313,7 +227,7 @@ namespace BadmintonManager.GUI
             // txtTenKH
             // 
             this.txtTenKH.Location = new System.Drawing.Point(87, 59);
-            this.txtTenKH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTenKH.Margin = new System.Windows.Forms.Padding(2);
             this.txtTenKH.Name = "txtTenKH";
             this.txtTenKH.Size = new System.Drawing.Size(159, 20);
             this.txtTenKH.TabIndex = 8;
@@ -355,30 +269,97 @@ namespace BadmintonManager.GUI
             this.btnTinhTien.UseVisualStyleBackColor = true;
             this.btnTinhTien.Click += new System.EventHandler(this.btnTinhTien_Click);
             // 
-            // MaDatSan
+            // maDatSanDataGridViewTextBoxColumn
             // 
-            this.MaDatSan.DataPropertyName = "MaDatSan";
-            this.MaDatSan.HeaderText = "MaDatSan";
-            this.MaDatSan.Name = "MaDatSan";
-            this.MaDatSan.ReadOnly = true;
+            this.maDatSanDataGridViewTextBoxColumn.DataPropertyName = "MaDatSan";
+            this.maDatSanDataGridViewTextBoxColumn.HeaderText = "MaDatSan";
+            this.maDatSanDataGridViewTextBoxColumn.Name = "maDatSanDataGridViewTextBoxColumn";
+            this.maDatSanDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // MaSan
+            // maSanDataGridViewTextBoxColumn
             // 
-            this.MaSan.DataPropertyName = "MaSan";
-            this.MaSan.HeaderText = "MaSan";
-            this.MaSan.Name = "MaSan";
+            this.maSanDataGridViewTextBoxColumn.DataPropertyName = "MaSan";
+            this.maSanDataGridViewTextBoxColumn.HeaderText = "MaSan";
+            this.maSanDataGridViewTextBoxColumn.Name = "maSanDataGridViewTextBoxColumn";
             // 
-            // MaKH
+            // maKHDataGridViewTextBoxColumn
             // 
-            this.MaKH.DataPropertyName = "MaKH";
-            this.MaKH.HeaderText = "MaKH";
-            this.MaKH.Name = "MaKH";
+            this.maKHDataGridViewTextBoxColumn.DataPropertyName = "MaKH";
+            this.maKHDataGridViewTextBoxColumn.HeaderText = "MaKH";
+            this.maKHDataGridViewTextBoxColumn.Name = "maKHDataGridViewTextBoxColumn";
             // 
-            // MaGia
+            // maGiaDataGridViewTextBoxColumn
             // 
-            this.MaGia.DataPropertyName = "MaGia";
-            this.MaGia.HeaderText = "MaGia";
-            this.MaGia.Name = "MaGia";
+            this.maGiaDataGridViewTextBoxColumn.DataPropertyName = "MaGia";
+            this.maGiaDataGridViewTextBoxColumn.HeaderText = "MaGia";
+            this.maGiaDataGridViewTextBoxColumn.Name = "maGiaDataGridViewTextBoxColumn";
+            // 
+            // tuNgayDataGridViewTextBoxColumn
+            // 
+            this.tuNgayDataGridViewTextBoxColumn.DataPropertyName = "TuNgay";
+            this.tuNgayDataGridViewTextBoxColumn.HeaderText = "TuNgay";
+            this.tuNgayDataGridViewTextBoxColumn.Name = "tuNgayDataGridViewTextBoxColumn";
+            // 
+            // denNgayDataGridViewTextBoxColumn
+            // 
+            this.denNgayDataGridViewTextBoxColumn.DataPropertyName = "DenNgay";
+            this.denNgayDataGridViewTextBoxColumn.HeaderText = "DenNgay";
+            this.denNgayDataGridViewTextBoxColumn.Name = "denNgayDataGridViewTextBoxColumn";
+            // 
+            // tuGioDataGridViewTextBoxColumn
+            // 
+            this.tuGioDataGridViewTextBoxColumn.DataPropertyName = "TuGio";
+            this.tuGioDataGridViewTextBoxColumn.HeaderText = "TuGio";
+            this.tuGioDataGridViewTextBoxColumn.Name = "tuGioDataGridViewTextBoxColumn";
+            // 
+            // denGioDataGridViewTextBoxColumn
+            // 
+            this.denGioDataGridViewTextBoxColumn.DataPropertyName = "DenGio";
+            this.denGioDataGridViewTextBoxColumn.HeaderText = "DenGio";
+            this.denGioDataGridViewTextBoxColumn.Name = "denGioDataGridViewTextBoxColumn";
+            // 
+            // thoiGianDataGridViewTextBoxColumn
+            // 
+            this.thoiGianDataGridViewTextBoxColumn.DataPropertyName = "ThoiGian";
+            this.thoiGianDataGridViewTextBoxColumn.HeaderText = "ThoiGian";
+            this.thoiGianDataGridViewTextBoxColumn.Name = "thoiGianDataGridViewTextBoxColumn";
+            // 
+            // loaiKHDataGridViewTextBoxColumn
+            // 
+            this.loaiKHDataGridViewTextBoxColumn.DataPropertyName = "LoaiKH";
+            this.loaiKHDataGridViewTextBoxColumn.HeaderText = "LoaiKH";
+            this.loaiKHDataGridViewTextBoxColumn.Name = "loaiKHDataGridViewTextBoxColumn";
+            // 
+            // soBuoiDataGridViewTextBoxColumn
+            // 
+            this.soBuoiDataGridViewTextBoxColumn.DataPropertyName = "SoBuoi";
+            this.soBuoiDataGridViewTextBoxColumn.HeaderText = "SoBuoi";
+            this.soBuoiDataGridViewTextBoxColumn.Name = "soBuoiDataGridViewTextBoxColumn";
+            // 
+            // layGiaDataGridViewTextBoxColumn
+            // 
+            this.layGiaDataGridViewTextBoxColumn.DataPropertyName = "LayGia";
+            this.layGiaDataGridViewTextBoxColumn.HeaderText = "LayGia";
+            this.layGiaDataGridViewTextBoxColumn.Name = "layGiaDataGridViewTextBoxColumn";
+            // 
+            // canThanhToanDataGridViewTextBoxColumn
+            // 
+            this.canThanhToanDataGridViewTextBoxColumn.DataPropertyName = "CanThanhToan";
+            this.canThanhToanDataGridViewTextBoxColumn.HeaderText = "CanThanhToan";
+            this.canThanhToanDataGridViewTextBoxColumn.Name = "canThanhToanDataGridViewTextBoxColumn";
+            // 
+            // daTraDataGridViewTextBoxColumn
+            // 
+            this.daTraDataGridViewTextBoxColumn.DataPropertyName = "DaTra";
+            this.daTraDataGridViewTextBoxColumn.HeaderText = "DaTra";
+            this.daTraDataGridViewTextBoxColumn.Name = "daTraDataGridViewTextBoxColumn";
+            // 
+            // conLaiDataGridViewTextBoxColumn
+            // 
+            this.conLaiDataGridViewTextBoxColumn.DataPropertyName = "ConLai";
+            this.conLaiDataGridViewTextBoxColumn.HeaderText = "ConLai";
+            this.conLaiDataGridViewTextBoxColumn.Name = "conLaiDataGridViewTextBoxColumn";
+            this.conLaiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Form1
             // 
@@ -422,6 +403,14 @@ namespace BadmintonManager.GUI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtTenKH;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button TimTenKH;
+        private System.Windows.Forms.Button btnTinhTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaDatSan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaSan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn maDatSanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn maSanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn maKHDataGridViewTextBoxColumn;
@@ -436,13 +425,6 @@ namespace BadmintonManager.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn layGiaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn canThanhToanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn daTraDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TextBox txtTenKH;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button TimTenKH;
-        private System.Windows.Forms.Button btnTinhTien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaDatSan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaSan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn conLaiDataGridViewTextBoxColumn;
     }
 }

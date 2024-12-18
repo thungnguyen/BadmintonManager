@@ -53,5 +53,10 @@ namespace BadmintonManager.DAO
             string query = "DELETE FROM dbo.San WHERE MaSan = " + maSan;
             DataProvider.Instance.ExecuteNonQuery(query);
         }
+
+        internal void UpdateSoBuoiDaDat(int maSan, int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -132,5 +132,10 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Vui lòng chọn giá để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

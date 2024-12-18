@@ -13,7 +13,7 @@ namespace BadmintonManager.GUI
         private DanhSachLichSanBAL lichSanBAL;
         private KhachHangBLL khachHangBAL; // Thêm đối tượng để lấy dữ liệu khách hàng
 
-        public delegate void LichSanSelectedHandler(int maSan, int maKH, int maGia, DateTime tuGio, DateTime denGio, string loaiKH, decimal daTra);
+        public delegate void LichSanSelectedHandler(int maDatSan, int maSan, int maKH, int maGia, DateTime tuGio, DateTime denGio, string loaiKH, decimal daTra);
 
         // Event để thông báo khi một dòng được chọn
         public event LichSanSelectedHandler OnLichSanSelected;
@@ -39,33 +39,26 @@ namespace BadmintonManager.GUI
                 {
                     dataGridView1.DataSource = dataTable;
 
-                    // Thêm cột TenKH vào vị trí của MaKH (nếu chưa có)
                     if (!dataGridView1.Columns.Contains("TenKH"))
                     {
                         DataGridViewTextBoxColumn colTenKH = new DataGridViewTextBoxColumn();
                         colTenKH.Name = "TenKH";
                         colTenKH.HeaderText = "Tên KH";
-
-                        // Insert the new column at the same position as MaKH
                         dataGridView1.Columns.Insert(dataGridView1.Columns["maKHDataGridViewTextBoxColumn"].Index, colTenKH);
                     }
-
-                    // Duyệt qua từng dòng và thay thế MaKH bằng TenKH
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         if (!row.IsNewRow)
                         {
                             int maKH = Convert.ToInt32(row.Cells["maKHDataGridViewTextBoxColumn"].Value);
-                            string tenKH = GetTenKhachHangById(maKH);  // Lấy tên khách hàng từ MaKH
-
-                            // Kiểm tra nếu tên khách hàng không rỗng
+                            string tenKH = GetTenKhachHangById(maKH);
                             if (!string.IsNullOrEmpty(tenKH))
                             {
-                                row.Cells["TenKH"].Value = tenKH; // Cập nhật tên khách hàng vào cột TenKH
+                                row.Cells["TenKH"].Value = tenKH;
                             }
                             else
                             {
-                                row.Cells["TenKH"].Value = "Không tìm thấy"; // Nếu không tìm thấy tên, hiển thị thông báo
+                                row.Cells["TenKH"].Value = "Không tìm thấy";
                             }
                         }
                     }
@@ -80,17 +73,11 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
             }
         }
-
-
-
-        // Phương thức lấy tên khách hàng từ MaKH
         private string GetTenKhachHangById(int maKH)
         {
-            // Truy vấn bảng KhachHang để lấy TenKH từ MaKH
             string tenKH = string.Empty;
             try
             {
-                // Giả sử bạn có phương thức GetTenKhachHangById trong lớp KhachHangBAL
                 tenKH = khachHangBAL.GetTenKhachHangById(maKH);
             }
             catch (Exception ex)
@@ -99,11 +86,8 @@ namespace BadmintonManager.GUI
             }
             return tenKH;
         }
-
-        // Sự kiện khi form được mở
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Load toàn bộ dữ liệu khi form mở lên
             LoadData();
         }
 
@@ -111,24 +95,17 @@ namespace BadmintonManager.GUI
         {
             DateTime tuNgay = dateTimePickerTuNgay.Value;
             DateTime denNgay = dateTimePickerDenNgay.Value;
-
-            // Gọi phương thức để tìm kiếm lịch sân theo khoảng thời gian
             DataTable dataTable = lichSanBAL.TimLichSan(tuNgay, denNgay);
-
-            // Gán dữ liệu tìm được vào DataGridView
             dataGridView1.DataSource = dataTable;
-
-            // Cập nhật tên khách hàng cho các dòng
             if (dataTable != null && dataTable.Rows.Count > 0)
             {
-                // Duyệt qua từng dòng và thay thế MaKH bằng TenKH
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (!row.IsNewRow)
                     {
                         int maKH = Convert.ToInt32(row.Cells["maKHDataGridViewTextBoxColumn"].Value);
-                        string tenKH = GetTenKhachHangById(maKH);  // Lấy tên khách hàng từ MaKH
-                        row.Cells["TenKH"].Value = tenKH; // Cập nhật tên khách hàng vào cột TenKH
+                        string tenKH = GetTenKhachHangById(maKH);
+                        row.Cells["TenKH"].Value = tenKH;
                     }
                 }
             }
@@ -252,23 +229,35 @@ namespace BadmintonManager.GUI
 
                     if (lichSanDetail.Rows.Count > 0)
                     {
-                        // Lấy thông tin từ hàng đầu tiên
                         var row = lichSanDetail.Rows[0];
-
-                        // Kiểm tra và chuyển đổi dữ liệu cho các cột
                         int maSan = Convert.ToInt32(row["MaSan"]);
                         int maKH = Convert.ToInt32(row["MaKH"]);
                         int maGia = Convert.ToInt32(row["MaGia"]);
+                        DateTime tuGio = DateTime.Now; // Giá trị mặc định
+                        DateTime denGio = DateTime.Now;
 
-                        // Kiểm tra kiểu dữ liệu của TuGio và DenGio
-                        DateTime tuGio = (row["TuGio"] is TimeSpan) ? DateTime.MinValue.Add((TimeSpan)row["TuGio"]) : Convert.ToDateTime(row["TuGio"]);
-                        DateTime denGio = (row["DenGio"] is TimeSpan) ? DateTime.MinValue.Add((TimeSpan)row["DenGio"]) : Convert.ToDateTime(row["DenGio"]);
+                        if (row["TuGio"] != DBNull.Value && row["TuGio"] is TimeSpan)
+                        {
+                            tuGio = DateTime.Today.Add((TimeSpan)row["TuGio"]);
+                        }
+                        else if (row["TuGio"] != DBNull.Value)
+                        {
+                            tuGio = Convert.ToDateTime(row["TuGio"]);
+                        }
 
+                        if (row["DenGio"] != DBNull.Value && row["DenGio"] is TimeSpan)
+                        {
+                            denGio = DateTime.Today.Add((TimeSpan)row["DenGio"]);
+                        }
+                        else if (row["DenGio"] != DBNull.Value)
+                        {
+                            denGio = Convert.ToDateTime(row["DenGio"]);
+                        }
                         string loaiKH = row["LoaiKH"].ToString();
                         decimal datRa = Convert.ToDecimal(row["DaTra"]);
 
                         // Gọi event để truyền thông tin
-                        OnLichSanSelected?.Invoke(maSan, maKH, maGia, tuGio, denGio, loaiKH, datRa);
+                        OnLichSanSelected?.Invoke(maDatSan, maSan, maKH, maGia, tuGio, denGio, loaiKH, datRa);
 
                         // Đóng form sau khi chọn
                         this.Close();

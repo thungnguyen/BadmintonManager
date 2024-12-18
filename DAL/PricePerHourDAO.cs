@@ -122,7 +122,5 @@ namespace BadmintonManager.DAO
 
             return frameCount;
         }
-
-
     }
 }

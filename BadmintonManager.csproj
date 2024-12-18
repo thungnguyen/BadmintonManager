@@ -197,6 +197,7 @@
     <Compile Include="DAL\BillInfoDAO.cs" />
     <Compile Include="DAL\DanhSachLichSanDAL.cs" />
     <Compile Include="DAL\DatabaseConnection.cs" />
+    <Compile Include="DAL\DatabaseProvider.cs" />
     <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="DAL\GiaSanDAL.cs" />
     <Compile Include="DAL\GiaSanDAO.cs" />
@@ -240,12 +241,6 @@
     </Compile>
     <Compile Include="GUI\DanhSachLichSan.Designer.cs">
       <DependentUpon>DanhSachLichSan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormBaoCaoChiTraCoc.cs">
       <SubType>Form</SubType>
@@ -328,12 +323,6 @@
     <Compile Include="GUI\DatSan.Designer.cs">
       <DependentUpon>DatSan.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Form3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -406,12 +395,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DatSan.resx">
       <DependentUpon>DatSan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormBaoCaoChiTraCoc.resx">
       <DependentUpon>FormBaoCaoChiTraCoc.cs</DependentUpon>

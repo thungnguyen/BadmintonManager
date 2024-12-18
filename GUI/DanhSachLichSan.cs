@@ -212,7 +212,7 @@ namespace BadmintonManager.GUI
 
                     // Mở Form Phieu Chi và truyền đối tượng vào
                     PhieuChi phieuChi = new PhieuChi(phieuChiDTO);
-                    phieuChi.ShowDialog(); // Mở Form3 như một hộp thoại (modal)
+                    phieuChi.ShowDialog(); 
                 }
             }
             else

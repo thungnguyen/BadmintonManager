@@ -55,21 +55,28 @@ namespace BadmintonManager.GUI
 
                 if (isSaved)
                 {
-                    // Xóa dữ liệu từ ChiTietLichDatSan
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        string deleteQuery = "DELETE FROM ChiTietLichDatSan WHERE MaDatSan = @MaDatSan";
 
-                        using (SqlCommand cmd = new SqlCommand(deleteQuery, conn))
+                        // 1. Xoá ChiTietLichDatSan
+                        string deleteChiTietLichDatSanQuery = "DELETE FROM ChiTietLichDatSan WHERE MaDatSan = @MaDatSan";
+                        using (SqlCommand cmd1 = new SqlCommand(deleteChiTietLichDatSanQuery, conn))
                         {
-                            cmd.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                            cmd1.Parameters.Add(new SqlParameter("@MaDatSan", System.Data.SqlDbType.Int) { Value = maDatSan });
+                            cmd1.ExecuteNonQuery();
+                        }
 
-                            int rowsAffected = cmd.ExecuteNonQuery(); // Thực thi câu lệnh DELETE
+                        // 2. Xoá LichDatSan
+                        string deleteLichDatSanQuery = "DELETE FROM LichDatSan WHERE MaDatSan = @MaDatSan";
+                        using (SqlCommand cmd2 = new SqlCommand(deleteLichDatSanQuery, conn))
+                        {
+                            cmd2.Parameters.Add(new SqlParameter("@MaDatSan", System.Data.SqlDbType.Int) { Value = maDatSan });
+                            cmd2.ExecuteNonQuery();
                         }
                     }
 
-                    MessageBox.Show("Đã lưu phiếu chi và xóa chi tiết lịch thành công!");
+                    MessageBox.Show("Đã lưu phiếu chi và xoá dữ liệu liên quan thành công!");
                     this.Close();
                 }
                 else
@@ -79,9 +86,8 @@ namespace BadmintonManager.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi:" + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
-            this.Close(); // Đóng form
         }
 
         private void btnHuy_Click(object sender, EventArgs e)

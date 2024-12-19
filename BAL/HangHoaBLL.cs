@@ -14,11 +14,15 @@ namespace BadmintonManager.BAL
     {
         private HangHoaDAL _hangHoaDAL;
         private LoaiHHDAL _loaiHHDAL;
+        private NhapHangDAL nhapHangDAL;
+        private ChiTietNhapHangDAL chiTietNhapHangDAL;
 
         public HangHoaBLL()
         {
             _hangHoaDAL = new HangHoaDAL();
             _loaiHHDAL = new LoaiHHDAL();
+            chiTietNhapHangDAL = new ChiTietNhapHangDAL();
+            nhapHangDAL = new NhapHangDAL();
         }
 
         /// <summary>
@@ -167,6 +171,53 @@ namespace BadmintonManager.BAL
             // Gọi DAL để thực hiện cập nhật
             _hangHoaDAL.UpdateProduct(product);
         }
+
+
+        public decimal GetHeSoQuyDoiForProduct(int maHH)
+        {
+            if (maHH <= 0)
+            {
+                throw new ArgumentException("Mã sản phẩm không hợp lệ!");
+            }
+
+            return _hangHoaDAL.GetHeSoQuyDoiForProduct(maHH);
+        }
+
+        public int SaveNhapHang(NhapHangDTO nhapHang)
+        {
+            // Gọi đến DAL để lưu phiếu nhập
+            return nhapHangDAL.InsertNhapHang(nhapHang);
+        }
+
+        public void SaveChiTietNhapHang(ChiTietNhapHangDTO CTNhapHang)
+        {
+            try
+            {
+                // Gọi DAL để lưu chi tiết nhập hàng
+                chiTietNhapHangDAL.InsertChiTietNhapHang(CTNhapHang);
+
+                // Lấy thông tin hàng hóa hiện tại
+                HangHoa hangHoa = _hangHoaDAL.GetProductById(CTNhapHang.MaHH);
+
+                if (hangHoa != null)
+                {
+                    // Cộng số lượng nhập vào số lượng tồn
+                    hangHoa.SoLuongTonLon += CTNhapHang.SoLuongNhapLon;
+                    hangHoa.SoLuongTonNho += CTNhapHang.SoLuongNhapNho;
+
+                    // Cập nhật số lượng tồn trong cơ sở dữ liệu
+                    _hangHoaDAL.ImportHangHoa(hangHoa, isAdd: true); // Truyền thêm tham số để biết đây là thao tác cộng
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lưu chi tiết nhập hàng: " + ex.Message);
+            }
+        }
+
+
+
+
 
 
     }

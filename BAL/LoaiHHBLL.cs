@@ -27,18 +27,12 @@ using System.Linq;
 
             public void AddCategory(LoaiHHDTO category)
             {
-            if (category.MaLoaiHH <= 0)
-            {
-                throw new ArgumentException("Mã Loại HH phải là số dương.");
-            }
-
             if (string.IsNullOrWhiteSpace(category.TenLoaiHH))
-            {
                 throw new ArgumentException("Tên Loại HH không được để trống.");
-            }
 
-            _loaiHHDAL.InsertCategory(category);
-            }
+            LoaiHHDAL loaiHHDAL = new LoaiHHDAL();
+            loaiHHDAL.InsertCategory(category);
+        }
 
 
         public bool IsCategoryExists(int maLoaiHH)
@@ -53,7 +47,10 @@ using System.Linq;
 
         public void DeleteCategory(int maLoaiHH)
         {
-            
+            if (!IsCategoryExists(maLoaiHH))
+                throw new ArgumentException("Loại HH không tồn tại.");
+
+            _loaiHHDAL.DeleteCategory(maLoaiHH); // Cần thêm hàm trong DAL.
         }
 
     }

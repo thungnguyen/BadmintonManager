@@ -41,12 +41,24 @@ namespace BadmintonManager.DAL
         {
             using (SqlConnection connection = DatabaseConnection.GetConnection())
             {
-                string query = "INSERT INTO LoaiHH (MaLoaiHH, TenLoaiHH) VALUES (@MaLoaiHH, @TenLoaiHH)";
+                string query = "INSERT INTO LoaiHH (TenLoaiHH) VALUES (@TenLoaiHH)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TenLoaiHH", category.TenLoaiHH);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteCategory(int maLoaiHH)
+        {
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            {
+                string query = "DELETE FROM LoaiHH WHERE MaLoaiHH = @MaLoaiHH";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@MaLoaiHH", category.MaLoaiHH);
-                    command.Parameters.AddWithValue("@TenLoaiHH", category.TenLoaiHH);
+                    command.Parameters.AddWithValue("@MaLoaiHH", maLoaiHH);
 
                     command.ExecuteNonQuery();
                 }

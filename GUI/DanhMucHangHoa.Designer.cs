@@ -38,6 +38,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.addnewLoaiHHbtn = new System.Windows.Forms.Button();
+            this.NhapHangbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHangHoa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,11 +144,22 @@
             this.addnewLoaiHHbtn.UseVisualStyleBackColor = true;
             this.addnewLoaiHHbtn.Click += new System.EventHandler(this.addnewLoaiHHbtn_Click);
             // 
+            // NhapHangbtn
+            // 
+            this.NhapHangbtn.Location = new System.Drawing.Point(12, 483);
+            this.NhapHangbtn.Name = "NhapHangbtn";
+            this.NhapHangbtn.Size = new System.Drawing.Size(153, 65);
+            this.NhapHangbtn.TabIndex = 10;
+            this.NhapHangbtn.Text = "Nhập Hàng";
+            this.NhapHangbtn.UseVisualStyleBackColor = true;
+            this.NhapHangbtn.Click += new System.EventHandler(this.NhapHangbtn_Click);
+            // 
             // DanhMucHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 560);
+            this.Controls.Add(this.NhapHangbtn);
             this.Controls.Add(this.addnewLoaiHHbtn);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
@@ -178,5 +190,6 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button addnewLoaiHHbtn;
+        private System.Windows.Forms.Button NhapHangbtn;
     }
 }

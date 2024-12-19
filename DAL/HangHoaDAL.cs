@@ -268,9 +268,76 @@ namespace BadmintonManager.DAL
             return product;
         }
 
-            
+
+        public decimal GetHeSoQuyDoiForProduct(int maHH)
+        {
+            decimal heSoQuyDoi = 0;
+
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            {
+                string query = "SELECT HeSoQuyDoi FROM HangHoa WHERE MaHH = @MaHH";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@MaHH", maHH);
+
+                    // Execute the query and read the result
+                    var result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        heSoQuyDoi = Convert.ToDecimal(result);
+                    }
+                }
+            }
+
+            return heSoQuyDoi;
         }
+
+        public void ImportHangHoa(HangHoa hangHoa, bool isAdd = false)
+        {
+            string query;
+            if (isAdd)
+            {
+                // Thực hiện cộng số lượng vào cột hiện có
+                query = @"UPDATE HangHoa 
+                  SET SoLuongTonLon = SoLuongTonLon + @SoLuongNhapLon, 
+                      SoLuongTonNho = SoLuongTonNho + @SoLuongNhapNho 
+                  WHERE MaHH = @MaHH";
+            }
+            else
+            {
+                // Ghi đè trực tiếp giá trị mới
+                query = @"UPDATE HangHoa 
+                  SET SoLuongTonLon = @SoLuongNhapLon, 
+                      SoLuongTonNho = @SoLuongNhapNho 
+                  WHERE MaHH = @MaHH";
+            }
+
+            try
+            {
+                using (SqlConnection connection = DatabaseConnection.GetConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@SoLuongNhapLon", hangHoa.SoLuongTonLon);
+                        command.Parameters.AddWithValue("@SoLuongNhapNho", hangHoa.SoLuongTonNho);
+                        command.Parameters.AddWithValue("@MaHH", hangHoa.MaHH);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật hàng hóa: " + ex.Message);
+            }
+        }
+
+
+
+
     }
+}
 
 
 

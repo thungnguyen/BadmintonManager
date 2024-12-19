@@ -57,7 +57,7 @@ namespace BadmintonManager.GUI
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchTerm = searchbar.Text.Trim();
-            LoadTable(searchTerm); // Pass the search term to filter results
+            LoadTable(searchTerm);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -117,7 +117,15 @@ namespace BadmintonManager.GUI
         {
             using (DanhSachLoaiHH formDanhSachLoaiHH = new DanhSachLoaiHH())
             {
-                formDanhSachLoaiHH.ShowDialog(); // Open the form modally
+                formDanhSachLoaiHH.ShowDialog(); 
+            }
+        }
+
+        private void NhapHangbtn_Click(object sender, EventArgs e)
+        {
+            using (LichSuNhapHang formNhapHang = new LichSuNhapHang())
+            {
+                formNhapHang.ShowDialog(); 
             }
         }
     }

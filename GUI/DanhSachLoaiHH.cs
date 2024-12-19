@@ -31,12 +31,17 @@ namespace BadmintonManager.GUI
         {
             try
             {
-                // Call the BLL to get all categories and bind them to the DataGridView
-                dgvLoaiHH.DataSource = _loaiHHBLL.GetAllCategories();
+                dgvLoaiHH.DataSource = _loaiHHBLL.GetAllCategories(); // Lấy danh sách từ BLL
 
-                // Optionally, adjust the column names and formatting if necessary
-                dgvLoaiHH.Columns["MaLoaiHH"].HeaderText = "Mã Loại HH";
-                dgvLoaiHH.Columns["TenLoaiHH"].HeaderText = "Tên Loại HH";
+                // Kiểm tra nếu cột tồn tại
+                if (dgvLoaiHH.Columns["MaLoaiHH"] != null)
+                {
+                    dgvLoaiHH.Columns["MaLoaiHH"].HeaderText = "Mã Loại HH";
+                }
+                if (dgvLoaiHH.Columns["TenLoaiHH"] != null)
+                {
+                    dgvLoaiHH.Columns["TenLoaiHH"].HeaderText = "Tên Loại HH";
+                }
             }
             catch (Exception ex)
             {
@@ -49,35 +54,15 @@ namespace BadmintonManager.GUI
             try
             {
                 // Validate input
-                if (string.IsNullOrWhiteSpace(maloaiHHtxt.Text))
-                {
-                    MessageBox.Show("Mã Loại HH không được để trống!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!int.TryParse(maloaiHHtxt.Text.Trim(), out int maLoaiHH) || maLoaiHH <= 0)
-                {
-                    MessageBox.Show("Mã Loại HH phải là số dương.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 if (string.IsNullOrWhiteSpace(tenloaiHHtxt.Text))
                 {
                     MessageBox.Show("Tên Loại HH không được để trống!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Check if MaLoaiHH already exists
-                if (_loaiHHBLL.IsCategoryExists(maLoaiHH)) // Add this method in your BLL
-                {
-                    MessageBox.Show("Mã Loại HH đã tồn tại!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 // Create a new category
                 LoaiHHDTO category = new LoaiHHDTO
                 {
-                    MaLoaiHH = maLoaiHH,
                     TenLoaiHH = tenloaiHHtxt.Text.Trim()
                 };
 
@@ -87,7 +72,7 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Loại hàng hoá mới đã được thêm thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Refresh DataGridView
-                LoadCategories(); // Implement this method to reload the data
+                LoadCategories();
             }
             catch (Exception ex)
             {
@@ -110,16 +95,16 @@ namespace BadmintonManager.GUI
                     return;
                 }
 
-                // Confirm deletion
+                // Xác nhận xóa
                 DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xoá loại hàng hoá này?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    _loaiHHBLL.DeleteCategory(maLoaiHH); // Implement this method in BLL
+                    _loaiHHBLL.DeleteCategory(maLoaiHH);
 
                     MessageBox.Show("Loại hàng hoá đã được xoá thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Refresh DataGridView
-                    LoadCategories(); // Implement this method to reload the data
+                    // Tải lại danh sách
+                    LoadCategories();
                 }
             }
             catch (Exception ex)

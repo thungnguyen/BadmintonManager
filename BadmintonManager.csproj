@@ -214,29 +214,82 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\GiaSanBAL.cs" />
     <Compile Include="BLL\HangHoaBLL.cs" />
+    <Compile Include="BLL\KhachHangBAL.cs" />
+    <Compile Include="BLL\LichDatSanBAL.cs" />
     <Compile Include="BLL\LoaiHHBLL.cs" />
+    <Compile Include="BLL\SanBAL.cs" />
+    <Compile Include="BLL\TaiKhoanBAL.cs" />
+    <Compile Include="BLL\TaiKhoanNhanVienBAL .cs" />
     <Compile Include="DAL\BangGiaSanDAO.cs" />
     <Compile Include="DAL\BillDAO.cs" />
     <Compile Include="DAL\BillInfoDAO.cs" />
     <Compile Include="DAL\ChangeStreamNewHoaDon.cs" />
     <Compile Include="DAL\DataProvider.cs" />
+    <Compile Include="DAL\GiaSanDAL.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
     <Compile Include="DAL\HHDAO.cs" />
+    <Compile Include="DAL\KhachHangDAL.cs" />
     <Compile Include="DAL\KhachHangDAO.cs" />
+    <Compile Include="DAL\LichDatSanDAL.cs" />
     <Compile Include="DAL\LoaiHHDAL.cs" />
     <Compile Include="DAL\LoaiHHDAO.cs" />
     <Compile Include="DAL\MenuDAO.cs" />
     <Compile Include="DAL\MongoDBConnection.cs" />
     <Compile Include="DAL\PricePerHourDAO.cs" />
+    <Compile Include="DAL\SanDAL.cs" />
     <Compile Include="DAL\SanDAO.cs" />
+    <Compile Include="DAL\TaiKhoanDAL.cs" />
+    <Compile Include="DAL\TaiKhoanNhanVienDAL.cs" />
     <Compile Include="DTO\BangGiaSanDTO.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
+    <Compile Include="DTO\GiaSanDTO.cs" />
     <Compile Include="DTO\HH.cs" />
     <Compile Include="DTO\KhachHang.cs" />
+    <Compile Include="DTO\KhachHangDTO.cs" />
+    <Compile Include="DTO\LichDatSanDTO.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
+    <Compile Include="DTO\SanDTO.cs" />
+    <Compile Include="DTO\TaiKhoanNhanVienDTO.cs" />
+    <Compile Include="GUI\AddKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddKhachHang.Designer.cs">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DangKyTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DangKyTaiKhoan.Designer.cs">
+      <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DangNhap.Designer.cs">
+      <DependentUpon>DangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DanhSachTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachTaiKhoan.Designer.cs">
+      <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DatSan.Designer.cs">
+      <DependentUpon>DatSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FrmTinhTien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +319,25 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Theme\ThemeColor.cs" />
+    <EmbeddedResource Include="GUI\AddKhachHang.resx">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DangKyTaiKhoan.resx">
+      <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DangNhap.resx">
+      <DependentUpon>DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
+      <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DatSan.resx">
+      <DependentUpon>DatSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmTinhTien.resx">
       <DependentUpon>FrmTinhTien.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,47 +1,42 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Configuration;
+using System.Linq;
 using BadmintonManager.DTO;
 
 namespace BadmintonManager.DAL
 {
-    public class GiaSanDAL
+    public class GiaSanDAL_MongoDB
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+        private readonly MongoDBConnection _mongoDBConnection;
+        private readonly IMongoCollection<BsonDocument> _giaSanCollection;
+
+        public GiaSanDAL_MongoDB()
+        {
+            _mongoDBConnection = new MongoDBConnection();
+            var database = _mongoDBConnection.Connect();
+            _giaSanCollection = database.GetCollection<BsonDocument>("BangGiaSan"); // Tên collection trong MongoDB
+        }
 
         public List<GiaSanDTO> GetGiaSanByLoaiKhach(string loaiKhach)
         {
+            var filter = Builders<BsonDocument>.Filter.Eq("loaiKH", loaiKhach);
+            var giaSanDocuments = _giaSanCollection.Find(filter).ToList();
+
             List<GiaSanDTO> danhSachGiaSan = new List<GiaSanDTO>();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            foreach (var doc in giaSanDocuments)
             {
-                conn.Open();
-
-                string query = @"
-                SELECT GioBatDau, GioKetThuc, Gia 
-                FROM BangGiaSan 
-                WHERE LoaiKH = @LoaiKhach 
-                ORDER BY GioBatDau";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                var giaSan = new GiaSanDTO
                 {
-                    cmd.Parameters.AddWithValue("@LoaiKhach", loaiKhach);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        GiaSanDTO giaSan = new GiaSanDTO
-                        {
-                            GioBatDau = reader.GetTimeSpan(0),
-                            GioKetThuc = reader.GetTimeSpan(1),
-                            GiaTruoc17 = reader.GetDecimal(2),
-                            GiaSau17 = reader.GetDecimal(2), // Giả sử giá cho cả trước và sau 17 giờ giống nhau, có thể điều chỉnh tùy theo yêu cầu
-                            LoaiKhach = loaiKhach
-                        };
-                        danhSachGiaSan.Add(giaSan);
-                    }
-                }
+                    GiaTruoc17 = doc["gioBatDau"].AsString == "05:00:00" ? doc["gia"].AsDecimal : 0,
+                    GiaSau17 = doc["gioBatDau"].AsString == "17:00:00" ? doc["gia"].AsDecimal : 0,
+                    GioBatDau = TimeSpan.Parse(doc["gioBatDau"].AsString),
+                    GioKetThuc = TimeSpan.Parse(doc["gioKetThuc"].AsString),
+                    LoaiKhach = doc["loaiKH"].AsString
+                };
+                danhSachGiaSan.Add(giaSan);
             }
 
             return danhSachGiaSan;

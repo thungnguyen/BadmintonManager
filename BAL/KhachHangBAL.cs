@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using BadmintonManager.DAL;
 using BadmintonManager.DTO;
 
-
+// BAL Layer
 namespace BadmintonManager.BAL
 {
     public class KhachHangBAL
     {
-        private KhachHangDAL khachHangDAL;
+        private readonly KhachHangDAL _khachHangDAL;
 
         public KhachHangBAL()
         {
-            khachHangDAL = new KhachHangDAL();
-        }
-
-        public List<KhachHangDTO> GetAllKhachHangs()
-        {
-            return khachHangDAL.GetKhachHangList();
+            _khachHangDAL = new KhachHangDAL();
         }
 
         public bool AddKhachHang(KhachHangDTO khachHang)
         {
-            return khachHangDAL.AddKhachHang(khachHang);
+            return _khachHangDAL.AddKhachHang(khachHang);
         }
+
+        public List<KhachHangDTO> GetKhachHangList()
+        {
+            return _khachHangDAL.GetKhachHangList();
+        }
+
     }
 }

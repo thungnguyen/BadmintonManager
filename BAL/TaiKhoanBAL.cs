@@ -6,43 +6,37 @@ namespace BadmintonManager.BAL
 {
     public class TaiKhoanBAL
     {
-        private TaiKhoanDAL taiKhoanDAL = new TaiKhoanDAL();
+        private readonly TaiKhoanDAL _taiKhoanDAL;
 
-        // Phương thức cũ
+        public TaiKhoanBAL()
+        {
+            _taiKhoanDAL = new TaiKhoanDAL();
+        }
+
+        // Thêm tài khoản
+        public bool AddTaiKhoan(TaiKhoanNhanVienDTO taiKhoan)
+        {
+            return _taiKhoanDAL.AddTaiKhoan(taiKhoan);
+        }
+
+        // Lấy danh sách tất cả tài khoản
         public List<TaiKhoanNhanVienDTO> GetAllAccounts()
         {
-            return taiKhoanDAL.GetAllAccounts();
+            return _taiKhoanDAL.GetAllAccounts();
         }
 
-        public void UpdateAccount(TaiKhoanNhanVienDTO account)
+        // Cập nhật tài khoản
+        public bool UpdateAccount(TaiKhoanNhanVienDTO taiKhoan)
         {
-            taiKhoanDAL.UpdateAccount(account);
+            return _taiKhoanDAL.UpdateAccount(taiKhoan);
         }
 
-        public void DeleteAccount(int maNV)
+        // Xóa tài khoản
+        public bool DeleteAccount(int maNV)
         {
-            taiKhoanDAL.DeleteAccount(maNV);
-        }
-
-        public void AddAccount(TaiKhoanNhanVienDTO account)
-        {
-            taiKhoanDAL.InsertAccount(account);
-        }
-
-        // Phương thức mới từ TaiKhoanNhanVienBAL
-        public TaiKhoanNhanVienDTO DangNhap(string tenDangNhap, string matKhau)
-        {
-            return taiKhoanDAL.DangNhap(tenDangNhap, matKhau);
-        }
-
-        public int LayMaNV(string tenDangNhap, string matKhau)
-        {
-            return taiKhoanDAL.LayMaNV(tenDangNhap, matKhau);
-        }
-
-        public bool ThemTaiKhoan(TaiKhoanNhanVienDTO taiKhoan)
-        {
-            return taiKhoanDAL.ThemTaiKhoan(taiKhoan);
+            return _taiKhoanDAL.DeleteAccount(maNV);
         }
     }
 }
+
+

@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BadmintonManager.DTO
 {
     public class GiaSanDTO
     {
-        public decimal GiaTruoc17 { get; set; }
-        public decimal GiaSau17 { get; set; }
-        public TimeSpan GioBatDau { get; set; }
-        public TimeSpan GioKetThuc { get; set; }
-        public string LoaiKhach { get; set; }
+        public int MaGia { get; set; }          // Mã giá (khóa định danh)
+        public decimal GiaTruoc17 { get; set; } // Giá trước 17:00
+        public decimal GiaSau17 { get; set; }   // Giá sau 17:00
+        public TimeSpan GioBatDau { get; set; } // Thời gian bắt đầu
+        public TimeSpan GioKetThuc { get; set; } // Thời gian kết thúc
+        public string LoaiKhach { get; set; }   // Loại khách (Cố định/Vãng lai)
     }
 }

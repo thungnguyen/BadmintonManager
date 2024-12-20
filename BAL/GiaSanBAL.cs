@@ -1,16 +1,19 @@
 ﻿using BadmintonManager.DAL;
-using BadmintonManager.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
+using BadmintonManager.DTO;
+
 
 namespace BadmintonManager.BAL
 {
     public class GiaSanBAL
     {
-        private GiaSanDAL giaSanDAL = new GiaSanDAL();
+        private readonly GiaSanDAL_MongoDB giaSanDAL;
+
+        public GiaSanBAL()
+        {
+            giaSanDAL = new GiaSanDAL_MongoDB();
+        }
 
         public decimal TinhGia(bool loaiKhachChecked, TimeSpan gioBatDau, TimeSpan gioKetThuc)
         {
@@ -22,20 +25,20 @@ namespace BadmintonManager.BAL
 
             foreach (var giaSan in danhSachGiaSan)
             {
-                // Kiểm tra và lấy giá trước 17 giờ
-                if (giaSan.GioKetThuc <= new TimeSpan(17, 0, 0) && giaSan.GioBatDau < new TimeSpan(17, 0, 0))
+                // Lấy giá trước 17 giờ
+                if (giaSan.GioBatDau < new TimeSpan(17, 0, 0) && giaSan.GioKetThuc <= new TimeSpan(17, 0, 0))
                 {
                     giaTruoc17 = giaSan.GiaTruoc17;
                 }
 
-                // Kiểm tra và lấy giá sau 17 giờ
-                if (giaSan.GioBatDau >= new TimeSpan(17, 0, 0) && giaSan.GioKetThuc >= new TimeSpan(17, 0, 0))
+                // Lấy giá sau 17 giờ
+                if (giaSan.GioBatDau >= new TimeSpan(17, 0, 0))
                 {
                     giaSau17 = giaSan.GiaSau17;
                 }
             }
 
-            // Tính tổng giá tùy vào thời gian thuê
+            // Tính tổng giá dựa vào khoảng thời gian
             if (gioBatDau < new TimeSpan(17, 0, 0) && gioKetThuc > new TimeSpan(17, 0, 0))
             {
                 decimal soGioTruoc17 = (decimal)(new TimeSpan(17, 0, 0) - gioBatDau).TotalHours;
@@ -56,5 +59,6 @@ namespace BadmintonManager.BAL
             return totalGia;
         }
     }
+
 
 }

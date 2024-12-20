@@ -1,4 +1,5 @@
-﻿using BadmintonManager.BAL;
+﻿using BadmintonManager.BLL;
+using BadmintonManager.DTO;
 using System;
 using System.Windows.Forms;
 
@@ -21,9 +22,9 @@ namespace BadmintonManager.GUI
             try
             {
                 // Fetch products, optionally filtered by search term
-                var dataTable = _hangHoaBLL.GetProducts(searchTerm);
+                var dataTable = _hangHoaBLL.HangHoaList(searchTerm);
                 dgvHangHoa.DataSource = dataTable;
-            }
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading products: {ex.Message}");
@@ -32,15 +33,15 @@ namespace BadmintonManager.GUI
 
         private void addbtn_Click(object sender, EventArgs e)
         {
-            using (var addForm = new ThemHangHoa())
-            {
-                var result = addForm.ShowDialog();
+            //using (var addForm = new ThemHangHoa())
+            //{
+            //    var result = addForm.ShowDialog();
 
-                if (result == DialogResult.OK)
-                {
-                    LoadTable();
-                }
-            }
+            //    if (result == DialogResult.OK)
+            //    {
+            //        LoadTable();
+            //    }
+            //}
         }
 
 
@@ -57,7 +58,7 @@ namespace BadmintonManager.GUI
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchTerm = searchbar.Text.Trim();
-            LoadTable(searchTerm);
+            LoadTable(searchTerm); // Pass the search term to filter results
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -70,7 +71,8 @@ namespace BadmintonManager.GUI
 
 
             var selectedRow = dgvHangHoa.SelectedRows[0];
-            int maHH = Convert.ToInt32(selectedRow.Cells["MaHH"].Value);
+            var maHH = selectedRow.Cells["MaHH"].Value.ToString();
+            string xoama = maHH.ToString();
 
 
             var confirmResult = MessageBox.Show(
@@ -82,7 +84,8 @@ namespace BadmintonManager.GUI
             {
                 try
                 {
-                    _hangHoaBLL.DeleteProduct(maHH);
+                    HangHoa hhxoa = new HangHoa { MaHH = xoama };
+                    _hangHoaBLL.XoaHH(hhxoa);
                     MessageBox.Show("Sản phẩm xoá thành công");
                     LoadTable();
                 }
@@ -95,38 +98,30 @@ namespace BadmintonManager.GUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvHangHoa.CurrentRow != null)
-            {
-                // Lấy sản phẩm được chọn từ DataGridView
-                int selectedProductId = (int)dgvHangHoa.CurrentRow.Cells["MaHH"].Value;
-                var product = _hangHoaBLL.GetProductById(selectedProductId);
+            //if (dgvHangHoa.CurrentRow != null)
+            //{
+            //    // Lấy sản phẩm được chọn từ DataGridView
+            //    int selectedProductId = (int)dgvHangHoa.CurrentRow.Cells["MaHH"].Value;
+            //    var product = _hangHoaBLL.GetProductById(selectedProductId);
 
-                if (product != null)
-                {
-                    // Mở form sửa hàng hoá
-                    var editForm = new SuaHangHoa(product);
-                    editForm.ShowDialog();
+            //    if (product != null)
+            //    {
+            //        // Mở form sửa hàng hoá
+            //        var editForm = new SuaHangHoa(product);
+            //        editForm.ShowDialog();
 
-                    // Refresh lại danh sách sau khi sửa
-                    LoadTable();
-                }
-            }
+            //        // Refresh lại danh sách sau khi sửa
+            //        LoadTable();
+            //    }
+            //}
         }
 
         private void addnewLoaiHHbtn_Click(object sender, EventArgs e)
         {
-            using (DanhSachLoaiHH formDanhSachLoaiHH = new DanhSachLoaiHH())
-            {
-                formDanhSachLoaiHH.ShowDialog(); 
-            }
-        }
-
-        private void NhapHangbtn_Click(object sender, EventArgs e)
-        {
-            using (LichSuNhapHang formNhapHang = new LichSuNhapHang())
-            {
-                formNhapHang.ShowDialog(); 
-            }
+            //using (DanhSachLoaiHH formDanhSachLoaiHH = new DanhSachLoaiHH())
+            //{
+            //    formDanhSachLoaiHH.ShowDialog(); // Open the form modally
+            //}
         }
     }
 }

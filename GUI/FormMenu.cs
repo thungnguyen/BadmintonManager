@@ -91,7 +91,7 @@ namespace BadmintonManager.GUI
 
         private void btnLichSan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DanhSachLichSan(), sender);
+            OpenChildForm(new GUI.DatSan(), sender);
         }
 
         private void btnHangHoa_Click(object sender, EventArgs e)
@@ -106,10 +106,10 @@ namespace BadmintonManager.GUI
 
         private void btnDoanhThu_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.FormBaoCaoDoanhThu(), sender);
+            OpenChildForm(new GUI.DanhSachTaiKhoan(), sender);
         }
 
-        private void btnQuanLySan_Click(object sender, EventArgs e) //DatSan
+        private void btnQuanLySan_Click(object sender, EventArgs e)
         {
             OpenChildForm(new GUI.DatSan(), sender);
         }
@@ -143,40 +143,23 @@ namespace BadmintonManager.GUI
 
         private void btnThietLapSan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.TaoSan(), sender);
+            //OpenChildForm(new GUI.ThietLapSan(), sender);
         }
 
         private void btnTinhTien_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.FrmTinhTien(), sender);
+            //OpenChildForm(new GUI.FrmTinhTien(), sender);
         }
 
-
-
-        private void pictureBox10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnKhachHang_Click_1(object sender, EventArgs e)
-        {
-            OpenChildForm(new GUI.AddKhachHang(), sender);
-        }
-
-        private void FormMenu_Load(object sender, EventArgs e)
-        {
-
-            //this.reportViewer1.RefreshReport();
-        }
-
-        private void btnDangXuat_Click_1(object sender, EventArgs e)
+        private void btnDangXuat_Click(object sender, EventArgs e)
         {
             // Đóng form hiện tại
             this.Hide();
 
             // Mở form đăng nhập
             DangNhap formDangNhap = new DangNhap();
-            formDangNhap.Show();
+                formDangNhap.Show();
+
         }
     }
 }

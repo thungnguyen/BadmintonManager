@@ -2,28 +2,18 @@
 using BadmintonManager.DTO;
 using BadmintonManager.GUI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace BadmintonManager
 {
     public partial class DangNhap : Form
     {
-        private TaiKhoanBAL taiKhoanBAL;
+        private readonly TaiKhoanNhanVienBAL _taiKhoanBAL;
 
         public DangNhap()
         {
             InitializeComponent();
-            //taiKhoanBAL = new TaiKhoanNhanVienBAL();
-            taiKhoanBAL = new TaiKhoanBAL();
-
+            _taiKhoanBAL = new TaiKhoanNhanVienBAL();
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
@@ -31,42 +21,61 @@ namespace BadmintonManager
             string tenDangNhap = txtUsername.Text.Trim();
             string matKhau = txtPassword.Text.Trim();
 
-            TaiKhoanNhanVienDTO taiKhoan = taiKhoanBAL.DangNhap(tenDangNhap, matKhau);
-
-            if (taiKhoan != null)
+            // Kiểm tra dữ liệu đầu vào
+            if (string.IsNullOrEmpty(tenDangNhap) || string.IsNullOrEmpty(matKhau))
             {
-                int maNV = taiKhoanBAL.LayMaNV(tenDangNhap, matKhau);
-
-                if (taiKhoan.VaiTro == "Quản lý") // Quản lý
-                {
-                    MessageBox.Show($"Chào quản lý! MaNV: {maNV}");
-                    FormMenu formNhanVien = new FormMenu();
-                    formNhanVien.Show();
-                }
-                else if (taiKhoan.VaiTro == "Nhân viên") // Nhân viên
-                {
-                    MessageBox.Show($"Chào nhân viên! MaNV: {maNV}");
-                    FormMenu formNhanVien = new FormMenu();
-                    formNhanVien.Show();
-                }
-
-                this.Hide(); // Ẩn form đăng nhập
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin đăng nhập.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            try
             {
-                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!");
+                // Kiểm tra thông tin đăng nhập
+                TaiKhoanNhanVienDTO taiKhoan = _taiKhoanBAL.DangNhap(tenDangNhap, matKhau);
+
+                if (taiKhoan != null)
+                {
+                    MessageBox.Show($"Chào {taiKhoan.VaiTro}! MaNV: {taiKhoan.MaNV}", "Đăng nhập thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Mở form menu phù hợp với vai trò
+                    OpenMenuForm(taiKhoan);
+
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OpenMenuForm(TaiKhoanNhanVienDTO taiKhoan)
+        {
+            if (taiKhoan.VaiTro == "Quản lý")
+            {
+                // Mở form quản lý
+                FormMenu formNhanVien = new FormMenu();
+
+                formNhanVien.Show();
+            }
+            else if (taiKhoan.VaiTro == "Nhân viên")
+            {
+                // Mở form nhân viên
+                FormMenu formNhanVien = new FormMenu();
+
+                formNhanVien.Show();
             }
         }
 
         private void DangNhap_Load(object sender, EventArgs e)
         {
-            txtUsername.Text = "taikhoanquanly";
-            txtPassword.Text = "1";
-        }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            Close();
+            // Thiết lập giá trị mặc định cho textbox (chỉ sử dụng khi thử nghiệm)
+            //txtUsername.Text = "nhanvien";
+            //txtPassword.Text = "1";
         }
     }
 }

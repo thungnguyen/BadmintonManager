@@ -1,343 +1,62 @@
-﻿using BadmintonManager.DTO;
-using Microsoft.Build.Tasks.Deployment.Bootstrapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Windows.Forms;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using BadmintonManager.DTO;
 
 namespace BadmintonManager.DAL
 {
+    /// <summary>
+    /// Data Access Layer for HangHoa (Product) operations using MongoDB
+    /// </summary>
     public class HangHoaDAL
     {
-        /// <summary>
-        /// Retrieves all products from the database
-        /// </summary>
-        public List<HangHoa> GetAllProducts()
+       private readonly MongoDBConnection _connection;
+        
+        public HangHoaDAL()
         {
-            List<HangHoa> products = new List<HangHoa>();
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                // Log connection status
-                MessageBox.Show("Database connection successful");
-
-                string query = @"SELECT MaHH, TenHH, MoTa, GiaBanLon, MaLoaiHH, 
-                     DonViTinhLon, DonViTinhNho, HeSoQuyDoi, 
-                     GiaNhapLon, GiaNhapNho, SoLuongTonLon, SoLuongTonNho 
-                     FROM HangHoa";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            products.Add(new HangHoa
-                            {
-                                MaHH = Convert.ToInt32(reader["MaHH"]),
-                                TenHH = reader["TenHH"].ToString(),
-                                MoTa = reader["MoTa"].ToString(),
-                                GiaBanLon = Convert.ToDecimal(reader["GiaBanLon"]),
-                                MaLoaiHH = Convert.ToInt32(reader["MaLoaiHH"]),
-                                DonViTinhLon = reader["DonViTinhLon"].ToString(),
-                                DonViTinhNho = reader["DonViTinhNho"].ToString(),
-                                HeSoQuyDoi = Convert.ToDecimal(reader["HeSoQuyDoi"]),
-                                GiaNhapLon = Convert.ToDecimal(reader["GiaNhapLon"]),
-                                GiaNhapNho = Convert.ToDecimal(reader["GiaNhapNho"]),
-                                SoLuongTonLon = Convert.ToInt32(reader["SoLuongTonLon"]),
-                                SoLuongTonNho = Convert.ToInt32(reader["SoLuongTonNho"])
-                            });
-                        }
-                    }
-                }
-                return products;
-            }
+            _connection = new MongoDBConnection();
         }
 
-        public DataTable GetTableProduct()
+        // Lấy danh sách hàng hóa 
+        public List<BsonDocument> ListHangHoa(string sortCriteria = null)
         {
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = @"
-            SELECT h.MaHH, h.TenHH, h.MoTa, h.GiaBanLon, h.MaLoaiHH, 
-                   h.DonViTinhLon, h.DonViTinhNho, h.HeSoQuyDoi, 
-                   h.GiaNhapLon, h.GiaNhapNho, h.SoLuongTonLon, h.SoLuongTonNho,
-                   l.TenLoaiHH 
-            FROM HangHoa h
-            JOIN LoaiHH l ON h.MaLoaiHH = l.MaLoaiHH";
-
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-                {
-                    adapter.Fill(dataTable);
-                }
-            }
-            return dataTable;
+            var collection = _connection.GetCollection<BsonDocument>("HangHoa");
+            var hhList = collection.Find(FilterDefinition<BsonDocument>.Empty).ToList();
+            return hhList;
         }
 
-        public DataTable GetProducts(string searchTerm = null)
+        // Thêm hàng hóa
+        public void ThemHH(BsonDocument newhh)
         {
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = @"
-            SELECT h.MaHH, h.TenHH, h.MoTa, h.GiaBanLon, h.MaLoaiHH, 
-                   h.DonViTinhLon, h.DonViTinhNho, h.HeSoQuyDoi, 
-                   h.GiaNhapLon, h.GiaNhapNho, h.SoLuongTonLon, h.SoLuongTonNho,
-                   l.TenLoaiHH
-            FROM HangHoa h
-            JOIN LoaiHH l ON h.MaLoaiHH = l.MaLoaiHH";
-
-                // Add filtering if a search term is provided
-                if (!string.IsNullOrEmpty(searchTerm))
-                {
-                    query += " WHERE h.TenHH LIKE @SearchTerm";
-                }
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    if (!string.IsNullOrEmpty(searchTerm))
-                    {
-                        command.Parameters.AddWithValue("@SearchTerm", $"%{searchTerm}%");
-                    }
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-
-            return dataTable;
+            var collection = _connection.GetCollection<BsonDocument>("HangHoa");
+            collection.InsertOne(newhh);
         }
 
-        /// <summary>
-        /// Retrieves product categories
-        /// </summary>
-        public List<LoaiHHDTO> GetProductCategories()
+        public void SuaHH(HangHoa updatedhh)
         {
-            var categories = new List<LoaiHHDTO>();
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                var command = new SqlCommand("SELECT * FROM LoaiHH", connection);
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        categories.Add(new LoaiHHDTO
-                        {
-                            MaLoaiHH = (int)reader["MaLoai"],
-                            TenLoaiHH = reader["TenLoai"].ToString()
-                        });
-                    }
-                }
-            }
-            return categories;
+            var collection = _connection.GetCollection<HangHoa>("HangHoa");
+            var filter = Builders<HangHoa>.Filter.Eq(hh => hh.MaHH, updatedhh.MaHH);
+            var update = Builders<HangHoa>.Update
+                                          .Set(hh => hh.TenHH, updatedhh.TenHH)
+                                           .Set(hh => hh.MoTa, updatedhh.MoTa)
+                                            .Set(hh => hh.DonViTinhLon, updatedhh.DonViTinhLon)
+                                             .Set(hh => hh.DonViTinhNho, updatedhh.DonViTinhNho)
+                                              .Set(hh => hh.HeSoQuyDoi, updatedhh.HeSoQuyDoi)
+                                               .Set(hh => hh.GiaNhapLon, updatedhh.GiaNhapLon)
+                                                .Set(hh => hh.GiaBanLon, updatedhh.GiaBanLon)
+                                                 .Set(hh => hh.GiaBanNho, updatedhh.GiaBanNho)
+                                                  .Set(hh => hh.SoLuongTonLon, updatedhh.SoLuongTonLon)
+                                                   .Set(hh => hh.SoLuongTonNho, updatedhh.SoLuongTonNho)
+                                                    .Set(hh => hh.MaLoaiHH, updatedhh.MaLoaiHH);
+            collection.UpdateOne(filter, update);
         }
 
-        /// <summary>
-        /// Adds a new product to the database
-        /// </summary>
-        public void AddProduct(HangHoa product)
+        public void XoaHH(HangHoa hh)
         {
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                using (var command = new SqlCommand(
-                    "INSERT INTO HangHoa (TenHH, MaLoaiHH, MoTa, DonViTinhNho, DonViTinhLon, HeSoQuyDoi, GiaNhapLon, GiaNhapNho, GiaBanLon, GiaBanNho, SoLuongTonLon, SoLuongTonNho) " +
-                    "VALUES (@TenHH, @MaLoaiHH, @MoTa, @DonViTinhNho, @DonViTinhLon, @HeSoQuyDoi, @GiaNhapLon, @GiaNhapNho, @GiaBanLon, @GiaBanNho, @SoLuongTonLon, @SoLuongTonNho)",
-                    connection))
-                {
-                    command.Parameters.AddWithValue("@TenHH", product.TenHH);
-                    command.Parameters.AddWithValue("@MaLoaiHH", product.MaLoaiHH);
-                    command.Parameters.AddWithValue("@MoTa", product.MoTa ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@DonViTinhNho", product.DonViTinhNho ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@DonViTinhLon", product.DonViTinhLon ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@HeSoQuyDoi", product.HeSoQuyDoi);
-                    command.Parameters.AddWithValue("@GiaNhapLon", product.GiaNhapLon);
-                    command.Parameters.AddWithValue("@GiaNhapNho", product.GiaNhapNho);
-                    command.Parameters.AddWithValue("@GiaBanLon", product.GiaBanLon);
-                    command.Parameters.AddWithValue("@GiaBanNho", product.GiaBanNho);
-                    command.Parameters.AddWithValue("@SoLuongTonLon", product.SoLuongTonLon);
-                    command.Parameters.AddWithValue("@SoLuongTonNho", product.SoLuongTonNho);
-
-                    command.ExecuteNonQuery();
-                }
-            }
+            var collection = _connection.GetCollection<HangHoa>("HangHoa");
+            var filter = Builders<HangHoa>.Filter.Eq("maHH", hh.MaHH);
+            var result = collection.DeleteOne(filter);
         }
-
-        public void DeleteProduct(int maHH)
-        {
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = "DELETE FROM HangHoa WHERE MaHH = @MaHH";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@MaHH", maHH);
-
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected == 0)
-                    {
-                        throw new Exception("No product found with the specified ID.");
-                    }
-                }
-            }
-        }
-
-
-
-        public void UpdateProduct(HangHoa product)
-        {
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-
-
-                string query = @"
-                UPDATE HangHoa
-                SET 
-                    TenHH = @TenHH,
-                    MaLoaiHH = @MaLoaiHH,
-                    MoTa = @MoTa,
-                    DonViTinhNho = @DonViTinhNho,
-                    DonViTinhLon = @DonViTinhLon,
-                    HeSoQuyDoi = @HeSoQuyDoi,
-                    GiaNhapLon = @GiaNhapLon,
-                    GiaNhapNho = @GiaNhapNho,
-                    GiaBanLon = @GiaBanLon,
-                    GiaBanNho = @GiaBanNho
-                WHERE MaHH = @MaHH";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@MaHH", product.MaHH);
-                    command.Parameters.AddWithValue("@TenHH", product.TenHH);
-                    command.Parameters.AddWithValue("@MaLoaiHH", product.MaLoaiHH);
-                    command.Parameters.AddWithValue("@MoTa", product.MoTa ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@DonViTinhNho", product.DonViTinhNho);
-                    command.Parameters.AddWithValue("@DonViTinhLon", product.DonViTinhLon);
-                    command.Parameters.AddWithValue("@HeSoQuyDoi", product.HeSoQuyDoi);
-                    command.Parameters.AddWithValue("@GiaNhapLon", product.GiaNhapLon);
-                    command.Parameters.AddWithValue("@GiaNhapNho", product.GiaNhapNho);
-                    command.Parameters.AddWithValue("@GiaBanLon", product.GiaBanLon);
-                    command.Parameters.AddWithValue("@GiaBanNho", product.GiaBanNho);
-
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public HangHoa GetProductById(int productId)
-        {
-            HangHoa product = null;
-
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-
-                string query = "SELECT * FROM HangHoa WHERE MaHH = @MaHH";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@MaHH", productId);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            product = new HangHoa
-                            {
-                                MaHH = Convert.ToInt32(reader["MaHH"]),
-                                TenHH = reader["TenHH"].ToString(),
-                                MaLoaiHH = Convert.ToInt32(reader["MaLoaiHH"]),
-                                MoTa = reader["MoTa"] != DBNull.Value ? reader["MoTa"].ToString() : null,
-                                DonViTinhNho = reader["DonViTinhNho"].ToString(),
-                                DonViTinhLon = reader["DonViTinhLon"].ToString(),
-                                HeSoQuyDoi = Convert.ToInt32(reader["HeSoQuyDoi"]),
-                                GiaNhapLon = Convert.ToDecimal(reader["GiaNhapLon"]),
-                                GiaNhapNho = Convert.ToDecimal(reader["GiaNhapNho"]),
-                                GiaBanLon = Convert.ToDecimal(reader["GiaBanLon"]),
-                                GiaBanNho = Convert.ToDecimal(reader["GiaBanNho"]),
-                                SoLuongTonLon = Convert.ToInt32(reader["SoLuongTonLon"]),
-                                SoLuongTonNho = Convert.ToInt32(reader["SoLuongTonNho"])
-                            };
-                        }
-
-                    }
-                }
-                }
-            return product;
-        }
-
-
-        public decimal GetHeSoQuyDoiForProduct(int maHH)
-        {
-            decimal heSoQuyDoi = 0;
-
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = "SELECT HeSoQuyDoi FROM HangHoa WHERE MaHH = @MaHH";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@MaHH", maHH);
-
-                    // Execute the query and read the result
-                    var result = command.ExecuteScalar();
-                    if (result != DBNull.Value)
-                    {
-                        heSoQuyDoi = Convert.ToDecimal(result);
-                    }
-                }
-            }
-
-            return heSoQuyDoi;
-        }
-
-        public void ImportHangHoa(HangHoa hangHoa, bool isAdd = false)
-        {
-            string query;
-            if (isAdd)
-            {
-                // Thực hiện cộng số lượng vào cột hiện có
-                query = @"UPDATE HangHoa 
-                  SET SoLuongTonLon = SoLuongTonLon + @SoLuongNhapLon, 
-                      SoLuongTonNho = SoLuongTonNho + @SoLuongNhapNho 
-                  WHERE MaHH = @MaHH";
-            }
-            else
-            {
-                // Ghi đè trực tiếp giá trị mới
-                query = @"UPDATE HangHoa 
-                  SET SoLuongTonLon = @SoLuongNhapLon, 
-                      SoLuongTonNho = @SoLuongNhapNho 
-                  WHERE MaHH = @MaHH";
-            }
-
-            try
-            {
-                using (SqlConnection connection = DatabaseConnection.GetConnection())
-                {
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@SoLuongNhapLon", hangHoa.SoLuongTonLon);
-                        command.Parameters.AddWithValue("@SoLuongNhapNho", hangHoa.SoLuongTonNho);
-                        command.Parameters.AddWithValue("@MaHH", hangHoa.MaHH);
-
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi cập nhật hàng hóa: " + ex.Message);
-            }
-        }
-
-
-
-
     }
 }
-
-
-

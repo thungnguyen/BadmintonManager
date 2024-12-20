@@ -169,7 +169,7 @@
             this.btnTao.TabIndex = 39;
             this.btnTao.Text = "Tạo";
             this.btnTao.UseVisualStyleBackColor = false;
-            this.btnTao.Click += new System.EventHandler(this.btnTao_Click_1);
+            this.btnTao.Click += new System.EventHandler(this.btnTao_Click);
             // 
             // DangKyTaiKhoan
             // 

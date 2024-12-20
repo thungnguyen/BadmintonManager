@@ -1,167 +1,75 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using MongoDB.Bson;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+using System.Linq;
 using BadmintonManager.DTO;
 
 namespace BadmintonManager.DAL
 {
     public class TaiKhoanDAL
     {
-        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+        private readonly IMongoCollection<TaiKhoanNhanVienDTO> _taiKhoanCollection;
 
-        // Phương thức cũ
+        public TaiKhoanDAL()
+        {
+            var database = new MongoDBConnection().Connect();
+            _taiKhoanCollection = database.GetCollection<TaiKhoanNhanVienDTO>("TaiKhoanNhanVien");
+        }
+
+        // Thêm tài khoản
+        public bool AddTaiKhoan(TaiKhoanNhanVienDTO taiKhoan)
+        {
+            try
+            {
+                _taiKhoanCollection.InsertOne(taiKhoan);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Lấy tất cả tài khoản
         public List<TaiKhoanNhanVienDTO> GetAllAccounts()
         {
-            List<TaiKhoanNhanVienDTO> accounts = new List<TaiKhoanNhanVienDTO>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT * FROM TaiKhoanNhanVien";
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    TaiKhoanNhanVienDTO account = new TaiKhoanNhanVienDTO
-                    {
-                        MaNV = Convert.ToInt32(reader["MaNV"]),
-                        TenNV = reader["TenNV"].ToString(),
-                        TenDangNhap = reader["TenDangNhap"].ToString(),
-                        MatKhau = reader["MatKhau"].ToString(),
-                        VaiTro = reader["VaiTro"].ToString(),
-                        SDT = reader["SDT"].ToString()
-                    };
-                    accounts.Add(account);
-                }
-            }
-            return accounts;
+            return _taiKhoanCollection.AsQueryable().ToList();
         }
 
-        public void UpdateAccount(TaiKhoanNhanVienDTO account)
+        // Cập nhật tài khoản
+        public bool UpdateAccount(TaiKhoanNhanVienDTO taiKhoan)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string query = @"UPDATE TaiKhoanNhanVien SET 
-                                 TenNV = @TenNV, TenDangNhap = @TenDangNhap, 
-                                 MatKhau = @MatKhau, VaiTro = @VaiTro, SDT = @SDT
-                                 WHERE MaNV = @MaNV";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@MaNV", account.MaNV);
-                    command.Parameters.AddWithValue("@TenNV", account.TenNV);
-                    command.Parameters.AddWithValue("@TenDangNhap", account.TenDangNhap);
-                    command.Parameters.AddWithValue("@MatKhau", account.MatKhau);
-                    command.Parameters.AddWithValue("@VaiTro", account.VaiTro);
-                    command.Parameters.AddWithValue("@SDT", account.SDT);
-                    command.ExecuteNonQuery();
-                }
+                var filter = Builders<TaiKhoanNhanVienDTO>.Filter.Eq("MaNV", taiKhoan.MaNV);
+                var update = Builders<TaiKhoanNhanVienDTO>.Update
+                    .Set("TenNV", taiKhoan.TenNV)
+                    .Set("TenDangNhap", taiKhoan.TenDangNhap)
+                    .Set("MatKhau", taiKhoan.MatKhau)
+                    .Set("SDT", taiKhoan.SDT)
+                    .Set("VaiTro", taiKhoan.VaiTro);
+
+                var result = _taiKhoanCollection.UpdateOne(filter, update);
+                return result.ModifiedCount > 0;
+            }
+            catch
+            {
+                return false;
             }
         }
 
-        public void InsertAccount(TaiKhoanNhanVienDTO account)
+        // Xóa tài khoản
+        public bool DeleteAccount(int maNV)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string query = @"INSERT INTO TaiKhoanNhanVien (TenNV, TenDangNhap, MatKhau, VaiTro, SDT) 
-                                 VALUES (@TenNV, @TenDangNhap, @MatKhau, @VaiTro, @SDT)";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TenNV", account.TenNV);
-                    command.Parameters.AddWithValue("@TenDangNhap", account.TenDangNhap);
-                    command.Parameters.AddWithValue("@MatKhau", account.MatKhau);
-                    command.Parameters.AddWithValue("@VaiTro", account.VaiTro);
-                    command.Parameters.AddWithValue("@SDT", account.SDT);
-                    command.ExecuteNonQuery();
-                }
+                var filter = Builders<TaiKhoanNhanVienDTO>.Filter.Eq("MaNV", maNV);
+                var result = _taiKhoanCollection.DeleteOne(filter);
+                return result.DeletedCount > 0;
             }
-        }
-
-        public void DeleteAccount(int maNV)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            catch
             {
-                connection.Open();
-                string query = "DELETE FROM TaiKhoanNhanVien WHERE MaNV = @MaNV";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@MaNV", maNV);
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        // Phương thức mới từ TaiKhoanNhanVienDAL
-        public TaiKhoanNhanVienDTO DangNhap(string tenDangNhap, string matKhau)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = @"SELECT * FROM TaiKhoanNhanVien WHERE TenDangNhap = @TenDangNhap AND MatKhau = @MatKhau";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TenDangNhap", tenDangNhap);
-                    command.Parameters.AddWithValue("@MatKhau", matKhau);
-
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        return new TaiKhoanNhanVienDTO
-                        {
-                            MaNV = Convert.ToInt32(reader["MaNV"]),
-                            TenNV = reader["TenNV"].ToString(),
-                            TenDangNhap = reader["TenDangNhap"].ToString(),
-                            MatKhau = reader["MatKhau"].ToString(),
-                            VaiTro = reader["VaiTro"].ToString(),
-                            SDT = reader["SDT"].ToString(),
-                        };
-                    }
-                }
-            }
-            return null;
-        }
-
-        public int LayMaNV(string tenDangNhap, string matKhau)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = @"SELECT MaNV FROM TaiKhoanNhanVien WHERE TenDangNhap = @TenDangNhap AND MatKhau = @MatKhau";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TenDangNhap", tenDangNhap);
-                    command.Parameters.AddWithValue("@MatKhau", matKhau);
-
-                    object result = command.ExecuteScalar();
-
-                    return result != null ? Convert.ToInt32(result) : -1;
-                }
-            }
-        }
-
-        public bool ThemTaiKhoan(TaiKhoanNhanVienDTO taiKhoan)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = @"INSERT INTO TaiKhoanNhanVien (TenNV, TenDangNhap, MatKhau, VaiTro, SDT) 
-                                 VALUES (@TenNV, @TenDangNhap, @MatKhau, @VaiTro, @SDT)";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TenNV", taiKhoan.TenNV);
-                    command.Parameters.AddWithValue("@TenDangNhap", taiKhoan.TenDangNhap);
-                    command.Parameters.AddWithValue("@MatKhau", taiKhoan.MatKhau);
-                    command.Parameters.AddWithValue("@VaiTro", taiKhoan.VaiTro ?? "1");
-                    command.Parameters.AddWithValue("@SDT", taiKhoan.SDT);
-
-                    return command.ExecuteNonQuery() > 0;
-                }
+                return false;
             }
         }
     }

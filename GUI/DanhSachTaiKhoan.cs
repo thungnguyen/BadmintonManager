@@ -32,14 +32,14 @@ namespace BadmintonManager.GUI
                     account.TenNV,
                     account.TenDangNhap,
                     account.MatKhau,
-                    account.SDT,
                     account.VaiTro,
+                    account.SDT
                 }).ToList();
 
-                //if (dgvTaiKhoanmoi.Columns["VaiTro"] != null)
-                //{
-                //    dgvTaiKhoanmoi.Columns["VaiTro"].Visible = false;
-                //}
+                if (dgvTaiKhoanmoi.Columns["VaiTro"] != null)
+                {
+                    dgvTaiKhoanmoi.Columns["VaiTro"].Visible = false;
+                }
 
                 if (dgvTaiKhoanmoi.Columns["MaNV"] != null)
                 {
@@ -52,45 +52,28 @@ namespace BadmintonManager.GUI
             }
         }
 
-
+        // Phương thức sự kiện cho nút Thêm
         private void btnThem_Click(object sender, EventArgs e)
         {
             try
             {
-                // Kiểm tra dữ liệu không được để trống
-                if (string.IsNullOrEmpty(txtTenNV.Text) || string.IsNullOrEmpty(txtTenDangNhap.Text) ||
-                    string.IsNullOrEmpty(txtMatKhau.Text) || string.IsNullOrEmpty(txtSDT.Text))
+                DangKyTaiKhoan formDangKy = new DangKyTaiKhoan();
+                formDangKy.DataUpdated += FormDangKy_DataUpdated; // Đăng ký sự kiện
+/*                formDangKy.ShowDialog(); // Không cần kiểm tra DialogResult ở đây
+*/
+
+
+                if (formDangKy.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin trước khi thêm.");
-                    return;
+                    LoadData(); // Cập nhật lại dữ liệu sau khi thêm
                 }
-
-                // Tạo đối tượng DTO từ dữ liệu trong TextBox
-                TaiKhoanNhanVienDTO taiKhoanMoi = new TaiKhoanNhanVienDTO
-                {
-                    TenNV = txtTenNV.Text.Trim(),
-                    TenDangNhap = txtTenDangNhap.Text.Trim(),
-                    MatKhau = txtMatKhau.Text.Trim(),
-                    VaiTro = "Nhân viên", // Mặc định vai trò
-                    SDT = txtSDT.Text.Trim()
-                };
-
-                // Gọi BAL để thêm tài khoản
-                taiKhoanBAL.AddAccount(taiKhoanMoi);
-
-                // Thông báo và làm mới dữ liệu
-                MessageBox.Show("Thêm tài khoản thành công!");
-                LoadData();
-
-                // Xóa thông tin trong TextBox sau khi thêm
-                ClearTextBoxes();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi thêm tài khoản: " + ex.Message);
+                MessageBox.Show("Lỗi khi mở form thêm tài khoản: " + ex.Message);
             }
-        }
 
+        }
 
         // Phương thức gọi lại khi sự kiện DataUpdated được gọi
         private void FormDangKy_DataUpdated(object sender, EventArgs e)

@@ -20,46 +20,50 @@ namespace BadmintonManager.GUI
 {
     public partial class DatSan : Form
     {
-        private LichDatSanBAL lichDatSanBAL = new LichDatSanBAL();
-        private GiaSanBAL giaSanBAL = new GiaSanBAL();
+        private readonly LichDatSanBAL lichDatSanBAL;
+
+        private readonly GiaSanBAL giaSanBAL;
         private LichDatSanBAL _bal = new LichDatSanBAL();
         private SanBAL sanBAL;
-        private KhachHangBLL khachHangBAL;
+        private KhachHangBAL khachHangBAL;
         public DatSan()
         {
             InitializeComponent();
-            //cbbKhachHang.DropDown += cbbKhachHang_DropDown;
-            //cbbTenSan.DropDown += cbbTenSan_DropDown;
+
             dtpTuGio.ValueChanged += dtpTuGio_ValueChanged;
             dtpDenGio.ValueChanged += dtpDenGio_ValueChanged;
             dgvDanhSachNgay.Columns.Clear();
             dgvDanhSachNgay.Columns.Add("colNgayDat", "Ngày Đặt");
 
             sanBAL = new SanBAL();
-            khachHangBAL = new KhachHangBLL();
+            khachHangBAL = new KhachHangBAL();
             cbbKhachHang.DropDown += cbbKhachHang_DropDown;
             cbbTenSan.DropDown += cbbTenSan_DropDown;
+            giaSanBAL = new GiaSanBAL(); // Đảm bảo khởi tạo đúng
+            lichDatSanBAL = new LichDatSanBAL();
         }
-
 
         private void cbbKhachHang_DropDown(object sender, EventArgs e)
         {
+            // Tạo đối tượng KhachHangDAL để truy vấn dữ liệu
             KhachHangDAL dbHelper = new KhachHangDAL();
             List<KhachHangDTO> khachHangs = dbHelper.GetKhachHangList();
 
-            // Xóa các mục cũ trong ComboBox
+            // Xóa danh sách cũ trong ComboBox
             cbbKhachHang.Items.Clear();
 
             // Thiết lập ValueMember và DisplayMember
-            cbbKhachHang.ValueMember = "MaKH";
-            cbbKhachHang.DisplayMember = "TenKH";
+            cbbKhachHang.ValueMember = "Id"; // Sử dụng ObjectId làm giá trị chính
+            cbbKhachHang.DisplayMember = "TenKH"; // Hiển thị tên khách hàng
 
-            // Thêm dữ liệu vào ComboBox
+            // Thêm khách hàng vào ComboBox
             foreach (KhachHangDTO khachHang in khachHangs)
             {
-                cbbKhachHang.Items.Add(khachHang.TenKH); // Hiển thị tên khách hàng
+                cbbKhachHang.Items.Add(new { Id = khachHang.Id, TenKH = khachHang.TenKH });
             }
         }
+
+
 
 
 
@@ -71,10 +75,10 @@ namespace BadmintonManager.GUI
                 List<SanDTO> sans = dbHelper.GetSanList(); // Lấy danh sách sân từ database
 
                 // Thiết lập ValueMember và DisplayMember
-                cbbTenSan.ValueMember = "MaSan";
-                cbbTenSan.DisplayMember = "TenSan";
+                cbbTenSan.ValueMember = "Id";      // Gán giá trị ID (ObjectId)
+                cbbTenSan.DisplayMember = "TenSan"; // Hiển thị tên sân
 
-                // Gán lại DataSource mà không cần sử dụng Items.Clear()
+                // Gán lại DataSource
                 cbbTenSan.DataSource = sans;
             }
             catch (Exception ex)
@@ -82,6 +86,7 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
+
 
 
 
@@ -244,103 +249,96 @@ namespace BadmintonManager.GUI
             txtBuoi.Text = soNgay.ToString();
         }
 
-        private void btnDatLich_Click(object sender, EventArgs e) //Nút tính tiền
+        private void btnDatLich_Click(object sender, EventArgs e)
         {
-            {
-                // Lấy khoảng thời gian từ DateTimePicker
-                DateTime tuNgay = dtpTuNgay.Value.Date;
-                DateTime denNgay = dtpDenNgay.Value.Date;
+            // Lấy khoảng thời gian từ DateTimePicker
+            DateTime tuNgay = dtpTuNgay.Value.Date;
+            DateTime denNgay = dtpDenNgay.Value.Date;
 
-                // Kiểm tra khoảng thời gian hợp lệ
-                if (tuNgay > denNgay)
+            // Kiểm tra khoảng thời gian hợp lệ
+            if (tuNgay > denNgay)
+            {
+                MessageBox.Show("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Nếu khách cố định (cbLoaiKhach được chọn)
+            if (cbLoaiKhach.Checked)
+            {
+                // Danh sách các thứ được chọn
+                List<DayOfWeek> thuDuocChon = new List<DayOfWeek>();
+                if (checkBox2.Checked) thuDuocChon.Add(DayOfWeek.Monday);
+                if (checkBox3.Checked) thuDuocChon.Add(DayOfWeek.Tuesday);
+                if (checkBox4.Checked) thuDuocChon.Add(DayOfWeek.Wednesday);
+                if (checkBox5.Checked) thuDuocChon.Add(DayOfWeek.Thursday);
+                if (checkBox6.Checked) thuDuocChon.Add(DayOfWeek.Friday);
+                if (checkBox7.Checked) thuDuocChon.Add(DayOfWeek.Saturday);
+                if (checkBoxCN.Checked) thuDuocChon.Add(DayOfWeek.Sunday);
+
+                // Kiểm tra xem có chọn ít nhất một thứ không
+                if (thuDuocChon.Count == 0)
                 {
-                    MessageBox.Show("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Vui lòng chọn ít nhất một thứ trong tuần.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Nếu khách cố định (cbLoaiKhach được chọn)
-                if (cbLoaiKhach.Checked)
+                // Lấy danh sách các ngày trong khoảng thời gian phù hợp với các thứ được chọn
+                List<DateTime> cacNgayDat = new List<DateTime>();
+                for (DateTime date = tuNgay; date <= denNgay; date = date.AddDays(1))
                 {
-                    // Danh sách các thứ được chọn
-                    List<DayOfWeek> thuDuocChon = new List<DayOfWeek>();
-                    if (checkBox2.Checked) thuDuocChon.Add(DayOfWeek.Monday);    // Thứ 2
-                    if (checkBox3.Checked) thuDuocChon.Add(DayOfWeek.Tuesday);   // Thứ 3
-                    if (checkBox4.Checked) thuDuocChon.Add(DayOfWeek.Wednesday); // Thứ 4
-                    if (checkBox5.Checked) thuDuocChon.Add(DayOfWeek.Thursday);  // Thứ 5
-                    if (checkBox6.Checked) thuDuocChon.Add(DayOfWeek.Friday);    // Thứ 6
-                    if (checkBox7.Checked) thuDuocChon.Add(DayOfWeek.Saturday);  // Thứ 7
-                    if (checkBoxCN.Checked) thuDuocChon.Add(DayOfWeek.Sunday);   // Chủ nhật
-
-                    // Kiểm tra xem có chọn ít nhất một thứ không
-                    if (thuDuocChon.Count == 0)
+                    if (thuDuocChon.Contains(date.DayOfWeek))
                     {
-                        MessageBox.Show("Vui lòng chọn ít nhất một thứ trong tuần.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        cacNgayDat.Add(date);
                     }
-
-                    // Lấy danh sách các ngày trong khoảng thời gian phù hợp với các thứ được chọn
-                    List<DateTime> cacNgayDat = new List<DateTime>();
-                    for (DateTime date = tuNgay; date <= denNgay; date = date.AddDays(1))
-                    {
-                        if (thuDuocChon.Contains(date.DayOfWeek))
-                        {
-                            cacNgayDat.Add(date);
-                        }
-                    }
-
-                    // Nếu không có ngày phù hợp, thông báo lỗi
-                    if (cacNgayDat.Count == 0)
-                    {
-                        MessageBox.Show("Không có ngày nào trong khoảng thời gian phù hợp với các thứ được chọn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Hiển thị danh sách các ngày được đặt vào DataGridView
-                    dgvDanhSachNgay.Rows.Clear(); // Xóa dữ liệu cũ
-                    foreach (var ngay in cacNgayDat)
-                    {
-                        dgvDanhSachNgay.Rows.Add(ngay.ToString("dd/MM/yyyy")); // Thêm ngày vào DataGridView
-                    }
-
-                    MessageBox.Show("Danh sách ngày cố định đã được cập nhật.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
+
+                // Nếu không có ngày phù hợp, thông báo lỗi
+                if (cacNgayDat.Count == 0)
                 {
-                    // Nếu không phải khách cố định, chỉ đặt một ngày duy nhất
-                    dgvDanhSachNgay.Rows.Clear(); // Xóa dữ liệu cũ
-                    dgvDanhSachNgay.Rows.Add(tuNgay.ToString("dd/MM/yyyy")); // Chỉ thêm ngày bắt đầu
-                    MessageBox.Show("Đã đặt lịch cho khách vãng lai.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Không có ngày nào trong khoảng thời gian phù hợp với các thứ được chọn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                // Hiển thị danh sách các ngày được đặt vào DataGridView
+                dgvDanhSachNgay.Rows.Clear();
+                foreach (var ngay in cacNgayDat)
+                {
+                    dgvDanhSachNgay.Rows.Add(ngay.ToString("dd/MM/yyyy"));
+                }
+
+                MessageBox.Show("Danh sách ngày cố định đã được cập nhật.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else
+            {
+                // Nếu không phải khách cố định, chỉ đặt một ngày duy nhất
+                dgvDanhSachNgay.Rows.Clear();
+                dgvDanhSachNgay.Rows.Add(tuNgay.ToString("dd/MM/yyyy"));
+                MessageBox.Show("Đã đặt lịch cho khách vãng lai.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             CapNhatSoBuoi();
-            // Gọi hàm tính giá và hiển thị lên txtLayGia
+
+            // Tính giá tiền dựa vào thời gian
             decimal gia = giaSanBAL.TinhGia(cbLoaiKhach.Checked, dtpTuGio.Value.TimeOfDay, dtpDenGio.Value.TimeOfDay);
             txtLayGia.Text = gia.ToString("#,0");
 
-            decimal soBuoi = Convert.ToDecimal(txtBuoi.Text);  // Số buổi đã được tính từ dgvDanhSachNgay
-
-            // Tính tổng số tiền thanh toán
+            decimal soBuoi = Convert.ToDecimal(txtBuoi.Text);
             decimal thanhToan = soBuoi * gia;
-
-
-            // Hiển thị kết quả vào txtThanhToan
             txtThanhToan.Text = thanhToan.ToString("#,0");
 
-
-            // Lấy giá trị đã trả từ txtDaTra
-            decimal daTra = 0;
+            decimal daTra;
             if (!decimal.TryParse(txtDaTra.Text, out daTra))
             {
                 MessageBox.Show("Vui lòng nhập số tiền đã trả hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Tính số tiền còn lại
             decimal conLai = thanhToan - daTra;
-
-            // Hiển thị kết quả vào txtConLai
             txtConLai.Text = conLai.ToString("#,0");
         }
+
+   
+
 
         private void txtBuoi_TextChanged(object sender, EventArgs e)
         {
@@ -440,12 +438,12 @@ namespace BadmintonManager.GUI
                 return;
             }
 
-            string maSan = cbbTenSan.SelectedValue?.ToString(); // Cẩn thận với null
-            if (string.IsNullOrEmpty(maSan))
-            {
-                MessageBox.Show("Vui lòng chọn sân!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            int maSan = Convert.ToInt32(cbbTenSan.SelectedValue?.ToString()); // Cẩn thận với null
+            //if (!IsNullOrEmpty(maSan))
+            //{
+            //    MessageBox.Show("Vui lòng chọn sân!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             // Danh sách các ngày được chọn
             List<DateTime> cacNgayDat = new List<DateTime>();
@@ -471,26 +469,6 @@ namespace BadmintonManager.GUI
         }
 
 
-        //// Hàm lấy MaSan từ tên sân
-        //private int GetMaSan(string tenSan, SqlConnection conn)
-        //{
-        //    string query = "SELECT MaSan FROM San WHERE TenSan = @TenSan";
-        //    SqlCommand cmd = new SqlCommand(query, conn);
-        //    cmd.Parameters.AddWithValue("@TenSan", tenSan);
-        //    object result = cmd.ExecuteScalar();
-        //    return result != null ? Convert.ToInt32(result) : 0;
-        //}
-
-        //// Hàm lấy MaKH từ tên khách hàng
-        //private int GetMaKH(string tenKH, SqlConnection conn)
-        //{
-        //    string query = "SELECT MaKH FROM KhachHang WHERE TenKH = @TenKH";
-        //    SqlCommand cmd = new SqlCommand(query, conn);
-        //    cmd.Parameters.AddWithValue("@TenKH", tenKH);
-        //    object result = cmd.ExecuteScalar();
-        //    return result != null ? Convert.ToInt32(result) : 0;
-        //}
-
         private void dgvDanhSachNgay_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -501,61 +479,46 @@ namespace BadmintonManager.GUI
 
         }
 
-        private void btnLuu_Click_1(object sender, EventArgs e) //Nút lưu
+        private void btnLuu_Click_1(object sender, EventArgs e)
         {
             try
             {
-                //// Create an instance of the BAL class
-                //LichDatSanBAL bal = new LichDatSanBAL();
-
-                // Get MaSan and MaKH
+                // Lấy thông tin từ giao diện
                 int maSan = _bal.GetMaSan(cbbTenSan.Text);
                 int maKH = _bal.GetMaKH(cbbKhachHang.Text);
 
-
-
-                try
-                {
-                    // Tạo đối tượng LichDatSanBAL
-                    LichDatSanBAL lichDatSanBAL = new LichDatSanBAL();
-
-                    // Lấy giá trị từ giao diện người dùng
-                    bool loaiKhachChecked = cbLoaiKhach.Checked;  // Kiểm tra trạng thái của checkbox
-                    DateTime tuGio = dtpTuGio.Value;  // Lấy thời gian bắt đầu từ DateTimePicker
-
-                    // Gọi phương thức LayMaGia, truyền đủ hai tham số yêu cầu
-                    int maGia = lichDatSanBAL.LayMaGia(loaiKhachChecked, tuGio);
-
-                    // Kiểm tra nếu mã giá không hợp lệ
-                    if (maGia == 0)
-                    {
-                        MessageBox.Show("Không tìm thấy mã giá phù hợp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Tiếp tục xử lý sau khi gọi LayMaGia thành công
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 if (maSan == 0 || maKH == 0)
                 {
                     MessageBox.Show("Không tìm thấy thông tin sân hoặc khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Create DTO
+                bool loaiKhachChecked = cbLoaiKhach.Checked;
+                string loaiKhach = loaiKhachChecked ? "Co dinh" : "Vang lai";  // Điều chỉnh giá trị theo loại khách mà bạn muốn
+
+                DateTime tuGio = dtpTuGio.Value;
+                DateTime denGio = dtpDenGio.Value;
+
+                // Lấy mã giá
+                int maGia = _bal.LayMaGia(loaiKhach, tuGio.TimeOfDay);  // Lưu ý: chuyển DateTime sang TimeSpan khi cần
+                if (maGia == 0)
+                {
+                    MessageBox.Show("Không tìm thấy mã giá phù hợp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                // Tạo DTO cho LichDatSan
                 LichDatSanDTO dto = new LichDatSanDTO
                 {
                     MaSan = maSan,
                     MaKH = maKH,
-                    MaGia = _bal.LayMaGia(cbLoaiKhach.Checked, dtpTuGio.Value),
+                    MaGia = maGia,
                     TuNgay = dtpTuNgay.Value,
                     DenNgay = dtpDenNgay.Value,
-                    TuGio = dtpTuGio.Value.TimeOfDay,
-                    DenGio = dtpDenGio.Value.TimeOfDay,
-                    LoaiKH = cbLoaiKhach.Checked ? "Co dinh" : "Vang lai",
+                    TuGio = tuGio.TimeOfDay,
+                    DenGio = denGio.TimeOfDay,
+                    LoaiKH = loaiKhachChecked ? "Co dinh" : "Vang lai",
                     SoBuoi = int.Parse(txtBuoi.Text),
                     LayGia = decimal.Parse(txtLayGia.Text),
                     CanThanhToan = decimal.Parse(txtThanhToan.Text),
@@ -568,12 +531,21 @@ namespace BadmintonManager.GUI
                         .ToList()
                 };
 
-                // Save data
+                // Kiểm tra trùng lịch
+                if (_bal.KiemTraTrungLich(dto.MaSan, dto.NgayDat, dto.TuGio, dto.DenGio))
+                {
+                    MessageBox.Show("Lịch đặt bị trùng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Lưu lịch đặt sân
                 if (_bal.SaveLichDatSan(dto))
                 {
-                    ClearForm(); // Gọi hàm reset form sau khi lưu thành công
-
-                    // Additional actions after successful save if needed
+                    MessageBox.Show("Lưu lịch đặt sân thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Lưu lịch đặt sân thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -582,32 +554,6 @@ namespace BadmintonManager.GUI
             }
         }
 
-        private void ClearForm()
-        {
-            // Reset các ComboBox về giá trị mặc định
-            cbbTenSan.SelectedIndex = -1;
-            cbbKhachHang.SelectedIndex = -1;
-
-            // Bỏ chọn checkbox
-            cbLoaiKhach.Checked = false;
-
-            // Reset các DateTimePicker về ngày giờ hiện tại
-            dtpTuNgay.Value = DateTime.Now;
-            dtpDenNgay.Value = DateTime.Now;
-            dtpDenGio.Value = DateTime.Now;
-            dtpTuGio.Value = DateTime.Now;
-            dtpThoiGian.Value = DateTime.Now;
-
-            // Reset TextBox về rỗng
-            txtBuoi.Clear();
-            txtLayGia.Clear();
-            txtThanhToan.Clear();
-            txtDaTra.Clear();
-            txtConLai.Clear();
-
-            // Xóa DataGridView nếu có
-            dgvDanhSachNgay.Rows.Clear();
-        }
 
         private void dtpThoiGian_ValueChanged(object sender, EventArgs e)
         {

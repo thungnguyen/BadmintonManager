@@ -1,69 +1,22 @@
 ﻿using BadmintonManager.DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 namespace BadmintonManager.DAL
 {
     internal class LoaiHHDAL
     {
-        /// <summary>
-        /// Retrieves all product categories from the database
-        /// </summary>
-        public List<LoaiHHDTO> GetAllCategories()
+        private readonly MongoDBConnection _dbConnection; 
+
+        public LoaiHHDAL()
         {
-            List<LoaiHHDTO> categories = new List<LoaiHHDTO>();
-
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = "SELECT * FROM LoaiHH";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            categories.Add(new LoaiHHDTO
-                            {
-                                MaLoaiHH = Convert.ToInt32(reader["MaLoaiHH"]),
-                                TenLoaiHH = reader["TenLoaiHH"].ToString()
-                            });
-                        }
-                    }
-                }
-            }
-
-            return categories;
+            _dbConnection = new MongoDBConnection();
         }
 
-        public void InsertCategory(LoaiHHDTO category)
-        {
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = "INSERT INTO LoaiHH (TenLoaiHH) VALUES (@TenLoaiHH)";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TenLoaiHH", category.TenLoaiHH);
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void DeleteCategory(int maLoaiHH)
-        {
-            using (SqlConnection connection = DatabaseConnection.GetConnection())
-            {
-                string query = "DELETE FROM LoaiHH WHERE MaLoaiHH = @MaLoaiHH";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@MaLoaiHH", maLoaiHH);
-
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
 
     }
 }

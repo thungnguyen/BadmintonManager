@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -36,6 +37,7 @@ namespace BadmintonManager.GUI
         }
 
         #region methods
+
         //Mongo chạy thành công
         //Mongo chạy thành công
         //Mongo chạy thành công
@@ -315,17 +317,104 @@ namespace BadmintonManager.GUI
 
 
         //Load đơn vị tính lên cb 
-       
+
 
 
 
         // Show DonGia theo maHH va donViTinh
-      
+
         //LoadSan
-        
+
         //Show ThanhTien
-        
-        
+        private void PrintBill()
+        {
+            // Tạo một đối tượng PrintDocument
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+
+            // Đưa thông tin từ ListView vào biến toàn cục hoặc trực tiếp sử dụng trong PrintPage
+            printDocument.Print();
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            // Cấu hình font và vị trí để in hóa đơn
+            Font headerFont = new Font("Arial", 12, FontStyle.Bold);
+            Font contentFont = new Font("Arial", 10);
+            Brush brush = Brushes.Black;
+
+            // Cấu hình chiều rộng giấy A4
+            float pageWidth = e.PageSettings.PrintableArea.Width;
+            float pageHeight = e.PageSettings.PrintableArea.Height;
+            float margin = 15;
+            float startX = margin;
+            float columnWidth = (pageWidth - 2 * margin) / 5;
+            int headerHeight = 15;
+
+            // In tiêu đề hóa đơn
+            string title = "HÓA ĐƠN BÁN HÀNG";
+            float titleWidth = e.Graphics.MeasureString(title, headerFont).Width;
+            float titleX = (pageWidth - titleWidth) / 2;
+            e.Graphics.DrawString(title, headerFont, brush, titleX, 50);
+
+            // In thông tin cửa hàng
+            e.Graphics.DrawString("Badminton", headerFont, brush, titleX, 80);
+            e.Graphics.DrawString("HOTLINE: 19008386", contentFont, brush, titleX, 100);
+            e.Graphics.DrawString("Địa Chỉ: Tiểu Vương Quốc Bình Chánh, Chợ Bàn Cờ, Toà Thánh Tây Ninh", contentFont, brush, titleX, 120);
+
+            // Thông tin khách hàng
+            e.Graphics.DrawString("Khách Hàng:" + cbKhachHang.Text, contentFont, brush, startX, 160);
+            e.Graphics.DrawString("Điện Thoại: 0933821631", contentFont, brush, startX, 180);
+            e.Graphics.DrawString("Địa Chỉ: Tiểu Vương Quốc Bình Chánh, Chợ Bàn Cờ, Toà Thánh Tây Ninh", contentFont, brush, startX, 200);
+
+            // Khoảng cách bắt đầu hiển thị các cột
+            int yPos = 240;
+
+            // Tiêu đề các cột
+            e.Graphics.DrawString("STT", headerFont, brush, startX, yPos);
+            e.Graphics.DrawString("Sản Phẩm", headerFont, brush, startX + columnWidth, yPos);
+            e.Graphics.DrawString("ĐVT", headerFont, brush, startX + 2 * columnWidth, yPos);
+            e.Graphics.DrawString("SL", headerFont, brush, startX + 3 * columnWidth, yPos);
+            e.Graphics.DrawString("Đơn Giá", headerFont, brush, startX + 4 * columnWidth, yPos);
+            e.Graphics.DrawString("Thành Tiền", headerFont, brush, startX + 5 * columnWidth, yPos);
+
+            // Vẽ đường viền cho các cột
+            yPos += headerHeight; // Dịch xuống dưới tiêu đề cột
+            e.Graphics.DrawLine(Pens.Black, startX, yPos, pageWidth - margin, yPos);
+
+            // In chi tiết hóa đơn từ ListView
+            yPos += 20; // Bỏ qua dòng tiêu đề cột
+            foreach (ListViewItem item in lsvBill.Items)
+            {
+                e.Graphics.DrawString(item.Index.ToString(), contentFont, brush, startX, yPos); // STT
+                e.Graphics.DrawString(item.Text, contentFont, brush, startX + columnWidth, yPos); // Sản Phẩm
+                e.Graphics.DrawString(item.SubItems[1].Text, contentFont, brush, startX + 2 * columnWidth, yPos); // ĐVT
+                e.Graphics.DrawString(item.SubItems[2].Text, contentFont, brush, startX + 3 * columnWidth, yPos); // SL
+                e.Graphics.DrawString(item.SubItems[3].Text, contentFont, brush, startX + 4 * columnWidth, yPos); // Đơn Giá
+                e.Graphics.DrawString(item.SubItems[4].Text, contentFont, brush, startX + 5 * columnWidth, yPos); // Thành Tiền
+
+                // Vẽ đường viền dưới các cột cho từng dòng
+                e.Graphics.DrawLine(Pens.Black, startX, yPos + 10, pageWidth - margin, yPos + 10);
+                yPos += 20; // Dịch xuống 1 dòng
+            }
+
+            // In tổng tiền
+            string tongTienLabel = "Tổng tiền: " + txtTongTien.Text;
+            float totalWidth = e.Graphics.MeasureString(tongTienLabel, headerFont).Width;
+            float totalX = pageWidth - totalWidth - margin;
+            e.Graphics.DrawString(tongTienLabel, headerFont, brush, totalX, yPos + 40);
+
+            // Ngày và người viết hóa đơn
+            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), contentFont, brush, startX, yPos + 80);
+            e.Graphics.DrawString("Người viết hóa đơn: ___________________", contentFont, brush, startX, yPos + 100);
+
+            // Cảm ơn khách hàng
+            e.Graphics.DrawString("Cảm ơn quý khách!", contentFont, brush, startX, pageWidth + 150);
+        }
+
+
+
+
 
         #endregion
         #region events 
@@ -582,9 +671,72 @@ namespace BadmintonManager.GUI
         {
             this.Close();  // Đóng form hiện tại
         }
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            // Lấy đối tượng San từ lsvBill.Tag
+            San san = lsvBill.Tag as San;
+
+            if (san == null)
+            {
+                MessageBox.Show("Vui lòng chọn sân trước khi in hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Nếu không có sân được chọn, thoát ra khỏi hàm
+            }
+            ShowBill(san.MaSan);  // Đảm bảo rằng ShowBill đã được gọi và lsvBill đã có dữ liệu
+
+            // Tiến hành in hóa đơn
+            PrintBill();  // Sau khi ShowBill được gọi, thực hiện in hóa đơn
+        }
+        private void btnKhachMoi_Click(object sender, EventArgs e)
+        {
+            //AddKhachHang addKhachHang = new AddKhachHang();
+            //addKhachHang.Show();
+        }
+        private void btnChooseLichSan_Click(object sender, EventArgs e)
+        {
+            DanhSachLichSan chonlichdat = new DanhSachLichSan();
+            chonlichdat.OnLichSanSelected += (maDatSan, maSan, maKH, tuGio, denGio, loaiKH, daTra) =>
+            {
+                foreach (Control control in flpSan.Controls)
+                {
+                    ObjectId objectIdMaSan = ObjectId.Parse(maSan);
+
+                    if (control is Button btnSan && btnSan.Tag is San san && san.Id == objectIdMaSan)
+                    {
+                        btnSan.PerformClick();
+                        break;
+                    }
+                }
+                dtpGioVao.Value = tuGio;
+                dtpGioRa.Value = denGio;
+                ObjectId objectIdKh= ObjectId.Parse(maKH);
+
+                KhachHang khachHang = KhachHangDAO.Instance.GetListKhachHang()
+                    .FirstOrDefault(kh => kh.Id == objectIdKh);
+
+                if (khachHang != null)
+                {
+                    cbKhachHang.SelectedValue = maKH;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                LoaiKH selectedLoaiKH = loaiKHList.FirstOrDefault(lkh => lkh.Value == loaiKH);
+                if (selectedLoaiKH != null)
+                {
+                    cbLoaiKH.SelectedItem = selectedLoaiKH.DisplayName;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy loại khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            };
+            chonlichdat.ShowDialog();
+        }
 
 
         #endregion
+
 
     }
 }

@@ -118,5 +118,6 @@ namespace BadmintonManager.DAO
             // Thực hiện cập nhật vào MongoDB cho đúng hóa đơn có maHD
             MongoDataProvider.Instance.UpdateDocument(collectionName2, filter, update);
         }
+
     }
 }

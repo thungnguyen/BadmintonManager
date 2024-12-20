@@ -220,6 +220,7 @@
     <Compile Include="DAL\BillDAO.cs" />
     <Compile Include="DAL\BillInfoDAO.cs" />
     <Compile Include="DAL\ChangeStreamNewHoaDon.cs" />
+    <Compile Include="DAL\DanhSachLichSanDAL.cs" />
     <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
     <Compile Include="DAL\HHDAO.cs" />
@@ -233,10 +234,17 @@
     <Compile Include="DTO\BangGiaSanDTO.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
+    <Compile Include="DTO\DanhSachLichSanDTO.cs" />
     <Compile Include="DTO\HH.cs" />
     <Compile Include="DTO\KhachHang.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
+    <Compile Include="GUI\DanhSachLichSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachLichSan.Designer.cs">
+      <DependentUpon>DanhSachLichSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FrmTinhTien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +274,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\DanhSachLichSan.resx">
+      <DependentUpon>DanhSachLichSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmTinhTien.resx">
       <DependentUpon>FrmTinhTien.cs</DependentUpon>
     </EmbeddedResource>

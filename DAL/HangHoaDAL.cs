@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MongoDB.Driver;
-using MongoDB.Bson;
 using BadmintonManager.DTO;
 
 namespace BadmintonManager.DAL
@@ -11,54 +9,58 @@ namespace BadmintonManager.DAL
     /// </summary>
     public class HangHoaDAL
     {
-       private readonly MongoDBConnection _connection;
-        
+        private readonly IMongoCollection<HangHoa> _collection;
+
         public HangHoaDAL()
         {
-            _connection = new MongoDBConnection();
+            var connection = new MongoDBConnection();
+            _collection = connection.GetCollection<HangHoa>("HangHoa");
         }
 
-        // Lấy danh sách hàng hóa 
-        public List<BsonDocument> ListHangHoa(string sortCriteria = null)
+        // Lấy danh sách hàng hóa
+        public List<HangHoa> ListHangHoa(string sortCriteria = null)
         {
-            var collection = _connection.GetCollection<BsonDocument>("HangHoa");
-            var hhList = collection.Find(FilterDefinition<BsonDocument>.Empty).ToList();
-            return hhList;
+            var filter = FilterDefinition<HangHoa>.Empty;
+            var sort = string.IsNullOrEmpty(sortCriteria)
+                ? null
+                : Builders<HangHoa>.Sort.Ascending(sortCriteria);
+
+            return sort != null
+                ? _collection.Find(filter).Sort(sort).ToList()
+                : _collection.Find(filter).ToList();
         }
 
         // Thêm hàng hóa
-        public void ThemHH(BsonDocument newhh)
+        public void ThemHH(HangHoa newHH)
         {
-            var collection = _connection.GetCollection<BsonDocument>("HangHoa");
-            collection.InsertOne(newhh);
+            _collection.InsertOne(newHH);
         }
 
-        public void SuaHH(HangHoa updatedhh)
+        // Sửa hàng hóa
+        public void SuaHH(HangHoa updatedHH)
         {
-            var collection = _connection.GetCollection<HangHoa>("HangHoa");
-            var filter = Builders<HangHoa>.Filter.Eq(hh => hh.MaHH, updatedhh.MaHH);
+            var filter = Builders<HangHoa>.Filter.Eq(hh => hh.MaHH, updatedHH.MaHH);
             var update = Builders<HangHoa>.Update
-                                          .Set(hh => hh.TenHH, updatedhh.TenHH)
-                                           .Set(hh => hh.MoTa, updatedhh.MoTa)
-                                            .Set(hh => hh.DonViTinhLon, updatedhh.DonViTinhLon)
-                                             .Set(hh => hh.DonViTinhNho, updatedhh.DonViTinhNho)
-                                              .Set(hh => hh.HeSoQuyDoi, updatedhh.HeSoQuyDoi)
-                                               .Set(hh => hh.GiaNhapLon, updatedhh.GiaNhapLon)
-                                                .Set(hh => hh.GiaBanLon, updatedhh.GiaBanLon)
-                                                 .Set(hh => hh.GiaBanNho, updatedhh.GiaBanNho)
-                                                  .Set(hh => hh.SoLuongTonLon, updatedhh.SoLuongTonLon)
-                                                   .Set(hh => hh.SoLuongTonNho, updatedhh.SoLuongTonNho)
-                                                    .Set(hh => hh.MaLoaiHH, updatedhh.MaLoaiHH);
-            collection.UpdateOne(filter, update);
+                                          .Set(hh => hh.TenHH, updatedHH.TenHH)
+                                          .Set(hh => hh.MoTa, updatedHH.MoTa)
+                                          .Set(hh => hh.DonViTinhLon, updatedHH.DonViTinhLon)
+                                          .Set(hh => hh.DonViTinhNho, updatedHH.DonViTinhNho)
+                                          .Set(hh => hh.HeSoQuyDoi, updatedHH.HeSoQuyDoi)
+                                          .Set(hh => hh.GiaNhapLon, updatedHH.GiaNhapLon)
+                                          .Set(hh => hh.GiaNhapNho, updatedHH.GiaNhapNho)
+                                          .Set(hh => hh.GiaBanLon, updatedHH.GiaBanLon)
+                                          .Set(hh => hh.GiaBanNho, updatedHH.GiaBanNho)
+                                          .Set(hh => hh.SoLuongTonLon, updatedHH.SoLuongTonLon)
+                                          .Set(hh => hh.SoLuongTonNho, updatedHH.SoLuongTonNho)
+                                          .Set(hh => hh.MaLoaiHH, updatedHH.MaLoaiHH);
+            _collection.UpdateOne(filter, update);
         }
 
-        public void XoaHH(HangHoa hh)
+        // Xóa hàng hóa
+        public void XoaHH(string Id)
         {
-            var collection = _connection.GetCollection<HangHoa>("HangHoa");
-            var filter = Builders<HangHoa>.Filter.Eq("maHH", hh.MaHH);
-            var réult = collection.DeleteOne(filter);
+            var filter = Builders<HangHoa>.Filter.Eq(hh => hh._id, Id);
+            _collection.DeleteOne(filter);
         }
-
-       
     }
 }

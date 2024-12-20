@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
+﻿using System.Collections.Generic;
 using BadmintonManager.DAL;
 using BadmintonManager.DTO;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Serializers;
-
-
 
 namespace BadmintonManager.BLL
 {
@@ -18,78 +9,35 @@ namespace BadmintonManager.BLL
     /// </summary>
     public class HangHoaBLL
     {
-        private HangHoaDAL _hanghoaDAL;
+        private readonly HangHoaDAL _hanghoaDAL;
 
         public HangHoaBLL()
         {
             _hanghoaDAL = new HangHoaDAL();
         }
 
-        // Phương thức lấy danh sách hàng hóa từ DAL và chuyển đổi thành danh sách đối tượng HangHoa
+        // Lấy danh sách hàng hóa
         public List<HangHoa> HangHoaList(string sortCriteria = null)
         {
-            // Lấy danh sách BsonDocument từ DAL
-            List<BsonDocument> hhListBson = _hanghoaDAL.ListHangHoa();
-
-            // Chuyển đổi BsonDocument thành đối tượng HangHoa
-            List<HangHoa> hhList = new List<HangHoa>();
-            foreach (var item in hhListBson)
-            {
-                HangHoa hh = new HangHoa
-                {
-                    Id = item["_id"].ToString(),
-                    TenHH = item["tenHH"].ToString(),
-                    MoTa = item["moTa"].ToString(),
-                    DonViTinhLon = item["donViTinhLon"].ToString(),
-                    DonViTinhNho = item["donViTinhNho"].ToString(),
-                    HeSoQuyDoi = item["heSoQuyDoi"].ToInt32(),
-                    GiaNhapLon = item["giaNhapLon"].ToDecimal(),
-                    GiaNhapNho = item["giaNhapNho"].ToDecimal(),
-                    GiaBanLon = item["giaBanLon"].ToDecimal(),
-                    GiaBanNho = item["giaBanNho"].ToDecimal(),
-                    SoLuongTonLon = item["soLuongTonLon"].ToInt32(),
-                    SoLuongTonNho = item["soLuongTonNho"].ToInt32(),
-                    MaLoaiHH = item["maLoaiHH"].ToInt32(),
-                    MaHH = item["maHH"].ToString()
-                };
-
-                // Thêm vào danh sách hàng hóa
-                hhList.Add(hh);
-            }
-
-            return hhList;
+            return _hanghoaDAL.ListHangHoa(sortCriteria);
         }
 
+        // Thêm hàng hóa
         public void ThemHH(HangHoa hh)
         {
-            // Tạo BsonDocument từ đối tượng HangHoa
-            var newhh = new BsonDocument
-                {
-                    { "tenHH", hh.TenHH },
-                    { "moTa", hh.MoTa },
-                    { "donViTinhLon", hh.DonViTinhLon },
-                    { "donViTinhNho", hh.DonViTinhNho },
-                    { "heSoQuyDoi", hh.HeSoQuyDoi },
-                    { "giaNhapLon", hh.GiaNhapLon },
-                    { "giaNhapNho", hh.GiaNhapNho },
-                    { "giaBanLon", hh.GiaBanLon },
-                    { "giaBanNho", hh.GiaBanNho },
-                    { "soLuongTonLon", hh.SoLuongTonLon },
-                    { "soLuongTonNho", hh.SoLuongTonNho },
-                    { "maLoaiHH", hh.MaLoaiHH },
-                    { "maHH", hh.MaHH }
-                };
-            _hanghoaDAL.ThemHH(newhh);
-        } 
-      
-        public void SuaHH(HangHoa updatedhh)
-        {
-            _hanghoaDAL.SuaHH(updatedhh);
+            _hanghoaDAL.ThemHH(hh);
         }
 
-        public void XoaHH(HangHoa hh)
+        // Sửa hàng hóa
+        public void SuaHH(HangHoa updatedHH)
         {
-            _hanghoaDAL.XoaHH(hh);
+            _hanghoaDAL.SuaHH(updatedHH);
+        }
+
+        // Xóa hàng hóa
+        public void XoaHH(string Id)
+        {
+            _hanghoaDAL.XoaHH(Id);
         }
     }
 }

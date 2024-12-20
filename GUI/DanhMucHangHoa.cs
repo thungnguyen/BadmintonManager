@@ -21,13 +21,41 @@ namespace BadmintonManager.GUI
         {
             try
             {
-                // Fetch products, optionally filtered by search term
-                var dataTable = _hangHoaBLL.HangHoaList(searchTerm);
-                dgvHangHoa.DataSource = dataTable;
-            } 
+                // Lấy danh sách hàng hóa từ BLL
+                var hangHoaList = _hangHoaBLL.HangHoaList(searchTerm);
+
+                // Kiểm tra nếu danh sách trống
+                if (hangHoaList == null || hangHoaList.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu hàng hóa để hiển thị.");
+                    dgvHangHoa.DataSource = null;
+                    return;
+                }
+
+                // Gắn danh sách vào DataGridView
+                dgvHangHoa.DataSource = hangHoaList;
+
+                // Ẩn các cột không cần thiết (nếu cần)
+                dgvHangHoa.Columns["_id"].Visible = false;
+
+                // Cập nhật tiêu đề cột cho thân thiện hơn
+                dgvHangHoa.Columns["MaHH"].HeaderText = "Mã Hàng Hóa";
+                dgvHangHoa.Columns["TenHH"].HeaderText = "Tên Hàng Hóa";
+                dgvHangHoa.Columns["MoTa"].HeaderText = "Mô Tả";
+                dgvHangHoa.Columns["DonViTinhLon"].HeaderText = "Đơn Vị Tính Lớn";
+                dgvHangHoa.Columns["DonViTinhNho"].HeaderText = "Đơn Vị Tính Nhỏ";
+                dgvHangHoa.Columns["HeSoQuyDoi"].HeaderText = "Hệ Số Quy Đổi";
+                dgvHangHoa.Columns["GiaNhapLon"].HeaderText = "Giá Nhập Lớn";
+                dgvHangHoa.Columns["GiaNhapNho"].HeaderText = "Giá Nhập Nhỏ";
+                dgvHangHoa.Columns["GiaBanLon"].HeaderText = "Giá Bán Lớn";
+                dgvHangHoa.Columns["GiaBanNho"].HeaderText = "Giá Bán Nhỏ";
+                dgvHangHoa.Columns["SoLuongTonLon"].HeaderText = "SL Tồn Lớn";
+                dgvHangHoa.Columns["SoLuongTonNho"].HeaderText = "SL Tồn Nhỏ";
+                dgvHangHoa.Columns["MaLoaiHH"].HeaderText = "Mã Loại Hàng Hóa";
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading products: {ex.Message}");
+                MessageBox.Show($"Lỗi khi tải dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -63,35 +91,39 @@ namespace BadmintonManager.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem có dòng nào được chọn không
             if (dgvHangHoa.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a product to delete.");
+                MessageBox.Show("Vui lòng chọn một hàng hóa để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Lấy _id của hàng hóa được chọn
+            string selectedId = dgvHangHoa.SelectedRows[0].Cells["_id"].Value.ToString();
 
-            var selectedRow = dgvHangHoa.SelectedRows[0];
-            var maHH = selectedRow.Cells["MaHH"].Value.ToString();
-            string xoama = maHH.ToString();
-
-
-            var confirmResult = MessageBox.Show(
-                "Bạn có muốn xoá danh mục sản phẩm này?",
-                "Xác nhận xoá danh mục sản phẩm",
-                MessageBoxButtons.YesNo);
+            // Xác nhận trước khi xóa
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa hàng hóa này không?",
+                                                "Xác nhận xóa",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
 
             if (confirmResult == DialogResult.Yes)
             {
                 try
                 {
-                    HangHoa hhxoa = new HangHoa { MaHH = xoama };
-                    _hangHoaBLL.XoaHH(hhxoa);
-                    MessageBox.Show("Sản phẩm xoá thành công");
+                    // Gọi BLL để xóa
+                    var hangHoaBLL = new HangHoaBLL();
+                    hangHoaBLL.XoaHH(selectedId);
+
+                    // Thông báo xóa thành công
+                    MessageBox.Show("Xóa hàng hóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Cập nhật lại danh sách hàng hóa
                     LoadTable();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi khi xoá: {ex.Message}");
+                    MessageBox.Show($"Đã xảy ra lỗi khi xóa hàng hóa: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

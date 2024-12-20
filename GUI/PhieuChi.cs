@@ -22,10 +22,10 @@ namespace BadmintonManager.GUI
 
             // Hiển thị thông tin lịch sân vào các TextBox
             txtMaDatSan.Text = phieuChiDTO.MaDatSan.ToString();
-            txtMaSan.Text = phieuChiDTO.MaSan;
-            txtMaKH.Text = phieuChiDTO.MaKH;
+            txtMaSan.Text = phieuChiDTO.MaSan.ToString();
+            txtMaKH.Text = phieuChiDTO.MaKH.ToString();
             txtTuNgay.Text = DateTime.Now.ToString("yyyy-MM-dd"); // Ngày mặc định hiện tại
-            txtDaTra.Text = phieuChiDTO.DaTra;
+            txtDaTra.Text = phieuChiDTO.DaTra.ToString();
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
@@ -34,19 +34,20 @@ namespace BadmintonManager.GUI
             {
                 // Lấy dữ liệu từ giao diện
                 int maDatSan = int.Parse(txtMaDatSan.Text);
-                string maSan = txtMaSan.Text;
-                string maKH = txtMaKH.Text;
+                int maSan = Convert.ToInt32(txtMaSan.Text);
+                int maKH = Convert.ToInt32(txtMaKH.Text);
                 string tuNgay = txtTuNgay.Text;
                 decimal daTra = decimal.Parse(txtDaTra.Text);
 
                 // Tạo đối tượng PhieuChiDTO
                 PhieuChiDTO phieuChi = new PhieuChiDTO
                 {
+
                     MaDatSan = maDatSan,
                     MaSan = maSan,
                     MaKH = maKH,
                     TuNgay = DateTime.Parse(tuNgay),
-                    DaTra = daTra.ToString(),
+                    DaTra = daTra,
                     NgayLap = DateTime.Now // Ngày lập tự động
                 };
 

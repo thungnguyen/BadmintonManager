@@ -1,6 +1,6 @@
 ﻿namespace BadmintonManager.GUI
 {
-    partial class FormMenuNV
+    partial class GDNhanVien
     {
         /// <summary>
         /// Required designer variable.
@@ -118,6 +118,7 @@
             // 
             // pictureBox10
             // 
+            this.pictureBox10.Image = global::BadmintonManager.Properties.Resources.logout1;
             this.pictureBox10.Location = new System.Drawing.Point(9, 242);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox10.Name = "pictureBox10";

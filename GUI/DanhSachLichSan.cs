@@ -204,10 +204,10 @@ namespace BadmintonManager.GUI
                     PhieuChiDTO phieuChiDTO = new PhieuChiDTO
                     {
                         MaDatSan = maDatSanInt,
-                        MaSan = Convert.ToString(selectedRow["MaSan"]),
-                        MaKH = Convert.ToString(selectedRow["MaKH"]),
+                        MaSan = (int)selectedRow["MaSan"],
+                        MaKH = (int)selectedRow["MaKH"],
                         TuNgay = tuNgay,
-                        DaTra = Convert.ToString(selectedRow["DaTra"])
+                        DaTra = Convert.ToDecimal(selectedRow["DaTra"])
                     };
 
                     // Mở Form Phieu Chi và truyền đối tượng vào

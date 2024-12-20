@@ -39,14 +39,15 @@ namespace BadmintonManager
 
                 if (taiKhoan.VaiTro == "Quản lý") // Quản lý
                 {
-                    MessageBox.Show($"Chào quản lý! MaNV: {maNV}");
+                    MessageBox.Show($"Chào quản lý! MaQL: {maNV}");
                     FormMenu formNhanVien = new FormMenu();
                     formNhanVien.Show();
                 }
                 else if (taiKhoan.VaiTro == "Nhân viên") // Nhân viên
                 {
                     MessageBox.Show($"Chào nhân viên! MaNV: {maNV}");
-                    FormMenu formNhanVien = new FormMenu();
+                    GDNhanVien formNhanVien = new GDNhanVien();
+                    //GDNhanVien formNhanVien = new GDNhanVien();
                     formNhanVien.Show();
                 }
 

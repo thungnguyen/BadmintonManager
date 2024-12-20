@@ -5,7 +5,7 @@ using BadmintonManager.Theme;
 
 namespace BadmintonManager.GUI
 {
-    public partial class FormMenuNV : Form
+    public partial class GDNhanVien : Form
     {
         //Fields
         private Button currentButton;
@@ -14,7 +14,7 @@ namespace BadmintonManager.GUI
         private Form activeForm;
 
         //Constructor
-        public FormMenuNV()
+        public GDNhanVien()
         {
             InitializeComponent();
             random = new Random();

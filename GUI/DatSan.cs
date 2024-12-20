@@ -134,7 +134,7 @@ namespace BadmintonManager.GUI
             if (dtpDenGio.Value < dtpTuGio.Value)
             {
                 // Thông báo lỗi
-                MessageBox.Show("Thời gian 'Đến giờ' không thể nhỏ hơn 'Từ giờ'.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Thời gian 'Đến giờ' không thể nhỏ hơn 'Từ giờ'.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 // Đặt lại giá trị của dtpDenGio về giá trị của dtpTuGio
                 dtpDenGio.Value = dtpTuGio.Value;
@@ -594,8 +594,8 @@ namespace BadmintonManager.GUI
             // Reset các DateTimePicker về ngày giờ hiện tại
             dtpTuNgay.Value = DateTime.Now;
             dtpDenNgay.Value = DateTime.Now;
-            dtpDenGio.Value = DateTime.Now;
             dtpTuGio.Value = DateTime.Now;
+            dtpDenGio.Value = DateTime.Now;
             dtpThoiGian.Value = DateTime.Now;
 
             // Reset TextBox về rỗng

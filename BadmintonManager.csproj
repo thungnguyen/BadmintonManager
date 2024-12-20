@@ -221,7 +221,6 @@
     <Compile Include="BLL\LoaiHHBLL.cs" />
     <Compile Include="BLL\SanBAL.cs" />
     <Compile Include="BLL\TaiKhoanBAL.cs" />
-    <Compile Include="BLL\TaiKhoanNhanVienBAL .cs" />
     <Compile Include="DAL\BangGiaSanDAO.cs" />
     <Compile Include="DAL\BillDAO.cs" />
     <Compile Include="DAL\BillInfoDAO.cs" />
@@ -241,7 +240,6 @@
     <Compile Include="DAL\SanDAL.cs" />
     <Compile Include="DAL\SanDAO.cs" />
     <Compile Include="DAL\TaiKhoanDAL.cs" />
-    <Compile Include="DAL\TaiKhoanNhanVienDAL.cs" />
     <Compile Include="DTO\BangGiaSanDTO.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
@@ -250,6 +248,7 @@
     <Compile Include="DTO\KhachHang.cs" />
     <Compile Include="DTO\KhachHangDTO.cs" />
     <Compile Include="DTO\LichDatSanDTO.cs" />
+    <Compile Include="DTO\LoaiHHDTO.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\SanDTO.cs" />
@@ -259,6 +258,12 @@
     </Compile>
     <Compile Include="GUI\AddKhachHang.Designer.cs">
       <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\BaoCaoDoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BaoCaoDoanhThu.Designer.cs">
+      <DependentUpon>BaoCaoDoanhThu.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\DangKyTaiKhoan.cs">
       <SubType>Form</SubType>
@@ -311,6 +316,18 @@
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\GDNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\GDNhanVien.Designer.cs">
+      <DependentUpon>GDNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TaoHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaoHangHoa.Designer.cs">
+      <DependentUpon>TaoHangHoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TaoSan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,6 +339,9 @@
     <Compile Include="Theme\ThemeColor.cs" />
     <EmbeddedResource Include="GUI\AddKhachHang.resx">
       <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\BaoCaoDoanhThu.resx">
+      <DependentUpon>BaoCaoDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DangKyTaiKhoan.resx">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
@@ -346,6 +366,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\GDNhanVien.resx">
+      <DependentUpon>GDNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TaoHangHoa.resx">
+      <DependentUpon>TaoHangHoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TaoSan.resx">
       <DependentUpon>TaoSan.cs</DependentUpon>

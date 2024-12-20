@@ -14,11 +14,13 @@ namespace BadmintonManager.DAL
         private readonly IMongoCollection<BsonDocument> _lichDatSanCollection;
         private readonly IMongoCollection<BsonDocument> _chiTietCollection;
 
+
         public LichDatSanDAL()
         {
             _mongoConnection = new MongoDBConnection();
             _lichDatSanCollection = _mongoConnection.GetCollection<BsonDocument>("LichDatSan");
             _chiTietCollection = _mongoConnection.GetCollection<BsonDocument>("ChiTietLichDatSan");
+
         }
 
         public ObjectId GetMaSan(string tenSan)
@@ -199,6 +201,7 @@ namespace BadmintonManager.DAL
 
             foreach (var ngay in ngayDat)
             {
+
                 var document = new BsonDocument
             {
                 { "maChiTiet", maChiTiet++ },

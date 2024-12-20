@@ -11,8 +11,13 @@ namespace BadmintonManager.BAL
         public TaiKhoanBAL()
         {
             _taiKhoanDAL = new TaiKhoanDAL();
+
         }
 
+        public TaiKhoanNhanVienDTO DangNhap(string tenDangNhap, string matKhau)
+        {
+            return _taiKhoanDAL.DangNhap(tenDangNhap, matKhau);
+        }
         // Thêm tài khoản
         public bool AddTaiKhoan(TaiKhoanNhanVienDTO taiKhoan)
         {
@@ -31,6 +36,11 @@ namespace BadmintonManager.BAL
             return _taiKhoanDAL.UpdateAccount(taiKhoan);
         }
 
+        // Trong TaiKhoanBAL
+        public bool IsTenDangNhapExists(string tenDangNhap, int excludeMaNV)
+        {
+            return _taiKhoanDAL.IsTenDangNhapExists(tenDangNhap, excludeMaNV);
+        }
         // Xóa tài khoản
         public bool DeleteAccount(int maNV)
         {

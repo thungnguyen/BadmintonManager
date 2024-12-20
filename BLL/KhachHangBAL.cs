@@ -1,9 +1,7 @@
-﻿// SanBAL.cs
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BadmintonManager.DAL;
 using BadmintonManager.DTO;
 
-// BAL Layer
 namespace BadmintonManager.BAL
 {
     public class KhachHangBAL
@@ -24,6 +22,5 @@ namespace BadmintonManager.BAL
         {
             return _khachHangDAL.GetKhachHangList();
         }
-
     }
 }

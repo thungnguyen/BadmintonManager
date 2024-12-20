@@ -5,17 +5,17 @@ namespace BadmintonManager.DTO
 {
     public class KhachHangDTO
     {
-        [BsonId] // Đánh dấu là trường _id
-        [BsonRepresentation(BsonType.ObjectId)] // Xử lý kiểu ObjectId của MongoDB
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [BsonElement("maKH")] // Ánh xạ với trường maKH trong MongoDB
+        [BsonElement("maKH")]
         public int MaKH { get; set; }
 
-        [BsonElement("tenKH")] // Ánh xạ với trường tenKH trong MongoDB
+        [BsonElement("tenKH")]
         public string TenKH { get; set; }
 
-        [BsonElement("sdt")] // Ánh xạ với trường sdt trong MongoDB
+        [BsonElement("sdt")]
         public string SDT { get; set; }
     }
 }

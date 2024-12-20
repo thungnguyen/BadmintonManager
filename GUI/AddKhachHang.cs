@@ -1,6 +1,13 @@
 ﻿using BadmintonManager.BAL;
 using BadmintonManager.DTO;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BadmintonManager.GUI
@@ -13,8 +20,8 @@ namespace BadmintonManager.GUI
         {
             InitializeComponent();
             khachHangBAL = new KhachHangBAL();
+            this.Load += AddKhachHang_Load;
         }
-
 
         private void btnThemKH_Click(object sender, EventArgs e)
         {
@@ -23,7 +30,7 @@ namespace BadmintonManager.GUI
 
             if (string.IsNullOrEmpty(tenKH) || string.IsNullOrEmpty(sdt))
             {
-                MessageBox.Show("Vui lòng điền đủ thông tin khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -37,13 +44,37 @@ namespace BadmintonManager.GUI
 
             if (isAdded)
             {
-                MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close(); // Đóng form sau khi thêm thành công
+                LoadKhachHangData();
+                txtTenKH.Clear();
+                txtSDT.Clear();
             }
             else
             {
                 MessageBox.Show("Thêm khách hàng thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void LoadKhachHangData()
+        {
+            try
+            {
+                List<KhachHangDTO> danhSachKhachHang = khachHangBAL.GetKhachHangList();
+                dgvKhachHang.DataSource = danhSachKhachHang;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải dữ liệu khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AddKhachHang_Load(object sender, EventArgs e)
+        {
+            LoadKhachHangData();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

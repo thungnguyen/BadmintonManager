@@ -25,11 +25,13 @@ namespace BadmintonManager.DTO
             this.MaKH = doc["maKH"].ToInt32();
             this.TenKH = doc["tenKH"].ToString();
             this.SDT = doc["sdt"].ToString();
+            this.Id = (ObjectId)doc["_id"];
         }
 
         // Constructor để khởi tạo đối tượng khi có thông tin đầy đủ
-        public KhachHang(int maKH, string tenKH, string sdt)
+        public KhachHang(int maKH, string tenKH, string sdt, ObjectId _id)
         {
+            this.Id = _id;
             this.MaKH = maKH;
             this.TenKH = tenKH;
             this.SDT = sdt;

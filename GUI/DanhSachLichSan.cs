@@ -42,7 +42,9 @@ public delegate void LichSanSelectedHandler(ObjectId maDatSan, string maSan, str
                 {
                     string tenSan = DanhSachLichSanDAL.Instance.GetTenSanById(lichSan.MaSan);
                     string tenKhachHang = DanhSachLichSanDAL.Instance.GetTenKhachHangById(lichSan.MaKH);
-                    ListViewItem item = new ListViewItem(tenSan); 
+
+                    // Tạo ListViewItem và thêm các cột
+                    ListViewItem item = new ListViewItem(tenSan);
                     item.SubItems.Add(tenKhachHang);
                     item.SubItems.Add(lichSan.TuNgay.ToString("dd/MM/yyyy"));
                     item.SubItems.Add(lichSan.DenNgay.ToString("dd/MM/yyyy"));
@@ -52,6 +54,11 @@ public delegate void LichSanSelectedHandler(ObjectId maDatSan, string maSan, str
                     item.SubItems.Add(lichSan.SoBuoi.ToString());
                     item.SubItems.Add(lichSan.CanThanhToan.ToString("N0"));
                     item.SubItems.Add(lichSan.DaTra.ToString("N0"));
+
+                    // Gắn Tag với đối tượng DanhSachLichSanDTO
+                    item.Tag = lichSan;
+
+                    // Thêm item vào ListView
                     lsvDatSan.Items.Add(item);
                 }
             }
@@ -246,10 +253,10 @@ private void btnTimTenKH_Click(object sender, EventArgs e)
 
         private void btnTinhTien_Click(object sender, EventArgs e)
         {
-            try
+            // Kiểm tra nếu có dòng nào được chọn trong ListView
+            if (lsvDatSan.SelectedItems.Count > 0)
             {
-                // Kiểm tra nếu có dòng nào được chọn trong ListView
-                if (lsvDatSan.SelectedItems.Count > 0)
+                try
                 {
                     // Lấy dòng được chọn
                     ListViewItem selectedItem = lsvDatSan.SelectedItems[0];
@@ -259,24 +266,38 @@ private void btnTimTenKH_Click(object sender, EventArgs e)
 
                     if (lichSan != null)
                     {
-                        // Chuyển TuGio và DenGio từ string sang DateTime nếu cần
-                        DateTime tuGio = DateTime.Parse(lichSan.TuGio); // Hoặc dùng TryParse để tránh lỗi nếu không thể chuyển đổi
+                        // Chuyển đổi các giá trị cần thiết
+                        DateTime tuGio = DateTime.Parse(lichSan.TuGio); // Chuyển đổi từ string sang DateTime
                         DateTime denGio = DateTime.Parse(lichSan.DenGio);
 
                         // Gọi delegate để truyền thông tin từ dòng được chọn
-                        OnLichSanSelected?.Invoke(lichSan.Id, lichSan.MaSan, lichSan.MaKH, tuGio, denGio, lichSan.LoaiKH, lichSan.DaTra);
+                        OnLichSanSelected?.Invoke(
+                            lichSan.Id,           // ObjectId
+                            lichSan.MaSan,        // string
+                            lichSan.MaKH,         // string
+                            tuGio,                // DateTime
+                            denGio,               // DateTime
+                            lichSan.LoaiKH,       // string
+                            lichSan.DaTra         // decimal
+                        );
+
+                        // Đóng form sau khi xử lý
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin chi tiết!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Nếu không có dòng nào được chọn, thông báo cho người dùng
-                    MessageBox.Show("Vui lòng chọn một dòng để tính tiền.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                // Xử lý lỗi nếu có
-                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn một dòng trước khi tiếp tục!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

@@ -72,7 +72,7 @@ namespace BadmintonManager.GUI
             List<KhachHang> khachhang = KhachHangDAO.Instance.GetListKhachHang();
             cbKhachHang.DataSource = khachhang;
             cbKhachHang.DisplayMember = "TenKH";
-            cbKhachHang.ValueMember = "MaKH";
+            cbKhachHang.ValueMember = "Id";
         }
         private List<LoaiKH> loaiKHList = new List<LoaiKH>();
         private void LoadLoaiKHComboBox()
@@ -693,44 +693,61 @@ namespace BadmintonManager.GUI
         }
         private void btnChooseLichSan_Click(object sender, EventArgs e)
         {
+            // Tạo form chọn lịch sân
             DanhSachLichSan chonlichdat = new DanhSachLichSan();
+
+            // Đăng ký sự kiện để xử lý thông tin từ form DanhSachLichSan
             chonlichdat.OnLichSanSelected += (maDatSan, maSan, maKH, tuGio, denGio, loaiKH, daTra) =>
             {
+
+
+                // Tìm và kích hoạt nút sân tương ứng
                 foreach (Control control in flpSan.Controls)
                 {
-                    ObjectId objectIdMaSan = ObjectId.Parse(maSan);
-
-                    if (control is Button btnSan && btnSan.Tag is San san && san.Id == objectIdMaSan)
+                    if (control is Button btnSan && btnSan.Tag is San san && san.Id.ToString() == maSan)
                     {
                         btnSan.PerformClick();
                         break;
                     }
                 }
+
+                // Gán giá trị thời gian vào DateTimePicker
                 dtpGioVao.Value = tuGio;
                 dtpGioRa.Value = denGio;
-                ObjectId objectIdKh= ObjectId.Parse(maKH);
 
-                KhachHang khachHang = KhachHangDAO.Instance.GetListKhachHang()
-                    .FirstOrDefault(kh => kh.Id == objectIdKh);
+                // Lấy thông tin khách hàng theo mã khách hàng
+                List<KhachHang> danhSachKhachHang = KhachHangDAO.Instance.GetListKhachHang();
 
-                if (khachHang != null)
+                    // Chuyển đổi maKH (string) thành ObjectId
+                    ObjectId objectIdMaKH = ObjectId.Parse(maKH);
+
+                    // Tìm khách hàng dựa trên ObjectId
+                    KhachHang khachHang = danhSachKhachHang.FirstOrDefault(kh => kh.Id == objectIdMaKH);
+
+                if (khachHang == null)
                 {
-                    cbKhachHang.SelectedValue = maKH;
+                    MessageBox.Show($"Không tìm thấy khách hàng với ID: {objectIdMaKH}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cbKhachHang.SelectedValue = khachHang.Id; // Gán giá trị vào ComboBox
                 }
+
+
+                // Lấy thông tin loại khách hàng
                 LoaiKH selectedLoaiKH = loaiKHList.FirstOrDefault(lkh => lkh.Value == loaiKH);
+
                 if (selectedLoaiKH != null)
                 {
-                    cbLoaiKH.SelectedItem = selectedLoaiKH.DisplayName;
+                    cbLoaiKH.SelectedItem = selectedLoaiKH.DisplayName; // Gán loại khách hàng
                 }
                 else
                 {
                     MessageBox.Show("Không tìm thấy loại khách hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             };
+
+            // Hiển thị form chọn lịch sân
             chonlichdat.ShowDialog();
         }
 

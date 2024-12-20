@@ -334,9 +334,7 @@
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DanhSachLoaiHH.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="GUI\DanhSachLoaiHH.cs" />
     <Compile Include="GUI\DanhSachLoaiHH.Designer.cs">
       <DependentUpon>DanhSachLoaiHH.cs</DependentUpon>
     </Compile>

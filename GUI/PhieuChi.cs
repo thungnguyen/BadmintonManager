@@ -1,6 +1,7 @@
 ﻿using BadmintonManager.BAL;
 using BadmintonManager.DTO;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -11,20 +12,31 @@ namespace BadmintonManager.GUI
         private PhieuChiDTO phieuChiDTO;
         private DanhSachLichSanBAL lichSanBAL;
         private PhieuChiBAL phieuChiBAL;
-        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"].ConnectionString;
+        private string connectionString;
 
         public PhieuChi(PhieuChiDTO phieuChiDTO)
         {
             InitializeComponent();
             this.phieuChiDTO = phieuChiDTO;
+
+            // Khởi tạo các lớp BAL
             lichSanBAL = new DanhSachLichSanBAL();
             phieuChiBAL = new PhieuChiBAL();
+
+            // Lấy chuỗi kết nối từ cấu hình
+            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BadmintonManager.Properties.Settings.QuanLySanConnectionString"]?.ConnectionString;
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                MessageBox.Show("Không tìm thấy chuỗi kết nối!");
+                return;
+            }
 
             // Hiển thị thông tin lịch sân vào các TextBox
             txtMaDatSan.Text = phieuChiDTO.MaDatSan.ToString();
             txtMaSan.Text = phieuChiDTO.MaSan;
             txtMaKH.Text = phieuChiDTO.MaKH;
-            txtTuNgay.Text = DateTime.Now.ToString("yyyy-MM-dd"); // Ngày mặc định hiện tại
+            txtTuNgay.Text = DateTime.Now.ToString("yyyy-MM-dd"); // Ngày mặc định là hiện tại
             txtDaTra.Text = phieuChiDTO.DaTra;
         }
 
@@ -32,12 +44,27 @@ namespace BadmintonManager.GUI
         {
             try
             {
-                // Lấy dữ liệu từ giao diện
-                int maDatSan = int.Parse(txtMaDatSan.Text);
+                // Lấy dữ liệu từ giao diện và kiểm tra dữ liệu
+                if (!int.TryParse(txtMaDatSan.Text, out int maDatSan))
+                {
+                    MessageBox.Show("Mã đặt sân phải là một số hợp lệ.");
+                    return;
+                }
+
                 string maSan = txtMaSan.Text;
                 string maKH = txtMaKH.Text;
-                string tuNgay = txtTuNgay.Text;
-                decimal daTra = decimal.Parse(txtDaTra.Text);
+
+                if (!DateTime.TryParse(txtTuNgay.Text, out DateTime tuNgay))
+                {
+                    MessageBox.Show("Ngày không hợp lệ.");
+                    return;
+                }
+
+                if (!decimal.TryParse(txtDaTra.Text, out decimal daTra))
+                {
+                    MessageBox.Show("Số tiền đã trả phải là một số hợp lệ.");
+                    return;
+                }
 
                 // Tạo đối tượng PhieuChiDTO
                 PhieuChiDTO phieuChi = new PhieuChiDTO
@@ -45,9 +72,9 @@ namespace BadmintonManager.GUI
                     MaDatSan = maDatSan,
                     MaSan = maSan,
                     MaKH = maKH,
-                    TuNgay = DateTime.Parse(tuNgay),
+                    TuNgay = tuNgay,
                     DaTra = daTra.ToString(),
-                    NgayLap = DateTime.Now // Ngày lập tự động
+                    NgayLap = DateTime.Now // Tự động gán ngày lập
                 };
 
                 // Gọi BAL để lưu phiếu chi
@@ -63,7 +90,7 @@ namespace BadmintonManager.GUI
                         string deleteChiTietLichDatSanQuery = "DELETE FROM ChiTietLichDatSan WHERE MaDatSan = @MaDatSan";
                         using (SqlCommand cmd1 = new SqlCommand(deleteChiTietLichDatSanQuery, conn))
                         {
-                            cmd1.Parameters.Add(new SqlParameter("@MaDatSan", System.Data.SqlDbType.Int) { Value = maDatSan });
+                            cmd1.Parameters.Add(new SqlParameter("@MaDatSan", SqlDbType.Int) { Value = maDatSan });
                             cmd1.ExecuteNonQuery();
                         }
 
@@ -71,7 +98,7 @@ namespace BadmintonManager.GUI
                         string deleteLichDatSanQuery = "DELETE FROM LichDatSan WHERE MaDatSan = @MaDatSan";
                         using (SqlCommand cmd2 = new SqlCommand(deleteLichDatSanQuery, conn))
                         {
-                            cmd2.Parameters.Add(new SqlParameter("@MaDatSan", System.Data.SqlDbType.Int) { Value = maDatSan });
+                            cmd2.Parameters.Add(new SqlParameter("@MaDatSan", SqlDbType.Int) { Value = maDatSan });
                             cmd2.ExecuteNonQuery();
                         }
                     }
@@ -84,6 +111,10 @@ namespace BadmintonManager.GUI
                     MessageBox.Show("Lỗi khi lưu phiếu chi!");
                 }
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Dữ liệu nhập vào không đúng định dạng. Vui lòng kiểm tra lại!");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
@@ -93,6 +124,11 @@ namespace BadmintonManager.GUI
         private void btnHuy_Click(object sender, EventArgs e)
         {
             this.Close(); // Đóng form
+        }
+
+        private void PhieuChi_Load(object sender, EventArgs e)
+        {
+            // Sự kiện khi form được load (nếu cần thực hiện thêm)
         }
     }
 }

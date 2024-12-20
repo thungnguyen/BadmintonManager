@@ -146,7 +146,7 @@
             this.txtTuNgay.Size = new System.Drawing.Size(200, 26);
             this.txtTuNgay.TabIndex = 7;
             // 
-            // Form3
+            // PhieuChi
             // 
             this.ClientSize = new System.Drawing.Size(604, 374);
             this.Controls.Add(this.btnHuy);
@@ -161,8 +161,9 @@
             this.Controls.Add(this.lblMaSan);
             this.Controls.Add(this.txtMaDatSan);
             this.Controls.Add(this.lblMaDatSan);
-            this.Name = "Form3";
+            this.Name = "PhieuChi";
             this.Text = "Chi Tiết Phiếu Chi";
+            this.Load += new System.EventHandler(this.PhieuChi_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -26,11 +26,11 @@ namespace BadmintonManager.DAO
         private HHDAO() { }
 
         // Lấy danh sách hàng hóa theo mã loại hàng hóa
-        public List<HH> GetListByLoaiHH(int maLoaiHH)
+        public List<HH> GetListByLoaiHH(ObjectId LoaiKH)
         {
             List<HH> list = new List<HH>();
             string collectionName = "HangHoa";
-            var filter = Builders<BsonDocument>.Filter.Eq("maLoaiHH", maLoaiHH);
+            var filter = Builders<BsonDocument>.Filter.Eq("maLoaiHH", LoaiKH);
             var documents = MongoDataProvider.Instance.ExecuteQuery(collectionName, filter);
             foreach (var doc in documents)
             {

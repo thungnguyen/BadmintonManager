@@ -391,6 +391,7 @@
             this.BtnStart.TabIndex = 12;
             this.BtnStart.Text = "Bắt đầu";
             this.BtnStart.UseVisualStyleBackColor = true;
+            this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // btnTinhGiaSan
             // 

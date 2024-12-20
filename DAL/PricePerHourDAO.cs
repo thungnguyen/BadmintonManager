@@ -31,12 +31,13 @@ namespace BadmintonManager.DAO
         {
             // Tạo bộ lọc để kiểm tra các khung giờ bị chồng lấn
             var filter = Builders<BsonDocument>.Filter.And(
-                Builders<BsonDocument>.Filter.Lt("gioBatDau", gioKetThuc.ToString(@"hh\:mm\:ss")), // @gioBatDau < GioKetThuc
-                Builders<BsonDocument>.Filter.Gt("gioKetThuc", gioBatDau.ToString(@"hh\:mm\:ss"))  // @gioKetThuc > GioBatDau
+                Builders<BsonDocument>.Filter.Lt("gioBatDau", gioKetThuc.ToString(@"hh\:mm\:ss")), // @gioKetThuc > GioBatDau
+                Builders<BsonDocument>.Filter.Gt("gioKetThuc", gioBatDau.ToString(@"hh\:mm\:ss"))  // @gioBatDau < GioKetThuc
             );
+            var documents = MongoDataProvider.Instance.ExecuteQuery("BangGiaSan", filter);
 
             // Truy vấn từ MongoDB, chỉ lấy các giá trị gioBatDau duy nhất
-            var frameCount = MongoDataProvider.Instance.ExecuteQuery("BangGiaSan", filter)
+            var frameCount = documents
                 .Select(doc => TimeSpan.Parse(doc["gioBatDau"].ToString())) // Chuyển đổi từ string sang TimeSpan
                 .Distinct() // Lọc ra các giá trị duy nhất
                 .Count(); // Đếm số lượng giá trị duy nhất
@@ -96,67 +97,43 @@ namespace BadmintonManager.DAO
 
             // Tính số giờ chơi
             int soGioChoi = (int)(gioKetThuc - gioBatDau).TotalHours;
-
-            // Kiểm tra nếu số giờ chơi không hợp lệ
             if (soGioChoi <= 0)
             {
                 return 0;
             }
 
-            decimal gia1 = 0, gia2 = 0;
-            int soGio1 = 0, soGio2 = 0;
+            // Chuyển đổi TimeSpan sang định dạng chuỗi
+            string gioBatDauStr = gioBatDau.ToString(@"hh\:mm\:ss");
+            string gioKetThucStr = gioKetThuc.ToString(@"hh\:mm\:ss");
 
-            // Lọc theo loại khách hàng và thời gian
-            var filter1 = Builders<BsonDocument>.Filter.And(
+            // Lọc các tài liệu có thời gian giao nhau với khung giờ chơi
+            var filter = Builders<BsonDocument>.Filter.And(
                 Builders<BsonDocument>.Filter.Eq("loaiKH", loaiKH),
-                Builders<BsonDocument>.Filter.Lte("gioBatDau", gioKetThuc.ToString(@"hh\:mm\:ss")),
-                Builders<BsonDocument>.Filter.Gte("gioKetThuc", gioBatDau.ToString(@"hh\:mm\:ss"))
+                Builders<BsonDocument>.Filter.Lt("gioBatDau", gioKetThucStr),
+                Builders<BsonDocument>.Filter.Gt("gioKetThuc", gioBatDauStr)
             );
 
-            // Truy vấn từ MongoDB cho phần đầu
-            var documents1 = MongoDataProvider.Instance.ExecuteQuery("BangGiaSan", filter1)
-                .Select(doc => new BangGiaSanDTO(doc)) // Chuyển đổi thành BangGiaSanDTO
-                .ToList();
-
-            if (documents1.Any())
-            {
-                gia1 = documents1.FirstOrDefault().Gia;
-                soGio1 = (int)(gioKetThuc - gioBatDau).TotalHours;
-            }
-
-            // Lọc và truy vấn từ MongoDB cho phần thứ hai
-            var filter2 = Builders<BsonDocument>.Filter.And(
-                Builders<BsonDocument>.Filter.Eq("loaiKH", loaiKH),
-                Builders<BsonDocument>.Filter.Lte("gioBatDau", gioKetThuc.ToString(@"hh\:mm\:ss")),
-                Builders<BsonDocument>.Filter.Gte("gioKetThuc", gioBatDau.ToString(@"hh\:mm\:ss"))
-            );
-
-            var documents2 = MongoDataProvider.Instance.ExecuteQuery("BangGiaSan", filter2)
+            var documents = MongoDataProvider.Instance.ExecuteQuery("BangGiaSan", filter)
                 .Select(doc => new BangGiaSanDTO(doc))
                 .ToList();
 
-            if (documents2.Any())
+            // Tính giá cho từng tài liệu
+            foreach (var doc in documents)
             {
-                gia2 = documents2.FirstOrDefault().Gia;
-                soGio2 = (int)(gioKetThuc - gioBatDau).TotalHours;
-            }
+                // Tính khoảng thời gian giao nhau
+                var start = doc.GioBatDau;
+                var end = doc.GioKetThuc;
 
-            // Tính giá cho từng phần
-            if (gia1 > 0 && gia2 > 0)
-            {
-                giaGioChoi = (gia1 * soGio1) + (gia2 * soGio2);
-            }
-            else if (gia1 > 0)
-            {
-                giaGioChoi = gia1 * soGio1;
-            }
-            else if (gia2 > 0)
-            {
-                giaGioChoi = gia2 * soGio2;
+                var gioBatDauThucTe = gioBatDau > start ? gioBatDau : start;
+                var gioKetThucThucTe = gioKetThuc < end ? gioKetThuc : end;
+
+                int soGioThucTe = (int)(gioKetThucThucTe - gioBatDauThucTe).TotalHours;
+                giaGioChoi += doc.Gia * soGioThucTe;
             }
 
             return giaGioChoi;
         }
+
 
     }
 }

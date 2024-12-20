@@ -31,7 +31,7 @@ namespace BadmintonManager.GUI
             LoadKhachHang();
             LoadLoaiKHComboBox();
             TinhGioRa();
-            //LoadTongTien();
+            LoadTongTien();
 
         }
 
@@ -45,7 +45,7 @@ namespace BadmintonManager.GUI
             cbLoaiHH.DataSource = listLoaiHH;
             cbLoaiHH.DisplayMember = "TenLoaiHH";
         }
-        private void LoadHangHoaByLoaiHH(int maLoaiHH)
+        private void LoadHangHoaByLoaiHH(ObjectId maLoaiHH)
         {
             List<HH> listHH = HHDAO.Instance.GetListByLoaiHH(maLoaiHH);
             cbHH.DataSource = listHH;
@@ -53,7 +53,7 @@ namespace BadmintonManager.GUI
             cbHH.ValueMember = "Id";        // Dùng ObjectId làm giá trị của ComboBox
         }
 
-        void ShowHangHoa(int maLoaiHH)
+        void ShowHangHoa(ObjectId maLoaiHH)
         {
             lsvHangHoa.Items.Clear();
             List<HH> listHangHoa = HHDAO.Instance.GetListByLoaiHH(maLoaiHH);
@@ -89,9 +89,9 @@ namespace BadmintonManager.GUI
             LoaiKH selectedLoaiKH = loaiKHList.FirstOrDefault(l => l.DisplayName == selectedDisplayValue);
             return selectedLoaiKH?.Value;
         }
-        private void ShowTenHH(ObjectId id) // Use ObjectId instead of int maHH
+        private void ShowTenHH(ObjectId id)
         {
-            List<HH> listHH = HHDAO.Instance.GetItemByMaHH(id); // Pass ObjectId to GetItemByMaHH
+            List<HH> listHH = HHDAO.Instance.GetItemByMaHH(id);
             cbTenHH.DataSource = listHH;
             cbTenHH.DisplayMember = "TenHH";
             cbTenHH.ValueMember = "Id"; // Use Id as the value member
@@ -136,15 +136,10 @@ namespace BadmintonManager.GUI
             }
             try
             {
-                // Kiểm tra và lấy ObjectId từ SelectedValue
                 if (cbTenHH.SelectedValue is ObjectId maHH)
                 {
                     string donViTinh = cbDonViTinh.Text;
-
-                    // Lấy đơn giá từ database theo mã hàng hóa và đơn vị tính
                     decimal donGia = HHDAO.Instance.GetDonGiaByMaHHAndDVT(maHH, donViTinh);
-
-                    // Hiển thị đơn giá vào TextBox
                     txtDonGia.Text = donGia.ToString("N0"); // Định dạng đơn giá là số nguyên
                 }
             }
@@ -175,7 +170,6 @@ namespace BadmintonManager.GUI
             }
             txtTongTien.Text = tongTien.ToString("N0");
             LoadSanData();
-
         }
         private void ShowThanhTien()
         {
@@ -235,37 +229,34 @@ namespace BadmintonManager.GUI
             TimeSpan gioKetThuc = dtpGioRa.Value.TimeOfDay;
 
             decimal giaSan = CalculateTotalPrice(gioBatDau, gioKetThuc, loaiKH);
+            san.GiaSan = giaSan;
             sanPrices[san.MaSan] = giaSan;
-            txtGiaSan.Text = giaSan.ToString();
+            txtGiaSan.Text = giaSan.ToString("N0");
         }
         //Mongo chạy thành công
         //Mongo chạy thành công
         //Mongo chạy thành công
+        private void LoadTongTien()
+        {
+            decimal giaSan = Convert.ToDecimal(txtGiaSan.Text);
+            decimal tongTien = Convert.ToDecimal(txtTongTien.Text);
+            decimal tienCuoi = giaSan + tongTien;
+            decimal giamGia = nudGiamGia.Value;
+            decimal tienSauGiamGia = tienCuoi - (tienCuoi * (giamGia / 100));
+            txtTienCuoi.Text = tienSauGiamGia.ToString("N0");
+        }
 
-
-
-
-        //private void LoadTongTien()
-        //{
-        //    decimal giaSan = Convert.ToDecimal(txtGiaSan.Text);
-        //    decimal tongTien = Convert.ToDecimal(txtTongTien.Text);
-        //    decimal tienCuoi = giaSan + tongTien;
-        //    decimal giamGia = nudGiamGia.Value;
-        //    decimal tienSauGiamGia = tienCuoi - (tienCuoi * (giamGia / 100));
-        //    txtTienCuoi.Text = tienSauGiamGia.ToString("N0");
-        //}
-
-        //private void TinhTienThua()
-        //{
-        //    decimal KhachDua = Convert.ToDecimal(txtKhachDua.Text);
-        //    decimal TongTien = Convert.ToDecimal(txtTienCuoi.Text);
-        //    decimal TienThua = KhachDua - TongTien;
-        //    if (TienThua < 0)
-        //    {
-        //        TienThua = 0;
-        //    }
-        //    txtTienThua.Text = TienThua.ToString("N0");
-        //}
+        private void TinhTienThua()
+        {
+            decimal KhachDua = Convert.ToDecimal(txtKhachDua.Text);
+            decimal TongTien = Convert.ToDecimal(txtTienCuoi.Text);
+            decimal TienThua = KhachDua - TongTien;
+            if (TienThua < 0)
+            {
+                TienThua = 0;
+            }
+            txtTienThua.Text = TienThua.ToString("N0");
+        }
         public decimal CalculateTotalPrice(TimeSpan gioBatDau, TimeSpan gioKetThuc, string loaiKH)
         {
             decimal giaGioChoi = 0;
@@ -277,13 +268,10 @@ namespace BadmintonManager.GUI
             }
             if (frameCount == 1)
             {
-                txtTienCuoi.Text = frameCount.ToString();
                 giaGioChoi = PricePerHourDAO.Instance.GetPriceForTimeSlot(gioBatDau, gioKetThuc, loaiKH);
             }
             else
             {
-                txtTienCuoi.Text = frameCount.ToString();
-
                 giaGioChoi = PricePerHourDAO.Instance.GetPriceBetweenTimeFrames(gioBatDau, gioKetThuc, loaiKH);
             }
             return giaGioChoi;
@@ -390,7 +378,7 @@ namespace BadmintonManager.GUI
             // Hiển thị giá sân từ từ điển nếu đã lưu
             if (sanPrices.ContainsKey(selectedSan.MaSan))
             {
-                txtGiaSan.Text = sanPrices[selectedSan.MaSan].ToString();
+                txtGiaSan.Text = sanPrices[selectedSan.MaSan].ToString("N0");
             }
             else
             {
@@ -400,8 +388,12 @@ namespace BadmintonManager.GUI
         private void btnAddHH_Click(object sender, EventArgs e)
         {
             San san = lsvBill.Tag as San;
-
-            ObjectId maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan); // Đổi kiểu maHD thành ObjectId
+            if (san == null)
+            {
+                MessageBox.Show("Vui lòng chọn sân trước khi thêm hàng hóa.", "Thông báo");
+                return;
+            }
+            ObjectId maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan);
             ObjectId foodID = (cbTenHH.SelectedItem as HH).Id; // Sử dụng _id thay vì MaHH
             int soLuong = (int)nudSoLuong.Value;
             string donViTinh = cbDonViTinh.Text;
@@ -416,7 +408,7 @@ namespace BadmintonManager.GUI
             }
             else
             {
-                BillInfoDAO.Instance.InsertBillInfo(maHD, foodID, soLuong, donGia, donViTinh); // Truyền ObjectId
+                BillInfoDAO.Instance.InsertBillInfo(maHD, foodID, soLuong, donGia, donViTinh);
             }
             ShowBill(san.MaSan);
 
@@ -426,16 +418,25 @@ namespace BadmintonManager.GUI
         //
         private void cbLoaiHH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int loaiHH = 0;
-            ComboBox cb = sender as ComboBox;
-            if (cb.SelectedItem == null)
-                return;
+           
+                ComboBox cb = sender as ComboBox;
+                if (cb == null || cb.SelectedItem == null)
+                    return;
 
-            LoaiHH selected = cb.SelectedItem as LoaiHH;
-            loaiHH = selected.MaLoaiHH;
-            LoadHangHoaByLoaiHH(loaiHH);
-            ShowHangHoa(loaiHH);
+                // Lấy mục được chọn từ ComboBox
+                LoaiHH selected = cb.SelectedItem as LoaiHH;
+                if (selected == null)
+                    return;
+
+                // Giả sử MaLoaiHH là int, chuyển đổi sang ObjectId
+                ObjectId loaiHH = new ObjectId(selected._Id.ToString());
+
+                // Gọi các phương thức xử lý liên quan
+                LoadHangHoaByLoaiHH(loaiHH);
+                ShowHangHoa(loaiHH);
+            
         }
+
 
         //
         private void cbHH_SelectedIndexChanged(object sender, EventArgs e)
@@ -521,22 +522,22 @@ namespace BadmintonManager.GUI
 
         private void txtGiaSan_TextChanged(object sender, EventArgs e)
         {
-            //LoadTongTien();
+            LoadTongTien();
         }
 
         private void txtTongTien_TextChanged(object sender, EventArgs e)
         {
-            //LoadTongTien();
+            LoadTongTien();
         }
 
         private void txtTienCuoi_TextChanged(object sender, EventArgs e)
         {
-            //TinhTienThua();
+            TinhTienThua();
         }
 
         private void txtKhachDua_TextChanged(object sender, EventArgs e)
         {
-            //TinhTienThua();
+            TinhTienThua();
         }
 
         private void cbLoaiKH_SelectedIndexChanged(object sender, EventArgs e)
@@ -556,13 +557,34 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Vui lòng chọn sân trước khi tính giá.", "Thông báo");
             }
         }
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            San san = lsvBill.Tag as San;
+
+            ObjectId maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan); // Đổi kiểu maHD thành ObjectId
+            ObjectId foodID = (cbTenHH.SelectedItem as HH).Id; // Sử dụng _id thay vì MaHH
+            int soLuong = (int)nudSoLuong.Value;
+            string donViTinh = cbDonViTinh.Text;
+            // Chuyển đổi giá trị thành decimal
+            decimal giaSan = Convert.ToDecimal(txtGiaSan.Text);
+            decimal donGia = Convert.ToDecimal(txtDonGia.Text);
+
+            if (maHD == ObjectId.Empty) // Kiểm tra ObjectId.Empty thay vì -1
+            {
+                BillDAO.Instance.InsertBill(san.MaSan, giaSan);
+            }
+            else
+                MessageBox.Show("Sân hiện đang có người xin vui lòng đổi sân hoặc chờ đợi");
+            ShowBill(san.MaSan);
+            LoadSanData();
+        }
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();  // Đóng form hiện tại
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

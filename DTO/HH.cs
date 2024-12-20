@@ -6,7 +6,7 @@ namespace BadmintonManager.DTO
     {
         public ObjectId Id { get; set; }
         public string TenHH { get; set; }
-        public int MaLoaiHH { get; set; }
+        public ObjectId MaLoaiHH { get; set; }
         public decimal SoLuong { get; set; }
         public string DonViTinhLon { get; set; }
         public string DonViTinhNho { get; set; }
@@ -21,7 +21,7 @@ namespace BadmintonManager.DTO
         {
             Id = document["_id"].AsObjectId;
             TenHH = document["tenHH"].AsString;
-            MaLoaiHH = document["maLoaiHH"].AsInt32;
+            MaLoaiHH = document["maLoaiHH"].AsObjectId;
             DonViTinhLon = document["donViTinhLon"].AsString;
             DonViTinhNho = document["donViTinhNho"].AsString;
             MoTa = document.Contains("moTa") ? document["moTa"].AsString : string.Empty;
@@ -32,7 +32,7 @@ namespace BadmintonManager.DTO
         }
 
         // Constructor khác nếu cần
-        public HH(ObjectId id, string tenHH, int maLoaiHH, decimal soLuong, string donViTinhLon, string donViTinhNho, string moTa, decimal giaBanLon, decimal giaBanNho, int soLuongTonLon, int soLuongTonNho)
+        public HH(ObjectId id, string tenHH, ObjectId maLoaiHH, decimal soLuong, string donViTinhLon, string donViTinhNho, string moTa, decimal giaBanLon, decimal giaBanNho, int soLuongTonLon, int soLuongTonNho)
         {
             Id = id;
             TenHH = tenHH;

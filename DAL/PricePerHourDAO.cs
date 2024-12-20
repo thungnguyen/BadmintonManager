@@ -29,13 +29,21 @@ namespace BadmintonManager.DAO
         // Kiểm tra số lượng khung giờ trùng với thời gian bắt đầu và kết thúc
         public int CheckFrameCount(TimeSpan gioBatDau, TimeSpan gioKetThuc)
         {
+            // Tạo bộ lọc để kiểm tra các khung giờ bị chồng lấn
             var filter = Builders<BsonDocument>.Filter.And(
-            Builders<BsonDocument>.Filter.Lt("gioBatDau", gioKetThuc.ToString(@"hh\:mm\:ss")),
-            Builders<BsonDocument>.Filter.Gt("gioKetThuc", gioBatDau.ToString(@"hh\:mm\:ss"))
-        );
-            var frameCount = MongoDataProvider.Instance.ExecuteQuery("BangGiaSan", filter).Count;
+                Builders<BsonDocument>.Filter.Lt("gioBatDau", gioKetThuc.ToString(@"hh\:mm\:ss")), // @gioBatDau < GioKetThuc
+                Builders<BsonDocument>.Filter.Gt("gioKetThuc", gioBatDau.ToString(@"hh\:mm\:ss"))  // @gioKetThuc > GioBatDau
+            );
+
+            // Truy vấn từ MongoDB, chỉ lấy các giá trị gioBatDau duy nhất
+            var frameCount = MongoDataProvider.Instance.ExecuteQuery("BangGiaSan", filter)
+                .Select(doc => TimeSpan.Parse(doc["gioBatDau"].ToString())) // Chuyển đổi từ string sang TimeSpan
+                .Distinct() // Lọc ra các giá trị duy nhất
+                .Count(); // Đếm số lượng giá trị duy nhất
+
             return frameCount;
         }
+
 
         // Lấy giá theo khung giờ cho khách hàng
         public decimal GetPriceForTimeSlot(TimeSpan gioBatDau, TimeSpan gioKetThuc, string loaiKH)

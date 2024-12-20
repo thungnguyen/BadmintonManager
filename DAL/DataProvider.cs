@@ -81,7 +81,15 @@ namespace BadmintonManager.DAO
             var collection = database.GetCollection<BsonDocument>(collectionName);
             return collection.Find(filter).FirstOrDefault();  // Trả về tài liệu đầu tiên nếu có, hoặc null nếu không tìm thấy
         }
+        public long CountDocuments(string collectionName, FilterDefinition<BsonDocument> filter = null)
+        {
+            var database = GetDatabase();
+            var collection = database.GetCollection<BsonDocument>(collectionName);
 
+            filter = filter ?? Builders<BsonDocument>.Filter.Empty;
+
+            return collection.CountDocuments(filter);
+        }
         public void ExecuteStoredProcedure(string storedProcedureName, params object[] parameters)
         {
             // MongoDB không hỗ trợ Stored Procedures theo cách của SQL Server.

@@ -277,10 +277,13 @@ namespace BadmintonManager.GUI
             }
             if (frameCount == 1)
             {
+                txtTienCuoi.Text = frameCount.ToString();
                 giaGioChoi = PricePerHourDAO.Instance.GetPriceForTimeSlot(gioBatDau, gioKetThuc, loaiKH);
             }
             else
             {
+                txtTienCuoi.Text = frameCount.ToString();
+
                 giaGioChoi = PricePerHourDAO.Instance.GetPriceBetweenTimeFrames(gioBatDau, gioKetThuc, loaiKH);
             }
             return giaGioChoi;

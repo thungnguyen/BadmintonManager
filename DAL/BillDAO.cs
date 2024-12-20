@@ -36,22 +36,24 @@ namespace BadmintonManager.DAO
 
             if (document != null)
             {
-                return document["_id"].AsObjectId; // Trả về ObjectId của hóa đơn
+                return document["_id"].AsObjectId;
             }
 
-            return ObjectId.Empty; // Không tìm thấy hóa đơn, trả về ObjectId.Empty
+            return ObjectId.Empty;
         }
-
 
         // Thanh toán hóa đơn
         public void Checkout(ObjectId maHD, decimal giaSan)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", maHD); // Sử dụng _id để tìm theo ObjectId
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", maHD);
             var update = Builders<BsonDocument>.Update
-                .Set("status", 1) // Cập nhật trạng thái hóa đơn thành đã thanh toán
-                .Inc("tongTien", giaSan); // Cộng thêm giá sân
+                .Set("status", 1)
+                .Inc("tongTien", giaSan);
 
             MongoDataProvider.Instance.UpdateDocument(collectionName, filter, update);
+
+            // Cập nhật trạng thái sân sau khi hóa đơn thay đổi
+            UpdateSanStatusAfterBillChange(maHD);
         }
 
         // Tạo mới hóa đơn
@@ -61,32 +63,73 @@ namespace BadmintonManager.DAO
 
             var newBill = new BsonDocument
             {
-                { "maDatSan", BsonNull.Value }, // Null trong MongoDB
+                { "maDatSan", BsonNull.Value },
                 { "ngayLap", DateTime.Now },
                 { "tongTien", tongTien },
                 { "maSan", maSan },
                 { "status", 0 }
             };
 
-            MongoDataProvider.Instance.InsertDocument(collectionName, newBill);
+            MongoDataProvider.Instance.InsertDocument("HoaDon", newBill);
+
+            // Cập nhật trạng thái sân
+            UpdateSanStatus(maSan);
         }
 
-        // Lấy mã hóa đơn lớn nhất
+        private void UpdateSanStatus(int maSan)
+        {
+            var count = MongoDataProvider.Instance.CountDocuments(
+                "HoaDon",
+                Builders<BsonDocument>.Filter.Eq("maSan", maSan) &
+                Builders<BsonDocument>.Filter.Eq("status", 0)
+            );
+
+            string newStatus = count > 0 ? "Có người" : "Trống";
+
+            var sanCollection = "San";
+            var filter = Builders<BsonDocument>.Filter.Eq("maSan", maSan);
+            var update = Builders<BsonDocument>.Update.Set("status", newStatus);
+
+            MongoDataProvider.Instance.UpdateDocument(sanCollection, filter, update);
+        }
+
+        // Hàm cập nhật trạng thái sân khi hóa đơn thay đổi
+        private void UpdateSanStatusAfterBillChange(ObjectId maHD)
+        {
+            // Lấy thông tin hóa đơn
+            var hoaDonFilter = Builders<BsonDocument>.Filter.Eq("_id", maHD);
+            var hoaDon = MongoDataProvider.Instance.GetDocument("HoaDon", hoaDonFilter);
+
+            if (hoaDon != null && hoaDon.Contains("maSan"))
+            {
+                int maSan = hoaDon["maSan"].AsInt32;
+
+                // Kiểm tra hóa đơn chưa thanh toán cho sân
+                var count = MongoDataProvider.Instance.CountDocuments(
+                    "HoaDon",
+                    Builders<BsonDocument>.Filter.Eq("maSan", maSan) &
+                    Builders<BsonDocument>.Filter.Eq("status", 0)
+                );
+
+                string newStatus = count > 0 ? "Có người" : "Trống";
+
+                // Cập nhật trạng thái sân
+                UpdateSanStatus(maSan);
+            }
+        }
+
         public ObjectId GetMaxMaHD()
         {
             var documents = MongoDataProvider.Instance.ExecuteQuery(collectionName);
             if (documents.Count > 0)
             {
-                // Lấy ObjectId có timestamp lớn nhất (tương ứng với dữ liệu được tạo gần nhất)
                 return documents.Max(doc => doc["_id"].AsObjectId);
             }
-            return ObjectId.Empty; // Trả về ObjectId.Empty nếu không có hóa đơn nào
+            return ObjectId.Empty;
         }
 
-        // Hàm tính tổng tiền từ mã sân
         private decimal CalculateTotalBill(int maSan)
         {
-            // Giả định tính tổng tiền dựa trên logic tùy chỉnh
             var filter = Builders<BsonDocument>.Filter.Eq("maSan", maSan);
             var document = MongoDataProvider.Instance.GetDocument("San", filter);
 
@@ -95,7 +138,7 @@ namespace BadmintonManager.DAO
                 return document["giaSan"].AsDecimal;
             }
 
-            return 0; // Trả về 0 nếu không tìm thấy thông tin sân
+            return 0;
         }
     }
 }

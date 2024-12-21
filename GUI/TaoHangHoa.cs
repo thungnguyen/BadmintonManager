@@ -62,7 +62,7 @@ namespace BadmintonManager.GUI
 
         private void savebtn_Click(object sender, EventArgs e)
         {
-            // Kiểm tra dữ liệu đầu vào
+
             if (string.IsNullOrEmpty(tenHHtxt.Text) || string.IsNullOrEmpty(motatxt.Text) ||
                 string.IsNullOrEmpty(DonViTinhLontxt.Text) || string.IsNullOrEmpty(DonViTinhNhotxt.Text) ||
                 string.IsNullOrEmpty(HeSoQuyDoitxt.Text) || string.IsNullOrEmpty(GiaNhapLontxt.Text) ||
@@ -74,7 +74,6 @@ namespace BadmintonManager.GUI
                 return;
             }
 
-            // Thêm hàng hoá vào database thông qua BAL
             try
             {
                 var hangHoa = new HangHoa
@@ -106,7 +105,7 @@ namespace BadmintonManager.GUI
 
         private void cancelbtn_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

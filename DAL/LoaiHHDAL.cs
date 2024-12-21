@@ -18,9 +18,16 @@ namespace BadmintonManager.DAL
         }
 
         // Lấy danh sách tất cả loại hàng hóa
-        public List<LoaiHHDTO> ListLoaiHH()
+        public List<LoaiHHDTO> ListLoaiHH(string sortCriteria = null)
         {
-            return _collection.Find(FilterDefinition<LoaiHHDTO>.Empty).ToList();
+            var filter = FilterDefinition<LoaiHHDTO>.Empty;
+            var sort = string.IsNullOrEmpty(sortCriteria)
+                ? null
+                : Builders<LoaiHHDTO>.Sort.Ascending(sortCriteria);
+
+            return sort != null
+                ? _collection.Find(filter).Sort(sort).ToList()
+                : _collection.Find(filter).ToList();
         }
 
         // Thêm loại hàng hóa mới

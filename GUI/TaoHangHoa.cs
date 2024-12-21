@@ -1,4 +1,6 @@
 ﻿using BadmintonManager.BLL;
+using BadmintonManager.DAL;
+using BadmintonManager.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,13 +21,14 @@ namespace BadmintonManager.GUI
         {
             InitializeComponent();
             _loaiHHBLL = new LoaiHHBLL();
+            _hangHoaBLL = new HangHoaBLL();
             LoadLoaiHH();
         }
 
         private void LoadLoaiHH()
         {
             // Giả sử bạn có phương thức trong lớp BAL để lấy danh sách các loại hàng hoá
-            var loaiHHList = _loaiHHBLL.GetLoaiHHList();
+            var loaiHHList = _loaiHHBLL.LoaiHHList();
             LoaiHHcmb.DataSource = loaiHHList;
             LoaiHHcmb.DisplayMember = "TenLoaiHH"; 
             LoaiHHcmb.ValueMember = "_id"; 
@@ -59,7 +62,46 @@ namespace BadmintonManager.GUI
 
         private void savebtn_Click(object sender, EventArgs e)
         {
+            // Kiểm tra dữ liệu đầu vào
+            if (string.IsNullOrEmpty(tenHHtxt.Text) || string.IsNullOrEmpty(motatxt.Text) ||
+                string.IsNullOrEmpty(DonViTinhLontxt.Text) || string.IsNullOrEmpty(DonViTinhNhotxt.Text) ||
+                string.IsNullOrEmpty(HeSoQuyDoitxt.Text) || string.IsNullOrEmpty(GiaNhapLontxt.Text) ||
+                string.IsNullOrEmpty(GiaNhapNhotxt.Text) || string.IsNullOrEmpty(GiaBanLontxt.Text) ||
+                string.IsNullOrEmpty(GiaBanNhotxt.Text) || string.IsNullOrEmpty(SoLuongTonLontxt.Text) ||
+                string.IsNullOrEmpty(SoLuongTonNhotxt.Text))
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
+                return;
+            }
 
+            // Thêm hàng hoá vào database thông qua BAL
+            try
+            {
+                var hangHoa = new HangHoa
+                {
+                    TenHH = tenHHtxt.Text,
+                    MoTa = motatxt.Text,
+                    DonViTinhLon = DonViTinhLontxt.Text,
+                    DonViTinhNho = DonViTinhNhotxt.Text,
+                    HeSoQuyDoi = int.Parse(HeSoQuyDoitxt.Text),
+                    GiaNhapLon = decimal.Parse(GiaNhapLontxt.Text),
+                    GiaNhapNho = decimal.Parse(GiaNhapNhotxt.Text),
+                    GiaBanLon = decimal.Parse(GiaBanLontxt.Text),
+                    GiaBanNho = decimal.Parse(GiaBanNhotxt.Text),
+                    SoLuongTonLon = int.Parse(SoLuongTonLontxt.Text),
+                    SoLuongTonNho = int.Parse(SoLuongTonNhotxt.Text),
+                    MaLoaiHH = (string)LoaiHHcmb.SelectedValue
+                };
+
+                // Gọi lớp BAL để thêm hàng hoá vào database
+                _hangHoaBLL.ThemHH(hangHoa);
+                MessageBox.Show("Thêm hàng hoá thành công.");
+                this.Close(); // Đóng form sau khi thêm thành công
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+            }
         }
 
         private void cancelbtn_Click(object sender, EventArgs e)

@@ -15,9 +15,9 @@ namespace BadmintonManager.BLL
         }
 
         // Lấy danh sách tất cả loại hàng hóa
-        public List<LoaiHHDTO> GetLoaiHHList()
+        public List<LoaiHHDTO> LoaiHHList(string sortCriteria = null)
         {
-            return _loaiHHDAL.ListLoaiHH();
+            return _loaiHHDAL.ListLoaiHH(sortCriteria);
         }
 
         // Thêm loại hàng hóa mới

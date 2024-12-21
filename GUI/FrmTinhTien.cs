@@ -418,6 +418,7 @@ namespace BadmintonManager.GUI
 
         #endregion
         #region events 
+        private ObjectId? selectedMaDatSan = null; // Biến lưu mã đặt sân (nếu có)
         private void dtpGioVao_ValueChanged(object sender, EventArgs e)
         {
             // Làm tròn thời gian của dtpTuGio
@@ -482,28 +483,46 @@ namespace BadmintonManager.GUI
                 MessageBox.Show("Vui lòng chọn sân trước khi thêm hàng hóa.", "Thông báo");
                 return;
             }
+
+            // Kiểm tra xem người dùng đã chọn hàng hóa chưa
+            if (cbTenHH.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn hàng hóa trước khi thêm.", "Thông báo");
+                return;
+            }
+
+            // Lấy mã hóa đơn chưa thanh toán (nếu có)
             ObjectId maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan);
             ObjectId foodID = (cbTenHH.SelectedItem as HH).Id; // Sử dụng _id thay vì MaHH
             int soLuong = (int)nudSoLuong.Value;
             string donViTinh = cbDonViTinh.Text;
+
             // Chuyển đổi giá trị thành decimal
             decimal giaSan = Convert.ToDecimal(txtGiaSan.Text);
             decimal donGia = Convert.ToDecimal(txtDonGia.Text);
 
+            // Nếu chưa có hóa đơn cho sân, tạo mới
             if (maHD == ObjectId.Empty) // Kiểm tra ObjectId.Empty thay vì -1
             {
-                BillDAO.Instance.InsertBill(san.MaSan, giaSan);
-                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxMaHD(), foodID, soLuong, donGia, donViTinh);
+                // Tạo hóa đơn mới
+                BillDAO.Instance.InsertBill(selectedMaDatSan, san.MaSan, giaSan);
+
+                // Lấy mã hóa đơn vừa tạo
+                ObjectId newMaHD = BillDAO.Instance.GetMaxMaHD();
+
+                // Thêm thông tin hóa đơn
+                BillInfoDAO.Instance.InsertBillInfo(newMaHD, foodID, soLuong, donGia, donViTinh);
             }
             else
             {
+                // Nếu đã có hóa đơn, chỉ thêm thông tin hóa đơn
                 BillInfoDAO.Instance.InsertBillInfo(maHD, foodID, soLuong, donGia, donViTinh);
             }
-            ShowBill(san.MaSan);
 
+            // Hiển thị hóa đơn và tải lại dữ liệu sân
+            ShowBill(san.MaSan);
             LoadSanData();
         }
-
         //
         private void cbLoaiHH_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -525,9 +544,6 @@ namespace BadmintonManager.GUI
                 ShowHangHoa(loaiHH);
             
         }
-
-
-        //
         private void cbHH_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;
@@ -547,16 +563,16 @@ namespace BadmintonManager.GUI
             if (maHD != ObjectId.Empty) // So sánh với ObjectId.Empty thay vì -1
             {
                 // Lấy giá sân từ từ điển
-                decimal giaSan = 0;
-                if (sanPrices.ContainsKey(san.MaSan))
-                {
-                    giaSan = sanPrices[san.MaSan];
-                }
+                //decimal giaSan = 0;
+                //if (sanPrices.ContainsKey(san.MaSan))
+                //{
+                //    giaSan = sanPrices[san.MaSan];
+                //}
 
                 if (MessageBox.Show("Bạn có chắc muốn thanh toán hóa đơn cho " + san.TenSan + " không?", "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                 {
                     // Truyền giá sân vào thủ tục thanh toán
-                    BillDAO.Instance.Checkout(maHD, giaSan); // Đảm bảo phương thức Checkout nhận ObjectId
+                    BillDAO.Instance.Checkout(maHD); // Đảm bảo phương thức Checkout nhận ObjectId
                     sanPrices.Remove(san.MaSan);
                     ShowBill(san.MaSan);  // Cập nhật lại hóa đơn sau khi thanh toán
                 }
@@ -650,20 +666,23 @@ namespace BadmintonManager.GUI
         {
             San san = lsvBill.Tag as San;
 
-            ObjectId maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan); // Đổi kiểu maHD thành ObjectId
-            ObjectId foodID = (cbTenHH.SelectedItem as HH).Id; // Sử dụng _id thay vì MaHH
+            ObjectId maHD = BillDAO.Instance.GetUnCheckBillIDByMaSan(san.MaSan);
+            ObjectId foodID = (cbTenHH.SelectedItem as HH).Id;
             int soLuong = (int)nudSoLuong.Value;
             string donViTinh = cbDonViTinh.Text;
-            // Chuyển đổi giá trị thành decimal
             decimal giaSan = Convert.ToDecimal(txtGiaSan.Text);
             decimal donGia = Convert.ToDecimal(txtDonGia.Text);
 
-            if (maHD == ObjectId.Empty) // Kiểm tra ObjectId.Empty thay vì -1
+            if (maHD == ObjectId.Empty)
             {
-                BillDAO.Instance.InsertBill(san.MaSan, giaSan);
+                // Sử dụng mã đặt sân từ biến toàn cục
+                BillDAO.Instance.InsertBill(selectedMaDatSan, san.MaSan, giaSan);
             }
             else
-                MessageBox.Show("Sân hiện đang có người xin vui lòng đổi sân hoặc chờ đợi");
+            {
+                MessageBox.Show("Sân hiện đang có người, xin vui lòng đổi sân hoặc chờ đợi.");
+            }
+
             ShowBill(san.MaSan);
             LoadSanData();
         }
@@ -693,15 +712,14 @@ namespace BadmintonManager.GUI
         }
         private void btnChooseLichSan_Click(object sender, EventArgs e)
         {
-            // Tạo form chọn lịch sân
             DanhSachLichSan chonlichdat = new DanhSachLichSan();
 
-            // Đăng ký sự kiện để xử lý thông tin từ form DanhSachLichSan
             chonlichdat.OnLichSanSelected += (maDatSan, maSan, maKH, tuGio, denGio, loaiKH, daTra) =>
             {
+                // Gán giá trị mã đặt sân vào biến toàn cục
+                selectedMaDatSan = maDatSan;
 
-
-                // Tìm và kích hoạt nút sân tương ứng
+                // Kích hoạt nút sân tương ứng
                 foreach (Control control in flpSan.Controls)
                 {
                     if (control is Button btnSan && btnSan.Tag is San san && san.Id.ToString() == maSan)
@@ -711,18 +729,13 @@ namespace BadmintonManager.GUI
                     }
                 }
 
-                // Gán giá trị thời gian vào DateTimePicker
                 dtpGioVao.Value = tuGio;
                 dtpGioRa.Value = denGio;
 
-                // Lấy thông tin khách hàng theo mã khách hàng
+                // Lấy thông tin khách hàng
                 List<KhachHang> danhSachKhachHang = KhachHangDAO.Instance.GetListKhachHang();
-
-                    // Chuyển đổi maKH (string) thành ObjectId
-                    ObjectId objectIdMaKH = ObjectId.Parse(maKH);
-
-                    // Tìm khách hàng dựa trên ObjectId
-                    KhachHang khachHang = danhSachKhachHang.FirstOrDefault(kh => kh.Id == objectIdMaKH);
+                ObjectId objectIdMaKH = ObjectId.Parse(maKH);
+                KhachHang khachHang = danhSachKhachHang.FirstOrDefault(kh => kh.Id == objectIdMaKH);
 
                 if (khachHang == null)
                 {
@@ -730,16 +743,13 @@ namespace BadmintonManager.GUI
                 }
                 else
                 {
-                    cbKhachHang.SelectedValue = khachHang.Id; // Gán giá trị vào ComboBox
+                    cbKhachHang.SelectedValue = khachHang.Id;
                 }
 
-
-                // Lấy thông tin loại khách hàng
                 LoaiKH selectedLoaiKH = loaiKHList.FirstOrDefault(lkh => lkh.Value == loaiKH);
-
                 if (selectedLoaiKH != null)
                 {
-                    cbLoaiKH.SelectedItem = selectedLoaiKH.DisplayName; // Gán loại khách hàng
+                    cbLoaiKH.SelectedItem = selectedLoaiKH.DisplayName;
                 }
                 else
                 {
@@ -747,7 +757,6 @@ namespace BadmintonManager.GUI
                 }
             };
 
-            // Hiển thị form chọn lịch sân
             chonlichdat.ShowDialog();
         }
 

@@ -11,7 +11,7 @@ namespace BadmintonManager.DTO
         public ObjectId Id { get; set; }  // Khóa chính của hóa đơn
 
         [BsonElement("maDatSan")]
-        public int? MaDatSan { get; set; } // Mã đặt sân
+        public ObjectId? MaDatSan { get; set; } // Mã đặt sân (ObjectId)
 
         [BsonElement("ngayLap")]
         public DateTime? NgayLap { get; set; } // Ngày lập hóa đơn
@@ -37,7 +37,7 @@ namespace BadmintonManager.DTO
         public Bill(BsonDocument doc)
         {
             Id = doc["_id"].AsObjectId;
-            MaDatSan = doc["maDatSan"].IsBsonNull ? (int?)null : doc["maDatSan"].ToInt32();
+            MaDatSan = doc["maDatSan"].IsBsonNull ? (ObjectId?)null : doc["maDatSan"].AsObjectId;
             NgayLap = doc["ngayLap"].IsBsonNull ? (DateTime?)null : doc["ngayLap"].ToLocalTime();
             TongTien = doc["tongTien"].IsBsonNull ? (decimal?)null : doc["tongTien"].ToDecimal();
             MaSan = doc["maSan"].IsBsonNull ? (int?)null : doc["maSan"].ToInt32();

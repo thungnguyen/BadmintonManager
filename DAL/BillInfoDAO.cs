@@ -43,25 +43,33 @@ namespace BadmintonManager.DAO
                 Builders<BsonDocument>.Filter.Eq("donViTinh", donViTinh)
             );
 
-            var existingDoc = MongoDataProvider.Instance.GetDocument(collectionName, filter);
+            var existingDoc = MongoDataProvider.Instance.GetDocument("HDSP", filter);
 
             if (existingDoc != null)
             {
+                // Lấy giá đơn giá cũ (nếu tồn tại)
+                var currentDonGia = existingDoc.Contains("donGia") ? existingDoc["donGia"].ToDecimal() : donGia;
+
+                // Cập nhật số lượng và giá đơn giá mới (nếu khác)
                 var newQuantity = existingDoc["soLuong"].ToInt32() + soLuong;
                 if (newQuantity > 0)
                 {
+                    var updatedDonGia = donGia > 0 ? donGia : currentDonGia; // Nếu `donGia` mới không hợp lệ, giữ giá cũ
                     var update = Builders<BsonDocument>.Update
                         .Set("soLuong", newQuantity)
-                        .Set("thanhTien", newQuantity * donGia);
-                    MongoDataProvider.Instance.UpdateDocument(collectionName, filter, update);
+                        .Set("donGia", updatedDonGia)
+                        .Set("thanhTien", newQuantity * updatedDonGia);
+                    MongoDataProvider.Instance.UpdateDocument("HDSP", filter, update);
                 }
                 else
                 {
-                    MongoDataProvider.Instance.DeleteDocument(collectionName, filter);
+                    // Xóa tài liệu nếu số lượng mới <= 0
+                    MongoDataProvider.Instance.DeleteDocument("HDSP", filter);
                 }
             }
             else
             {
+                // Thêm sản phẩm mới vào HDSP
                 var newDoc = new BsonDocument
         {
             { "maHD", maHD },
@@ -71,7 +79,7 @@ namespace BadmintonManager.DAO
             { "donViTinh", donViTinh },
             { "thanhTien", soLuong * donGia }
         };
-                MongoDataProvider.Instance.InsertDocument(collectionName, newDoc);
+                MongoDataProvider.Instance.InsertDocument("HDSP", newDoc);
             }
 
             // Sau khi thêm hoặc cập nhật chi tiết hóa đơn, gọi UpdateTongTien để tính lại tổng tiền của hóa đơn.
@@ -82,42 +90,24 @@ namespace BadmintonManager.DAO
         // Cập nhật tổng tiền cho hóa đơn
         private void UpdateTongTien(ObjectId maHD)
         {
-            // Lọc hóa đơn theo mã hóa đơn
             var filter = Builders<BsonDocument>.Filter.Eq("maHD", maHD);
 
-            // Lấy tất cả các sản phẩm trong hóa đơn từ collection HDSP (chi tiết hóa đơn)
-            var billItems = MongoDataProvider.Instance.ExecuteQuery(collectionName, filter);
-
-            // Tính tổng thành tiền từ các chi tiết hóa đơn
-            decimal newTotalAmount = billItems.Sum(item =>
+            var billItems = MongoDataProvider.Instance.ExecuteQuery("HDSP", filter);
+            decimal totalItemsAmount = billItems.Sum(item =>
             {
-                // Kiểm tra xem tài liệu có trường "thanhTien" không và lấy giá trị của nó
-                if (item.Contains("thanhTien"))
-                {
-                    return item["thanhTien"].ToDecimal(); // Đảm bảo rằng "thanhTien" là kiểu decimal
-                }
-                return 0;
+                return item.Contains("thanhTien") ? item["thanhTien"].ToDecimal() : 0;
             });
-
-            // Lấy tài liệu hóa đơn hiện tại từ collection "HoaDon"
-            var invoiceDoc = MongoDataProvider.Instance.GetDocument(collectionName2, filter);
-            decimal currentTotalAmount = 0;
-
-            // Kiểm tra nếu đã có tổng tiền hiện tại trong hóa đơn
+            var invoiceFilter = Builders<BsonDocument>.Filter.Eq("_id", maHD);
+            var invoiceDoc = MongoDataProvider.Instance.GetDocument("HoaDon", invoiceFilter);
+            decimal tienSan = 0;
             if (invoiceDoc != null && invoiceDoc.Contains("tongTien"))
             {
-                currentTotalAmount = invoiceDoc["tongTien"].ToDecimal();
+                tienSan = invoiceDoc["tongTien"].ToDecimal();
             }
-
-            // Cộng dồn tổng tiền mới vào tổng tiền hiện tại
-            decimal updatedTotalAmount = currentTotalAmount + newTotalAmount;
-
-            // Cập nhật tổng tiền cho hóa đơn tại vị trí mã hóa đơn đã truyền vào
+            decimal updatedTotalAmount = tienSan + totalItemsAmount;
             var update = Builders<BsonDocument>.Update.Set("tongTien", updatedTotalAmount);
-
-            // Thực hiện cập nhật vào MongoDB cho đúng hóa đơn có maHD
-            MongoDataProvider.Instance.UpdateDocument(collectionName2, filter, update);
+            MongoDataProvider.Instance.UpdateDocument("HoaDon", invoiceFilter, update);
         }
-
     }
+
 }

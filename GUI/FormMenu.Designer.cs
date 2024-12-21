@@ -330,7 +330,7 @@ namespace BadmintonManager.GUI
             // pictureBox9
             // 
             this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            //this.pictureBox9.Image = global::BadmintonManager.Properties.Resources.Horizonbmt1;
+            this.pictureBox9.Image = global::BadmintonManager.Properties.Resources.Horizonbmt1;
             this.pictureBox9.Location = new System.Drawing.Point(245, 190);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(233, 213);
@@ -340,7 +340,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox10
             // 
-            //this.pictureBox10.Image = global::BadmintonManager.Properties.Resources.logout;
+            this.pictureBox10.Image = global::BadmintonManager.Properties.Resources.logout;
             this.pictureBox10.Location = new System.Drawing.Point(12, 454);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(36, 32);
@@ -370,7 +370,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox6
             // 
-            //this.pictureBox6.Image = global::BadmintonManager.Properties.Resources.badminton_court;
+            this.pictureBox6.Image = global::BadmintonManager.Properties.Resources.badminton_court;
             this.pictureBox6.Location = new System.Drawing.Point(12, 316);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(36, 32);
@@ -380,7 +380,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox5
             // 
-            // this.pictureBox5.Image = global::BadmintonManager.Properties.Resources.revenue;
+            this.pictureBox5.Image = global::BadmintonManager.Properties.Resources.revenue;
             this.pictureBox5.Location = new System.Drawing.Point(12, 270);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(36, 32);
@@ -390,7 +390,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox4
             // 
-            // this.pictureBox4.Image = global::BadmintonManager.Properties.Resources.target;
+            this.pictureBox4.Image = global::BadmintonManager.Properties.Resources.target;
             this.pictureBox4.Location = new System.Drawing.Point(12, 226);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(36, 32);
@@ -400,7 +400,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox3
             // 
-            // this.pictureBox3.Image = global::BadmintonManager.Properties.Resources.user;
+            this.pictureBox3.Image = global::BadmintonManager.Properties.Resources.user;
             this.pictureBox3.Location = new System.Drawing.Point(12, 180);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(36, 32);
@@ -410,7 +410,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox2
             // 
-            // this.pictureBox2.Image = global::BadmintonManager.Properties.Resources.features;
+            this.pictureBox2.Image = global::BadmintonManager.Properties.Resources.features;
             this.pictureBox2.Location = new System.Drawing.Point(12, 134);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(36, 32);
@@ -420,7 +420,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox1
             // 
-            // this.pictureBox1.Image = global::BadmintonManager.Properties.Resources.calendar;
+            this.pictureBox1.Image = global::BadmintonManager.Properties.Resources.calendar;
             this.pictureBox1.Location = new System.Drawing.Point(12, 86);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(36, 32);

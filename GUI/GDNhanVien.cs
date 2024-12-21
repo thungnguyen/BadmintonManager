@@ -90,7 +90,7 @@ namespace BadmintonManager.GUI
 
         private void btnLichSan_Click(object sender, EventArgs e)
         {
-            //OpenChildForm(new GUI.DanhSachLichSan(), sender);
+            OpenChildForm(new GUI.DanhSachLichSan(), sender);
         }
 
         private void btnHangHoa_Click(object sender, EventArgs e)
@@ -153,12 +153,12 @@ namespace BadmintonManager.GUI
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            //// Đóng form hiện tại
-            //this.Hide();
+            // Đóng form hiện tại
+            this.Hide();
 
-            //// Mở form đăng nhập
-            //DangNhap formDangNhap = new DangNhap();
-            //formDangNhap.Show();
+            // Mở form đăng nhập
+            DangNhap formDangNhap = new DangNhap();
+            formDangNhap.Show();
 
         }
 

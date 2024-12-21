@@ -281,7 +281,9 @@
     <Compile Include="GUI\DangKyTaiKhoan.Designer.cs">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DangNhap.cs" />
+    <Compile Include="GUI\DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
@@ -392,6 +394,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -413,17 +416,30 @@
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Resources\381607_complete_icon.png" />
+    <None Include="Resources\user1.png" />
+    <None Include="Resources\381607_complete_icon1.png" />
     <Content Include="Resources\badminton-court.png" />
+    <None Include="Resources\badminton-court1.png" />
     <Content Include="Resources\button.png" />
+    <None Include="Resources\button1.png" />
     <Content Include="Resources\calendar.png" />
+    <None Include="Resources\calendar1.png" />
     <Content Include="Resources\Datlich.jpg" />
+    <None Include="Resources\Datlich1.jpg" />
     <Content Include="Resources\features.png" />
+    <None Include="Resources\features1.png" />
     <Content Include="Resources\Horizonbmt.jpg" />
     <Content Include="Resources\Horizonbmt1.jpg" />
+    <None Include="Resources\Horizonbmt2.jpg" />
+    <None Include="Resources\Horizonbmt11.jpg" />
     <Content Include="Resources\logout.png" />
     <Content Include="Resources\logout1.png" />
+    <None Include="Resources\logout2.png" />
+    <None Include="Resources\logout11.png" />
     <Content Include="Resources\revenue.png" />
+    <None Include="Resources\revenue1.png" />
     <Content Include="Resources\target.png" />
+    <None Include="Resources\target1.png" />
     <Content Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

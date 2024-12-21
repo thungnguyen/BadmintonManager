@@ -29,8 +29,6 @@ namespace BadmintonManager.DAO
         {
             List<LoaiHH> list = new List<LoaiHH>();
             string collectionName = "LoaiHH"; // Tên collection MongoDB
-
-            // Lấy tất cả tài liệu từ collection "LoaiHH" (tương đương với câu truy vấn SELECT * FROM dbo.LoaiHH)
             var filter = Builders<BsonDocument>.Filter.Empty; // Lọc tất cả các tài liệu
             var documents = MongoDataProvider.Instance.ExecuteQuery(collectionName, filter);
 

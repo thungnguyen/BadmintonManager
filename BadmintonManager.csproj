@@ -232,9 +232,11 @@
     <Compile Include="BLL\SanBAL.cs" />
     <Compile Include="BLL\TaiKhoanBAL.cs" />
     <Compile Include="DAL\BangGiaSanDAO.cs" />
+    <Compile Include="DAL\BCDTDAL.cs" />
     <Compile Include="DAL\BillDAO.cs" />
     <Compile Include="DAL\BillInfoDAO.cs" />
     <Compile Include="DAL\ChangeStreamNewHoaDon.cs" />
+    <Compile Include="DAL\DanhSachLichSanDAL.cs" />
     <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="DAL\GiaSanDAL.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
@@ -253,6 +255,7 @@
     <Compile Include="DTO\BangGiaSanDTO.cs" />
     <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\BillInfo.cs" />
+    <Compile Include="DTO\DanhSachLichSanDTO.cs" />
     <Compile Include="DTO\GiaSanDTO.cs" />
     <Compile Include="DTO\HH.cs" />
     <Compile Include="DTO\KhachHang.cs" />
@@ -287,6 +290,12 @@
     <Compile Include="GUI\DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhSachLichSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachLichSan.Designer.cs">
+      <DependentUpon>DanhSachLichSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhSachTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,12 +314,6 @@
     <Compile Include="GUI\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\FrmTinhTien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FrmTinhTien.Designer.cs">
-      <DependentUpon>FrmTinhTien.cs</DependentUpon>
-    </Compile>
     <Compile Include="DTO\San.cs" />
     <Compile Include="DTO\HangHoa.cs" />
     <Compile Include="DTO\LoaiHH.cs" />
@@ -320,11 +323,15 @@
     <Compile Include="GUI\BangGiaSan.Designer.cs">
       <DependentUpon>BangGiaSan.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DanhMucHangHoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="GUI\DanhMucHangHoa.cs" />
     <Compile Include="GUI\DanhMucHangHoa.Designer.cs">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FrmTinhTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FrmTinhTien.Designer.cs">
+      <DependentUpon>FrmTinhTien.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\GDNhanVien.cs">
       <SubType>Form</SubType>
@@ -332,9 +339,7 @@
     <Compile Include="GUI\GDNhanVien.Designer.cs">
       <DependentUpon>GDNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\TaoHangHoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="GUI\TaoHangHoa.cs" />
     <Compile Include="GUI\TaoHangHoa.Designer.cs">
       <DependentUpon>TaoHangHoa.cs</DependentUpon>
     </Compile>
@@ -359,6 +364,9 @@
     <EmbeddedResource Include="GUI\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhSachLichSan.resx">
+      <DependentUpon>DanhSachLichSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
@@ -368,14 +376,14 @@
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FrmTinhTien.resx">
-      <DependentUpon>FrmTinhTien.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\BangGiaSan.resx">
       <DependentUpon>BangGiaSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhMucHangHoa.resx">
       <DependentUpon>DanhMucHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FrmTinhTien.resx">
+      <DependentUpon>FrmTinhTien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\GDNhanVien.resx">
       <DependentUpon>GDNhanVien.cs</DependentUpon>
@@ -420,6 +428,8 @@
     <None Include="Resources\381607_complete_icon1.png" />
     <Content Include="Resources\badminton-court.png" />
     <None Include="Resources\badminton-court1.png" />
+    <None Include="Resources\booking.png" />
+    <None Include="Resources\bill.png" />
     <Content Include="Resources\button.png" />
     <None Include="Resources\button1.png" />
     <Content Include="Resources\calendar.png" />

@@ -350,7 +350,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox8
             // 
-            //this.pictureBox8.Image = global::BadmintonManager.Properties.Resources.bill;
+            this.pictureBox8.Image = global::BadmintonManager.Properties.Resources.bill;
             this.pictureBox8.Location = new System.Drawing.Point(12, 408);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(36, 32);
@@ -360,7 +360,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox7
             // 
-            //this.pictureBox7.Image = global::BadmintonManager.Properties.Resources.badminton_court1;
+            this.pictureBox7.Image = global::BadmintonManager.Properties.Resources.badminton_court;
             this.pictureBox7.Location = new System.Drawing.Point(12, 362);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(36, 32);
@@ -370,7 +370,7 @@ namespace BadmintonManager.GUI
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::BadmintonManager.Properties.Resources.badminton_court;
+            this.pictureBox6.Image = global::BadmintonManager.Properties.Resources.booking;
             this.pictureBox6.Location = new System.Drawing.Point(12, 316);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(36, 32);

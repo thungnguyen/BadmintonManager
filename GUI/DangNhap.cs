@@ -65,7 +65,7 @@ namespace BadmintonManager
             else if (taiKhoan.VaiTro == "Nhân viên")
             {
                 // Mở form nhân viên
-                FormMenu formNhanVien = new FormMenu();
+                FormMenuNV formNhanVien = new FormMenuNV();
 
                 formNhanVien.Show();
             }

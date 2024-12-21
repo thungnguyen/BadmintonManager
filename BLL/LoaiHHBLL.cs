@@ -1,47 +1,47 @@
-﻿using System.Collections.Generic;
-using BadmintonManager.DAL;
-using BadmintonManager.DTO;
+﻿//using System.Collections.Generic;
+//using BadmintonManager.DAL;
+//using BadmintonManager.DTO;
 
-namespace BadmintonManager.BLL
-{
+//namespace BadmintonManager.BLL
+//{
 
-    public class LoaiHHBLL
-    {
-        private readonly LoaiHHDAL _loaiHHDAL;
+//    public class LoaiHHBLL
+//    {
+//        private readonly LoaiHHDAL _loaiHHDAL;
 
-        public LoaiHHBLL()
-        {
-            _loaiHHDAL = new LoaiHHDAL();
-        }
+//        public LoaiHHBLL()
+//        {
+//            _loaiHHDAL = new LoaiHHDAL();
+//        }
 
-        // Lấy danh sách tất cả loại hàng hóa
-        public List<LoaiHHDTO> LoaiHHList(string sortCriteria = null)
-        {
-            return _loaiHHDAL.ListLoaiHH(sortCriteria);
-        }
+//        // Lấy danh sách tất cả loại hàng hóa
+//        public List<LoaiHHDTO> LoaiHHList(string sortCriteria = null)
+//        {
+//            return _loaiHHDAL.ListLoaiHH(sortCriteria);
+//        }
 
-        // Thêm loại hàng hóa mới
-        public void AddLoaiHH(LoaiHHDTO newLoaiHH)
-        {
-            _loaiHHDAL.ThemLoaiHH(newLoaiHH);
-        }
+//        // Thêm loại hàng hóa mới
+//        public void AddLoaiHH(LoaiHHDTO newLoaiHH)
+//        {
+//            _loaiHHDAL.ThemLoaiHH(newLoaiHH);
+//        }
 
-        // Sửa loại hàng hóa
-        public void UpdateLoaiHH(LoaiHHDTO updatedLoaiHH)
-        {
-            _loaiHHDAL.SuaLoaiHH(updatedLoaiHH);
-        }
+//        // Sửa loại hàng hóa
+//        public void UpdateLoaiHH(LoaiHHDTO updatedLoaiHH)
+//        {
+//            _loaiHHDAL.SuaLoaiHH(updatedLoaiHH);
+//        }
 
-        // Xóa loại hàng hóa
-        public void DeleteLoaiHH(string id)
-        {
-            _loaiHHDAL.XoaLoaiHH(id);
-        }
+//        // Xóa loại hàng hóa
+//        public void DeleteLoaiHH(string id)
+//        {
+//            _loaiHHDAL.XoaLoaiHH(id);
+//        }
 
-        // Tìm loại hàng hóa theo ID
-        public LoaiHHDTO GetLoaiHHById(string id)
-        {
-            return _loaiHHDAL.TimLoaiHHTheoId(id);
-        }
-    }
-}
+//        // Tìm loại hàng hóa theo ID
+//        public LoaiHHDTO GetLoaiHHById(string id)
+//        {
+//            return _loaiHHDAL.TimLoaiHHTheoId(id);
+//        }
+//    }
+//}

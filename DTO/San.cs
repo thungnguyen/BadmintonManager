@@ -12,8 +12,9 @@ namespace BadmintonManager.DTO
     public class San
     {
 
-        public San(int maSan, string tenSan, string status, decimal giaSan)
+        public San(ObjectId _id, int maSan, string tenSan, string status, decimal giaSan)
         {
+            this.Id = _id;
             this.MaSan = maSan;
             this.TenSan = tenSan;
             this.Status = status;
@@ -21,7 +22,8 @@ namespace BadmintonManager.DTO
         }
         public San(BsonDocument doc)
         {
-        MaSan = doc["maSan"].AsInt32;
+            Id = doc["_id"].AsObjectId;
+            MaSan = doc["maSan"].AsInt32;
         TenSan = doc["tenSan"].AsString;
         Status = doc.Contains("status") ? doc["status"].AsString : string.Empty;
         }
@@ -49,5 +51,6 @@ namespace BadmintonManager.DTO
             get { return giaSan; }
             set { giaSan = value; }
         }
+        public ObjectId Id { get; set; }    
     }
 }

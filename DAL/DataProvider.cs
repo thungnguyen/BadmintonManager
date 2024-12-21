@@ -27,7 +27,7 @@ namespace BadmintonManager.DAO
         private string connectionString = ConfigurationManager.ConnectionStrings["MongoDbConnectionString"].ConnectionString;
         private string databaseName = "QuanLySan"; // Replace with your database name
 
-        private IMongoDatabase GetDatabase()
+        public IMongoDatabase GetDatabase()
         {
             var client = new MongoClient(connectionString);
             return client.GetDatabase(databaseName);

@@ -1,43 +1,43 @@
-﻿using System.Collections.Generic;
-using BadmintonManager.DAL;
-using BadmintonManager.DTO;
+﻿//using System.Collections.Generic;
+//using BadmintonManager.DAL;
+//using BadmintonManager.DTO;
 
-namespace BadmintonManager.BLL
-{
-    /// <summary>
-    /// Business Logic Layer for Product Management
-    /// </summary>
-    public class HangHoaBLL
-    {
-        private readonly HangHoaDAL _hanghoaDAL;
+//namespace BadmintonManager.BLL
+//{
+//    /// <summary>
+//    /// Business Logic Layer for Product Management
+//    /// </summary>
+//    public class HangHoaBLL
+//    {
+//        private readonly HangHoaDAL _hanghoaDAL;
 
-        public HangHoaBLL()
-        {
-            _hanghoaDAL = new HangHoaDAL();
-        }
+//        public HangHoaBLL()
+//        {
+//            _hanghoaDAL = new HangHoaDAL();
+//        }
 
-        // Lấy danh sách hàng hóa
-        public List<HangHoa> HangHoaList(string sortCriteria = null)
-        {
-            return _hanghoaDAL.ListHangHoa(sortCriteria);
-        }
+//        // Lấy danh sách hàng hóa
+//        public List<HangHoa> HangHoaList(string sortCriteria = null)
+//        {
+//            return _hanghoaDAL.ListHangHoa(sortCriteria);
+//        }
 
-        // Thêm hàng hóa
-        public void ThemHH(HangHoa hh)
-        {
-            _hanghoaDAL.ThemHH(hh);
-        }
+//        // Thêm hàng hóa
+//        public void ThemHH(HangHoa hh)
+//        {
+//            _hanghoaDAL.ThemHH(hh);
+//        }
 
-        // Sửa hàng hóa
-        public void SuaHH(HangHoa updatedHH)
-        {
-            _hanghoaDAL.SuaHH(updatedHH);
-        }
+//        // Sửa hàng hóa
+//        public void SuaHH(HangHoa updatedHH)
+//        {
+//            _hanghoaDAL.SuaHH(updatedHH);
+//        }
 
-        // Xóa hàng hóa
-        public void XoaHH(string Id)
-        {
-            _hanghoaDAL.XoaHH(Id);
-        }
-    }
-}
+//        // Xóa hàng hóa
+//        public void XoaHH(string Id)
+//        {
+//            _hanghoaDAL.XoaHH(Id);
+//        }
+//    }
+//}

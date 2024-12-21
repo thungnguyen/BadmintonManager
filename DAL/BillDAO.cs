@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace BadmintonManager.DAO
 {
@@ -38,17 +39,16 @@ namespace BadmintonManager.DAO
             {
                 return document["_id"].AsObjectId;
             }
-
+            else
             return ObjectId.Empty;
         }
 
         // Thanh toán hóa đơn
-        public void Checkout(ObjectId maHD, decimal giaSan)
+        public void Checkout(ObjectId maHD)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("_id", maHD);
             var update = Builders<BsonDocument>.Update
-                .Set("status", 1)
-                .Inc("tongTien", giaSan);
+                .Set("status", 1); // Chỉ thay đổi trạng thái của hóa đơn thành 1 (đã thanh toán)
 
             MongoDataProvider.Instance.UpdateDocument(collectionName, filter, update);
 
@@ -57,19 +57,31 @@ namespace BadmintonManager.DAO
         }
 
         // Tạo mới hóa đơn
-        public void InsertBill(int maSan, decimal giaGioChoi)
+        public void InsertBill(ObjectId? maDatSan, int maSan, decimal giaGioChoi)
         {
+            // Tính tổng tiền, bao gồm giá giờ chơi
             var tongTien = CalculateTotalBill(maSan) + giaGioChoi;
 
+            // Tạo tài liệu hóa đơn mới
             var newBill = new BsonDocument
-            {
-                { "maDatSan", BsonNull.Value },
-                { "ngayLap", DateTime.Now },
-                { "tongTien", tongTien },
-                { "maSan", maSan },
-                { "status", 0 }
-            };
+    {
+        { "ngayLap", DateTime.Now },
+        { "tongTien", tongTien },
+        { "maSan", maSan },
+        { "status", 0 }
+    };
 
+            // Kiểm tra và thêm trường maDatSan
+            if (maDatSan.HasValue)
+            {
+                newBill.Add("maDatSan", maDatSan.Value);
+            }
+            else
+            {
+                newBill.Add("maDatSan", BsonNull.Value);
+            }
+
+            // Chèn hóa đơn mới vào cơ sở dữ liệu
             MongoDataProvider.Instance.InsertDocument("HoaDon", newBill);
 
             // Cập nhật trạng thái sân

@@ -87,6 +87,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.nudGiamGia = new System.Windows.Forms.NumericUpDown();
             this.label19 = new System.Windows.Forms.Label();
+            this.btnIn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).BeginInit();
@@ -391,6 +392,7 @@
             this.BtnStart.TabIndex = 12;
             this.BtnStart.Text = "Bắt đầu";
             this.BtnStart.UseVisualStyleBackColor = true;
+            this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // btnTinhGiaSan
             // 
@@ -410,6 +412,7 @@
             this.btnKhachMoi.TabIndex = 9;
             this.btnKhachMoi.Text = "Khách mới";
             this.btnKhachMoi.UseVisualStyleBackColor = true;
+            this.btnKhachMoi.Click += new System.EventHandler(this.btnKhachMoi_Click);
             // 
             // btnChooseLichSan
             // 
@@ -419,6 +422,7 @@
             this.btnChooseLichSan.TabIndex = 8;
             this.btnChooseLichSan.Text = "Chọn từ lịch sân";
             this.btnChooseLichSan.UseVisualStyleBackColor = true;
+            this.btnChooseLichSan.Click += new System.EventHandler(this.btnChooseLichSan_Click);
             // 
             // nudSoGioThue
             // 
@@ -524,7 +528,7 @@
             // 
             this.btnCheckOut.Location = new System.Drawing.Point(3, 3);
             this.btnCheckOut.Name = "btnCheckOut";
-            this.btnCheckOut.Size = new System.Drawing.Size(115, 48);
+            this.btnCheckOut.Size = new System.Drawing.Size(55, 48);
             this.btnCheckOut.TabIndex = 22;
             this.btnCheckOut.Text = "Thanh toán";
             this.btnCheckOut.UseVisualStyleBackColor = true;
@@ -542,6 +546,7 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.btnIn);
             this.panel6.Controls.Add(this.btnCheckOut);
             this.panel6.Controls.Add(this.btnThoat);
             this.panel6.Location = new System.Drawing.Point(670, 389);
@@ -702,6 +707,16 @@
             this.label19.TabIndex = 33;
             this.label19.Text = "Giảm giá";
             // 
+            // btnIn
+            // 
+            this.btnIn.Location = new System.Drawing.Point(63, 3);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(54, 48);
+            this.btnIn.TabIndex = 25;
+            this.btnIn.Text = "In phiếu";
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
             // FrmTinhTien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -797,5 +812,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.NumericUpDown nudGiamGia;
+        private System.Windows.Forms.Button btnIn;
     }
 }

@@ -1,61 +1,22 @@
-﻿using System.Collections.Generic;
-using MongoDB.Driver;
-using BadmintonManager.DTO;
+﻿using BadmintonManager.DTO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace BadmintonManager.DAL
 {
-    /// <summary>
-    /// Data Access Layer for LoaiHH (Product Category) operations using MongoDB
-    /// </summary>
-    public class LoaiHHDAL
+    internal class LoaiHHDAL
     {
-        private readonly IMongoCollection<LoaiHHDTO> _collection;
+        private readonly MongoDBConnection _dbConnection; 
 
         public LoaiHHDAL()
         {
-            var connection = new MongoDBConnection();
-            _collection = connection.GetCollection<LoaiHHDTO>("LoaiHH");
+            _dbConnection = new MongoDBConnection();
         }
 
-        // Lấy danh sách tất cả loại hàng hóa
-        public List<LoaiHHDTO> ListLoaiHH(string sortCriteria = null)
-        {
-            var filter = FilterDefinition<LoaiHHDTO>.Empty;
-            var sort = string.IsNullOrEmpty(sortCriteria)
-                ? null
-                : Builders<LoaiHHDTO>.Sort.Ascending(sortCriteria);
 
-            return sort != null
-                ? _collection.Find(filter).Sort(sort).ToList()
-                : _collection.Find(filter).ToList();
-        }
-
-        // Thêm loại hàng hóa mới
-        public void ThemLoaiHH(LoaiHHDTO newLoaiHH)
-        {
-            _collection.InsertOne(newLoaiHH);
-        }
-
-        // Sửa thông tin loại hàng hóa
-        public void SuaLoaiHH(LoaiHHDTO updatedLoaiHH)
-        {
-            var filter = Builders<LoaiHHDTO>.Filter.Eq(lh => lh._id, updatedLoaiHH._id);
-            var update = Builders<LoaiHHDTO>.Update.Set(lh => lh.TenLoaiHH, updatedLoaiHH.TenLoaiHH);
-            _collection.UpdateOne(filter, update);
-        }
-
-        // Xóa loại hàng hóa
-        public void XoaLoaiHH(string id)
-        {
-            var filter = Builders<LoaiHHDTO>.Filter.Eq(lh => lh._id, id);
-            _collection.DeleteOne(filter);
-        }
-
-        // Tìm loại hàng hóa theo ID
-        public LoaiHHDTO TimLoaiHHTheoId(string id)
-        {
-            var filter = Builders<LoaiHHDTO>.Filter.Eq(lh => lh._id, id);
-            return _collection.Find(filter).FirstOrDefault();
-        }
     }
 }

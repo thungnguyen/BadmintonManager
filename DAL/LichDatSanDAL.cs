@@ -14,13 +14,11 @@ namespace BadmintonManager.DAL
         private readonly IMongoCollection<BsonDocument> _lichDatSanCollection;
         private readonly IMongoCollection<BsonDocument> _chiTietCollection;
 
-
         public LichDatSanDAL()
         {
             _mongoConnection = new MongoDBConnection();
             _lichDatSanCollection = _mongoConnection.GetCollection<BsonDocument>("LichDatSan");
             _chiTietCollection = _mongoConnection.GetCollection<BsonDocument>("ChiTietLichDatSan");
-
         }
 
         public ObjectId GetMaSan(string tenSan)
@@ -226,6 +224,49 @@ namespace BadmintonManager.DAL
                                              .Limit(1)
                                              .FirstOrDefault();
             return lastRecord != null ? lastRecord["maChiTiet"].AsInt32 + 1 : 1;
+        }
+
+
+        public List<LichDatSanDTO> GetLichDatSanDtoByDate(DateTime ngayChon)
+        {
+            try
+            {
+                // Lấy tất cả các sân trong hệ thống
+                var sanCollection = _mongoConnection.GetCollection<BsonDocument>("San");
+                var sanDocs = sanCollection.Find(new BsonDocument()).ToList();
+
+                // Kiểm tra và lấy danh sách tên sân, nếu không có trường "tenSan" sẽ trả về chuỗi rỗng
+                var danhSachSan = sanDocs.Select(x =>
+                {
+                    return x.Contains("tenSan") ? x["tenSan"].AsString : string.Empty;
+                }).Where(x => !string.IsNullOrEmpty(x)).ToList();  // Lọc bỏ các tên sân rỗng
+
+                // Danh sách kết quả LichDatSanDTO
+                var result = new List<LichDatSanDTO>();
+
+                // Duyệt qua từng sân để lấy lịch đặt sân
+                foreach (var tenSan in danhSachSan)
+                {
+                    // Lấy mã sân tương ứng với tên sân
+                    var maSan = GetMaSan(tenSan);
+                    if (maSan == ObjectId.Empty)
+                    {
+                        continue; // Nếu không tìm thấy mã sân thì bỏ qua
+                    }
+
+                    // Gọi phương thức GetLichDatSanByMaSan để lấy danh sách lịch đặt cho sân đó
+                    var lichDatSanList = GetLichDatSanByMaSan(maSan.ToString(), new List<DateTime> { ngayChon });
+
+                    // Thêm vào kết quả nếu có lịch đặt cho ngày chọn
+                    result.AddRange(lichDatSanList);
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy lịch đặt sân theo ngày: {ex.Message}");
+            }
         }
     }
 }

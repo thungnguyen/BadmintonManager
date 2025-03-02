@@ -79,7 +79,7 @@ namespace BadmintonManager.DAO
         {
             var database = GetDatabase();
             var collection = database.GetCollection<BsonDocument>(collectionName);
-            return collection.Find(filter).FirstOrDefault();  // Trả về tài liệu đầu tiên nếu có, hoặc null nếu không tìm thấy
+            return collection.Find(filter).FirstOrDefault();  
         }
         public long CountDocuments(string collectionName, FilterDefinition<BsonDocument> filter = null)
         {
@@ -92,8 +92,6 @@ namespace BadmintonManager.DAO
         }
         public void ExecuteStoredProcedure(string storedProcedureName, params object[] parameters)
         {
-            // MongoDB không hỗ trợ Stored Procedures theo cách của SQL Server.
-            // Thay vào đó, bạn có thể triển khai logic thông qua mã ứng dụng.
             throw new NotImplementedException("Stored procedures are not supported in MongoDB.");
         }
 

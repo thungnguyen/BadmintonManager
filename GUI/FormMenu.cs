@@ -91,7 +91,7 @@ namespace BadmintonManager.GUI
 
         private void btnLichSan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new GUI.DatSan(), sender);
+            OpenChildForm(new GUI.DanhSachLichDatSan(), sender);
         }
 
         private void btnHangHoa_Click(object sender, EventArgs e)

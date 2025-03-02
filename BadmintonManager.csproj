@@ -229,6 +229,7 @@
     <Compile Include="BLL\KhachHangBAL.cs" />
     <Compile Include="BLL\LichDatSanBAL.cs" />
     <Compile Include="BLL\LoaiHHBLL.cs" />
+    <Compile Include="BLL\NhapHangBLL.cs" />
     <Compile Include="BLL\SanBAL.cs" />
     <Compile Include="BLL\TaiKhoanBAL.cs" />
     <Compile Include="DAL\BangGiaSanDAO.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="DAL\LoaiHHDAO.cs" />
     <Compile Include="DAL\MenuDAO.cs" />
     <Compile Include="DAL\MongoDBConnection.cs" />
+    <Compile Include="DAL\NhapHangDAL.cs" />
     <Compile Include="DAL\PricePerHourDAO.cs" />
     <Compile Include="DAL\SanDAL.cs" />
     <Compile Include="DAL\SanDAO.cs" />
@@ -261,6 +263,7 @@
     <Compile Include="DTO\LoaiHHDTO.cs" />
     <Compile Include="DTO\LoaiKH.cs" />
     <Compile Include="DTO\Menu.cs" />
+    <Compile Include="DTO\NhapHang.cs" />
     <Compile Include="DTO\SanDTO.cs" />
     <Compile Include="DTO\TaiKhoanNhanVienDTO.cs" />
     <Compile Include="GUI\AddKhachHang.cs">
@@ -287,6 +290,12 @@
     <Compile Include="GUI\DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DanhSachLichDatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhSachLichDatSan.Designer.cs">
+      <DependentUpon>DanhSachLichDatSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhSachTaiKhoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,6 +307,12 @@
     </Compile>
     <Compile Include="GUI\DatSan.Designer.cs">
       <DependentUpon>DatSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormDanhSachNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormDanhSachNhapHang.Designer.cs">
+      <DependentUpon>FormDanhSachNhapHang.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormMenu.cs">
       <SubType>Form</SubType>
@@ -359,11 +374,17 @@
     <EmbeddedResource Include="GUI\DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DanhSachLichDatSan.resx">
+      <DependentUpon>DanhSachLichDatSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhSachTaiKhoan.resx">
       <DependentUpon>DanhSachTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\DatSan.resx">
       <DependentUpon>DatSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormDanhSachNhapHang.resx">
+      <DependentUpon>FormDanhSachNhapHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>

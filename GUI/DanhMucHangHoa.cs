@@ -61,15 +61,15 @@ namespace BadmintonManager.GUI
 
         private void addbtn_Click(object sender, EventArgs e)
         {
-            //using (var addForm = new ThemHangHoa())
-            //{
-            //    var result = addForm.ShowDialog();
+            using (var addForm = new TaoHangHoa())
+            {
+                var result = addForm.ShowDialog();
 
-            //    if (result == DialogResult.OK)
-            //    {
-            //        LoadTable();
-            //    }
-            //}
+                if (result == DialogResult.OK)
+                {
+                    LoadTable();
+                }
+            }
         }
 
 
@@ -81,12 +81,6 @@ namespace BadmintonManager.GUI
         private void refreshbtn_Click(object sender, EventArgs e)
         {
             LoadTable();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            string searchTerm = searchbar.Text.Trim();
-            LoadTable(searchTerm); // Pass the search term to filter results
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -128,32 +122,8 @@ namespace BadmintonManager.GUI
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            //if (dgvHangHoa.CurrentRow != null)
-            //{
-            //    // Lấy sản phẩm được chọn từ DataGridView
-            //    int selectedProductId = (int)dgvHangHoa.CurrentRow.Cells["MaHH"].Value;
-            //    var product = _hangHoaBLL.GetProductById(selectedProductId);
 
-            //    if (product != null)
-            //    {
-            //        // Mở form sửa hàng hoá
-            //        var editForm = new SuaHangHoa(product);
-            //        editForm.ShowDialog();
 
-            //        // Refresh lại danh sách sau khi sửa
-            //        LoadTable();
-            //    }
-            //}
-        }
 
-        private void addnewLoaiHHbtn_Click(object sender, EventArgs e)
-        {
-            //using (DanhSachLoaiHH formDanhSachLoaiHH = new DanhSachLoaiHH())
-            //{
-            //    formDanhSachLoaiHH.ShowDialog(); // Open the form modally
-            //}
-        }
     }
 }

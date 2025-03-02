@@ -121,5 +121,12 @@ namespace BadmintonManager.BAL
 
             return isTrungLich;
         }
+
+        public List<LichDatSanDTO> GetLichDatSanByDate(DateTime ngayChon)
+        {
+            return _dal.GetLichDatSanDtoByDate(ngayChon);
+        }
+
+
     }
 }
